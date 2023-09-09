@@ -54,4 +54,8 @@ Route::get('/about', function () {
 })->name('about');
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// TODO homecontroller削除してアクセス先変更
+Route::get('/home', function () {
+    return view('index');
+})->name('index');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
