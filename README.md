@@ -8,7 +8,7 @@ share develop repository
 - src/tufspotにて`$composer install`
 - tufspot_developにて`$docker-compose build`と`$docker-compose up`
 - src/tufspotにてコンテナアクセス`$docker-compose exec app bash`
-  - `cd tufspot`にて`chmod 777 -R storage/`と`php artisan key:generate` 
+  - `cd tufspot`にて `chmod 777 -R storage/`と`php artisan key:generate` 
 - localhostにアクセス
 
 ## 運用
