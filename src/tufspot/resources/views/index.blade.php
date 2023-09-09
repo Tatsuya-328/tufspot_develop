@@ -14,9 +14,9 @@
     {{-- Pick Up --}}
     <x-top_slider title="Pick Up" text="注目記事" />
     {{-- Academia --}}
-    <x-top_category title="Academia" />
-    <x-top_category title="Buisiness and Carreer" />
-    <x-top_category title="Culture and Essay" />
+    <x-top_category title="Academia" imagePath="image/BOOK.png"/>
+    <x-top_category title="Buisiness and Carreer" imagePath="image/TALK.png"/>
+    <x-top_category title="Culture and Essay" imagePath="image/EARTH.png"/>
     {{-- Feature --}}
     <x-top_slider title="Feature" text="特集" type="feature" />
 
