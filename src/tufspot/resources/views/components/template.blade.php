@@ -46,6 +46,8 @@
         {{-- slotはx-templateの中でx-breadや他のcomponents読み込む用 --}}
         {{ $slot }}
     </div>
+    {{-- とりあえずここでフェードインのスクリプト読み込んでる。後で修正する --}}
+    <script src="{{ asset('js/modules/fadeIn.js') }}"></script>
 </body>
 
 </html>
