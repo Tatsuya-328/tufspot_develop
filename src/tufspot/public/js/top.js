@@ -1,3 +1,5 @@
+import articleSlide from './modules/articleSlide'
+
 //読み込み時の表示
 window_load();
 
