@@ -1533,6 +1533,8 @@ div>ul {
   object-fit: cover;
   width: 300px;
   aspect-ratio: 4 / 3;
+  position: relative;
+  z-index: 1;
 }
 
 .slick-track>div>.article_card_img {
