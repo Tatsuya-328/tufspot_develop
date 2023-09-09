@@ -12,6 +12,7 @@ share develop repository
 - localhostにアクセス
 
 ## 運用
+- main, developへの直pushは禁止。必ず他ブランチからPRで、確認依頼後にmerge
 - ブランチは`feature/fixCss` 等でdvelopブランチから切る
 - commitは `fix: タイポ修正` 等 [prefix](https://qiita.com/konatsu_p/items/dfe199ebe3a7d2010b3e)をつける
   - できるなら修正の塊ごとにcommitがあるとありがたい。
