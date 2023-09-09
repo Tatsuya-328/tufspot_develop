@@ -5,10 +5,11 @@ share develop repository
 ## 環境構築
 - Clone
 - .env.example をコピーして.envを作成
-- src/tufspotにて`$composer install`
+- src/tufspotにて`$composer install`と`$npm install`
 - tufspot_developにて`$docker-compose build`と`$docker-compose up`
 - src/tufspotにてコンテナアクセス`$docker-compose exec app bash`
   - `cd tufspot`にて`chmod 777 -R storage/`と`php artisan key:generate` 
+- `$npm run dev`でログイン機能構築
 - localhostにアクセス
 
 ## 運用
