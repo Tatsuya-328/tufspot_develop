@@ -50,11 +50,11 @@ class RouteServiceProvider extends ServiceProvider
             //     ->group(base_path('routes/front.php'));
 
             // 管理画面
-            Route::prefix('admin')
-                ->middleware(['web', 'auth'])
-                ->namespace($this->namespace . '\Back')
-                ->as('back.')
-                ->group(base_path('routes/back.php'));
+            // Route::prefix('admin')
+            //     ->middleware(['web', 'auth'])
+            //     ->namespace($this->namespace . '\Back')
+            //     ->as('back.')
+            //     ->group(base_path('routes/back.php'));
 
             // 既存分追加
             Route::middleware('web')
