@@ -11,3 +11,6 @@
 } */
 
 /* .sidebar-collapse>.wrapper>aside>{} */
+.ql-editor {
+  border: 1px solid #ccc;
+}

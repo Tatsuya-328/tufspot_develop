@@ -20,7 +20,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
+    {{-- TODO: 以下4.5にすると整うが、css二重になるし、5,0のみにするとどのみち崩れるため、5.0で見た目整え直す --}}
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous"> --}}
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -31,7 +32,24 @@
     <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#7952b3">
 
+    {{-- editor --}}
+    <!-- Main Quill library -->
+    {{-- <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
+    <!-- Theme included stylesheets -->
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+    <!-- Core build with no theme, formatting, non-essential modules -->
+    <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet">
+    <script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script> --}}
+    {{-- editorここまで --}}
+    {{-- editor試し１ --}}
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    {{-- editor試し１ここまで --}}
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -52,6 +70,7 @@
     <!-- Custom styles for this template -->
     {{-- <link href="dashboard.css" rel="stylesheet"> --}}
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <style type="text/css">
         /* Chart.js */
         @keyframes chartjs-render-animation {
@@ -364,6 +383,27 @@
             </svg></div>
         <div id="yt_article_summary_close_button" class="yt_article_summary_close_button">×</div>
     </div>
+
+    {{-- editor用 --}}
+    <script>
+        var quill = new Quill('#quill_editor', {
+            // var quill = new Quill('#editor-container', {
+            modules: {
+                toolbar: [
+                    [{
+                        header: [1, 2, false]
+                    }],
+                    ['bold', 'italic', 'underline'],
+                    ['image', 'code-block']
+                ]
+            },
+            scrollingContainer: '#scrolling-container',
+            placeholder: 'Compose an epic...',
+            theme: 'bubble'
+        });
+    </script>
+
+
 </body>
 
 </html>

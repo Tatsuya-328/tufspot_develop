@@ -3,13 +3,16 @@
  * @var \App\Models\Post $post
  */
 ?>
+{{-- <form action="{{ 'PostsController@save' }}" method="post"> --}}
+{{-- <form action="" method="post"> --}}
 <div class="form-group row">
     {{ Form::label('title', 'タイトル', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
-        {{ Form::text('title', null, [
-            'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
-            'required',
-        ]) }}
+        {{-- {{ Form::text('title', null, [
+                'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
+                'required',
+            ]) }} --}}
+        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
         @error('title')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -20,11 +23,17 @@
 
 <div class="form-group row">
     {{ Form::label('body', '内容', ['class' => 'col-sm-2 col-form-label']) }}
-    <div class="col-sm-10">
-        {{ Form::textarea('body', null, [
-            'class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''),
-            'rows' => 5,
-        ]) }}
+    <div class="col-sm-10" id="">
+        {{-- {{ Form::textarea('body', null, [
+                'class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''),
+                'rows' => 5,
+            ]) }} --}}
+        {{-- quill editor --}}
+        <div id="quill_editor" class="">
+        </div>
+        {{-- quill変換後DB保存用隠し --}}
+        {{-- <input type="hidden" name="main"> --}}
+        <input name="body" style="display:none" id="body">
         @error('body')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -92,7 +101,33 @@
 
 <div class="form-group row">
     <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-primary" name="subbtn">保存</button>
         {{ link_to_route('back.posts.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
     </div>
 </div>
+{{-- </form> --}}
+<script>
+    // 回答フォームを送信
+    document.ansform.subbtn.addEventListener('click', function() {
+        // ブログのやつ 
+        // alert(document.querySelector('#quill_editor').innerHTML);
+        // 公式demo
+        var hoge = JSON.stringify(quill.getContents());
+
+        // Quillのデータをinputに代入
+        // document.querySelector('input[name=body]').value = document.querySelector('#quill_editor').innerHTML;
+        document.querySelector('input[name=body]').value = hoge;
+        // 送信
+        document.ansform.submit();
+
+        // var form = document.querySelector('form');
+        // form.onsubmit = function() {
+        // Populate hidden form on submit
+        // var about = document.querySelector('input[name=about]');
+        // about.value = JSON.stringify(quill.getContents());
+
+        // console.log("Submitted", $(form).serialize(), $(form).serializeArray());
+
+        // };
+    });
+</script>
