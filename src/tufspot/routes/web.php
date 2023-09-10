@@ -54,8 +54,10 @@ Route::get('/about', function () {
 })->name('about');
 
 Auth::routes();
-// TODO homecontroller削除してアクセス先変更
+
+
+// TODO adminのURLに変更。特定ユーザーのみログイン可能に。
 Route::get('/home', function () {
-    return view('index');
-})->name('index');
+    return view('home');
+})->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
