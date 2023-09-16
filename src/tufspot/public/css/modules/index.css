@@ -44,3 +44,34 @@
     top: 0;
     width: 100%;
 }
+
+@media screen and (min-width: 320px) {
+    .pickup_title_image {
+        transform: translateY(-25%) translateX(-70px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .pickup_title_image {
+        transform: translateY(-25%) translateX(-70px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .pickup_title_image {
+        transform: translateY(-25%) translateX(-50px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .pickup_title_image {
+        transform: translateY(-30%) translateX(-70px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+}
