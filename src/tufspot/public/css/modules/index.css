@@ -47,7 +47,7 @@
 
 @media screen and (min-width: 320px) {
     .pickup_title_image {
-        transform: translateY(-25%) translateX(-70px);
+        transform: translateY(-25%) translateX(-100px);
         scale: 1.2;
     }
 }
