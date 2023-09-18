@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required|max:100',
-            'body' => 'max:1000',
+            'body' => '',
             'is_public' => 'required|numeric',
             'published_at' => 'required|date_format:Y-m-d H:i',
             'tags.*' => 'numeric|exists:tags,id'

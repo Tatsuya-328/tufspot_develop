@@ -9,7 +9,7 @@ $title = '投稿登録';
 @section('content')
     <div class="card-header">{{ $title }}</div>
     <div class="card-body">
-        {{ Form::open(['name' => 'ansform', 'route' => 'back.posts.store', 'files' => true]) }}
+        {{ Form::open(['name' => 'ansform', 'route' => 'back.posts.store', 'files' => true, 'enctype' => 'multipart/form-data']) }}
         @include('back.posts._form')
         {{ Form::close() }}
     </div>
