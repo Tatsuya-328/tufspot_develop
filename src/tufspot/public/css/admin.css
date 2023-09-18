@@ -14,3 +14,9 @@
 .ql-editor {
   border: 1px solid #ccc;
 }
+
+.featured_image {
+  object-fit: cover;
+  width: 300px;
+  aspect-ratio: 4 / 3;
+}

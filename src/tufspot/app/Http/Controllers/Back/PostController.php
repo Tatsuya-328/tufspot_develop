@@ -53,10 +53,33 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $post = Post::create($request->all());
+        // 画像保存
+            // ディレクトリ名
+            $dir = 'image/article';
+
+            // アップロードされたファイル名を取得
+            // $file_name = $request->file('featured_image')->getClientOriginalName();
+    
+            // 取得したファイル名で保存
+            $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
+            
+            // ファイル情報をDBに保存
+            // $image = new Image();
+            $featured_image_path = str_replace("public","storage",$featured_image_path);
+            // $featured_image_path = 'storage/' . $dir . '/' . $file_name;
+            // $request['file']['featured_image_path']['pathname'] = $featured_image_path;
+            // // $image->save();
+
+        $post = Post::create([
+            'title' => $request['title'],
+            'featured_image_path' => $featured_image_path,
+            'body' => $request['body'],
+            'is_public' => $request['is_public'],
+            'published_at' => $request['published_at'],
+        ]);
+        // $post = Post::create($request->all());
         // タグを追加
         $post->tags()->attach($request->tags);
-
         if ($post) {
             return redirect()
                 ->route('back.posts.edit', $post)
@@ -88,8 +111,25 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+dd($request);
+
         // タグを更新
         $post->tags()->sync($request->tags);
+
+        // ディレクトリ名
+        $dir = 'image/article';
+
+        // アップロードされたファイル名を取得
+        $file_name = $request->file('featured_image')->getClientOriginalName();
+
+        // 取得したファイル名で保存
+        $request->file('featured_image')->storeAs('public/' . $dir, $file_name);
+        
+        // ファイル情報をDBに保存
+        // $image = new Image();
+        $featured_image_path = 'storage/' . $dir . '/' . $file_name;
+        $request['featured_image'] = $featured_image_path;
+        // $image->save();
 
         if ($post->update($request->all())) {
             $flash = ['success' => 'データを更新しました。'];

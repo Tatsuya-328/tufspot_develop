@@ -22,6 +22,23 @@
 </div>
 
 <div class="form-group row">
+    {{ Form::label('featured_image', 'アイキャッチ画像', ['class' => 'col-sm-2 col-form-label']) }}
+    <div class="col-sm-10">
+        @if ($post['featured_image_path'])
+            <img class="featured_image" src="{{ asset($post->featured_image_path) }}" alt="">
+        @endif
+        <input type="file" class="form-control" name="featured_image" value="{{ old('featured_image') }}">
+
+
+        @error('featured_image')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+</div>
+
+<div class="form-group row">
     {{ Form::label('body', '内容', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10 h-100" id="">
         {{-- quill editor --}}
