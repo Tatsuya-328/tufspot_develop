@@ -38,6 +38,12 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css" media="screen">
     {{-- オリジナル --}}
     <script src="{{ asset('js/top.js') }}" async></script>
+
+    {{-- editor試し１ --}}
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    {{-- editor試し１ここまで --}}
 </head>
 
 <body alink=”#0056b3 class="body">

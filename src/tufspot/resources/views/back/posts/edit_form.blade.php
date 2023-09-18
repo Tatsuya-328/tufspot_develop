@@ -12,7 +12,7 @@
                 'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
                 'required',
             ]) }} --}}
-        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+        <input type="text" class="form-control" name="title" value="{{ old('title', $post['title']) }}">
         @error('title')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -24,13 +24,9 @@
 <div class="form-group row">
     {{ Form::label('body', '内容', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10" id="">
-        {{-- {{ Form::textarea('body', null, [
-                'class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''),
-                'rows' => 5,
-            ]) }} --}}
-
         {{-- quill editor --}}
         <div id="quill_editor" class="">
+            <?= $post['body'] ?>
         </div>
         {{-- quill変換後DB保存用隠し --}}
         {{-- <input type="hidden" name="main"> --}}

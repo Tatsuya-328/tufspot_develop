@@ -393,13 +393,23 @@
                     [{
                         header: [1, 2, false]
                     }],
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'code-block']
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }],
+                    ['bold', 'underline', 'strike'],
+                    [{
+                        'align': ['', 'center', 'right']
+                    }],
+                    ['link', 'image']
                 ]
             },
             scrollingContainer: '#scrolling-container',
             placeholder: 'Compose an epic...',
-            theme: 'bubble'
+            theme: 'bubble',
+
+            // readOnly: true,
         });
     </script>
 
