@@ -17,6 +17,7 @@ DB_PASSWORD=tufspot_pass
 - tufspot_developにて`$docker-compose build`と`$docker-compose up`
 - src/tufspotにてコンテナアクセス`$docker-compose exec app bash`
   - `cd tufspot`にて`chmod 777 -R storage/`と`php artisan key:generate`と`php artisan migrate`
+  - （おそらく今後のmerge移行で、アイキャッチ画像のシンボリックリンク対応も必要になる）
 - `$npm run dev`でログイン機能構築
 - localhostにアクセス
 
