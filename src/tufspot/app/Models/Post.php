@@ -102,6 +102,17 @@ class Post extends Model
     }
 
     /**
+     * 全記事をIDで取得
+     *
+     * @param Builder $query
+     * @param int $id
+     * @return Builder
+     */
+    public function scopeFindById(Builder $query, int $id)
+    {
+        return $query->findOrFail($id);
+    }
+    /**
      * 絞り込み検索
      *
      * @param Builder $query

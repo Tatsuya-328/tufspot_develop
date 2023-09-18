@@ -21,6 +21,7 @@ class PostController extends Controller
             return $next($request);
         })->only('index', 'create', 'edit');
 
+        // カテゴリー用
         $this->middleware(function ($request, \Closure $next) {
             \View::share('categories', Category::pluck('name', 'id')->toArray());
             return $next($request);
@@ -66,6 +67,7 @@ class PostController extends Controller
         $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
         // ファイル情報をDBに保存
         $featured_image_path = str_replace("public","storage",$featured_image_path);
+        // TODO プレビュー時のtmp画像削除する
 
         $post = Post::create([
             'title' => $request['title'],
@@ -88,6 +90,37 @@ class PostController extends Controller
                 ->route('back.posts.create')
                 ->withError('データの登録に失敗しました。');
         }
+    }
+
+    /**
+     * プレビュー画面
+     *
+     * @param int $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function preview(int $id = null, PostUpdateRequest $request)
+    {
+        $post = $request;
+        
+        if ($id && Post::findById($id)) {
+            $savedPost = Post::findById($id);    
+        }
+        
+        if (empty($post['featured_image'])) {
+            $post['featured_image_path'] = $savedPost['featured_image_path'];
+        } else {
+            // 画像保存
+            // ディレクトリ名
+            $dir = 'image/article/tmp';
+            $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
+            // ファイル情報をDBに保存
+            $featured_image_path = str_replace("public","storage",$featured_image_path);
+            $post['featured_image_path'] = $featured_image_path;
+        }
+
+        // $post = Post::publicFindById($id);
+        // return view('front.posts.show', compact('post'));
+        return view('article_detail', compact('post'));
     }
 
     /**

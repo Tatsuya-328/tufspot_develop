@@ -55,11 +55,7 @@ Route::get('/writer/detail/{id}', function () {
 // Route::get('/article/{id}', function () {
 //     return view('article_detail');
 // })->name('article_detail');
-
 Route::get('/article/{id}', [PostController::class, 'show'])->name('article_detail');
-
-// Route::resource('posts', 'PostController')->only(['index','show']);
-
 
 // TUFSPOTについて
 Route::get('/about', function () {

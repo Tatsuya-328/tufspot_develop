@@ -24,7 +24,12 @@
 <div class="form-group row">
     {{ Form::label('featured_image', 'アイキャッチ画像', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
-        <input type="file" class="form-control" name="featured_image" value="{{ old('featured_image') }}">
+        <input type="file" class="form-control" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
+        <input type="button" id="clear" value="画像選択解除" onclick="test();" style="display: none">
+        <div class="image_preview" id="image_preview" style="display: none">
+            登録する画像<br>
+            <img class="featured_image" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        </div>
         @error('featured_image')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -139,11 +144,60 @@
 <div class="form-group row">
     <div class="col-sm-10">
         <button type="button" class="btn btn-primary" name="subbtn">保存</button>
+        <button id="admin-blog-preview-btn" class="btn btn-warning" type="submit"> プレビュー</button>
         {{ link_to_route('back.posts.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
     </div>
 </div>
 {{-- </form> --}}
 <script>
+    // プレビュー用
+    var prevBtn = document.getElementById("admin-blog-preview-btn");
+    prevBtn.addEventListener("click", function(e) {
+        document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
+
+        // stop sending
+        e.preventDefault();
+        // admin/posts
+        // set variables
+        var blogForm = document.getElementById("ansform");
+        var defaultAction = blogForm.getAttribute("action");
+        // var previewAction = defaultAction.replace("/store/", "/preview/");
+        var previewAction = defaultAction.replace("/posts", "/preview/1");
+
+        // rewrite action & submit
+        blogForm.setAttribute("action", previewAction);
+        blogForm.setAttribute("target", "_blank");
+        // blogForm.setAttribute("method", "put");
+        // blogForm.setAttribute("method", "PUT");
+
+        blogForm.submit();
+
+        // reset
+        blogForm.setAttribute("action", defaultAction);
+        blogForm.removeAttribute("target");
+        // blogForm.removeAttribute("method");
+        blogForm.setAttribute("method", "POST");
+
+    });
+
+    function test() {
+        var obj = document.getElementById("featured_image");
+        obj.value = null;
+        document.getElementById('image_preview').style.display = 'none';
+        document.getElementById('clear').style.display = 'none';
+    }
+
+    // 画像プレビュー
+    function previewImage(obj) {
+        var fileReader = new FileReader();
+        fileReader.onload = (function() {
+            document.getElementById('preview').src = fileReader.result;
+            document.getElementById('image_preview').style.display = 'block';
+            document.getElementById('clear').style.display = 'block';
+        });
+        fileReader.readAsDataURL(obj.files[0]);
+    }
+
     // 回答フォームを送信
     document.ansform.subbtn.addEventListener('click', function() {
         // ブログの試し html用のタグ付きのデータ保存はできた

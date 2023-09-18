@@ -11,6 +11,7 @@ $title = '投稿編集';
     <div class="card-body">
         {!! Form::model($post, [
             'name' => 'ansform',
+            'id' => 'ansform',
             'method' => 'put',
             'route' => ['back.posts.update', $post],
             'files' => true,

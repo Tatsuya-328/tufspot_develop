@@ -145,12 +145,41 @@
 <div class="form-group row">
     <div class="col-sm-10">
         <button type="button" class="btn btn-primary" name="subbtn">保存</button>
+        <button id="admin-blog-preview-btn" class="btn btn-warning" type="submit"> プレビュー</button>
         {{ link_to_route('back.posts.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
     </div>
 </div>
 {{-- </form> --}}
 
 <script>
+    // プレビュー用
+    var prevBtn = document.getElementById("admin-blog-preview-btn");
+    prevBtn.addEventListener("click", function(e) {
+        document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
+
+        // stop sending
+        e.preventDefault();
+        // admin/posts
+        // set variables
+        var blogForm = document.getElementById("ansform");
+        var defaultAction = blogForm.getAttribute("action");
+        // var previewAction = defaultAction.replace("/store/", "/preview/");
+        var previewAction = defaultAction.replace("/posts/", "/preview/");
+
+        // rewrite action & submit
+        blogForm.setAttribute("action", previewAction);
+        blogForm.setAttribute("target", "_blank");
+        // blogForm.setAttribute("method", "PUT");
+
+        blogForm.submit();
+
+        // reset
+        blogForm.setAttribute("action", defaultAction);
+        blogForm.removeAttribute("target");
+
+    });
+
+
     function test() {
         var obj = document.getElementById("featured_image");
         obj.value = null;

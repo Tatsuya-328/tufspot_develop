@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -35,4 +36,19 @@ class PostController extends Controller
         // return view('front.posts.show', compact('post'));
         return view('article_detail', compact('post'));
     }
+
+    //     /**
+    //  * プレビュー画面
+    //  *
+    //  * @param int $id
+    //  * @return \Illuminate\Contracts\View\View
+    //  */
+    // public function preview(int $id, $request)
+    // {
+    //     $post = $request;
+    //     // $post = Post::publicFindById($id);
+    //     // return view('front.posts.show', compact('post'));
+    //     return view('article_detail', compact('post'));
+    // }
+
 }
