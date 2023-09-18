@@ -32,6 +32,7 @@ class PostController extends Controller
     public function show(int $id)
     {
         $post = Post::publicFindById($id);
-        return view('front.posts.show', compact('post'));
+        // return view('front.posts.show', compact('post'));
+        return view('article_detail', compact('post'));
     }
 }

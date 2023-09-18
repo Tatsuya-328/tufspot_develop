@@ -62,6 +62,10 @@ class RouteServiceProvider extends ServiceProvider
             // ->namespace($this->namespace)
             // ->group(base_path('routes/web.php'));
 
+            Route::prefix('hoge')
+                ->middleware(['web', 'auth'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php'));
         });
     }
 

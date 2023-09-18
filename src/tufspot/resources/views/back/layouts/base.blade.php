@@ -71,6 +71,7 @@
     {{-- <link href="dashboard.css" rel="stylesheet"> --}}
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/post.css') }}" rel="stylesheet">
     <style type="text/css">
         /* Chart.js */
         @keyframes chartjs-render-animation {
@@ -391,7 +392,7 @@
             modules: {
                 toolbar: [
                     [{
-                        header: [1, 2, false]
+                        header: [1, false]
                     }],
                     [{
                         'list': 'ordered'

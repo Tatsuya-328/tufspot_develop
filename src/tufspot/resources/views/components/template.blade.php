@@ -14,7 +14,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
     {{-- <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --> --}}
-    <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
     {{-- スライドショー --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 
@@ -36,14 +35,17 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css" media="screen">
-    {{-- オリジナル --}}
-    <script src="{{ asset('js/top.js') }}" async></script>
 
     {{-- editor試し１ --}}
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
     {{-- editor試し１ここまで --}}
+
+    {{-- オリジナル --}}
+    <script src="{{ asset('js/top.js') }}" async></script>
+    <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/post.css') }}" rel="stylesheet">
 </head>
 
 <body alink=”#0056b3 class="body">
@@ -52,6 +54,34 @@
         {{-- slotはx-templateの中でx-breadや他のcomponents読み込む用 --}}
         {{ $slot }}
     </div>
+
+    {{-- Quill記事そのまま表示用 --}}
+    <script>
+        var quill = new Quill('#quill_editor', {
+            // var quill = new Quill('#editor-container', {
+            modules: {
+                toolbar: [
+                    [{
+                        header: [1, false]
+                    }],
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }],
+                    ['bold', 'underline', 'strike'],
+                    [{
+                        'align': ['', 'center', 'right']
+                    }],
+                    ['link', 'image']
+                ]
+            },
+            scrollingContainer: '#scrolling-container',
+            placeholder: 'Compose an epic...',
+            theme: 'bubble',
+            readOnly: true,
+        });
+    </script>
 </body>
 
 </html>

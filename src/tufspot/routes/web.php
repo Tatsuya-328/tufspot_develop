@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +32,13 @@ Route::get('/category_list', function () {
 Route::get('/search_result', function () {
     return view('search_result');
 })->name('search_result');
+
+
 Route::get('/hashtag_result/{id}', function () {
     return view('hashtag_result');
 })->name('hashtag_result');
+Route::get('posts/tag/{tagSlug}', 'PostController@index')->where('tagSlug', '[a-z]+')->name('posts.index.tag');
+
 // mypage
 Route::get('/mypage', function () {
     return view('mypage');
@@ -45,9 +52,15 @@ Route::get('/writer/detail/{id}', function () {
     return view('writer_detail');
 })->name('writer_detail');
 // 記事詳細
-Route::get('/article/{id}', function () {
-    return view('article_detail');
-})->name('article_detail');
+// Route::get('/article/{id}', function () {
+//     return view('article_detail');
+// })->name('article_detail');
+
+Route::get('/article/{id}', [PostController::class, 'show'])->name('article_detail');
+
+// Route::resource('posts', 'PostController')->only(['index','show']);
+
+
 // TUFSPOTについて
 Route::get('/about', function () {
     return view('about');

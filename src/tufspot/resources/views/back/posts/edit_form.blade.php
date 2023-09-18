@@ -23,7 +23,7 @@
 
 <div class="form-group row">
     {{ Form::label('body', '内容', ['class' => 'col-sm-2 col-form-label']) }}
-    <div class="col-sm-10" id="">
+    <div class="col-sm-10 h-100" id="">
         {{-- quill editor --}}
         <div id="quill_editor" class="">
             <?= $post['body'] ?>
