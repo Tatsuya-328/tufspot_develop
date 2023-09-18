@@ -63,6 +63,29 @@
 </div>
 
 <div class="form-group row">
+    {!! Form::label('categories', 'カテゴリー ', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        <div class="{{ $errors->has('categories.*') ? 'is-invalid' : '' }}">
+            @if ($categories)
+                @foreach ($categories as $key => $category)
+                    <div class="form-check form-check-inline">
+                        {!! Form::checkbox('categories[]', $key, null, ['class' => 'form-check-input', 'id' => 'category' . $key]) !!}
+                        <label class="form-check-label" for="category{{ $key }}">{{ $category }}</label>
+                    </div>
+                @endforeach
+            @else
+                カテゴリー未登録
+            @endif
+        </div>
+        @error('categories.*')
+            <span class="invalid-feedback" role="alert">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
+</div>
+
+<div class="form-group row">
     {!! Form::label('tags', 'タグ', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         <div class="{{ $errors->has('tags.*') ? 'is-invalid' : '' }}">

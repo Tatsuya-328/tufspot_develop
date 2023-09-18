@@ -48,6 +48,15 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
     /**
      * 公開のみ表示
      *

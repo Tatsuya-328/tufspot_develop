@@ -1,16 +1,4 @@
-/* aside>.brand-link {
-  background: white;
-}
-
-.brand-link>.header-icon {
-  width: 200px;
-  font-weight: 700;
-  color: #797979;
-  background-color: white;
-  opacity: unset;
-} */
-
-/* .sidebar-collapse>.wrapper>aside>{} */
+/* 管理画面と記事詳細どちらもQuill.jsの表示に使用 */
 
 /* .article-detail-wrapper { */
 .ql-editor {
@@ -44,10 +32,15 @@
 /* .article-detail-explain-image-wrapper { */
 /* .article-detail-explain-image { */
 .ql-editor>p>img {
-  display: block;
-  width: 500px;
-  height: 290px;
-  background: #434343;
+  display: inline-block;
+  object-fit: cover;
+  width: 300px;
+  aspect-ratio: 4 / 3;
+
+  /* display: block; */
+  /* width: 500px;
+  height: 290px; */
+  /* background: #434343; */
   /* margin: 0 auto; */
-  margin: 50px auto;
+  /* margin: 50px auto; */
 }
