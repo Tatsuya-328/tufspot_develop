@@ -34,10 +34,10 @@ Route::get('/search_result', function () {
 })->name('search_result');
 
 
-Route::get('/hashtag_result/{id}', function () {
-    return view('hashtag_result');
-})->name('hashtag_result');
-Route::get('posts/tag/{tagSlug}', 'PostController@index')->where('tagSlug', '[a-z]+')->name('posts.index.tag');
+// Route::get('/hashtag_result/{id}', function () {
+//     return view('hashtag_result');
+// })->name('hashtag_result');
+Route::get('/hashtag_result/{tagSlug}', [PostController::class, 'index'])->where('tagSlug', '[a-z]+')->name('hashtag_result');
 
 // mypage
 Route::get('/mypage', function () {
