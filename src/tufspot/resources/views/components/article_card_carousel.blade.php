@@ -25,8 +25,8 @@
                 </p>
             </a>
             <p class="top-carousel-hashtag">
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
             </p>
             <div class="article-card-writer-wrapper">
                 <a href="{{ route('writer_detail', ['id' => 1]) }}" class="text-decoration-none">

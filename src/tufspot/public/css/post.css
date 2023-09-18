@@ -40,15 +40,14 @@
   margin: unset;
 }
 
-/* TODO以下IMAGEタグ挿入可能に。 */
-/* .article-detail-explain-image-wrapper {
-  width: 500px;
-  margin: 50px auto;
-}
-
-.article-detail-explain-image {
+/* TODO; キャプションつけれるように。画像選択時にエディタでわかりやすく */
+/* .article-detail-explain-image-wrapper { */
+/* .article-detail-explain-image { */
+.ql-editor>p>img {
+  display: block;
   width: 500px;
   height: 290px;
   background: #434343;
-  margin: 0 auto;
-} */
+  /* margin: 0 auto; */
+  margin: 50px auto;
+}

@@ -13,10 +13,10 @@
                 </p>
             </a>
             <p class="writer-explain-hashtag">
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
             </p>
         </div>
         <a href="#" class="writer-link text-decoration-none">

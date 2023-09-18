@@ -58,14 +58,15 @@ class RouteServiceProvider extends ServiceProvider
 
             // Tufspot既存分追加
             // 9/18 CRUD実装のため一旦以下産業コメントアウト
-            // Route::middleware('web')
-            // ->namespace($this->namespace)
-            // ->group(base_path('routes/web.php'));
-
-            Route::prefix('hoge')
-                ->middleware(['web', 'auth'])
+            // 以下ないとloginのルーティングでエラーでる
+            Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
+
+            // Route::prefix('hoge')
+            //     ->middleware(['web', 'auth'])
+            // ->namespace($this->namespace)
+            // ->group(base_path('routes/web.php'));
         });
     }
 

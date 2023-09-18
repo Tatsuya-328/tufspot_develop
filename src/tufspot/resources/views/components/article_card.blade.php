@@ -19,8 +19,8 @@
                 <br>
             </a>
             <span class="article-card-hashtag">
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
             </span>
         </p>
         <div>
