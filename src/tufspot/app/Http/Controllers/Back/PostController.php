@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -54,21 +55,11 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         // 画像保存
-            // ディレクトリ名
-            $dir = 'image/article';
-
-            // アップロードされたファイル名を取得
-            // $file_name = $request->file('featured_image')->getClientOriginalName();
-    
-            // 取得したファイル名で保存
-            $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
-            
-            // ファイル情報をDBに保存
-            // $image = new Image();
-            $featured_image_path = str_replace("public","storage",$featured_image_path);
-            // $featured_image_path = 'storage/' . $dir . '/' . $file_name;
-            // $request['file']['featured_image_path']['pathname'] = $featured_image_path;
-            // // $image->save();
+        // ディレクトリ名
+        $dir = 'image/article';
+        $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
+        // ファイル情報をDBに保存
+        $featured_image_path = str_replace("public","storage",$featured_image_path);
 
         $post = Post::create([
             'title' => $request['title'],
@@ -105,33 +96,35 @@ class PostController extends Controller
     /**
      * 更新処理
      *
-     * @param PostRequest $request
+     * @param PostUpdateRequest $request
      * @param Post $post
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(PostUpdateRequest $request, Post $post)
     {
-dd($request);
-
         // タグを更新
         $post->tags()->sync($request->tags);
 
+        // 画像保存
         // ディレクトリ名
-        $dir = 'image/article';
-
-        // アップロードされたファイル名を取得
-        $file_name = $request->file('featured_image')->getClientOriginalName();
-
-        // 取得したファイル名で保存
-        $request->file('featured_image')->storeAs('public/' . $dir, $file_name);
-        
-        // ファイル情報をDBに保存
-        // $image = new Image();
-        $featured_image_path = 'storage/' . $dir . '/' . $file_name;
-        $request['featured_image'] = $featured_image_path;
-        // $image->save();
-
-        if ($post->update($request->all())) {
+        if ($request->file('featured_image')) {
+            $dir = 'image/article';
+            $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
+            // ファイル情報をDBに保存
+            $featured_image_path = str_replace("public","storage",$featured_image_path);
+        } else {
+            $featured_image_path = $post['featured_image_path'];
+        }
+    
+        if (
+            $post->update([
+                'title' => $request['title'],
+                'featured_image_path' => $featured_image_path,
+                'body' => $request['body'],
+                'is_public' => $request['is_public'],
+                'published_at' => $request['published_at'],
+            ])
+        ) {
             $flash = ['success' => 'データを更新しました。'];
         } else {
             $flash = ['error' => 'データの更新に失敗しました'];

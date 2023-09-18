@@ -25,10 +25,15 @@
     {{ Form::label('featured_image', 'アイキャッチ画像', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         @if ($post['featured_image_path'])
+            既存<br>
             <img class="featured_image" src="{{ asset($post->featured_image_path) }}" alt="">
         @endif
-        <input type="file" class="form-control" name="featured_image" value="{{ old('featured_image') }}">
-
+        <input type="file" class="form-control" name="featured_image" id="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
+        <input type="button" id="clear" value="画像選択解除" onclick="test();" style="display: none">
+        <div class="image_preview" id="image_preview" style="display: none">
+            変更する画像<br>
+            <img class="featured_image" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        </div>
 
         @error('featured_image')
             <div class="invalid-feedback">
@@ -121,7 +126,26 @@
     </div>
 </div>
 {{-- </form> --}}
+
 <script>
+    function test() {
+        var obj = document.getElementById("featured_image");
+        obj.value = null;
+        document.getElementById('image_preview').style.display = 'none';
+        document.getElementById('clear').style.display = 'none';
+    }
+
+    // 画像プレビュー
+    function previewImage(obj) {
+        var fileReader = new FileReader();
+        fileReader.onload = (function() {
+            document.getElementById('preview').src = fileReader.result;
+            document.getElementById('image_preview').style.display = 'block';
+            document.getElementById('clear').style.display = 'block';
+        });
+        fileReader.readAsDataURL(obj.files[0]);
+    }
+
     // 回答フォームを送信
     document.ansform.subbtn.addEventListener('click', function() {
         // ブログの試し html用のタグ付きのデータ保存はできた

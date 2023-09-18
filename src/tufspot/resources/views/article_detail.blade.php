@@ -5,7 +5,8 @@
     <x-bread />
     <x-main>
         <div class="article-detail-wrapper d-flex flex-column justify-content-center align-items-center">
-            <img src="{{ asset('image/article_detail.jpeg') }}" style="width:850px; height:500px;" class="" alt="...">
+            {{-- <img src="{{ asset('image/article_detail.jpeg') }}" style="width:850px; height:500px;" class="" alt="..."> --}}
+            <img src="{{ asset($post->featured_image_path) }}" style="width:850px; height:500px;" class="" alt="...">
             {{-- <x-writer_card /> --}}
             <div class="article-title d-flex justify-content-between ">
                 <div class="article-title-text">{{ $post->title }}</div>
