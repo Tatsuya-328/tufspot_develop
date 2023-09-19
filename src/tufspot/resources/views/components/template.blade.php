@@ -46,6 +46,11 @@
     <script src="{{ asset('js/top.js') }}" async></script>
     <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post.css') }}" rel="stylesheet">
+
+    {{-- 目次生成 --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/mokuji.css') }}">
+    {{-- <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> --}}
+    <script type="text/javascript" src="{{ asset('js/mokuji.js') }}"></script>
 </head>
 
 <body alink=”#0056b3 class="body">
@@ -80,6 +85,15 @@
             placeholder: 'Compose an epic...',
             theme: 'bubble',
             readOnly: true,
+        });
+
+        $(function() {
+            $('.mokuji').mokuji({
+                contentspace: '.ql-editor', //見出しタグの入っているボックスを指定
+                titletag: 'h1,h2,h3', //目次に載せたい見出しタグを設定
+                dot: false, //trueにすると行頭に「・」がつく
+                decimal: true //trueにすると見出しの階層状に目次が生成される
+            });
         });
     </script>
 </body>

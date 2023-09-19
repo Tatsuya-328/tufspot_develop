@@ -28,7 +28,8 @@
                     Writer Name
                 </p>
             </div>
-            {{-- Quill --}}
+            {{-- 目次 --}}
+            <div class="mokuji"></div>
             {{-- quill editor --}}
             <div id="quill_editor" class="article-detail-list">
                 <?= $post['body'] ?>
