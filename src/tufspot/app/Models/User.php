@@ -47,12 +47,13 @@ class User extends Authenticatable
     {
         parent::boot();
 
+        // レジスター時の２回ハッシュ原因で、ログインできていなかった
         // 保存時user_idをログインユーザーに設定
-        self::saving(function($user) {
-            if ($user->password) {
-                $user->password = Hash::make($user->password);
-            }
-        });
+        // self::saving(function($user) {
+        //     if ($user->password) {
+        //         $user->password = Hash::make($user->password);
+        //     }
+        // });
     }
 
     /**
