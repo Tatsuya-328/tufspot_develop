@@ -3,6 +3,7 @@
 namespace Database\Seeds;
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
         \DB::table('users')->insert([
             [
                 'name' => 'admin',
@@ -20,6 +22,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => \Hash::make('admin'),
                 'role' => 1,
+                'introduction' => $faker->realText(rand(100,200)),
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
@@ -28,6 +31,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => \Hash::make('testtest'),
                 'role' => 1,
+                'introduction' => $faker->realText(rand(100,200)),
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
@@ -36,6 +40,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => \Hash::make('hogehoge'),
                 'role' => 2,
+                'introduction' => $faker->realText(rand(100,200)),
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
@@ -44,6 +49,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => \Hash::make('hogehoge'),
                 'role' => 2,
+                'introduction' => $faker->realText(rand(100,200)),
                 'created_at' => now(),
                 'updated_at' => now()
             ]

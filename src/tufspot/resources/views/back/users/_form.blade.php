@@ -8,7 +8,7 @@
     <div class="col-sm-10">
         {{ Form::text('name', null, [
             'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),
-            'required'
+            'required',
         ]) }}
         @error('name')
             <div class="invalid-feedback">
@@ -17,18 +17,18 @@
         @enderror
     </div>
 </div>
-
+@dd($user);
 <div class="form-group row">
     {{ Form::label('email', 'メールアドレス', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::email('email', null, [
             'class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''),
-            'required'
+            'required',
         ]) }}
         @error('email')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
         @enderror
     </div>
 </div>
@@ -37,12 +37,12 @@
     {{ Form::label('password', 'パスワード', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::password('password', [
-            'class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : '')
+            'class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''),
         ]) }}
         @error('password')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
         @enderror
     </div>
 </div>
@@ -51,6 +51,21 @@
     {{ Form::label('role', '権限', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::select('role', config('common.user.roles'), null, ['class' => 'form-control']) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {{ Form::label('introduction', '自己紹介', ['class' => 'col-sm-2 col-form-label']) }}
+    <div class="col-sm-10">
+        {{ Form::text('introduction', null, [
+            'class' => 'form-control' . ($errors->has('introduction') ? ' is-invalid' : ''),
+            'required',
+        ]) }}
+        @error('introduction')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 </div>
 
