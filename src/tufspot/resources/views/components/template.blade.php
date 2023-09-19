@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css" media="screen">
     {{-- オリジナル --}}
     <script src="{{ asset('js/top.js') }}" async></script>
+    <script src="{{ asset('js/modules/about.js') }}" async></script>
 </head>
 
 <body alink=”#0056b3 class="body">

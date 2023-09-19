@@ -1,0 +1,39 @@
+.about-concept-title {
+    z-index: 1;
+}
+
+.about-concept-title:hover {
+    cursor: pointer;
+}
+
+.hover-text-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #505050;
+    opacity: 0;
+}
+
+.hover-text-area.appear {
+    opacity: 1;
+    transition: opacity .5s;
+}
+
+.hover-text-area.hidden {
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.hover-text {
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 5px;
+    text-align: center;
+    line-height: 160%;
+}
