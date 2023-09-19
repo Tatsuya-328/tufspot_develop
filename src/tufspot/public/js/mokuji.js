@@ -43,7 +43,9 @@
 						h4count = 1;
 						h5count = 1;
 						h6count = 1;
-						$(".mokujibox").find("li").eq(koumokucount).children("a").prepend(h1count + ".");
+						// $(".mokujibox").find("li").eq(koumokucount).children("a").prepend(h1count + ".");
+						// 先頭に数字つけない
+						$(".mokujibox").find("li").eq(koumokucount).children("a");
 						koumokucount++;
 						h1count++;
 					break;
