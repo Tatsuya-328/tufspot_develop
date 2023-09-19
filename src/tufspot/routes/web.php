@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\PostController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +64,7 @@ Route::get('/about', function () {
 })->name('about');
 
 Auth::routes();
-
+Route::get('/logout', [LoginController::class, 'logout']);
 
 // TODO adminのURLに変更。特定ユーザーのみログイン可能に。
 Route::get('/home', function () {

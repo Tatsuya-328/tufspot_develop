@@ -14,7 +14,7 @@
                     <input type="text" placeholder="search">
                 </label>
             </form>
-            <div class="header-humbeger dropdown text-end">
+            <div class="header-humbeger dropdown text-end btn-group">
                 <a href="#" class="d-block link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="nav_toggle">
                         <i></i>
@@ -22,15 +22,18 @@
                         <i></i>
                     </span>
                 </a>
-                {{-- <ul class="dropdown-menu text-small" style="">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                <ul class="dropdown-menu text-small" style="">
+                    <li><a class="dropdown-item" href="{{ route('index') }}">Home</a></li>
+                    <li><a class="dropdown-item" href="{{ route('about') }}">About</a></li>
+                    <li><a class="dropdown-item" href="{{ route('category_list') }}">CategoryList</a></li>
+                    <li><a class="dropdown-item" href="{{ route('writer_list') }}">WriterList</a></li>
+                    <li><a class="dropdown-item" href="{{ route('mypage') }}">Mypage</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul> --}}
+                    <li><a class="dropdown-item" href="{{ route('logout') }}">Sign out</a></li>
+
+                </ul>
             </div>
         </div>
     </div>

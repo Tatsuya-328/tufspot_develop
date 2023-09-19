@@ -58,6 +58,8 @@ header {
   display: flex;
   align-items: center;
   height: 65px;
+  z-index: 100;
+  position: relative;
 }
 
 .header-icon {
