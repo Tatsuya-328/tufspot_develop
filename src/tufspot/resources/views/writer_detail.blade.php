@@ -5,7 +5,7 @@
     <x-bread />
     <x-main>
         <div class="writer-detail-wrapper d-flex flex-column justify-content-center align-items-center flex-wrap">
-            <x-writer_card />
+            <x-writer_card writer_name='{{ $user->name }}' writer_id='{{ $user->id }}' />
             <div class="writer-detail-list">
                 <p class="writer-detail-title">
                     ▼<span>自己紹介</span>

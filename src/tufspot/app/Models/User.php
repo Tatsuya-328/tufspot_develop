@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'introduction',
     ];
 
     /**
@@ -64,6 +65,16 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * SnsAccountのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function snsAccount()
+    {
+        return $this->hasMany(SnsAccount::class);
     }
 
     /**

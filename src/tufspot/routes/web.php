@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\PostController;
+use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -48,10 +49,14 @@ Route::get('/mypage', function () {
 Route::get('/writer', function () {
     return view('writer_list');
 })->name('writer_list');
+
 // ライター詳細
-Route::get('/writer/detail/{id}', function () {
-    return view('writer_detail');
-})->name('writer_detail');
+// Route::get('/writer/detail/{id}', function () {
+//     return view('writer_detail');
+// })->name('writer_detail');
+Route::get('/writer/{user}', [UserController::class, 'show'])->name('writer_detail');
+// Route::resource('writer', [UserController::class]);
+
 // 記事詳細
 // Route::get('/article/{id}', function () {
 //     return view('article_detail');
