@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->tinyInteger('role')->default(2)->comment('権限');
             $table->text('introduction')->nullable();
+            $table->string('profile_image_path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

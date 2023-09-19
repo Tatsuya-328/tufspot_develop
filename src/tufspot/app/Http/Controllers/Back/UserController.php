@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -70,12 +71,32 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        if ($user->update($request->all())) {
+        // 画像保存
+        // ディレクトリ名
+        if ($request->file('profile_image')) {
+            $dir = 'image/user';
+            $profile_image_path = $request->file('profile_image')->store('public/' . $dir);
+            // ファイル情報をDBに保存
+            $profile_image_path = str_replace("public","storage",$profile_image_path);
+        } else {
+            $profile_image_path = $user['profile_image_path'];
+        }
+
+        // if ($user->update($request->all())) {
+            if (
+                $user->update([
+                    'name' => $request['name'],
+                    'email' => $request['email'],
+                    'profile_image_path' => $profile_image_path,
+                    'password' => Hash::make($request['password']),
+                    'role' => $request['role'],
+                    'introduction' => $request['introduction'],
+                ])
+                ) {
             $flash = ['success' => 'データを更新しました。'];
         } else {
             $flash = ['error' => 'データの更新に失敗しました'];
         }
-
         return redirect()
             ->route('back.users.edit', $user)
             ->with($flash);
