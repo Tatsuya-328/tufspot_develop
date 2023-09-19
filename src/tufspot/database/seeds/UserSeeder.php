@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeds;
 
 use Illuminate\Database\Seeder;
 
@@ -18,23 +18,23 @@ class UserSeeder extends Seeder
                 'name' => 'admin',
                 'email' => 'admin@example.com',
                 'email_verified_at' => now(),
-                'password' => \Hash::make('123456789'),
+                'password' => \Hash::make('admin'),
                 'role' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
-                'name' => 'yamada',
-                'email' => 'yamada@example.com',
+                'name' => 'test',
+                'email' => 'test@example.com',
                 'email_verified_at' => now(),
-                'password' => \Hash::make('123456789'),
+                'password' => \Hash::make('testtest'),
                 'role' => 2,
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
-                'name' => 'tanaka',
-                'email' => 'tanaka@example.com',
+                'name' => 'hoge',
+                'email' => 'hoge@example.com',
                 'email_verified_at' => now(),
-                'password' => \Hash::make('123456789'),
+                'password' => \Hash::make('hogehoge'),
                 'role' => 2,
                 'created_at' => now(),
                 'updated_at' => now()

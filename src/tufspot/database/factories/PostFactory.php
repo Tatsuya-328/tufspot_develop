@@ -25,6 +25,7 @@ class PostFactory extends Factory
 
         return [
             'title' => $this->faker->realText(rand(20,50)),
+            'featured_image_path' => '/image/ハロン湾.jpeg',
             'body' => $this->faker->realText(rand(100,200)),
             'is_public' => $this->faker->boolean(90),
             'published_at' => $random_date,

@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeds;
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
-class TagSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,20 +14,20 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('tags')->insert([
+        \DB::table('categories')->insert([
             [
-                'name' => 'お知らせ',
-                'slug' => 'news',
+                'name' => 'Academia',
+                'slug' => 'academia',
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
-                'name' => 'リリース',
-                'slug' => 'release',
+                'name' => 'Business and Career',
+                'slug' => 'business-and-career',
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
-                'name' => 'キャンペーン',
-                'slug' => 'campaign',
+                'name' => 'Culture and Essay',
+                'slug' => 'culture-and-Essay',
                 'created_at' => now(),
                 'updated_at' => now()
             ]
@@ -35,9 +35,9 @@ class TagSeeder extends Seeder
 
         $faker = Faker::create();
         for ($i = 1; $i <= 50; $i++) {
-            \DB::table('post_tag')->insert([
+            \DB::table('category_post')->insert([
                 'post_id' => $i,
-                'tag_id' => $faker->numberBetween(1,3)
+                'category_id' => $faker->numberBetween(1,3)
             ]);
         }
     }
