@@ -15,5 +15,15 @@
             hoverTextArea.classList.remove('appear');
             hoverTextArea.classList.add('hidden');
         });
+
+        hoverTextArea.addEventListener('mouseover', () => {
+            hoverTextArea.classList.remove('hidden');
+            hoverTextArea.classList.add('appear');
+        });
+
+        hoverTextArea.addEventListener('mouseleave', () => {
+            hoverTextArea.classList.remove('appear');
+            hoverTextArea.classList.add('hidden');
+        });
     }
 }

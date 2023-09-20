@@ -29,6 +29,10 @@
     opacity: 0;
 }
 
+.hover-text-area:hover {
+    cursor: pointer;
+}
+
 .hover-text-area.appear {
     opacity: 1;
     transition: opacity .5s;
