@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-docker/db/data
-=======
 docker/db/data
 docker/phpmyadmin/sessions
->>>>>>> origin
