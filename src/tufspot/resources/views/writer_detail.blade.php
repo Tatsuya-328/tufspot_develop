@@ -12,32 +12,36 @@
                 </p>
                 <div class="">
                     <p class="writer-detail-explain-text">
+                        {{ $user->introduction }}
+                        {{-- ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
                         ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
-                        ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
-                        ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
+                        ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。 --}}
                     </p>
                 </div>
             </div>
-            <div class="writer-detail-list">
-                <p class="writer-detail-title">
-                    ▼<span>各種SNS</span>
-                </p>
-                <div class="writer-detail-sns-wrapper">
-                    <div class="writer-detail-sns-text d-flex">
-                        <div class="writer-detail-sns-account">
-                            Twitter
-                        </div>
-                        <div>
-                            ：xxxxxxxxxx.com
-                        </div>
-                    </div>
-                    <div class="writer-detail-sns-text d-flex">
-                        <div class="writer-detail-sns-account">
-                            Instagram
-                        </div>
-                        <div>
-                            ：xxxxxxxxxx.com
-                        </div>
+            @if ($user->snsAccounts)
+                <div class="writer-detail-list">
+                    <p class="writer-detail-title">
+                        ▼<span>各種SNS</span>
+                    </p>
+                    <div class="writer-detail-sns-wrapper">
+                        @foreach ($user->snsAccounts as $snsAccount)
+                            <div class="writer-detail-sns-text d-flex">
+                                <div class="writer-detail-sns-account">
+                                    {{ $snsAccount['name'] }}
+                                </div>
+                                <div>
+                                    ：<a href="{{ $snsAccount['url'] }}" target="_blank" rel="noopener noreferrer">{{ $snsAccount['url'] }}</a>
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- <div class="writer-detail-sns-text d-flex">
+                            <div class="writer-detail-sns-account">
+                                Instagram
+                            </div>
+                            <div>
+                                ：xxxxxxxxxx.com
+                            </div>
                     </div>
                     <div class="writer-detail-sns-text d-flex">
                         <div class="writer-detail-sns-account">
@@ -46,9 +50,10 @@
                         <div>
                             ：xxxxxxxxxx.com
                         </div>
+                    </div> --}}
                     </div>
                 </div>
-            </div>
+            @endif
             <div class="writer-detail-list">
                 <p class="writer-detail-title">
                     ▼<span>記事</span>

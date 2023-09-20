@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\SnsAccount;
 use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
@@ -69,6 +70,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user = User::with('snsAccounts')->where('id', '=', $user['id'])->first();
         return view('writer_detail', compact('user'));
     }
 
