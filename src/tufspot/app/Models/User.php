@@ -69,11 +69,11 @@ class User extends Authenticatable
     }
 
     /**
-     * SnsAccountのリレーション
+     * SnsAccountsのリレーション
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function snsAccount()
+    public function snsAccounts()
     {
         return $this->hasMany(SnsAccount::class);
     }

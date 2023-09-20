@@ -79,7 +79,7 @@
 <div class="form-group row">
     {{ Form::label('introduction', '自己紹介', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
-        {{ Form::text('introduction', null, [
+        {{ Form::textarea('introduction', null, [
             'class' => 'form-control' . ($errors->has('introduction') ? ' is-invalid' : ''),
             'required',
         ]) }}
@@ -90,6 +90,24 @@
         @enderror
     </div>
 </div>
+<label for="input" class="col-sm-2 col-form-label">SNS</label>
+
+<div class="form-group row" id="form-group">
+    {{-- <div id="form_area"> --}}
+    {{-- <div class="form-group"> --}}
+    @foreach ($user['snsAccounts'] as $snsAccount)
+        <div class="col-sm-5" id="form_area{{ $loop->iteration }}">
+            <input type="text" class="form-control col-sm-11" name="snsAccounts[{{ $loop->iteration }}][]" value="{{ $snsAccount['name'] }}" />
+        </div>
+        <div class="col-sm-5" id="form_area{{ $loop->iteration }}">
+            <input type="text" class="form-control col-sm-11" name="snsAccounts[{{ $loop->iteration }}][]" value="{{ $snsAccount['url'] }}" />
+        </div>
+        @php
+            $cnt = $loop->iteration;
+        @endphp
+    @endforeach
+</div>
+<input type="button" class="btn btn-info" value="追加" onclick="addForm({{ $cnt }})" />
 
 <div class="form-group row">
     <div class="col-sm-10">
@@ -116,5 +134,28 @@
             document.getElementById('clear').style.display = 'block';
         });
         fileReader.readAsDataURL(obj.files[0]);
+    }
+
+    function addForm(Cnt) {
+        var Cnt = Cnt + 1;
+        // var Cnt2 = Cnt + 1;
+        // let Cnt2 = Cnt + 1
+        // id属性で要素を取得
+        let textbox_element = document.getElementById('form-group');
+        // let textbox_element2 = document.getElementById('form_area' + Cnt2);
+
+        // 新しいHTML要素を作成
+        // let new_element = document.createElement('p');
+        // new_element.textContent = '';
+        // const createElement = '<div>追加テキスト</div>';
+        const createElement = '<div class="col-sm-5" id="form_area' + Cnt +
+            '"><input type="text" class="form-control col-sm-11" name="snsAccounts[' + Cnt +
+            '][]" value="" /> </div> <div class = "col-sm-5"id = "form_area' + Cnt +
+            '" ><input type = "text"class = "form-control col-sm-11"name = "snsAccounts[' + Cnt +
+            '][]"value = "" / ></div>';
+        // 指定した要素の中の末尾に挿入
+        // textbox_element.appendChild(createElement);
+        // textbox_element2.appendChild(new_element);
+        textbox_element.insertAdjacentHTML('beforeend', createElement);
     }
 </script>

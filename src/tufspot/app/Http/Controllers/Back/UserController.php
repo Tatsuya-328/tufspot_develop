@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\SnsAccount;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -59,6 +60,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $user = User::with('snsAccounts')->where('id', '=', $user['id'])->first();
+        // $sns = SnsAccount::where($user['id'])->get();
         return view('back.users.edit', compact('user'));
     }
 
@@ -71,6 +74,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
+        dd($request);
         // 画像保存
         // ディレクトリ名
         if ($request->file('profile_image')) {
