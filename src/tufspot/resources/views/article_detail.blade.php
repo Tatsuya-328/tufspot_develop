@@ -41,7 +41,7 @@
             </div>
             {{-- Quillと代替ここから --}}
             {{-- <div class="article-detail-list">
-                 ボーダー用pタグ 
+                ボーダー用pタグ 
                 <p class="article-detail-title"></p>
                 <div class="article-detail-explain-text-wrapper">
                     <p class="article-detail-explain-text">

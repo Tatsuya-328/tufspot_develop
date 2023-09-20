@@ -87,12 +87,15 @@
             readOnly: true,
         });
 
+        // $('.ql-editor').has('h1')
         $(function() {
-            $('.mokuji').mokuji({
-                contentspace: '.ql-editor', //見出しタグの入っているボックスを指定
-                titletag: 'h1,h2,h3', //目次に載せたい見出しタグを設定
-                dot: false, //trueにすると行頭に「・」がつく
-                decimal: true //trueにすると見出しの階層状に目次が生成される
+            $('.ql-editor').has('h1').each((i, v) => {
+                $('.mokuji').mokuji({
+                    contentspace: '.ql-editor', //見出しタグの入っているボックスを指定
+                    titletag: 'h1,h2,h3', //目次に載せたい見出しタグを設定
+                    dot: false, //trueにすると行頭に「・」がつく
+                    decimal: true //trueにすると見出しの階層状に目次が生成される
+                });
             });
         });
     </script>
