@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'body', 'is_public', 'published_at'
+        'title', 'body','description', 'is_public', 'published_at', 'featured_image_path'
     ];
 
     protected $casts = [
@@ -46,6 +46,15 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 
     /**
@@ -92,6 +101,17 @@ class Post extends Model
         return $query->public()->findOrFail($id);
     }
 
+    /**
+     * 全記事をIDで取得
+     *
+     * @param Builder $query
+     * @param int $id
+     * @return Builder
+     */
+    public function scopeFindById(Builder $query, int $id)
+    {
+        return $query->findOrFail($id);
+    }
     /**
      * 絞り込み検索
      *

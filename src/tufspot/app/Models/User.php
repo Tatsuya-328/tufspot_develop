@@ -21,6 +21,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'introduction',
+        'profile_image_path',
     ];
 
     /**
@@ -47,12 +49,13 @@ class User extends Authenticatable
     {
         parent::boot();
 
+        // レジスター時の２回ハッシュ原因で、ログインできていなかった
         // 保存時user_idをログインユーザーに設定
-        self::saving(function($user) {
-            if ($user->password) {
-                $user->password = Hash::make($user->password);
-            }
-        });
+        // self::saving(function($user) {
+        //     if ($user->password) {
+        //         $user->password = Hash::make($user->password);
+        //     }
+        // });
     }
 
     /**
@@ -63,6 +66,16 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * SnsAccountsのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function snsAccounts()
+    {
+        return $this->hasMany(SnsAccount::class);
     }
 
     /**

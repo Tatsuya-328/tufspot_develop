@@ -42,7 +42,8 @@ class UserRequest extends FormRequest
         $validate = [
             'name' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($this->user)],
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string'
+            'password' => 'required|string',
+            'profile_image' => '',
         ];
 
         // 更新時はパスワード必須ではない

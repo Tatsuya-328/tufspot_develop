@@ -16,7 +16,9 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('body')->nullable();
+            $table->string('description');
+            $table->string('featured_image_path');
+            $table->longText('body')->nullable();
             $table->boolean('is_public')->default(true)->comment('公開・非公開');
             $table->dateTime('published_at')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('公開日');
             $table->foreignId('user_id')->constrained();

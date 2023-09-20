@@ -58,6 +58,8 @@ header {
   display: flex;
   align-items: center;
   height: 65px;
+  z-index: 100;
+  position: relative;
 }
 
 .header-icon {
@@ -639,6 +641,7 @@ input[type="radio"] {
 
 .article-detail-explain-text-wrapper {
   padding: 0 44px;
+  width: 100%;
 }
 
 .article-detail-explain-text {

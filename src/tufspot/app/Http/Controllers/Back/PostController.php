@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Category;
 use App\Models\User;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -18,6 +20,12 @@ class PostController extends Controller
             \View::share('tags', Tag::pluck('name', 'id')->toArray());
             return $next($request);
         })->only('index', 'create', 'edit');
+
+        // カテゴリー用
+        $this->middleware(function ($request, \Closure $next) {
+            \View::share('categories', Category::pluck('name', 'id')->toArray());
+            return $next($request);
+        })->only('index', 'create', 'edit');
     }
 
     /**
@@ -27,7 +35,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::with('user', 'tags')->search($request)->latest('id')->paginate(20);
+        $posts = Post::with('user', 'tags', 'categories')->search($request)->latest('id')->paginate(20);
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
@@ -53,10 +61,27 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $post = Post::create($request->all());
+        // 画像保存
+        // ディレクトリ名
+        $dir = 'image/article';
+        $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
+        // ファイル情報をDBに保存
+        $featured_image_path = str_replace("public","storage",$featured_image_path);
+        // TODO プレビュー時のtmp画像削除する
+
+        $post = Post::create([
+            'title' => $request['title'],
+            'description' => $request['description'],
+            'featured_image_path' => $featured_image_path,
+            'body' => $request['body'],
+            'is_public' => $request['is_public'],
+            'published_at' => $request['published_at'],
+        ]);
+        // $post = Post::create($request->all());
         // タグを追加
         $post->tags()->attach($request->tags);
-
+        // カテゴリーを追加
+        $post->categories()->attach($request->categories);
         if ($post) {
             return redirect()
                 ->route('back.posts.edit', $post)
@@ -66,6 +91,37 @@ class PostController extends Controller
                 ->route('back.posts.create')
                 ->withError('データの登録に失敗しました。');
         }
+    }
+
+    /**
+     * プレビュー画面
+     *
+     * @param int $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function preview(int $id = null, PostUpdateRequest $request)
+    {
+        $post = $request;
+        
+        if ($id && Post::findById($id)) {
+            $savedPost = Post::findById($id);    
+        }
+        
+        if (empty($post['featured_image'])) {
+            $post['featured_image_path'] = $savedPost['featured_image_path'];
+        } else {
+            // 画像保存
+            // ディレクトリ名
+            $dir = 'image/article/tmp';
+            $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
+            // ファイル情報をDBに保存
+            $featured_image_path = str_replace("public","storage",$featured_image_path);
+            $post['featured_image_path'] = $featured_image_path;
+        }
+
+        // $post = Post::publicFindById($id);
+        // return view('front.posts.show', compact('post'));
+        return view('article_detail', compact('post'));
     }
 
     /**
@@ -82,16 +138,38 @@ class PostController extends Controller
     /**
      * 更新処理
      *
-     * @param PostRequest $request
+     * @param PostUpdateRequest $request
      * @param Post $post
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(PostUpdateRequest $request, Post $post)
     {
         // タグを更新
         $post->tags()->sync($request->tags);
+        // カテゴリーを更新
+        $post->categories()->sync($request->categories);
 
-        if ($post->update($request->all())) {
+        // 画像保存
+        // ディレクトリ名
+        if ($request->file('featured_image')) {
+            $dir = 'image/article';
+            $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
+            // ファイル情報をDBに保存
+            $featured_image_path = str_replace("public","storage",$featured_image_path);
+        } else {
+            $featured_image_path = $post['featured_image_path'];
+        }
+    
+        if (
+            $post->update([
+                'title' => $request['title'],
+                'description' => $request['description'],
+                'featured_image_path' => $featured_image_path,
+                'body' => $request['body'],
+                'is_public' => $request['is_public'],
+                'published_at' => $request['published_at'],
+            ])
+        ) {
             $flash = ['success' => 'データを更新しました。'];
         } else {
             $flash = ['error' => 'データの更新に失敗しました'];
@@ -113,6 +191,8 @@ class PostController extends Controller
     {
         // タグを削除
         $post->tags()->detach();
+        // タグを削除
+        $post->categories()->detach();
 
         if ($post->delete()) {
             $flash = ['success' => 'データを削除しました。'];

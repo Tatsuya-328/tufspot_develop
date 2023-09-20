@@ -43,11 +43,11 @@ class RouteServiceProvider extends ServiceProvider
             //     ->namespace($this->namespace)
             //     ->group(base_path('routes/api.php'));
 
-            // // フロント画面
-            // Route::middleware('web')˝√
-            //     ->namespace($this->namespace . '\Front')
-            //     ->as('front.')
-            //     ->group(base_path('routes/front.php'));
+            // フロント画面(テスト)
+            Route::middleware('web')
+                ->namespace($this->namespace . '\Front')
+                ->as('front.')
+                ->group(base_path('routes/front.php'));
 
             // 管理画面
             Route::prefix('admin')
@@ -56,11 +56,24 @@ class RouteServiceProvider extends ServiceProvider
                 ->as('back.')
                 ->group(base_path('routes/back.php'));
 
-            // 既存分追加
-            Route::middleware('web')
+            // Tufspot既存分追加
+            // 9/18 CRUD実装のため一旦以下産業コメントアウト
+            // 以下ないとloginのルーティングでエラーでる
+            Route::middleware(['web', 'auth'])
+            // Route::middleware(['web'])
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
 
+            // Route::prefix('hoge')
+            //     ->middleware(['web', 'auth'])
+            // ->namespace($this->namespace)
+            // ->group(base_path('routes/web.php'));
+
+            // ログイン用
+            Route::middleware(['web'])
+            ->namespace($this->namespace . '\Auth')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/auth.php'));
         });
     }
 

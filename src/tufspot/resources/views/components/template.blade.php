@@ -14,7 +14,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
     {{-- <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --> --}}
-    <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
     {{-- スライドショー --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 
@@ -36,8 +35,22 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css" media="screen">
+
+    {{-- editor試し１ --}}
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    {{-- editor試し１ここまで --}}
+
     {{-- オリジナル --}}
     <script src="{{ asset('js/top.js') }}" async></script>
+    <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/post.css') }}" rel="stylesheet">
+
+    {{-- 目次生成 --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/mokuji.css') }}">
+    {{-- <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.min.js') }}"></script> --}}
+    <script type="text/javascript" src="{{ asset('js/mokuji.js') }}"></script>
 </head>
 
 <body alink=”#0056b3 class="body">
@@ -46,6 +59,46 @@
         {{-- slotはx-templateの中でx-breadや他のcomponents読み込む用 --}}
         {{ $slot }}
     </div>
+
+    {{-- Quill記事そのまま表示用 --}}
+    <script>
+        var quill = new Quill('#quill_editor', {
+            // var quill = new Quill('#editor-container', {
+            modules: {
+                toolbar: [
+                    [{
+                        header: [1, false]
+                    }],
+                    [{
+                        'list': 'ordered'
+                    }, {
+                        'list': 'bullet'
+                    }],
+                    ['bold', 'underline', 'strike'],
+                    [{
+                        'align': ['', 'center', 'right']
+                    }],
+                    ['link', 'image']
+                ]
+            },
+            scrollingContainer: '#scrolling-container',
+            placeholder: 'Compose an epic...',
+            theme: 'bubble',
+            readOnly: true,
+        });
+
+        // $('.ql-editor').has('h1')
+        $(function() {
+            $('.ql-editor').has('h1').each((i, v) => {
+                $('.mokuji').mokuji({
+                    contentspace: '.ql-editor', //見出しタグの入っているボックスを指定
+                    titletag: 'h1,h2,h3', //目次に載せたい見出しタグを設定
+                    dot: false, //trueにすると行頭に「・」がつく
+                    decimal: true //trueにすると見出しの階層状に目次が生成される
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

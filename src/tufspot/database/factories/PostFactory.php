@@ -22,13 +22,20 @@ class PostFactory extends Factory
     public function definition()
     {
         $random_date = $this->faker->dateTimeBetween('-1year', '-1day');
+        $featured_image_array = [ '/image/ハロン湾.jpeg', '/image/スイティエン.jpeg','/image/アンコールワット.jpeg',];
+        
+        //「array_rand」関数を使ってランダムなキーを取得
+        $randkey_1 = array_rand( $featured_image_array, 1 );
 
         return [
             'title' => $this->faker->realText(rand(20,50)),
-            'body' => $this->faker->realText(rand(100,200)),
+            'featured_image_path' => $featured_image_array[$randkey_1],
+            'description' =>$this->faker->realText(rand(100,200)),
+            'body' => '<h1>大見出し</h1>' . $this->faker->realText(rand(200,300)) . "<p><br></p><h1>まとめ</h1>" . $this->faker->realText(rand(200,300)),
             'is_public' => $this->faker->boolean(90),
             'published_at' => $random_date,
-            'user_id' => $this->faker->numberBetween(1,3),
+            'user_id' => $this->faker->numberBetween(2,3),
+            // 'user_id' => 1,
             'created_at' => $random_date,
             'updated_at' => $random_date
         ];
