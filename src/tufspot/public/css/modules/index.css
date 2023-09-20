@@ -1,0 +1,77 @@
+.fade-in {
+    opacity: 0;
+}
+
+.fade-in.visible {
+    animation-name: fade-in;
+    animation-duration: .7s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.image-on-title-container {
+    position: relative;
+    height: auto;
+    max-height: 182px;
+}
+
+.image-container {
+    height: 100%;
+    position: relative;
+}
+
+.pickup_title_image {
+    width: 40%;
+    max-width: 700px;
+    min-width: 350px;
+    height: auto;
+    max-height: 100%;
+    transform: translateY(-35%);
+}
+
+.image-on-title-container .top_pickup_title_wrapper.title-wrapper-on-image {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+@media screen and (min-width: 320px) {
+    .pickup_title_image {
+        transform: translateY(-25%) translateX(-100px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (min-width: 425px) {
+    .pickup_title_image {
+        transform: translateY(-25%) translateX(-70px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .pickup_title_image {
+        transform: translateY(-25%) translateX(-50px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .pickup_title_image {
+        transform: translateY(-30%) translateX(-70px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+}

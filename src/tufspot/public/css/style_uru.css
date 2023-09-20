@@ -1,4 +1,6 @@
+@import url('./modules/index.css');
 @import url('./modules/about.css');
+@import url('./modules/article.css');
 
 /* @charset "UTF-8";
 
@@ -60,6 +62,11 @@ header {
   display: flex;
   align-items: center;
   height: 65px;
+
+  /* position: sticky;
+  top: 0;
+  z-index: 2; */
+
   z-index: 100;
   position: relative;
 }
@@ -543,7 +550,7 @@ input[type="radio"] {
 /* ライター詳細ここまで */
 
 /* 記事詳細ここから */
-.article-detail-wrapper {
+/* .article-detail-wrapper {
   margin: 50px auto 0 auto;
   width: 850px;
 }
@@ -672,7 +679,7 @@ input[type="radio"] {
 
 .article-card-button:hover {
   opacity: .7;
-}
+} */
 
 /* 記事詳細ここまで */
 
@@ -817,7 +824,7 @@ input[type="radio"] {
   margin: 0 0 30px 0;
   max-width: 250px;
   width: 100%;
-  text-wrap: nowrap;
+  white-wrap: nowrap;
 }
 
 .about-theme-title>span {
@@ -867,11 +874,29 @@ input[type="radio"] {
   letter-spacing: 4px;
 }
 
+.about-concept-spot-title {
+  white-space: nowrap;
+  font-size: 15px;
+}
+
 .about-concept-spot-headline {
-  font-size: 48px;
+  margin: 0 0 30px 0;
   letter-spacing: 10px;
   font-weight: 800;
-  margin: 0 0 30px 0;
+  white-space: nowrap;
+  font-size: 40px;
+}
+
+.about-concept-spot-detail {
+  padding: 0 10px;
+}
+
+
+
+@media screen and (min-width: 425px) {
+  .about-concept-spot-headline {
+    font-size: 48px;
+  }
 }
 
 .about-concept-spot-headline>span {
@@ -1533,6 +1558,8 @@ div>ul {
   object-fit: cover;
   width: 300px;
   aspect-ratio: 4 / 3;
+  position: relative;
+  z-index: 1;
 }
 
 .slick-track>div>.article_card_img {
