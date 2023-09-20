@@ -28,6 +28,11 @@
                     Writer Name
                 </p>
             </div>
+            <div class="article-detail-explain-text-wrapper">
+                <p class="article-detail-explain-text">
+                    {{ $post->description }}
+                </p>
+            </div>
             {{-- 目次 --}}
             <div class="mokuji"></div>
             {{-- quill editor --}}
