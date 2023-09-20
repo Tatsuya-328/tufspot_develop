@@ -62,9 +62,13 @@ header {
   display: flex;
   align-items: center;
   height: 65px;
-  position: sticky;
+
+  /* position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 2; */
+
+  z-index: 100;
+  position: relative;
 }
 
 .header-icon {
@@ -545,6 +549,140 @@ input[type="radio"] {
 
 /* ライター詳細ここまで */
 
+/* 記事詳細ここから */
+/* .article-detail-wrapper {
+  margin: 50px auto 0 auto;
+  width: 850px;
+}
+
+.article-title {
+  width: 100%;
+  margin: 25px 0;
+}
+
+.article-title-text {
+  font-size: 30px;
+  letter-spacing: 3px;
+  line-height: 48px;
+  color: #505050;
+  width: 661px;
+  text-wrap: wrap;
+  font-weight: 500;
+}
+
+.article-title-icon {
+  margin: 8px 0 0 15px;
+}
+
+.article-detail-list {
+  width: 100%;
+  margin: 0px 0 75px 0;
+}
+
+.article-detail-list .writer-last {
+  margin: 0px 0 20px 0;
+}
+
+.article-detail-title {
+  color: #505050;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 40px 0;
+  padding: 0 0 10px 0;
+  border-bottom: 2px solid #434343;
+}
+
+.article-detail-writer-wrapper {
+  width: 100%;
+  margin: 0 0 25px 0;
+}
+
+.article-detail-writer {
+  margin: 0 10px 0 15px;
+  font-size: 16px;
+  line-height: 48px;
+  color: #505050;
+  display: inline-block;
+}
+
+.article-detail-outline {
+  border: 1px solid #434343;
+  margin: 30px 80px 0px 75px;
+  padding: 25px;
+}
+
+.article-detail-outline-title {
+  font-size: 24px;
+  line-height: 30px;
+  color: #505050;
+  margin: 0 0 25px 0;
+}
+
+.article-detail-outline-text {
+  border-bottom: 1px solid #434343;
+  font-size: 16px;
+  line-height: 30px;
+  color: #505050;
+  margin: 0 0 25px 0;
+}
+
+.article-detail-headline {
+  color: #505050;
+  font-weight: 500;
+  margin: 0 0 40px 0;
+  padding: 0 0 10px 44px;
+  border-bottom: 2px solid #434343;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.article-detail-explain-image-wrapper {
+  width: 500px;
+  margin: 50px auto;
+}
+
+.article-detail-explain-image {
+  width: 500px;
+  height: 290px;
+  background: #434343;
+  margin: 0 auto;
+}
+
+.article-detail-explain-text-wrapper {
+  padding: 0 44px;
+  width: 100%;
+}
+
+.article-detail-explain-text {
+  font-size: 16px;
+  line-height: 30px;
+  margin: unset;
+}
+
+.article-card-button {
+  margin: 0 0 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  color: #535353;
+  font-size: 12px;
+  border-radius: 18px;
+  width: 125px;
+  height: 36px;
+  border: 1px solid #434343;
+  transition: 0.3s;
+  background-color: #f7f7f7;
+  filter: drop-shadow(0px 3px 4.5px #d3d3d3);
+}
+
+.article-card-button:hover {
+  opacity: .7;
+} */
+
+/* 記事詳細ここまで */
+
 /* TUFSPOTについてここから */
 .about-wrapper {
   margin: 50px auto 0 auto;
@@ -737,28 +875,28 @@ input[type="radio"] {
 }
 
 .about-concept-spot-title {
-    white-space: nowrap;
-    font-size: 15px;
+  white-space: nowrap;
+  font-size: 15px;
 }
 
 .about-concept-spot-headline {
-    margin: 0 0 30px 0;
-    letter-spacing: 10px;
-    font-weight: 800;
-    white-space: nowrap;
-    font-size: 40px;
+  margin: 0 0 30px 0;
+  letter-spacing: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+  font-size: 40px;
 }
 
 .about-concept-spot-detail {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
 
 
 @media screen and (min-width: 425px) {
-    .about-concept-spot-headline {
-        font-size: 48px;
-      }
+  .about-concept-spot-headline {
+    font-size: 48px;
+  }
 }
 
 .about-concept-spot-headline>span {
@@ -1767,11 +1905,12 @@ li.slick-slide>.article_card {
   margin-top: 5%;
 }
 
+/* 
 aside {
   width: 40%;
   margin-right: 5%;
   margin-top: 5%;
-}
+} */
 
 
 .contents1 {
