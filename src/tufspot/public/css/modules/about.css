@@ -19,6 +19,12 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 991px) {
+    .about-concept .about-concept-text {
+        height: 300px;
+    }
+}
+
 .hover-text-area {
     position: absolute;
     top: 0;
@@ -53,4 +59,11 @@
     letter-spacing: 5px;
     text-align: center;
     line-height: 160%;
+    padding: 0 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .display-only-pc {
+        display: none;
+    }
 }
