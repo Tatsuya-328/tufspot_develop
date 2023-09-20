@@ -1,4 +1,4 @@
 docker/db/data
-docker/phpmyadmin/sessions/
-!docker/phpmyadmin/sessions/
-!docker/phpmyadmin/sessions/.gitkeep
+docker/phpmyadmin/**/
+!docker/phpmyadmin/**/
+!docker/phpmyadmin/**/.gitkeep
