@@ -4,7 +4,7 @@
     <x-writer_card />
     <div class="writer-explain-wrapper">
         <div class="writer-explain">
-            <a href="{{ route('writer_detail', ['id' => 1]) }}" class="text-decoration-none">
+            <a href="{{ route('writer_detail', ['user' => 1]) }}" class="text-decoration-none">
                 <p class="writer-explain-title">▼自己紹介</p>
                 <p class="writer-explain-text">
                     ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
@@ -13,10 +13,10 @@
                 </p>
             </a>
             <p class="writer-explain-hashtag">
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
-                <a href="{{ route('hashtag_result', ['id' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a>
             </p>
         </div>
         <a href="#" class="writer-link text-decoration-none">
