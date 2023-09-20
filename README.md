@@ -3,6 +3,7 @@ share develop repository
 開発用リポジトリ、デプロイ用は別でsrc/tufspot配下のみ
 
 ## 環境構築
+- 新たにdevelopをCloneする時は、元々のtufspotのDockerコンテナ、イメージを削除してからやらないと重複してエラーになる（db/dateが空であること）
 - Clone
 - .env.example をコピーして.envを作成
   - DB_HOSTからDB_PASSWORDまでを以下に書き換え
@@ -27,6 +28,8 @@ DB_PASSWORD=tufspot_pass
   - testtest
 - /adminで記事管理画面
 
+## 参考コマンド
+Laravelキャッシュ削除コマンド
 ```
 php artisan cache:clear
 php artisan config:clear
