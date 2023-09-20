@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\GaigokaiAccount;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,10 +50,28 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        // TODO: DBのテーブルの値を条件にできるとよさそう
-        // まず外語会テーブルの作成が必要？
+        if (empty(GaigokaiAccount::where('member_id', $data['member_id'])->where('phone_number', $data['phone_number'])->first())) {
+            // 会員IDと電話番号の組み合わせが一致するか確認
+            $data['member_id'] = null;
+            $data['phone_number'] = null;
+
+            $rulus = [
+                'member_id' => ['exists:gaigokai_accounts,member_id'],
+                'phone_number' => ['exists:gaigokai_accounts,phone_number'],
+            ];
+            
+            $message = [
+                'member_id.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
+                'phone_number.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
+            ];
+
+            return Validator::make($data, $rulus, $message);
+        }
+
         return Validator::make($data, [
-            // 'gaigokai_id' => ['required', 'string', 'exists:tags,slug'],
+            // 会員IDと電話番号が存在するか確認
+            'member_id' => ['required', 'string', 'exists:gaigokai_accounts,member_id'],
+            'phone_number' => ['required', 'string', 'exists:gaigokai_accounts,phone_number'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -67,7 +86,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // ここで外部キーとしてgaigokai_idを入れる
+        $gaigokai_account = GaigokaiAccount::where('member_id', $data['member_id'])->where('phone_number', $data['phone_number'])->first();
         return User::create([
+            'gaigokai_id' => $gaigokai_account['id'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

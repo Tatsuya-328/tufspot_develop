@@ -136,8 +136,10 @@ return [
     ],
 
     'attributes' => [
-        'gaigokai id' => '外語会ID',
-        'gaigokai_id' => '外語会ID',
+        'member id' => '外語会ID',
+        'member_id' => '外語会ID',
+        'phone number' => '電話番号',
+        'phone_number' => '電話番号',
     ],
 
     /*

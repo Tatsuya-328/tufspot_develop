@@ -11,19 +11,33 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
-                            {{-- <div class="row mb-3">
-                                <label for="gaigokai_id" class="col-md-4 col-form-label text-md-end">{{ __('外語会ID') }}</label>
+                            <div class="row mb-3">
+                                <label for="member_id" class="col-md-4 col-form-label text-md-end">{{ __('外語会ID') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="gaigokai_id" type="text" class="form-control @error('gaigokai_id') is-invalid @enderror" name="gaigokai_id" value="{{ old('gaigokai_id') }}" required autocomplete="gaigokai_id" autofocus>
+                                    <input id="member_id" type="text" class="form-control @error('member_id') is-invalid @enderror" name="member_id" value="{{ old('member_id') }}" required autocomplete="member_id" autofocus>
 
-                                    @error('gaigokai_id')
+                                    @error('member_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
-                            </div> --}}
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="phone_number" class="col-md-4 col-form-label text-md-end">{{ __('電話番号') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number" autofocus>
+
+                                    @error('phone_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <div class="row mb-3">
                                 <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('TUFSPOTユーザー名') }}</label>
