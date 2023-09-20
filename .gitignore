@@ -1,2 +1,3 @@
 docker/db/data
-docker/phpmyadmin/sessions
+docker/phpmyadmin/sessions/*
+!docker/phpmyadmin/sessions/.gitkeep
