@@ -71,6 +71,7 @@ class PostController extends Controller
 
         $post = Post::create([
             'title' => $request['title'],
+            'description' => $request['description'],
             'featured_image_path' => $featured_image_path,
             'body' => $request['body'],
             'is_public' => $request['is_public'],
@@ -162,6 +163,7 @@ class PostController extends Controller
         if (
             $post->update([
                 'title' => $request['title'],
+                'description' => $request['description'],
                 'featured_image_path' => $featured_image_path,
                 'body' => $request['body'],
                 'is_public' => $request['is_public'],

@@ -22,6 +22,22 @@
 </div>
 
 <div class="form-group row">
+    {{ Form::label('description', '説明文', ['class' => 'col-sm-2 col-form-label']) }}
+    <div class="col-sm-10">
+        {{-- {{ Form::text('title', null, [
+                'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
+                'required',
+            ]) }} --}}
+        <input type="text" class="form-control" name="description" value="{{ old('description') }}">
+        @error('description')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+</div>
+
+<div class="form-group row">
     {{ Form::label('featured_image', 'アイキャッチ画像', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         <input type="file" class="form-control" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
