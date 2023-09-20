@@ -6,6 +6,7 @@
 <div class="form-group row">
     {{ Form::label('name', 'ユーザー名', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
+        <input type="hidden" name="user_id" value="{{ $user['id'] }}" />
         {{ Form::text('name', null, [
             'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),
             'required',
@@ -92,22 +93,44 @@
 </div>
 <label for="input" class="col-sm-2 col-form-label">SNS</label>
 
-<div class="form-group row" id="form-group">
-    {{-- <div id="form_area"> --}}
-    {{-- <div class="form-group"> --}}
-    @foreach ($user['snsAccounts'] as $snsAccount)
-        <div class="col-sm-5" id="form_area{{ $loop->iteration }}">
-            <input type="text" class="form-control col-sm-11" name="snsAccounts[{{ $loop->iteration }}][]" value="{{ $snsAccount['name'] }}" />
+
+@if (!empty($user['snsAccounts'][0]))
+    <div class="form-group row" id="form-group">
+        {{-- <div id="form_area"> --}}
+        {{-- <div class="form-group"> --}}
+        @foreach ($user['snsAccounts'] as $snsAccount)
+            <input type="hidden" name="alreadySnsAccounts[{{ $loop->iteration }}]['id']" value="{{ $snsAccount['id'] }}" />
+            <div class="col-sm-5" id="form_area{{ $loop->iteration }}">
+                <input type="text" class="form-control col-sm-11" name="alreadySnsAccounts[{{ $loop->iteration }}][name]" value="{{ $snsAccount['name'] }}" />
+            </div>
+            <div class="col-sm-5" id="form_area{{ $loop->iteration }}">
+                <input type="text" class="form-control col-sm-11" name="alreadySnsAccounts[{{ $loop->iteration }}][url]" value="{{ $snsAccount['url'] }}" />
+            </div>
+            <div class="bt_deleteForm col-sm-2">
+                <input type="button" value="削除" class="formRemove" onclick="removeForm(this)">
+            </div>
+            @php
+                $cnt = $loop->iteration;
+            @endphp
+        @endforeach
+    </div>
+    <input type="button" class="btn btn-info" value="追加" onclick="addForm({{ $cnt }})" />
+@else
+    <div class="form-group row" id="form-group">
+        {{-- <div id="form_area"> --}}
+        {{-- <div class="form-group"> --}}
+        <div class="col-sm-5" id="form_area1">
+            <input type="text" class="form-control col-sm-11" name="newSnsAccounts[1][name]" value="" />
         </div>
-        <div class="col-sm-5" id="form_area{{ $loop->iteration }}">
-            <input type="text" class="form-control col-sm-11" name="snsAccounts[{{ $loop->iteration }}][]" value="{{ $snsAccount['url'] }}" />
+        <div class="col-sm-5" id="form_area2">
+            <input type="text" class="form-control col-sm-11" name="newSnsAccounts[1][url]" value="" />
         </div>
-        @php
-            $cnt = $loop->iteration;
-        @endphp
-    @endforeach
-</div>
-<input type="button" class="btn btn-info" value="追加" onclick="addForm({{ $cnt }})" />
+        <div class="bt_deleteForm col-sm-2">
+            <input type="button" value="削除" class="formRemove" onclick="removeForm(this)">
+        </div>
+    </div>
+    <input type="button" class="btn btn-info" value="追加" onclick="addForm(1)" />
+@endif
 
 <div class="form-group row">
     <div class="col-sm-10">
@@ -149,13 +172,27 @@
         // new_element.textContent = '';
         // const createElement = '<div>追加テキスト</div>';
         const createElement = '<div class="col-sm-5" id="form_area' + Cnt +
-            '"><input type="text" class="form-control col-sm-11" name="snsAccounts[' + Cnt +
-            '][]" value="" /> </div> <div class = "col-sm-5"id = "form_area' + Cnt +
-            '" ><input type = "text"class = "form-control col-sm-11"name = "snsAccounts[' + Cnt +
-            '][]"value = "" / ></div>';
+            '"><input type="text" class="form-control col-sm-11" name="newSnsAccounts[' + Cnt +
+            '][name]" value="" /> </div> <div class = "col-sm-5"id = "form_area' + Cnt +
+            '" ><input type = "text"class = "form-control col-sm-11"name = "newSnsAccounts[' + Cnt +
+            '][url]"value = "" / ></div>    <div class="bt_deleteForm col-sm-2">   <input type="button" value="削除" class="formRemove"  onclick="removeForm(this)" ></div>';
         // 指定した要素の中の末尾に挿入
         // textbox_element.appendChild(createElement);
         // textbox_element2.appendChild(new_element);
         textbox_element.insertAdjacentHTML('beforeend', createElement);
+    }
+
+    function removeForm(e) {
+        // var button = document.getElementsByClassName('formRemove');
+        // for (i = 0; i < button.length; i++) {
+        //     console.log(button);
+        // button[i].addEventListener("click", function() {
+        e.parentNode.previousElementSibling.remove();
+        e.parentNode.previousElementSibling.remove();
+        e.parentNode.remove();
+        e.remove();
+        // this.parentNode.previousElementSibling.previousElementSibling.remove();
+        // });
+        // }
     }
 </script>

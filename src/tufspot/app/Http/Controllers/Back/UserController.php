@@ -74,7 +74,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        dd($request);
+        // dd($request);
         // 画像保存
         // ディレクトリ名
         if ($request->file('profile_image')) {
@@ -86,6 +86,32 @@ class UserController extends Controller
             $profile_image_path = $user['profile_image_path'];
         }
 
+        // SNS保存
+        SnsAccount::where('user_id', $request['user_id'])->delete();
+        if ($request['alreadySnsAccounts']) {
+            foreach ($request['alreadySnsAccounts'] as $alreadySnsAccount) {
+                if (!empty($alreadySnsAccount['name']) && !empty($alreadySnsAccount['url'])) {
+                // Employee::where('id', $alreadySnsAccount['id'])
+                //     ->update([
+                SnsAccount::create([
+                        'user_id' => $request['user_id'],
+                        'name' => $alreadySnsAccount['name'],
+                        'url' => $alreadySnsAccount['url'],
+                    ]);
+                }
+            }
+        }
+        if ($request['newSnsAccounts']) {
+        foreach ($request['newSnsAccounts'] as $newSnsAccount) {
+            if (!empty($newSnsAccount['name']) && !empty($newSnsAccount['url'])) {
+            SnsAccount::create([
+                    'user_id' => $request['user_id'],
+                    'name' => $newSnsAccount['name'],
+                    'url' => $newSnsAccount['url'],
+                ]);
+                }
+            }
+    }
         // if ($user->update($request->all())) {
             if (
                 $user->update([
