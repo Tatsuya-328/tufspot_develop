@@ -44,6 +44,7 @@
 
     {{-- オリジナル --}}
     <script src="{{ asset('js/top.js') }}" async></script>
+    <script src="{{ asset('js/modules/about.js') }}" async></script>
     <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post.css') }}" rel="stylesheet">
 

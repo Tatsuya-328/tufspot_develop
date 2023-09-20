@@ -41,8 +41,11 @@
                 <div class="about-concept-title d-flex justify-content-center align-items-center">
                     メディアコンセプト
                 </div>
-                <div class="about-concept-text d-flex justify-content-center align-items-center">
+                <div class="about-concept-text hover d-flex justify-content-center align-items-center">
                     Enjoy Diversity
+                </div>
+                <div class="hover-text-area">
+                    <p class="hover-text">バラバラであることを楽しみ、そこに新たな視点を見出す。<br>それが当たり前のようにできる外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、自分たちが見聞きし、考えたことをシェアしよう。</p>
                 </div>
             </div>
             <p class="about-theme-top-text">
