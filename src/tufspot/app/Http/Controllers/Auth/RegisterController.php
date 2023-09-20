@@ -52,7 +52,7 @@ class RegisterController extends Controller
         // TODO: DBのテーブルの値を条件にできるとよさそう
         // まず外語会テーブルの作成が必要？
         return Validator::make($data, [
-            // 'gaigokai_id' => ['required', 'string', 'exists:posts,カラム名'],
+            // 'gaigokai_id' => ['required', 'string', 'exists:tags,slug'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
