@@ -34,13 +34,30 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        // ページネーションが有効になっているから20のみ取得状態
-        $posts = Post::with('user', 'tags', 'categories')->search($request)->latest('id')->paginate(20);
+
+        $carousel_posts = Post::latest()->take(5)->get();    
+        $pickup_posts = Post::inRandomOrder()->take(10)->get();
+        $feature_posts = Post::inRandomOrder()->take(10)->get();
+        
+        $academia_category_id = Category::NAME['Academia'];
+        $academia_posts = Post::whereHas('categories', function ($query) use ($academia_category_id) {
+            $query->where('category_id', $academia_category_id);
+        })->latest()->take(6)->get();
+
+        $business_category_id = Category::NAME['Business'];
+        $business_posts = Post::whereHas('categories', function ($query) use ($business_category_id) {
+            $query->where('category_id', $business_category_id);
+        })->latest()->take(6)->get();
+
+        $culture_category_id = Category::NAME['Culture'];
+        $culture_posts = Post::whereHas('categories', function ($query) use ($culture_category_id) {
+            $query->where('category_id', $culture_category_id);
+        })->latest()->take(6)->get();
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
-        // dd($posts);
-        return view('index', compact('posts', 'search', 'users'));
+
+        return view('index', compact('carousel_posts', 'pickup_posts', 'feature_posts', 'academia_posts', 'business_posts', 'culture_posts'));
     }
 
     /**

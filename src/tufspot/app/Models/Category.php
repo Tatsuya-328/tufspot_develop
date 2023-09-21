@@ -12,4 +12,10 @@ class Category extends Model
     protected $fillable = [
         'slug', 'name'
     ];
+
+    const NAME = [
+        'Academia' => 1,
+        'Business' => 2,
+        'Culture' => 3,
+    ];
 }

@@ -20,6 +20,16 @@ class Post extends Model
         'published_at' => 'datetime'
     ];
 
+    public function newQuery()
+    {
+        // 全ての呼び出しでリレーション
+        // 親のメソッドを呼び出す。もともとはクエリビルダーを新規作成するときに呼び出されるメソッド。
+        $query = parent::newQuery();
+        $query = $query->with(['user', 'tags', 'categories']);
+
+        return $query;
+    }
+    
     protected static function boot()
     {
         parent::boot();

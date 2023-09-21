@@ -13,13 +13,10 @@ class User extends Authenticatable
 
     public function newQuery()
     {
-        // 親のメソッドを呼び出す。
-        // もともとはクエリビルダーを新規作成するときに呼び出されるメソッドです。
+        // 全ての呼び出しでリレーション
+        // 親のメソッドを呼び出す。もともとはクエリビルダーを新規作成するときに呼び出されるメソッド。
         $query = parent::newQuery();
-
-        // すべてのクエリに deleted = 0 の条件を最初に指定します。
-        $query = $query->with('snsAccounts')->with('gaigokaiMembers');
-        // $query = $query->with('snsAccounts');
+        $query = $query->with(['snsAccounts','gaigokaiMembers']);
 
         return $query;
     }
