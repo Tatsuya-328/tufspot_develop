@@ -19,7 +19,7 @@ class GaigokaiMemberSeeder extends Seeder
             [
                 // テスト用に既存ユーザー追加
                 'id' => '000001',
-                'phone_number' => '080' . $faker -> randomNumber(8, true),
+                'phone_number' => '08011111111',
             ],[
                 'id' => '000002',
                 'phone_number' => '080' . $faker -> randomNumber(8, true),
@@ -36,19 +36,19 @@ class GaigokaiMemberSeeder extends Seeder
             [
                 // 新規登録用 
                 'id' => '000006',
-                'phone_number' => '08011111111',
+                'phone_number' => '08066666666',
             ],[
                 'id' => '000007',
-                'phone_number' => '08022222222',
+                'phone_number' => '08077777777',
             ],[
                 'id' => '000008',
-                'phone_number' => '08033333333',
+                'phone_number' => '08088888888',
             ],[
                 'id' => '000009',
-                'phone_number' => '08044444444',
+                'phone_number' => '08099999999',
             ],[
                 'id' => 'abcd10',
-                'phone_number' => '08055555555',
+                'phone_number' => '08000000000',
             ],
         ]);
 
