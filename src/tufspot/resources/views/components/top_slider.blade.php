@@ -12,11 +12,13 @@
         <div class="top_pickup_title_text"><span>ー</span>{{ $text }}<span>ー</span></div>
     </div>
     <ul class="slider">
-        <x-article_card place="ハロン湾" />
-        <x-article_card place="スイティエン" />
+        @foreach ($posts as $post)
+            <x-article_card :post=$post />
+        @endforeach
+        {{-- <x-article_card place="スイティエン" />
         <x-article_card place="アンコールワット" />
         <x-article_card place="ハロン湾" />
         <x-article_card place="スイティエン" />
-        <x-article_card place="アンコールワット" />
+        <x-article_card place="アンコールワット" /> --}}
     </ul>
 </div>

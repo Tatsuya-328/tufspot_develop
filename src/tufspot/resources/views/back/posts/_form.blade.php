@@ -12,7 +12,7 @@
                 'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
                 'required',
             ]) }} --}}
-        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+        <textarea type="textarea" class="form-control" name="title">{{ old('title') }}</textarea>
         @error('title')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -28,13 +28,11 @@
                 'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
                 'required',
             ]) }} --}}
-        <input type="text" class="form-control" name="description" value="{{ old('description') }}">
-        @error('description')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
-    </div>
+        <input type="textarea" class="form-control" name="description">{{ old('description') }} </textarea @error('description') <div class="invalid-feedback">
+            {{ $message }}
+        </div>
+    @enderror
+</div>
 </div>
 
 <div class="form-group row">
