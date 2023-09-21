@@ -21,10 +21,10 @@
                 <div id="panel1" class="tab_panel1">
                     <div class="d-flex flex-wrap flex-column justify-content-center align-content-center">
                         <div class="user-info-text">
-                            <p>名前：テスト太郎</p>
-                            <p>電話番号：08012345678</p>
-                            <p>メールアドレス：test@example.com</p>
-                            <p>外語会ID：123456789</p>
+                            <p>名前：{{ $user->name }}</p>
+                            <p>電話番号：{{ $user->gaigokaiMembers[0]['phone_number'] }}</p>
+                            <p>メールアドレス：{{ $user->email }}</p>
+                            <p>外語会ID：{{ $user->gaigokaiMembers[0]['id'] }}</p>
                             <p>パスワード：XXXXXXX</p>
                         </div>
                         <div>

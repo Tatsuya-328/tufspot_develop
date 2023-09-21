@@ -84,11 +84,11 @@ class UserController extends Controller
      */
     public function mypage()
     {
-        dd(User::where('id',1)->first());
-
-        dd(Auth::user()->gaigokai_member);
+        // dd(User::find(1)->gaigokaiMembers()->first());
+        $user = Auth::user();
         // $user = User::with('snsAccounts')->where('id', '=', $user['id'])->first();
         return view('mypage', compact('user'));
+        // return view('mypage');
     }
 
     // /**

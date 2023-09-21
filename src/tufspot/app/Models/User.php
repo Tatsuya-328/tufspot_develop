@@ -18,8 +18,8 @@ class User extends Authenticatable
         $query = parent::newQuery();
 
         // すべてのクエリに deleted = 0 の条件を最初に指定します。
-        // $query = $query->with('snsAccounts')->with('gaigokaiMembers');
-        $query = $query->with('snsAccounts');
+        $query = $query->with('snsAccounts')->with('gaigokaiMembers');
+        // $query = $query->with('snsAccounts');
 
         return $query;
     }
