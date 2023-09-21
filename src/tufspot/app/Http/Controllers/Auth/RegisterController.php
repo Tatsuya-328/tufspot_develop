@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\GaigokaiMember;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,10 +50,48 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        // TODO: DBのテーブルの値を条件にできるとよさそう
-        // まず外語会テーブルの作成が必要？
+        try {
+            $gaigokai = GaigokaiMember::where('id', $data['id'])->where('phone_number', $data['phone_number'])->first();
+            } catch (\Exception $e) {
+                report($e);
+                session()->flash('flash_message', '登録失敗しました');
+            }
+
+        if (empty($gaigokai)) {
+            // 会員IDと電話番号の組み合わせが一致するか確認
+            $data['id'] = null;
+            $data['phone_number'] = null;
+
+            $rulus = [
+                'id' => ['exists:gaigokai_members,id'],
+                'phone_number' => ['exists:gaigokai_members,phone_number'],
+            ];
+            
+            $message = [
+                'id.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
+                'phone_number.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
+            ];
+
+            return Validator::make($data, $rulus, $message);
+        } else if (!empty($gaigokai->users()->first())) {
+            // 登録済みの外語会IDではないか
+            $data['id'] = null;
+
+            $rulus = [
+                'id' => ['exists:gaigokai_members,id'],
+            ];
+            
+            $message = [
+                'id.exists' => 'サイト登録済みの外語会IDです。',
+            ];
+
+            return Validator::make($data, $rulus, $message);
+        }
+
         return Validator::make($data, [
-            // 'gaigokai_id' => ['required', 'string', 'exists:posts,カラム名'],
+            // 会員IDと電話番号が存在するか確認
+            'id' => ['required', 'string', 'exists:gaigokai_members,id'],
+            'phone_number' => ['required', 'string', 'exists:gaigokai_members,phone_number'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -67,11 +106,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // アプリのユーザー登録
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             // 'password' => bcrypt($data['password']),
         ]);
+
+        // ここで同時に中間テーブルに外部キーとしてid(外語会ID)を入れる
+        $gaigokai_member = GaigokaiMember::where('id', $data['id'])->where('phone_number', $data['phone_number'])->first();
+        $gaigokai_member->users()->attach($user['id']);
+
+        return $user;
     }
 }
