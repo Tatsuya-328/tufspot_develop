@@ -86,30 +86,39 @@ class UserController extends Controller
     {
         // dd(User::find(1)->gaigokaiMembers()->first());
         $user = Auth::user();
+        // formファザード用
+        $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
         // $user = User::with('snsAccounts')->where('id', '=', $user['id'])->first();
         return view('mypage', compact('user'));
         // return view('mypage');
     }
 
-    // /**
-    //  * 更新処理
-    //  *
-    //  * @param  UserRequest $request
-    //  * @param  \App\Models\User $user
-    //  * @return \Illuminate\Http\RedirectResponse
-    //  */
-    // public function update(UserRequest $request, User $user)
-    // {
-    //     if ($user->update($request->all())) {
-    //         $flash = ['success' => 'データを更新しました。'];
-    //     } else {
-    //         $flash = ['error' => 'データの更新に失敗しました'];
-    //     }
+    /**
+     * 更新処理
+     *
+     * @param  UserRequest $request
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(UserRequest $request, User $user)
+    {
+        $gaigokai = GaigokaiMember::find($request['id']);
+        if (!empty($request['paddword']) && ($request['paddword'] !== $request['paddword_check'])) {
+            $flash = ['error' => 'パスワード確認が同一ではありません。'];
+        }
 
-    //     return redirect()
-    //         ->route('back.users.edit', $user)
-    //         ->with($flash);
-    // }
+        if ($user->update($request->all()) && $gaigokai->update(['phone_number' => $request['phone_number']])) {
+            $flash = ['success' => 'データを更新しました。'];
+        } else {
+            $flash = ['error' => 'データの更新に失敗しました'];
+        }
+
+        // formファザード用
+        $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
+        return redirect()
+            ->route('mypage', $user)
+            ->with($flash);
+    }
 
     // /**
     //  * Remove the specified resource from storage.

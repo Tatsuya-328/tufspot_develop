@@ -43,6 +43,7 @@ Route::get('/hashtag_result/{tagSlug}', [PostController::class, 'index'])->where
 
 // mypage
 Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
+Route::put('/mypage/update/{user}', [UserController::class, 'update'])->name('update');
 
 // ライター一覧
 Route::get('/writer', function () {
