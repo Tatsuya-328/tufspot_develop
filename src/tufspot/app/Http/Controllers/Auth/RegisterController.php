@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Models\GaigokaiAccount;
+use App\Models\GaigokaiMember;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,14 +50,14 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        if (empty(GaigokaiAccount::where('member_id', $data['member_id'])->where('phone_number', $data['phone_number'])->first())) {
+        if (empty(GaigokaiMember::where('member_id', $data['member_id'])->where('phone_number', $data['phone_number'])->first())) {
             // 会員IDと電話番号の組み合わせが一致するか確認
             $data['member_id'] = null;
             $data['phone_number'] = null;
 
             $rulus = [
-                'member_id' => ['exists:gaigokai_accounts,member_id'],
-                'phone_number' => ['exists:gaigokai_accounts,phone_number'],
+                'member_id' => ['exists:gaigokai_members,member_id'],
+                'phone_number' => ['exists:gaigokai_members,phone_number'],
             ];
             
             $message = [
@@ -70,8 +70,8 @@ class RegisterController extends Controller
 
         return Validator::make($data, [
             // 会員IDと電話番号が存在するか確認
-            'member_id' => ['required', 'string', 'exists:gaigokai_accounts,member_id'],
-            'phone_number' => ['required', 'string', 'exists:gaigokai_accounts,phone_number'],
+            'member_id' => ['required', 'string', 'exists:gaigokai_members,member_id'],
+            'phone_number' => ['required', 'string', 'exists:gaigokai_members,phone_number'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -87,9 +87,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         // ここで外部キーとしてgaigokai_idを入れる
-        $gaigokai_account = GaigokaiAccount::where('member_id', $data['member_id'])->where('phone_number', $data['phone_number'])->first();
+        $gaigokai_member = GaigokaiMember::where('member_id', $data['member_id'])->where('phone_number', $data['phone_number'])->first();
         return User::create([
-            'gaigokai_id' => $gaigokai_account['id'],
+            'gaigokai_id' => $gaigokai_member['id'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

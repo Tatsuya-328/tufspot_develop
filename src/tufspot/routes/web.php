@@ -42,9 +42,8 @@ Route::get('/search_result', function () {
 Route::get('/hashtag_result/{tagSlug}', [PostController::class, 'index'])->where('tagSlug', '[a-z]+')->name('hashtag_result');
 
 // mypage
-Route::get('/mypage', function () {
-    return view('mypage');
-})->name('mypage');
+Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
+
 // ライター一覧
 Route::get('/writer', function () {
     return view('writer_list');
@@ -76,11 +75,3 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

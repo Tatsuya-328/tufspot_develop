@@ -4,16 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class GaigokaiAccount extends Model
+class GaigokaiMember extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'phone_number', 'member_id', 
+        'phone_number', 'member_id', 
     ];
+
+    // 主キーカラム名を指定
+    // protected $primaryKey = 'member_id';
+    // オートインクリメント無効化
+    public $incrementing = false;
+    // protected $keyType = 'string';
 
     protected static function boot()
     {
@@ -25,7 +32,7 @@ class GaigokaiAccount extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
-    public function user()
+    public function users()
     {
         return $this->belongsToMany(User::class);
     }

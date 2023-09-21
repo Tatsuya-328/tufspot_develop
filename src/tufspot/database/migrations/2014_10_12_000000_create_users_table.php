@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('gaigokai_id'); 
+            // $table->foreignId('gaigokai_id'); 
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('profile_image_path')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('gaigokai_id')->references('id')->on('gaigokai_accounts');
+            // $table->foreign('gaigokai_id')->references('id')->on('gaigokai_members');
         });
     }
 
