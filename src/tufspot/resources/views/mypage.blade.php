@@ -153,22 +153,23 @@
                 </div>
                 <div id="panel2" class="tab_panel2">
                     <div class="d-flex justify-content-center flex-wrap">
-                        <x-article_card place="ハロン湾" />
+                        {{-- TODO　記事表示 --}}
+                        {{-- <x-article_card place="ハロン湾" />
                         <x-article_card place="スイティエン" />
                         <x-article_card place="アンコールワット" />
                         <x-article_card place="ハロン湾" />
                         <x-article_card place="スイティエン" />
-                        <x-article_card place="アンコールワット" />
+                        <x-article_card place="アンコールワット" /> --}}
                     </div>
                 </div>
                 <div id="panel3" class="tab_panel3">
                     <div class="d-flex justify-content-center flex-wrap">
-                        <x-article_card place="ハロン湾" />
+                        {{-- <x-article_card place="ハロン湾" />
                         <x-article_card place="スイティエン" />
                         <x-article_card place="アンコールワット" />
                         <x-article_card place="ハロン湾" />
                         <x-article_card place="スイティエン" />
-                        <x-article_card place="アンコールワット" />
+                        <x-article_card place="アンコールワット" /> --}}
                     </div>
                 </div>
                 <div id="panel4" class="tab_panel4">
