@@ -16,12 +16,15 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-Route::get('/top', function () {
-    return view('index');
-})->name('index');
+// Route::get('/', function () {
+//     return view('index');
+// })->name('index');
+// Route::get('/top', function () {
+//     return view('index');
+// })->name('index');
+Route::get('/', [PostController::class, 'index'])->name('index');
+Route::get('/top', [PostController::class, 'index'])->name('index');
+
 // カテゴリー記事詳細
 Route::get('/category_article', function () {
     return view('category_article');
