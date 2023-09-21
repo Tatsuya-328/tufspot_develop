@@ -50,18 +50,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        if (empty(GaigokaiMember::where('member_id', $data['member_id'])->where('phone_number', $data['phone_number'])->first())) {
+        if (empty(GaigokaiMember::where('id', $data['id'])->where('phone_number', $data['phone_number'])->first())) {
             // 会員IDと電話番号の組み合わせが一致するか確認
-            $data['member_id'] = null;
+            $data['id'] = null;
             $data['phone_number'] = null;
 
             $rulus = [
-                'member_id' => ['exists:gaigokai_members,member_id'],
+                'id' => ['exists:gaigokai_members,id'],
                 'phone_number' => ['exists:gaigokai_members,phone_number'],
             ];
             
             $message = [
-                'member_id.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
+                'id.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
                 'phone_number.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
             ];
 
@@ -70,7 +70,7 @@ class RegisterController extends Controller
 
         return Validator::make($data, [
             // 会員IDと電話番号が存在するか確認
-            'member_id' => ['required', 'string', 'exists:gaigokai_members,member_id'],
+            'id' => ['required', 'string', 'exists:gaigokai_members,id'],
             'phone_number' => ['required', 'string', 'exists:gaigokai_members,phone_number'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -86,14 +86,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // ここで外部キーとしてgaigokai_idを入れる
-        $gaigokai_member = GaigokaiMember::where('member_id', $data['member_id'])->where('phone_number', $data['phone_number'])->first();
-        return User::create([
-            'gaigokai_id' => $gaigokai_member['id'],
+        // アプリのユーザー登録
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             // 'password' => bcrypt($data['password']),
         ]);
+
+        // ここで同時に中間テーブルに外部キーとしてid(外語会ID)を入れる
+        $gaigokai_member = GaigokaiMember::where('id', $data['id'])->where('phone_number', $data['phone_number'])->first();
+        $gaigokai_member->users()->attach($user['id']);
+
+        return $user;
     }
 }

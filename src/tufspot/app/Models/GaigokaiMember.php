@@ -13,11 +13,11 @@ class GaigokaiMember extends Model
     use HasFactory;
 
     protected $fillable = [
-        'phone_number', 'member_id', 
+        'phone_number', 'id', 
     ];
 
     // 主キーカラム名を指定
-    // protected $primaryKey = 'member_id';
+    // protected $primaryKey = 'id';
     // オートインクリメント無効化
     public $incrementing = false;
     // protected $keyType = 'string';

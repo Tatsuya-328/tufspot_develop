@@ -137,7 +137,7 @@ return [
 
     'attributes' => [
         'member id' => '外語会ID',
-        'member_id' => '外語会ID',
+        'id' => '外語会ID',
         'phone number' => '電話番号',
         'phone_number' => '電話番号',
     ],
