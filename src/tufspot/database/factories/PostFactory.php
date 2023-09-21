@@ -28,7 +28,9 @@ class PostFactory extends Factory
         $randkey_1 = array_rand( $featured_image_array, 1 );
 
         return [
-            'title' => $this->faker->realText(rand(20,50)),
+            // 'title' => $this->faker->realText(rand(20,50)),
+            'title' => $this->faker->country() . "にまた行った。
+            そしたら新しい発見があったはなし",
             'featured_image_path' => $featured_image_array[$randkey_1],
             'description' =>$this->faker->realText(rand(100,200)),
             'body' => '<h1>大見出し</h1>' . $this->faker->realText(rand(200,300)) . "<p><br></p><h1>まとめ</h1>" . $this->faker->realText(rand(200,300)),

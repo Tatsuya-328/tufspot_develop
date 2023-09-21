@@ -16,7 +16,7 @@
             <a href="{{ route('article_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
                 {{-- ここに記事のタイトルが入ります<br>
                 ここに記事のタイトルが入ります。 --}}
-                {{ $post['title'] }}
+                {!! nl2br($post['title']) !!}
                 <br>
             </a>
             <span class="article-card-hashtag">

@@ -8,7 +8,7 @@
             <img class="article-top-img" src="{{ asset('image/article_detail.jpeg') }}" class="" alt="...">
             {{-- <x-writer_card /> --}}
             <div class="article-title">
-                <div class="article-title-text">{{ $post->title }}</div>
+                <div class="article-title-text">{!! nl2br($post->title) !!}</div>
                 <div class="article-title-icon align-items-start">
                     {{-- <img src="{{ asset($post->featured_image_path) }}" style="width:850px; height:500px;" class="" alt="...">
             <div class="article-title d-flex justify-content-between ">
@@ -33,7 +33,7 @@
             </div>
             <div class="article-detail-explain-text-wrapper">
                 <p class="article-detail-explain-text">
-                    {{ $post->description }}
+                    {!! nl2br($post->description) !!}
                 </p>
             </div>
             {{-- 目次 --}}

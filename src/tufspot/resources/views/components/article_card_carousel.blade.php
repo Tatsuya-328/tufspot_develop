@@ -19,11 +19,11 @@
                 <p class="top-carousel-title">
                     {{-- {{ $place }}にまた行った。<br>
                     そしたら新しい発見があったはなし。 --}}
-                    {{ $post['title'] }}
+                    {!! nl2br($post['title']) !!}
                 </p>
                 <p class="top-carousel-text">
                     {{-- テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが --}}
-                    {{ $post['description'] }}
+                    {!! nl2br($post['description']) !!}
                 </p>
             </a>
             <p class="top-carousel-hashtag">
