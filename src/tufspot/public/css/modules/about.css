@@ -19,6 +19,12 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 991px) {
+    .about-concept .about-concept-text {
+        height: 300px;
+    }
+}
+
 .hover-text-area {
     position: absolute;
     top: 0;
@@ -27,6 +33,10 @@
     height: 100%;
     background-color: #505050;
     opacity: 0;
+}
+
+.hover-text-area:hover {
+    cursor: pointer;
 }
 
 .hover-text-area.appear {
@@ -49,4 +59,11 @@
     letter-spacing: 5px;
     text-align: center;
     line-height: 160%;
+    padding: 0 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .display-only-pc {
+        display: none;
+    }
 }

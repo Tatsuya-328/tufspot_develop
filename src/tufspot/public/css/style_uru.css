@@ -884,19 +884,26 @@ input[type="radio"] {
   letter-spacing: 10px;
   font-weight: 800;
   white-space: nowrap;
-  font-size: 40px;
+  font-size: 48px;
 }
 
 .about-concept-spot-detail {
   padding: 0 10px;
 }
 
-
-
-@media screen and (min-width: 425px) {
+@media screen and (max-width: 425px) {
   .about-concept-spot-headline {
-    font-size: 48px;
+    font-size: 40px;
   }
+}
+
+@media screen and (max-width: 350px) {
+    .about-concept-spot-title {
+        font-size: 12px;
+    }
+    .about-concept-spot-headline {
+        font-size: 35px;
+    }
 }
 
 .about-concept-spot-headline>span {
@@ -1905,7 +1912,7 @@ li.slick-slide>.post_card {
   margin-top: 5%;
 }
 
-/* 
+/*
 aside {
   width: 40%;
   margin-right: 5%;
