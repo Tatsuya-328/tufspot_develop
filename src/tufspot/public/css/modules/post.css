@@ -3,7 +3,7 @@
 .post-detail-wrapper {
   margin: 50px auto 0 auto;
   width: 850px;
-  width: calc(720 / 850 * 100%);
+  /* width: calc(720 / 850 * 100%); 記事が右よりになってしまってたため一旦外し*/
 }
 
 .post-top-img {
@@ -41,7 +41,7 @@
   margin: 0px 0 20px 0;
 }
 
-.post-detail-title {
+.post-detail-border {
   color: #505050;
   font-size: 16px;
   font-weight: 500;
