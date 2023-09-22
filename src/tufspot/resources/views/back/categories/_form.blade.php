@@ -19,7 +19,7 @@
 </div>
 
 <div class="form-group row">
-    {{ Form::label('slug', 'スラッグ', ['class' => 'col-sm-2 col-form-label']) }}
+    {{ Form::label('slug', 'スラッグ(URL名)', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::text('slug', null, [
             'class' => 'form-control' . ($errors->has('slug') ? ' is-invalid' : ''),
@@ -32,6 +32,22 @@
         @enderror
     </div>
 </div>
+
+<div class="form-group row">
+    {{ Form::label('description', '説明文(カテゴリー一覧等に表示)', ['class' => 'col-sm-2 col-form-label']) }}
+    <div class="col-sm-10">
+        {{ Form::textarea('description', null, [
+            'class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),
+            'required',
+        ]) }}
+        @error('description')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+</div>
+
 
 <div class="form-group row">
     <div class="col-sm-10">
