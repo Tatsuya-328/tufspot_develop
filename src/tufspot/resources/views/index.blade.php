@@ -7,10 +7,10 @@
         <div class="top-ariticle-slide">
             <div class="carousel" data-flickity='{ "wrapAround": true, "cellAlign": "left", "autoPlay": 3000}'>
                 @foreach ($carousel_posts as $post)
-                    <x-article_card_carousel :post=$post />
+                    <x-post_card_carousel :post=$post />
                 @endforeach
-                {{-- <x-article_card_carousel place="スイティエン" />
-                <x-article_card_carousel place="アンコールワット" /> --}}
+                {{-- <x-post_card_carousel place="スイティエン" />
+                <x-post_card_carousel place="アンコールワット" /> --}}
             </div>
         </div>
     </div>

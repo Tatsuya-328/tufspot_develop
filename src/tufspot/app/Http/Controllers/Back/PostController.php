@@ -63,7 +63,7 @@ class PostController extends Controller
     {
         // 画像保存
         // ディレクトリ名
-        $dir = 'image/article';
+        $dir = 'image/post';
         $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
         // ファイル情報をDBに保存
         $featured_image_path = str_replace("public","storage",$featured_image_path);
@@ -112,7 +112,7 @@ class PostController extends Controller
         } else {
             // 画像保存
             // ディレクトリ名
-            $dir = 'image/article/tmp';
+            $dir = 'image/post/tmp';
             $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
             // ファイル情報をDBに保存
             $featured_image_path = str_replace("public","storage",$featured_image_path);
@@ -121,7 +121,7 @@ class PostController extends Controller
 
         // $post = Post::publicFindById($id);
         // return view('front.posts.show', compact('post'));
-        return view('article_detail', compact('post'));
+        return view('post_detail', compact('post'));
     }
 
     /**
@@ -152,7 +152,7 @@ class PostController extends Controller
         // 画像保存
         // ディレクトリ名
         if ($request->file('featured_image')) {
-            $dir = 'image/article';
+            $dir = 'image/post';
             $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
             // ファイル情報をDBに保存
             $featured_image_path = str_replace("public","storage",$featured_image_path);

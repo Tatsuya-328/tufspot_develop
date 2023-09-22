@@ -1,6 +1,6 @@
 /* 管理画面と記事詳細どちらもQuill.jsの表示に使用 */
 
-/* .article-detail-wrapper { */
+/* .post-detail-wrapper { */
 .ql-editor {
   margin: 50px auto 0 auto;
   width: 850px;
@@ -8,7 +8,7 @@
   padding: unset;
 }
 
-/* .article-detail-headline { */
+/* .post-detail-headline { */
 .ql-editor>h1 {
   color: #505050;
   font-weight: 500;
@@ -19,8 +19,8 @@
   line-height: 30px;
 }
 
-/* .article-detail-explain-text-wrapper {
-  .article-detail-explain-text { */
+/* .post-detail-explain-text-wrapper {
+  .post-detail-explain-text { */
 .ql-editor>p {
   padding: 0 44px;
   font-size: 16px;
@@ -29,8 +29,8 @@
 }
 
 /* TODO; キャプションつけれるように。画像選択時にエディタでわかりやすく */
-/* .article-detail-explain-image-wrapper { */
-/* .article-detail-explain-image { */
+/* .post-detail-explain-image-wrapper { */
+/* .post-detail-explain-image { */
 .ql-editor>p>img {
   display: inline-block;
   object-fit: cover;

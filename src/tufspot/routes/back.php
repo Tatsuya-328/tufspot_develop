@@ -12,7 +12,7 @@ Route::group(['middleware' => 'can:admin'], function () {
     Route::resource('categories', 'CategoryController')->except('show');
 
     // 記事プレビュー
-    Route::put('preview/{id}', [PostController::class, 'preview'])->name('article_preview');
-    Route::post('preview/{id}', [PostController::class, 'preview'])->name('article_preview');
+    Route::put('preview/{id}', [PostController::class, 'preview'])->name('post_preview');
+    Route::post('preview/{id}', [PostController::class, 'preview'])->name('post_preview');
     Route::resource('users', 'UserController')->except('show');
 });

@@ -1,7 +1,7 @@
 <x-template>
     <x-slot name="title"> TUFSPOT_mypage </x-slot>
     <x-header />
-    <x-article_list_title class="unset-shadow" listTitle="マイページ" />
+    <x-post_list_title class="unset-shadow" listTitle="マイページ" />
     <x-main>
         <!--マイページ（アカウント情報）ここから-->
         <div class="tab_wrap">
@@ -36,27 +36,27 @@
                 <div id="panel2" class="tab_panel2">
                     <div class="d-flex justify-content-center flex-wrap">
                         @foreach ($favorited_posts as $post)
-                            <x-article_card :post=$post />
+                            <x-post_card :post=$post />
                         @endforeach
-                        {{-- <x-article_card place="ハロン湾" />
-                        <x-article_card place="スイティエン" />
-                        <x-article_card place="アンコールワット" />
-                        <x-article_card place="ハロン湾" />
-                        <x-article_card place="スイティエン" />
-                        <x-article_card place="アンコールワット" /> --}}
+                        {{-- <x-post_card place="ハロン湾" />
+                        <x-post_card place="スイティエン" />
+                        <x-post_card place="アンコールワット" />
+                        <x-post_card place="ハロン湾" />
+                        <x-post_card place="スイティエン" />
+                        <x-post_card place="アンコールワット" /> --}}
                     </div>
                 </div>
                 <div id="panel3" class="tab_panel3">
                     <div class="d-flex justify-content-center flex-wrap">
                         @foreach ($history_posts as $post)
-                            <x-article_card :post=$post />
+                            <x-post_card :post=$post />
                         @endforeach
-                        {{-- <x-article_card place="ハロン湾" />
-                        <x-article_card place="スイティエン" />
-                        <x-article_card place="アンコールワット" />
-                        <x-article_card place="ハロン湾" />
-                        <x-article_card place="スイティエン" />
-                        <x-article_card place="アンコールワット" /> --}}
+                        {{-- <x-post_card place="ハロン湾" />
+                        <x-post_card place="スイティエン" />
+                        <x-post_card place="アンコールワット" />
+                        <x-post_card place="ハロン湾" />
+                        <x-post_card place="スイティエン" />
+                        <x-post_card place="アンコールワット" /> --}}
                     </div>
                 </div>
                 <div id="panel4" class="tab_panel4">
