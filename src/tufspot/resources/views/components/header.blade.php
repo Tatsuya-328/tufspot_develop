@@ -25,7 +25,7 @@
                 <ul class="dropdown-menu text-small" style="">
                     <li><a class="dropdown-item" href="{{ route('index') }}">Home</a></li>
                     <li><a class="dropdown-item" href="{{ route('about') }}">About</a></li>
-                    <li><a class="dropdown-item" href="{{ route('category_list') }}">CategoryList</a></li>
+                    <li><a class="dropdown-item" href="{{ route('feature_list') }}">CategoryList</a></li>
                     <li><a class="dropdown-item" href="{{ route('writer_list') }}">WriterList</a></li>
                     <li><a class="dropdown-item" href="{{ route('mypage') }}">Mypage</a></li>
                     <li>
