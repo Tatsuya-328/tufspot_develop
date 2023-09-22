@@ -1,20 +1,13 @@
 <!doctype html>
 <html lang="ja">
 
-{{-- <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ isset($title) ? $title . ' | ' : '' }}管理画面</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
-</head> --}}
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
-    <title>Dashboard Template · Bootstrap v5.0</title>
+    <title>TUFSPOT管理</title>
 
     <link rel="canonical" href="https://getbootstrap.jp/docs/5.0/examples/dashboard/">
 
@@ -22,7 +15,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     {{-- TODO: 以下4.5にすると整うが、css二重になるし、5,0のみにするとどのみち崩れるため、5.0で見た目整え直す --}}
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous"> --}}
-
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -31,25 +23,9 @@
     <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
     <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#7952b3">
-
-    {{-- editor --}}
-    <!-- Main Quill library -->
-    {{-- <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
-    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
-
-    <!-- Theme included stylesheets -->
-    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
-
-    <!-- Core build with no theme, formatting, non-essential modules -->
-    <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet">
-    <script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script> --}}
-    {{-- editorここまで --}}
-    {{-- editor試し１ --}}
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    {{-- Quill editor --}}
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
-    {{-- editor試し１ここまで --}}
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -65,61 +41,11 @@
             }
         }
     </style>
-
-
     <!-- Custom styles for this template -->
     {{-- <link href="dashboard.css" rel="stylesheet"> --}}
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post.css') }}" rel="stylesheet">
-    <style type="text/css">
-        /* Chart.js */
-        @keyframes chartjs-render-animation {
-            from {
-                opacity: .99
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-
-        .chartjs-render-monitor {
-            animation: chartjs-render-animation 1ms
-        }
-
-        .chartjs-size-monitor,
-        .chartjs-size-monitor-expand,
-        .chartjs-size-monitor-shrink {
-            position: absolute;
-            direction: ltr;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-            pointer-events: none;
-            visibility: hidden;
-            z-index: -1
-        }
-
-        .chartjs-size-monitor-expand>div {
-            position: absolute;
-            width: 1000000px;
-            height: 1000000px;
-            left: 0;
-            top: 0
-        }
-
-        .chartjs-size-monitor-shrink>div {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            left: 0;
-            top: 0
-        }
-    </style>
-    <style></style>
 </head>
 {{-- <body>
     <div id="app">
@@ -181,7 +107,7 @@
 <body class="vsc-initialized">
 
     <header class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow fixed-top">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Tufspot管理</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ route('back.index') }}">TUFSPOT管理</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -378,14 +304,6 @@
         </div>
     </div>
 
-
-    {{-- <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
-
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    {{-- <script src="dashboard.js"></script> --}}
-
-
     <div id="yt_article_summary_widget_wrapper" class="yt_article_summary_widget_wrapper" style="display: none;">
         <div id="yt_article_summary_widget" class="yt_article_summary_widget"><svg style="filter: brightness(0.8);" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <mask id="path-1-outside-1_3606_3145" maskUnits="userSpaceOnUse" x="1" y="1" width="22" height="22" fill="black">
@@ -404,39 +322,41 @@
         <div id="yt_article_summary_close_button" class="yt_article_summary_close_button">×</div>
     </div>
 
-    {{-- editor用 --}}
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    {{-- Quill editor --}}
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    {{-- Quill editor書き込み用 --}}
     <script>
-        var quill = new Quill('#quill_editor', {
-            // var quill = new Quill('#editor-container', {
-            modules: {
-                toolbar: [
-                    [{
-                        header: [1, false]
-                    }],
-                    [{
-                        'size': ['small', false, 'large']
-                    }],
-                    [{
-                        'list': 'ordered'
-                    }, {
-                        'list': 'bullet'
-                    }],
-                    ['bold', 'underline', 'strike'],
-                    [{
-                        'align': ['', 'center', 'right']
-                    }],
-                    ['link', 'image']
-                ]
-            },
-            scrollingContainer: '#scrolling-container',
-            placeholder: 'Compose an epic...',
-            theme: 'bubble',
-
-            // readOnly: true,
-        });
+        if (document.getElementById("quill_editor") != null) {
+            var quill = new Quill('#quill_editor', {
+                // var quill = new Quill('#editor-container', {
+                modules: {
+                    toolbar: [
+                        [{
+                            header: [1, false]
+                        }],
+                        [{
+                            'size': ['small', false, 'large']
+                        }],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['bold', 'underline', 'strike'],
+                        [{
+                            'align': ['', 'center', 'right']
+                        }],
+                        ['link', 'image']
+                    ]
+                },
+                scrollingContainer: '#scrolling-container',
+                placeholder: 'Compose an epic...',
+                theme: 'bubble',
+                // readOnly: true,
+            });
+        }
     </script>
-
-
 </body>
 
 </html>
