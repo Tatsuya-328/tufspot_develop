@@ -125,11 +125,14 @@ class UserController extends Controller
         // formファザード用
         $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
 
+        // タグ検索していないためnull
+        $tagSlug =null;
         // TODO: お気に入り記事（保存記事）仮で適当に取得
-        $favorited_posts = Post::latest()->take(6)->get();
+        $favorited_posts = Post::PublicList($tagSlug)->take(6)->get();
         // TODO: 閲覧履歴 仮で適当に取得
-        $history_posts = Post::oldest()->take(6)->get();
+        $history_posts = Post::PublicList($tagSlug)->take(6)->get();
         // TODO: フォロー済みライター
+        // $follow_writer = User::latest()->take(6)->get();
 
         return view('mypage', compact('user', 'favorited_posts', 'history_posts'));
     }
@@ -144,7 +147,7 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $gaigokai = GaigokaiMember::find($request['id']);
-        if (!empty($request['paddword']) && ($request['paddword'] !== $request['paddword_check'])) {
+        if (!empty($request['password']) && ($request['password'] !== $request['password_check'])) {
             $flash = ['error' => 'パスワード確認が同一ではありません。'];
         }
 
