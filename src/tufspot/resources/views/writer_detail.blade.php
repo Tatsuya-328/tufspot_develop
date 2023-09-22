@@ -19,7 +19,7 @@
                     </p>
                 </div>
             </div>
-            @if ($user->snsAccounts)
+            @if ($user->snsAccounts->isNotEmpty())
                 <div class="writer-detail-list">
                     <p class="writer-detail-title">
                         ▼<span>各種SNS</span>
@@ -59,6 +59,9 @@
                     ▼<span>記事</span>
                 </p>
                 <div class="d-flex justify-content-center flex-wrap">
+                    @foreach ($written_posts as $post)
+                        <x-article_card :post=$post />
+                    @endforeach
                     {{-- TODO 記事表示 --}}
                     {{-- <div class="row row-cols-3"> --}}
                     {{-- <x-article_card place="ハロン湾" />

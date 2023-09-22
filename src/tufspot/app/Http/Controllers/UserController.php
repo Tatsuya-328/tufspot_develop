@@ -74,7 +74,10 @@ class UserController extends Controller
     public function show(User $user)
     {
         $user = User::with('snsAccounts')->where('id', '=', $user['id'])->first();
-        return view('writer_detail', compact('user'));
+        // TODO: 執筆記事取得 仮で適当に取得
+        $written_posts = Post::latest()->take(6)->get();
+
+        return view('writer_detail', compact('user', 'written_posts'));
     }
 
     /**
