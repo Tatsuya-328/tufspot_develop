@@ -1,3 +1,9 @@
+@media screen and (max-width: 400px) {
+    .flickity-enabled.is-draggable .flickity-viewport {
+        height: 380px !important;
+    }
+}
+
 .fade-in {
     opacity: 0;
 }
@@ -37,6 +43,12 @@
     height: auto;
     max-height: 100%;
     transform: translateY(-35%);
+}
+
+@media screen and (max-width: 320px) {
+    .pickup_title_image {
+        transform: translate(-35%,-35%);
+    }
 }
 
 .image-on-title-container .top_pickup_title_wrapper.title-wrapper-on-image {
