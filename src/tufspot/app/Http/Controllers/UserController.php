@@ -73,10 +73,21 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::with('snsAccounts')->where('id', '=', $user['id'])->first();
+        // TODO: 管理者かつ記事を持っているユーザーのみ表示（ユーザー一覧でもやる）
+        $user = User::with('posts')->where([
+                ['id', '=', $user['id']],
+                ['role', '=', 1],
+            ])->whereHas('posts', function($q){
+                $q->whereExists(function($q){
+                    return $q;
+                });
+            })->first();
+        if (empty($user)) {
+            abort(404, '存在しないページです');
+        }        
+        
         // TODO: 執筆記事取得 仮で適当に取得
         $written_posts = Post::latest()->take(6)->get();
-
         return view('writer_detail', compact('user', 'written_posts'));
     }
 
