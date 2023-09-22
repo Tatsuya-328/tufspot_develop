@@ -73,11 +73,44 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::with('snsAccounts')->where('id', '=', $user['id'])->first();
+        // 管理者かつ記事を持っている(公開済み)ユーザーのみ表示（ユーザー一覧でもやる）
+        $user = User::with('posts')->where([
+                ['id', '=', $user['id']],
+                ['role', '=', 1],
+            ])->whereHas('posts', function($q){
+                $q->whereExists(function($q){
+                    return $q;
+                });
+            })->first();
+        if (empty($user)) {
+            abort(404, '存在しないページです');
+        }        
+        
         // TODO: 執筆記事取得 仮で適当に取得
         $written_posts = Post::latest()->take(6)->get();
-
         return view('writer_detail', compact('user', 'written_posts'));
+    }
+
+    /**
+     * 詳細画面
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function list()
+    {
+        // 管理者かつ記事を持っている(公開)ユーザーのみ表示
+        $public = 1;
+        // TODO: ページネーションで一度に表示人数絞る
+        $writers = User::where([
+                        ['role', '=', 1],
+                    ])->with(['posts' => function ($query) use ($public) {
+                        $query->where('is_public', $public);
+                    }])->whereHas('posts', function($query){
+                        $query->whereExists(function($query){
+                            return $query;
+                        });
+                    })->get();
+        return view('writer_list', compact('writers'));
     }
 
     /**

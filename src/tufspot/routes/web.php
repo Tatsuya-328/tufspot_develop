@@ -49,16 +49,16 @@ Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
 Route::put('/mypage/update/{user}', [UserController::class, 'update'])->name('update');
 
 // ライター一覧
-Route::get('/writer', function () {
-    return view('writer_list');
-})->name('writer_list');
+// Route::get('/writer', function () {
+//     return view('writer_list');
+// })->name('writer_list');
+Route::get('/writer', [UserController::class, 'list'])->name('writer_list');
 
 // ライター詳細
 // Route::get('/writer/detail/{id}', function () {
 //     return view('writer_detail');
 // })->name('writer_detail');
 Route::get('/writer/{user}', [UserController::class, 'show'])->name('writer_detail');
-// Route::resource('writer', [UserController::class]);
 
 // 記事詳細
 // Route::get('/article/{id}', function () {
