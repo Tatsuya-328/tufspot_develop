@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Post;
 use App\Models\GaigokaiMember;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SnsAccount;
@@ -84,13 +85,17 @@ class UserController extends Controller
      */
     public function mypage()
     {
-        // dd(User::find(1)->gaigokaiMembers()->first());
         $user = Auth::user();
         // formファザード用
         $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
-        // $user = User::with('snsAccounts')->where('id', '=', $user['id'])->first();
-        return view('mypage', compact('user'));
-        // return view('mypage');
+
+        // TODO: お気に入り記事（保存記事）仮で適当に取得
+        $favorited_posts = Post::latest()->take(6)->get();
+        // TODO: 閲覧履歴 仮で適当に取得
+        $history_posts = Post::oldest()->take(6)->get();
+        // TODO: フォロー済みライター
+
+        return view('mypage', compact('user', 'favorited_posts', 'history_posts'));
     }
 
     /**
