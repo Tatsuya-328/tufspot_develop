@@ -5,7 +5,7 @@
     <x-bread />
     <x-main>
         <div class="writer-detail-wrapper d-flex flex-column justify-content-center align-items-center flex-wrap">
-            <x-writer_card writer_name='{{ $user->name }}' writer_id='{{ $user->id }}' />
+            <x-writer_card :writer=$user />
             <div class="writer-detail-list">
                 <p class="writer-detail-title">
                     ▼<span>自己紹介</span>
@@ -19,7 +19,7 @@
                     </p>
                 </div>
             </div>
-            @if ($user->snsAccounts)
+            @if ($user->snsAccounts->isNotEmpty())
                 <div class="writer-detail-list">
                     <p class="writer-detail-title">
                         ▼<span>各種SNS</span>
@@ -59,14 +59,18 @@
                     ▼<span>記事</span>
                 </p>
                 <div class="d-flex justify-content-center flex-wrap">
+                    @foreach ($written_posts as $post)
+                        <x-post_card :post=$post />
+                    @endforeach
+                    {{-- TODO 記事表示 --}}
                     {{-- <div class="row row-cols-3"> --}}
-                    <x-article_card place="ハロン湾" />
-                    <x-article_card place="スイティエン" />
-                    <x-article_card place="アンコールワット" />
+                    {{-- <x-post_card place="ハロン湾" />
+                    <x-post_card place="スイティエン" />
+                    <x-post_card place="アンコールワット" /> --}}
                     {{-- 最終行も左寄せには、空要素入れるしかなさそう https://qiita.com/QUANON/items/e14949abab3711ca8646 --}}
-                    <x-article_card place="ハロン湾" />
-                    <x-article_card place="スイティエン" />
-                    <x-article_card place="アンコールワット" />
+                    {{-- <x-post_card place="ハロン湾" />
+                    <x-post_card place="スイティエン" />
+                    <x-post_card place="アンコールワット" /> --}}
                 </div>
             </div>
         </div>

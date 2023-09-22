@@ -5,6 +5,7 @@ use Database\Seeds\UserSeeder;
 use Database\Seeds\PostSeeder;
 use Database\Seeds\TagSeeder;
 use Database\Seeds\SnsAccountSeeder;
+use Database\Seeds\GaigokaiMemberSeeder;
 use Database\Seeds\CategorySeeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TagSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(SnsAccountSeeder::class);    
+        $this->call(GaigokaiMemberSeeder::class);
     }
 }

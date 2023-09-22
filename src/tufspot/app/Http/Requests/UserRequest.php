@@ -28,6 +28,7 @@ class UserRequest extends FormRequest
         if ($this->isMethod('put')) {
             if (!$this->password) {
                 $this->offsetUnset('password');
+                $this->offsetUnset('password_check');
             }
         }
     }
@@ -40,15 +41,18 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $validate = [
-            'name' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($this->user)],
+            // 'name' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($this->user)],
+            'name' => ['required', 'string', 'max:255'],
             'email' => 'required|string|email|max:255',
             'password' => 'required|string',
-            'profile_image' => '',
+            'password_check' => 'required|string',
+            'phone_number' => 'required|string',
         ];
 
         // 更新時はパスワード必須ではない
         if ($this->isMethod('put')) {
             $validate['password'] = 'nullable|string';
+            $validate['password_check'] = 'nullable|string';
         }
 
         return $validate;

@@ -11,12 +11,23 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function newQuery()
+    {
+        // 全ての呼び出しでリレーション
+        // 親のメソッドを呼び出す。もともとはクエリビルダーを新規作成するときに呼び出されるメソッド。
+        $query = parent::newQuery();
+        $query = $query->with(['snsAccounts','gaigokaiMembers']);
+
+        return $query;
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -76,6 +87,16 @@ class User extends Authenticatable
     public function snsAccounts()
     {
         return $this->hasMany(SnsAccount::class);
+    }
+
+    /**
+     * SnsAccountsのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gaigokaiMembers()
+    {
+        return $this->belongsToMany(GaigokaiMember::class);
     }
 
     /**

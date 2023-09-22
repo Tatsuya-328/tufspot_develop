@@ -38,7 +38,7 @@ class TagRequest extends FormRequest
     {
         return [
             'name' => 'タグ名',
-            'slug' => 'スラッグ'
+            'slug' => 'スラッグ(URL名)'
         ];
     }
 }

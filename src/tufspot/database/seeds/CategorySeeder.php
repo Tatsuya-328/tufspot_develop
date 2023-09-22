@@ -14,26 +14,29 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
         \DB::table('categories')->insert([
             [
                 'name' => 'Academia',
                 'slug' => 'academia',
+                'description' => $faker->realText(rand(100,200)),
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
                 'name' => 'Business and Career',
                 'slug' => 'business-and-career',
+                'description' => $faker->realText(rand(100,200)),
                 'created_at' => now(),
                 'updated_at' => now()
             ],[
                 'name' => 'Culture and Essay',
-                'slug' => 'culture-and-Essay',
+                'slug' => 'culture-and-essay',
+                'description' => $faker->realText(rand(100,200)),
                 'created_at' => now(),
                 'updated_at' => now()
             ]
         ]);
 
-        $faker = Faker::create();
         for ($i = 1; $i <= 50; $i++) {
             \DB::table('category_post')->insert([
                 'post_id' => $i,

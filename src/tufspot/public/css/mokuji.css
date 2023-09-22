@@ -1,4 +1,4 @@
-/* .article-detail-outline { */
+/* .post-detail-outline { */
 .mokujibox {
 	border: 1px solid #434343;
 	margin: 30px 80px 0px 75px;
@@ -7,7 +7,7 @@
 	max-width: 680px;
 }
 
-/* .article-detail-outline-title { */
+/* .post-detail-outline-title { */
 .mokujibox p {
 	font-size: 24px;
 	line-height: 30px;
@@ -16,7 +16,7 @@
 	font-weight: 500;
 }
 
-/* .article-detail-outline-text { */
+/* .post-detail-outline-text { */
 .mokujibox li {
 	margin: 0 0 25px 0;
 	border-bottom: 1px solid #434343;
