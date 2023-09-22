@@ -26,9 +26,9 @@ Route::get('/', [PostController::class, 'index'])->name('index');
 Route::get('/top', [PostController::class, 'index'])->name('index');
 
 // カテゴリー記事詳細
-Route::get('/category_article', function () {
-    return view('category_article');
-})->name('category_article');
+Route::get('/category_post', function () {
+    return view('category_post');
+})->name('category_post');
 // カテゴリー一覧
 Route::get('/category_list', function () {
     return view('category_list');
@@ -61,10 +61,10 @@ Route::get('/writer', [UserController::class, 'list'])->name('writer_list');
 Route::get('/writer/{user}', [UserController::class, 'show'])->name('writer_detail');
 
 // 記事詳細
-// Route::get('/article/{id}', function () {
-//     return view('article_detail');
-// })->name('article_detail');
-Route::get('/article/{id}', [PostController::class, 'show'])->name('article_detail');
+// Route::get('/post/{id}', function () {
+//     return view('post_detail');
+// })->name('post_detail');
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post_detail');
 
 // TUFSPOTについて
 Route::get('/about', function () {

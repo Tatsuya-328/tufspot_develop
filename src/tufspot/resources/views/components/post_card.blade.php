@@ -7,19 +7,19 @@
 --}}
 {{-- @props(['place' => 'ハロン湾']) --}}
 
-<div class="article_card" style="">
-    <a href="{{ route('article_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
-        <img src="{{ asset($post['featured_image_path']) }}" class="article_card_img" alt="...">
+<div class="post_card" style="">
+    <a href="{{ route('post_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
+        <img src="{{ asset($post['featured_image_path']) }}" class="post_card_img" alt="...">
     </a>
     <div class="card-body">
-        <p class="fw-bold article-card-text">
-            <a href="{{ route('article_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
+        <p class="fw-bold post-card-text">
+            <a href="{{ route('post_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
                 {{-- ここに記事のタイトルが入ります<br>
                 ここに記事のタイトルが入ります。 --}}
                 {!! nl2br($post['title']) !!}
                 <br>
             </a>
-            <span class="article-card-hashtag">
+            <span class="post-card-hashtag">
                 @foreach ($post['tags'] as $tag)
                     <a href="{{ route('hashtag_result', ['tagSlug' => $tag['slug']]) }}" class="text-decoration-none">#{{ $tag['name'] }}</a>
                 @endforeach
@@ -33,7 +33,7 @@
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                 </svg>
-                <p class="article-card-writer">
+                <p class="post-card-writer">
                     {{-- Writer Name --}}
                     {{ $post['user']['name'] }}
                 </p>

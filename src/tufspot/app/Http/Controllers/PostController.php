@@ -70,7 +70,7 @@ class PostController extends Controller
     {
         $post = Post::publicFindById($id);
         // return view('front.posts.show', compact('post'));
-        return view('article_detail', compact('post'));
+        return view('post_detail', compact('post'));
     }
 
     //     /**
@@ -84,7 +84,7 @@ class PostController extends Controller
     //     $post = $request;
     //     // $post = Post::publicFindById($id);
     //     // return view('front.posts.show', compact('post'));
-    //     return view('article_detail', compact('post'));
+    //     return view('post_detail', compact('post'));
     // }
 
 }

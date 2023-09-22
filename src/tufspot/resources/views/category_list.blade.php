@@ -2,17 +2,17 @@
     <x-slot name="title"> TUFSPOT_feature </x-slot>
     {{-- タイトル位置はcomponentsで呼び出したい --}}
     <x-header />
-    <x-article_list_title class="unset-shadow" listTitle="特集記事一覧" />
+    <x-post_list_title class="unset-shadow" listTitle="特集記事一覧" />
     <x-main>
         <div class="feature_box" id="makeImg">
         </div>
-        <x-article_list_explain />
+        <x-post_list_explain />
         <div class="feature_box" id="makeImg">
         </div>
-        <x-article_list_explain />
+        <x-post_list_explain />
         <div class="feature_box" id="makeImg">
         </div>
-        <x-article_list_explain />
+        <x-post_list_explain />
 
     </x-main>
     <x-footer />
