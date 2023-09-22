@@ -8,7 +8,7 @@
     <div class="col-sm-10">
         {{ Form::text('name', null, [
             'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),
-            'required'
+            'required',
         ]) }}
         @error('name')
             <div class="invalid-feedback">
@@ -19,16 +19,16 @@
 </div>
 
 <div class="form-group row">
-    {{ Form::label('slug', 'スラッグ', ['class' => 'col-sm-2 col-form-label']) }}
+    {{ Form::label('slug', 'スラッグ(URL名)', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::text('slug', null, [
             'class' => 'form-control' . ($errors->has('slug') ? ' is-invalid' : ''),
-            'required'
+            'required',
         ]) }}
         @error('slug')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
         @enderror
     </div>
 </div>

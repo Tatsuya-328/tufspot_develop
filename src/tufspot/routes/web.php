@@ -25,19 +25,22 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', [PostController::class, 'index'])->name('index');
 Route::get('/top', [PostController::class, 'index'])->name('index');
 
-// カテゴリー記事詳細
+// カテゴリー記事まとめ（Academiaのみ、や、〇〇特集のみ表示）
+// TODO トップのAcademiaとかから遷移できるように
 Route::get('/category_post', function () {
     return view('category_post');
 })->name('category_post');
-// カテゴリー一覧
-Route::get('/category_list', function () {
-    return view('category_list');
-})->name('category_list');
-// 中身同じ
+
+// 特集一覧（〇〇特集, ✖️✖️特集, △△特集,,,を全て表示して、それぞれのまとめへ遷移）
+// TODO 特集項目を追加できるようにテーブル作成必要そう？
+Route::get('/feature_list', function () {
+    return view('feature_list');
+})->name('feature_list');
+
+// TODO：記事検索と、ハッシュタグ検索はほぼ同じ？
 Route::get('/search_result', function () {
     return view('search_result');
 })->name('search_result');
-
 
 // Route::get('/hashtag_result/{id}', function () {
 //     return view('hashtag_result');
@@ -49,21 +52,12 @@ Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
 Route::put('/mypage/update/{user}', [UserController::class, 'update'])->name('update');
 
 // ライター一覧
-// Route::get('/writer', function () {
-//     return view('writer_list');
-// })->name('writer_list');
 Route::get('/writer', [UserController::class, 'list'])->name('writer_list');
 
 // ライター詳細
-// Route::get('/writer/detail/{id}', function () {
-//     return view('writer_detail');
-// })->name('writer_detail');
 Route::get('/writer/{user}', [UserController::class, 'show'])->name('writer_detail');
 
 // 記事詳細
-// Route::get('/post/{id}', function () {
-//     return view('post_detail');
-// })->name('post_detail');
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post_detail');
 
 // TUFSPOTについて
@@ -78,4 +72,3 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/home', function () {
     return view('home');
 })->name('home');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

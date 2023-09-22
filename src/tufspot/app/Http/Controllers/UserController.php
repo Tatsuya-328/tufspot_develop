@@ -12,59 +12,6 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
-    // /**
-    //  * 一覧画面
-    //  *
-    //  * @return \Illuminate\Contracts\View\View
-    //  */
-    // public function index()
-    // {
-    //     $users = User::latest('id')->paginate(20);
-    //     return view('back.users.index', compact('users'));
-    // }
-
-    // /**
-    //  * 登録画面
-    //  *
-    //  * @return \Illuminate\Contracts\View\View
-    //  */
-    // public function create()
-    // {
-    //     return view('back.users.create');
-    // }
-
-    // /**
-    //  * 登録処理
-    //  *
-    //  * @param UserRequest $request
-    //  * @return \Illuminate\Http\RedirectResponse
-    //  */
-    // public function store(UserRequest $request)
-    // {
-    //     $user = User::create($request->all());
-
-    //     if ($user) {
-    //         return redirect()
-    //             ->route('back.users.edit', $user)
-    //             ->withSuccess('データを登録しました。');
-    //     } else {
-    //         return redirect()
-    //             ->route('back.users.create')
-    //             ->withError('データの登録に失敗しました。');
-    //     }
-    // }
-
-    // /**
-    //  * 編集画面
-    //  *
-    //  * @param User $user
-    //  * @return \Illuminate\Contracts\View\View
-    //  */
-    // public function edit(User $user)
-    // {
-    //     return view('back.users.edit', compact('user'));
-    // }
-
     /**
      * 詳細画面
      *
@@ -125,13 +72,25 @@ class UserController extends Controller
         // formファザード用
         $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
 
+        // タグ検索していないためnull
+        $tagSlug =null;
         // TODO: お気に入り記事（保存記事）仮で適当に取得
-        $favorited_posts = Post::latest()->take(6)->get();
+        $favorited_posts = Post::PublicList($tagSlug)->take(6)->get();
         // TODO: 閲覧履歴 仮で適当に取得
-        $history_posts = Post::oldest()->take(6)->get();
-        // TODO: フォロー済みライター
+        $history_posts = Post::PublicList($tagSlug)->take(6)->get();
+        // TODO: フォロー済みライター(管理者かつ記事持ってる) 仮で適当に取得
+        $public = 1;
+        $follow_writers = User::where([
+                            ['role', '=', 1],
+                        ])->with(['posts' => function ($query) use ($public) {
+                            $query->where('is_public', $public);
+                        }])->whereHas('posts', function($query){
+                            $query->whereExists(function($query){
+                                return $query;
+                            });
+                        })->get();
 
-        return view('mypage', compact('user', 'favorited_posts', 'history_posts'));
+        return view('mypage', compact('user', 'favorited_posts', 'history_posts', 'follow_writers'));
     }
 
     /**
@@ -144,7 +103,7 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $gaigokai = GaigokaiMember::find($request['id']);
-        if (!empty($request['paddword']) && ($request['paddword'] !== $request['paddword_check'])) {
+        if (!empty($request['password']) && ($request['password'] !== $request['password_check'])) {
             $flash = ['error' => 'パスワード確認が同一ではありません。'];
         }
 
@@ -160,24 +119,4 @@ class UserController extends Controller
             ->route('mypage', $user)
             ->with($flash);
     }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\User $user
-    //  * @return \Illuminate\Http\RedirectResponse
-    //  * @throws \Exception
-    //  */
-    // public function destroy(User $user)
-    // {
-    //     if ($user->delete()) {
-    //         $flash = ['success' => 'データを削除しました。'];
-    //     } else {
-    //         $flash = ['error' => 'データの削除に失敗しました'];
-    //     }
-
-    //     return redirect()
-    //         ->route('back.users.index')
-    //         ->with($flash);
-    // }
 }

@@ -62,12 +62,15 @@
                 <div id="panel4" class="tab_panel4">
                     <div class="d-flex justify-content-center flex-wrap">
                         {{-- TODO: フォロー済みライター --}}
+                        @foreach ($follow_writers as $writer)
+                            <x-writer_card :writer=$writer />
+                        @endforeach
+                        {{-- <x-writer_card />
                         <x-writer_card />
                         <x-writer_card />
                         <x-writer_card />
                         <x-writer_card />
-                        <x-writer_card />
-                        <x-writer_card />
+                        <x-writer_card /> --}}
                     </div>
                 </div>
             </div>

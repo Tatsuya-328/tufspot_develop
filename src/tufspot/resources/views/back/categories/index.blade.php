@@ -16,7 +16,7 @@ $title = 'カテゴリー一覧';
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">カテゴリー名</th>
-                        <th scope="col">スラッグ</th>
+                        <th scope="col">スラッグ(URL名)</th>
                         <th scope="col" style="width: 12em">編集</th>
                     </tr>
                 </thead>

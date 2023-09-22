@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'slug', 'name'
+        'slug', 'name', 'description'
     ];
 
     const NAME = [

@@ -95,8 +95,8 @@ class Post extends Model
         return $query
             ->with('tags')
             ->public()
-            ->latest('published_at')
-            ->paginate(10);
+            ->latest('published_at');
+            // ->paginate(10);
     }
 
     /**

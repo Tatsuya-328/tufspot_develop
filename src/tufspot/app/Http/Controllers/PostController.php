@@ -34,25 +34,26 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-
-        $carousel_posts = Post::latest()->take(5)->get();    
-        $pickup_posts = Post::inRandomOrder()->take(10)->get();
-        $feature_posts = Post::inRandomOrder()->take(10)->get();
+        // タグ検索していないためnull
+        $tagSlug = null;
+        $carousel_posts = Post::PublicList($tagSlug)->take(5)->get();    
+        $pickup_posts = Post::PublicList($tagSlug)->inRandomOrder()->take(10)->get();
+        $feature_posts = Post::PublicList($tagSlug)->inRandomOrder()->take(10)->get();
         
         $academia_category_id = Category::NAME['Academia'];
-        $academia_posts = Post::whereHas('categories', function ($query) use ($academia_category_id) {
+        $academia_posts = Post::PublicList($tagSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
             $query->where('category_id', $academia_category_id);
-        })->latest()->take(6)->get();
+        })->take(6)->get();
 
         $business_category_id = Category::NAME['Business'];
-        $business_posts = Post::whereHas('categories', function ($query) use ($business_category_id) {
+        $business_posts = Post::PublicList($tagSlug)->whereHas('categories', function ($query) use ($business_category_id) {
             $query->where('category_id', $business_category_id);
-        })->latest()->take(6)->get();
+        })->take(6)->get();
 
         $culture_category_id = Category::NAME['Culture'];
-        $culture_posts = Post::whereHas('categories', function ($query) use ($culture_category_id) {
+        $culture_posts = Post::PublicList($tagSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
             $query->where('category_id', $culture_category_id);
-        })->latest()->take(6)->get();
+        })->take(6)->get();
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();

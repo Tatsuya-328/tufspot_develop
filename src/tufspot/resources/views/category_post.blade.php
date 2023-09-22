@@ -4,7 +4,14 @@
     <x-header />
     <x-post_list_title listTitle="Academia" />
     <x-main>
-        <x-post_list_explain />
+        {{-- <x-post_list_explain /> --}}
+        <div class="post_list_explain d-flex flex-column justify-content-center">
+            <p class="post_list_explain_text m-0">
+                ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
+                ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
+                ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
+            </p>
+        </div>
         <div class="d-flex justify-content-center flex-wrap">
             {{-- <div class="row row-cols-3"> --}}
             <x-post_card place="ハロン湾" />
