@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="d-flex justify-content-center flex-wrap">
+        <div class="article-container d-flex justify-content-center flex-wrap">
             @foreach ($posts as $post)
                 <x-post_card :post=$post />
             @endforeach
@@ -28,6 +28,12 @@
             {{-- <x-post_card place="ハロン湾" />
             <x-post_card place="スイティエン" />
             <x-post_card place="アンコールワット" /> --}}
+            <div class="blur-back">
+                <div class="read-more-button">
+                    <span>+</span><br>
+                    read more
+                </div>
+            </div>
         </div>
     </div>
 </div>
