@@ -39,6 +39,10 @@ a:hover {
   font-family: "Hiragino Sans";
 }
 
+.gray_color {
+  color: #565656;
+}
+
 p {
   margin: unset;
 }
@@ -269,7 +273,7 @@ footer {
 }
 
 .post_list_explain {
-  margin: 0 auto 70px auto;
+  margin: 0 auto 100px auto;
   max-width: 780px;
 }
 

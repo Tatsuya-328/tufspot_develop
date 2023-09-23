@@ -25,7 +25,7 @@ class Post extends Model
         // 全ての呼び出しでリレーション
         // 親のメソッドを呼び出す。もともとはクエリビルダーを新規作成するときに呼び出されるメソッド。
         $query = parent::newQuery();
-        $query = $query->with(['user', 'tags', 'categories']);
+        $query = $query->with(['user', 'tags', 'categories', 'features']);
 
         return $query;
     }

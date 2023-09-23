@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Category;
+use App\Models\Feature;
 use App\Models\User;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
@@ -24,6 +25,12 @@ class PostController extends Controller
         // カテゴリー用
         $this->middleware(function ($request, \Closure $next) {
             \View::share('categories', Category::pluck('name', 'id')->toArray());
+            return $next($request);
+        })->only('index', 'create', 'edit');
+
+        // 特集用
+        $this->middleware(function ($request, \Closure $next) {
+            \View::share('categories', Feature::pluck('name', 'id')->toArray());
             return $next($request);
         })->only('index', 'create', 'edit');
     }
@@ -75,18 +82,16 @@ class PostController extends Controller
         return view('post_detail', compact('post'));
     }
 
-    //     /**
-    //  * プレビュー画面
-    //  *
-    //  * @param int $id
-    //  * @return \Illuminate\Contracts\View\View
-    //  */
-    // public function preview(int $id, $request)
-    // {
-    //     $post = $request;
-    //     // $post = Post::publicFindById($id);
-    //     // return view('front.posts.show', compact('post'));
-    //     return view('post_detail', compact('post'));
-    // }
-
+    /**
+     * カテゴリー・特集項目一覧
+     *
+     * @param int $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function category()
+    {
+        $categories = Category::oldest('id')->get();
+        $features = Feature::latest('id')->get();
+        return view('category', compact('categories', 'features'));
+    }
 }
