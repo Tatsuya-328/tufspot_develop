@@ -25,17 +25,15 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', [PostController::class, 'index'])->name('index');
 Route::get('/top', [PostController::class, 'index'])->name('index');
 
-// カテゴリー記事まとめ（Academiaのみ、や、〇〇特集のみ表示）
-// TODO トップのAcademiaとかから遷移できるように
-Route::get('/category_post', function () {
-    return view('category_post');
-})->name('category_post');
+// カテゴリ・特集自体一覧（〇〇特集, ✖️✖️特集, △△特集,,,を全て表示して、それぞれのまとめへ遷移）
+// TODO テーブルはそれぞれ必要。同じ一覧で表示させるが、topでスライダーは特集ループ、グリッド表示はカテゴリーループのため
+Route::get('/category', [PostController::class, 'category'])->name('category');
 
-// 特集一覧（〇〇特集, ✖️✖️特集, △△特集,,,を全て表示して、それぞれのまとめへ遷移）
-// TODO 特集項目を追加できるようにテーブル作成必要そう？
-Route::get('/feature_list', function () {
-    return view('feature_list');
-})->name('feature_list');
+
+// 各カテゴリー記事一覧（Academiaのみ、や、〇〇特集のみ表示）
+// TODO トップのAcademiaとかから遷移できるように
+Route::get('/{type}/list/{slug}', [PostController::class, 'category_detail'])->name('category_detail');
+
 
 // TODO：記事検索と、ハッシュタグ検索はほぼ同じ？
 Route::get('/search_result', function () {
