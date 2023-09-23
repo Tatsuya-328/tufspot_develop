@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -73,6 +74,16 @@ class Post extends Model
     public function features()
     {
         return $this->belongsToMany(Feature::class);
+    }
+
+    /**
+     * いいねのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id');
     }
 
     /**
@@ -187,5 +198,16 @@ class Post extends Model
     public function getIsPublicLabelAttribute()
     {
         return config('common.public_status')[$this->is_public];
+    }
+
+    /**
+     * いいね判定
+     *
+     * @return bool
+     */
+    public function isLiked()
+    {
+        $userList = $this->likes()->pluck('user_id');
+        return $userList->contains(Auth::id());
     }
 }

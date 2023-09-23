@@ -112,15 +112,15 @@ class PostController extends Controller
         switch ($type) {
             case 'category':
                 $this->categorySlug = $slug;
-                $this->category = Category::where('slug', $slug)->first();
+                $category = Category::where('slug', $slug)->first();
                 break;
             case 'feature':
                 $this->featureSlug = $slug;
-                $this->category = Feature::where('slug', $slug)->first();
+                $category = Feature::where('slug', $slug)->first();
                 break;
         }
         $posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->get();
-        $category = $this->category;
+        // $category = $this->category;
         return view('category_detail', compact('posts', 'category'));
     }
 
