@@ -100,6 +100,16 @@ class User extends Authenticatable
     }
 
     /**
+     * いいねのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
+    }
+
+    /**
      * 権限をラベル表示
      *
      * @return string

@@ -29,7 +29,7 @@ class Post extends Model
 
         return $query;
     }
-    
+
     protected static function boot()
     {
         parent::boot();
@@ -65,6 +65,16 @@ class Post extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * いいねのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id');
     }
 
     /**
