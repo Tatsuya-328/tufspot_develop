@@ -28,13 +28,12 @@ DB_PASSWORD=tufspot_pass
   - testtest
 - /adminで記事管理画面
 
-##VScode
+## VSCodeフォーマッター
 保存時の自動フォーマッター動作
 .php: returnの下の改行させない。インデント揃える
 .blade: インデント揃える
 .js: 不要な改行させない。インデント揃える
 .css: インデント揃える
-
 
 拡張機能
 - prittier
