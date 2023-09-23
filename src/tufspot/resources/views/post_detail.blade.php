@@ -139,7 +139,7 @@
                     <div class="writer-card-button-wrapper">
                         <a href="{{ route('writer_detail', ['user' => $post['user']['id']]) }}" class="post-card-button text-center me-2">プロフィールを見る</a>
                     </div>
-                    @if (Auth::id() != $post->user->id)
+                    @if (!$post->user->isAuthUser())
                         <livewire:follow :followed_user="$post->user" />
                     @endif
                 </div>

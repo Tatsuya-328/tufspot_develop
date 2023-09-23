@@ -8,7 +8,7 @@
             {{ $writer['name'] }}
         </p>
     </a>
-    @if (Auth::id() != $writer->id)
+    @if (!$writer->isAuthUser())
         <livewire:follow :followed_user=$writer />
     @endif
 </div>

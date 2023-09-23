@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
@@ -150,5 +151,15 @@ class User extends Authenticatable
     {
         $followingIdList = $this->followings()->pluck('followed_user_id');
         return $followingIdList->contains($followed_user->id);
+    }
+
+    /**
+     * 特定のユーザーが自分自身かどうかを判定
+     *
+     * @return bool
+     */
+    public function isAuthUser()
+    {
+        return $this->id == Auth::id();
     }
 }
