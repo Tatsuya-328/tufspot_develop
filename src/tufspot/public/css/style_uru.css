@@ -1621,7 +1621,11 @@ li.slick-slide>.post_card {
   height: 600px;
   height: 100%;
   /* padding: 0 0 60px 0; */
-  margin: 40px 0 0 0;
+  margin:115px 0 0 0;
+}
+
+.top_feature_wrapper:nth-child(1) {
+    margin-top: 40px;
 }
 
 .top_feature_title_text {
