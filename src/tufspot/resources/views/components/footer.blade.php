@@ -3,7 +3,7 @@
         <ul class="nav">
             <li class="nav-item footer-text"><a href="{{ route('about') }}" class="nav-link px-2 text-white">TUFSPOTとは？</a></li>
             <li class="nav-item footer-text"><a href="{{ route('mypage') }}" class="nav-link px-2 text-white">マイページ</a></li>
-            <li class="nav-item footer-text"><a href="{{ route('feature_list') }}" class="nav-link px-2 text-white">特集ページ一覧</a></li>
+            <li class="nav-item footer-text"><a href="{{ route('category') }}" class="nav-link px-2 text-white">特集ページ一覧</a></li>
             <li class="nav-item footer-text"><a href="{{ route('writer_list') }}" class="nav-link px-2 text-white">ライター一覧</a></li>
         </ul>
         <ul class="nav">
