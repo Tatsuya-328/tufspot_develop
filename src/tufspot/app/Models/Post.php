@@ -93,15 +93,24 @@ class Post extends Model
      * @param string|null $tagSlug
      * @return Builder
      */
-    public function scopePublicList(Builder $query, ?string $tagSlug)
+    public function scopePublicList(Builder $query, ?string $tagSlug, ?string $categorySlug, ?string $featureSlug)
     {
         if ($tagSlug) {
             $query->whereHas('tags', function ($query) use ($tagSlug) {
                 $query->where('slug', $tagSlug);
             });
         }
+        if ($categorySlug) {
+            $query->whereHas('categories', function ($query) use ($categorySlug) {
+                $query->where('slug', $categorySlug);
+            });
+        }
+        if ($featureSlug) {
+            $query->whereHas('features', function ($query) use ($featureSlug) {
+                $query->where('slug', $featureSlug);
+            });
+        }
         return $query
-            ->with('tags')
             ->public()
             ->latest('published_at');
         // ->paginate(10);

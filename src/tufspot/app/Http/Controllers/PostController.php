@@ -94,4 +94,32 @@ class PostController extends Controller
         $features = Feature::latest('id')->get();
         return view('category', compact('categories', 'features'));
     }
+
+    /**
+     * カテゴリー・特集の対象記事一覧
+     *
+     * @param int $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function category_detail(string $slug = null)
+    {
+        $tagSlug = null;
+        $tagSlug = null;
+        $tagSlug = null;
+        $posts = Post::publicList($tagSlug, $tagSlug, $tagSlug,)->get();
+        $category = Category::where('slug', $slug)->first();
+        // $categories = Category::oldest('id')->get();
+        // $features = Feature::latest('id')->get();
+        dd($posts, $category);
+        return view('category', compact('categories', 'features'));
+    }
+
+    // public function index(string $tagSlug = null)
+    // {
+    //     // 公開・新しい順に表示
+    //     $posts = Post::publicList($tagSlug);
+    //     $tags = Tag::all();
+
+    //     return view('front.posts.index', compact('posts', 'tags'));
+    // }
 }
