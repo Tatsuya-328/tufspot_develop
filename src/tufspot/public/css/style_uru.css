@@ -898,12 +898,13 @@ input[type="radio"] {
 }
 
 @media screen and (max-width: 350px) {
-    .about-concept-spot-title {
-        font-size: 12px;
-    }
-    .about-concept-spot-headline {
-        font-size: 35px;
-    }
+  .about-concept-spot-title {
+    font-size: 12px;
+  }
+
+  .about-concept-spot-headline {
+    font-size: 35px;
+  }
 }
 
 .about-concept-spot-headline>span {
