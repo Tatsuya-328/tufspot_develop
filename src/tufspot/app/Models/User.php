@@ -140,4 +140,15 @@ class User extends Authenticatable
     {
         return config('common.user.roles')[$this->role];
     }
+
+    /**
+     * ログインしているユーザーが、特定のユーザーをフォロー中かどうか判定
+     *
+     * @return bool
+     */
+    public function hasFollower(User $followed_user)
+    {
+        $followingIdList = $this->followings()->pluck('followed_user_id');
+        return $followingIdList->contains($followed_user->id);
+    }
 }

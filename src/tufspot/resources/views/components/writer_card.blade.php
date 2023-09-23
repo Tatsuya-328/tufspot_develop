@@ -8,8 +8,6 @@
             {{ $writer['name'] }}
         </p>
     </a>
-    <div class="writer-card-button-wrapper">
-        <a href="#" class="writer-card-button text-center">フォローを外す</a>
-    </div>
+    <livewire:follow :followed_user=$writer />
 
 </div>
