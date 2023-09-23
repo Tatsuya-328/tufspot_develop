@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'body','description', 'is_public', 'published_at', 'featured_image_path'
+        'title', 'body', 'description', 'is_public', 'published_at', 'featured_image_path'
     ];
 
     protected $casts = [
@@ -35,7 +36,7 @@ class Post extends Model
         parent::boot();
 
         // 保存時user_idをログインユーザーに設定
-        self::saving(function($post) {
+        self::saving(function ($post) {
             $post->user_id = \Auth::id();
         });
     }
@@ -98,7 +99,7 @@ class Post extends Model
     public function scopePublicList(Builder $query, ?string $tagSlug)
     {
         if ($tagSlug) {
-            $query->whereHas('tags', function($query) use ($tagSlug) {
+            $query->whereHas('tags', function ($query) use ($tagSlug) {
                 $query->where('slug', $tagSlug);
             });
         }
@@ -106,7 +107,7 @@ class Post extends Model
             ->with('tags')
             ->public()
             ->latest('published_at');
-            // ->paginate(10);
+        // ->paginate(10);
     }
 
     /**
@@ -155,7 +156,7 @@ class Post extends Model
         }
         // タグ
         if ($request->anyFilled('tag_id')) {
-            $query->whereHas('tags', function($query) use ($request) {
+            $query->whereHas('tags', function ($query) use ($request) {
                 $query->where('tag_id', $request->tag_id);
             });
         }
@@ -180,5 +181,16 @@ class Post extends Model
     public function getIsPublicLabelAttribute()
     {
         return config('common.public_status')[$this->is_public];
+    }
+
+    /**
+     * いいね判定
+     *
+     * @return bool
+     */
+    public function isLiked()
+    {
+        $userList = $this->likes()->pluck('user_id');
+        return $userList->contains(Auth::id());
     }
 }
