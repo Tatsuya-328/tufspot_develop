@@ -17,6 +17,13 @@ class FeatureSeeder extends Seeder
         $faker = Faker::create();
         \DB::table('features')->insert([
             [
+                'name' => '注目記事',
+                'slug' => 'pickup',
+                'description' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'name' => 'アジア特集',
                 'slug' => 'asia',
                 'description' => $faker->realText(rand(100, 200)),
@@ -40,7 +47,7 @@ class FeatureSeeder extends Seeder
         for ($i = 1; $i <= 50; $i++) {
             \DB::table('feature_post')->insert([
                 'post_id' => $i,
-                'feature_id' => $faker->numberBetween(1, 3)
+                'feature_id' => $faker->numberBetween(1, 4)
             ]);
         }
     }

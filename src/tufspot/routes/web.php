@@ -32,7 +32,7 @@ Route::get('/category', [PostController::class, 'category'])->name('category');
 
 // 各カテゴリー記事一覧（Academiaのみ、や、〇〇特集のみ表示）
 // TODO トップのAcademiaとかから遷移できるように
-Route::get('/category/{type}/{slug}', [PostController::class, 'category_detail'])->name('category_detail');
+Route::get('/{type}/{slug}', [PostController::class, 'category_detail'])->name('category_detail');
 
 
 // TODO：記事検索と、ハッシュタグ検索はほぼ同じ？

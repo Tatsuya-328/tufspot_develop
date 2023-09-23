@@ -8,7 +8,7 @@
         @foreach ($categories as $category)
             {{-- <div class="feature_box" id="makeImg"></div> --}}
             <div class="mt-5 post_list_explain d-flex flex-column justify-content-center">
-                <a class="text-decoration-none gray_color" href="{{ route('category_detail', $category->slug) }}">
+                <a class="text-decoration-none gray_color" href="{{ route('category_detail', ['category', $category->slug]) }}">
                     <h2 class="text-center mb-5 gray_color">{{ $category->name }}</h2>
                     <p class="post_list_explain_text m-0">
                         {!! nl2br($category->description) !!}
@@ -22,7 +22,7 @@
         @foreach ($features as $feature)
             {{-- <div class="feature_box" id="makeImg"></div> --}}
             <div class="post_list_explain d-flex flex-column justify-content-center">
-                <a class="text-decoration-none gray_color" href="{{ route('category_detail', [$category->slug, 'feature']) }}">
+                <a class="text-decoration-none gray_color" href="{{ route('category_detail', ['feature', $feature->slug]) }}">
                     <h2 class="text-center mb-4 gray_color">{{ $feature->name }}</h2>
                     <p class="post_list_explain_text m-0">
                         {!! nl2br($feature->description) !!}
