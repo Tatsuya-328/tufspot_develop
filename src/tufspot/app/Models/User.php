@@ -16,7 +16,7 @@ class User extends Authenticatable
         // 全ての呼び出しでリレーション
         // 親のメソッドを呼び出す。もともとはクエリビルダーを新規作成するときに呼び出されるメソッド。
         $query = parent::newQuery();
-        $query = $query->with(['snsAccounts','gaigokaiMembers']);
+        $query = $query->with(['snsAccounts', 'gaigokaiMembers']);
 
         return $query;
     }
@@ -107,6 +107,28 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
+    }
+
+    /**
+     * フォロー機能のリレーション
+     * 特定のユーザーがフォローしているユーザーを取得する
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'followed_user_id');
+    }
+
+    /**
+     * フォロー機能のリレーション
+     * 特定のユーザーをフォローしているユーザーを取得する
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followed_user_id', 'user_id');
     }
 
     /**
