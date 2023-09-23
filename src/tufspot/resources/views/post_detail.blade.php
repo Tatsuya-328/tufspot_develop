@@ -50,7 +50,7 @@
             </div>
             {{-- Quillと代替ここから --}}
             {{-- <div class="post-detail-list">
-                ボーダー用pタグ 
+                ボーダー用pタグ
                 <p class="post-detail-border"></p>
                 <div class="post-detail-explain-text-wrapper">
                     <p class="post-detail-explain-text">
