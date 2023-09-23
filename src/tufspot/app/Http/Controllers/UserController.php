@@ -80,20 +80,10 @@ class UserController extends Controller
         $liked_posts = $user->likes()->take(6)->get();
         // TODO: 閲覧履歴 仮で適当に取得
         $history_posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->take(6)->get();
+        // TODO: とりあえずフォロー済ライターを全件取得
+        $following_writers = $user->followings()->get();
 
-        // TODO: フォロー済みライター(管理者かつ記事持ってる) 仮で適当に取得
-        $public = 1;
-        $follow_writers = User::where([
-            ['role', '=', 1],
-        ])->with(['posts' => function ($query) use ($public) {
-            $query->where('is_public', $public);
-        }])->whereHas('posts', function ($query) {
-            $query->whereExists(function ($query) {
-                return $query;
-            });
-        })->get();
-
-        return view('mypage', compact('user', 'liked_posts', 'history_posts', 'follow_writers'));
+        return view('mypage', compact('user', 'liked_posts', 'history_posts', 'following_writers'));
     }
 
     /**
