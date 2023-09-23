@@ -12,6 +12,10 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
+    private $tagSlug = null;
+    private $categorySlug = null;
+    private $featureSlug = null;
+
     /**
      * 詳細画面
      *
@@ -72,12 +76,10 @@ class UserController extends Controller
         // formファザード用
         $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
 
-        // タグ検索していないためnull
-        $tagSlug = null;
         // TODO: お気に入りはひとまず6件だけ取得、必要ならあとからPagination追加
         $liked_posts = $user->likes()->take(6)->get();
         // TODO: 閲覧履歴 仮で適当に取得
-        $history_posts = Post::PublicList($tagSlug)->take(6)->get();
+        $history_posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->take(6)->get();
         // TODO: とりあえずフォロー済ライターを全件取得
         $following_writers = $user->followings()->get();
 
