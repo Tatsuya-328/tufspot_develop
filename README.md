@@ -4,7 +4,7 @@ share develop repository
 
 ## developをプルしてエラーがでたら
 - src/tufspotにて`$composer update`と`$npm update`
-- コンテナにて php artisan migrate:fresh --seed
+- コンテナにて seederキャッシュクリア`composer dump-autoload` migrate実行`php artisan migrate:fresh --seed`
 - 下部のキャッシュ削除コマンド
 
 ## 環境構築
