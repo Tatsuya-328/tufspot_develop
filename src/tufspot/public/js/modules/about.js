@@ -1,43 +1,46 @@
-
-'use strict';
+"use strict";
 {
     // メディアコンセプトホバー処理
     window.onload = () => {
-        const aboutConceptTitle = document.querySelectorAll('.about-concept-title');
-        const hoverTextArea = document.querySelector('.hover-text-area');
-        aboutConceptTitle[0].addEventListener('mouseover', () => {
-            hoverTextArea.classList.remove('hidden');
-            hoverTextArea.classList.add('appear');
+        const aboutConceptTitle = document.querySelectorAll(
+            ".about-concept-title",
+        );
+        const hoverTextArea = document.querySelector(".hover-text-area");
+        aboutConceptTitle[0].addEventListener("mouseover", () => {
+            hoverTextArea.classList.remove("hidden");
+            hoverTextArea.classList.add("appear");
         });
-        aboutConceptTitle[0].addEventListener('mouseleave', () => {
-            hoverTextArea.classList.remove('appear');
-            hoverTextArea.classList.add('hidden');
-        });
-
-        hoverTextArea.addEventListener('mouseover', () => {
-            hoverTextArea.classList.remove('hidden');
-            hoverTextArea.classList.add('appear');
+        aboutConceptTitle[0].addEventListener("mouseleave", () => {
+            hoverTextArea.classList.remove("appear");
+            hoverTextArea.classList.add("hidden");
         });
 
-        hoverTextArea.addEventListener('mouseleave', () => {
-            hoverTextArea.classList.remove('appear');
-            hoverTextArea.classList.add('hidden');
+        hoverTextArea.addEventListener("mouseover", () => {
+            hoverTextArea.classList.remove("hidden");
+            hoverTextArea.classList.add("appear");
+        });
+
+        hoverTextArea.addEventListener("mouseleave", () => {
+            hoverTextArea.classList.remove("appear");
+            hoverTextArea.classList.add("hidden");
         });
 
         // メディアコンセプト、ホバー時テキスト入れ替え
         switchText();
 
-        window.addEventListener('resize', () => {
+        window.addEventListener("resize", () => {
             switchText();
         });
 
         function switchText() {
-            const hoverText = document.querySelector('.hover-text');
+            const hoverText = document.querySelector(".hover-text");
             if (window.innerWidth >= 992) {
-                hoverText.innerHTML = 'バラバラであることを楽しみ、そこに新たな視点を見出す。<br>それが当たり前のようにできる外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、自分たちが見聞きし、考えたことをシェアしよう。';
+                hoverText.innerHTML =
+                    "バラバラであることを楽しみ、そこに新たな視点を見出す。<br>それが当たり前のようにできる外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、自分たちが見聞きし、考えたことをシェアしよう。";
             } else if (window.innerWidth >= 769) {
-                hoverText.innerHTML = 'バラバラであることを楽しみ、<br>そこに新たな視点を見出す。<br>それが当たり前のようにできる<br>外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、<br>自分たちが見聞きし、考えたことをシェアしよう。';
+                hoverText.innerHTML =
+                    "バラバラであることを楽しみ、<br>そこに新たな視点を見出す。<br>それが当たり前のようにできる<br>外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、<br>自分たちが見聞きし、考えたことをシェアしよう。";
             }
         }
-    }
+    };
 }

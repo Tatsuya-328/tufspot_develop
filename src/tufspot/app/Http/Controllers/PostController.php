@@ -10,22 +10,23 @@ use App\Models\User;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
+
 class PostController extends Controller
 {
-        // タグの読み込み処理を共通にする
-        public function __construct()
-        {
-            $this->middleware(function ($request, \Closure $next) {
-                \View::share('tags', Tag::pluck('name', 'id')->toArray());
-                return $next($request);
-            })->only('index', 'create', 'edit');
-    
-            // カテゴリー用
-            $this->middleware(function ($request, \Closure $next) {
-                \View::share('categories', Category::pluck('name', 'id')->toArray());
-                return $next($request);
-            })->only('index', 'create', 'edit');
-        }
+    // タグの読み込み処理を共通にする
+    public function __construct()
+    {
+        $this->middleware(function ($request, \Closure $next) {
+            \View::share('tags', Tag::pluck('name', 'id')->toArray());
+            return $next($request);
+        })->only('index', 'create', 'edit');
+
+        // カテゴリー用
+        $this->middleware(function ($request, \Closure $next) {
+            \View::share('categories', Category::pluck('name', 'id')->toArray());
+            return $next($request);
+        })->only('index', 'create', 'edit');
+    }
 
     /**
      * 一覧画面
@@ -36,10 +37,10 @@ class PostController extends Controller
     {
         // タグ検索していないためnull
         $tagSlug = null;
-        $carousel_posts = Post::PublicList($tagSlug)->take(5)->get();    
+        $carousel_posts = Post::PublicList($tagSlug)->take(5)->get();
         $pickup_posts = Post::PublicList($tagSlug)->inRandomOrder()->take(10)->get();
         $feature_posts = Post::PublicList($tagSlug)->inRandomOrder()->take(10)->get();
-        
+
         $academia_category_id = Category::NAME['Academia'];
         $academia_posts = Post::PublicList($tagSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
             $query->where('category_id', $academia_category_id);
