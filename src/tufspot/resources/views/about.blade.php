@@ -15,10 +15,8 @@
                         <span class="about_br">ー</span> 世界に散らばる<br class="about_show">
                     </div>
                     <div>
-
                         「外大知」を集める <span class="about_br">ー</span>
                     </div>
-
                 </div>
             </div>
             <p class="about-top-text">

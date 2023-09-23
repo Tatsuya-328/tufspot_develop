@@ -1,0 +1,36 @@
+{
+  "editor.tabSize": 2,
+  "files.autoSave": "onFocusChange",
+  "files.insertFinalNewline": true,
+
+  // 自動整形
+  // vscodeデフォルト
+  "editor.formatOnSave": true,  
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+
+  // prittier
+  "prettier.printWidth": 5000,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+
+  // intelephense
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "intelephense.diagnostics.undefinedClassConstants": false,
+  "intelephense.diagnostics.undefinedConstants": false,
+  "intelephense.diagnostics.undefinedFunctions": false,
+  "intelephense.diagnostics.undefinedProperties": false,
+  "intelephense.diagnostics.undefinedMethods": false,
+  "intelephense.diagnostics.undefinedTypes": false,
+
+  // bladeformmater
+  "bladeFormatter.format.wrapLineLength": 1200,
+  "[blade]":{
+      "editor.defaultFormatter": "shufo.vscode-blade-formatter"
+  },
+  "blade.format.enable": true
+}
