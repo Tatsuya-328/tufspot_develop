@@ -10,7 +10,7 @@
                 {!! nl2br($category->description) !!}
             </p>
         </div>
-        <div class="d-flex justify-content-center flex-wrap">
+        <div class="article-list-area d-flex justify-content-center flex-wrap">
             @foreach ($posts as $post)
                 <x-post_card :post=$post />
             @endforeach
