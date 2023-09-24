@@ -20,7 +20,7 @@
     <x-top_slider title="Pick Up" text="注目記事" :posts=$pickup_posts />
 
     {{-- Academia etc... --}}
-    {{-- それぞれ最新を6つずつ --}}
+    {{-- それぞれ最新を12つずつ --}}
     <x-top_category title="Academia" imagePath="image/BOOK.png" :posts=$academia_posts />
     <x-top_category title="Business and Career" imagePath="image/TALK.png" :posts=$business_posts />
     <x-top_category title="Culture and Essay" imagePath="image/EARTH.png" :posts=$culture_posts />

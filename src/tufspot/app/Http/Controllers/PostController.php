@@ -19,7 +19,7 @@ class PostController extends Controller
                 \View::share('tags', Tag::pluck('name', 'id')->toArray());
                 return $next($request);
             })->only('index', 'create', 'edit');
-    
+
             // カテゴリー用
             $this->middleware(function ($request, \Closure $next) {
                 \View::share('categories', Category::pluck('name', 'id')->toArray());
@@ -36,24 +36,24 @@ class PostController extends Controller
     {
         // タグ検索していないためnull
         $tagSlug = null;
-        $carousel_posts = Post::PublicList($tagSlug)->take(5)->get();    
+        $carousel_posts = Post::PublicList($tagSlug)->take(5)->get();
         $pickup_posts = Post::PublicList($tagSlug)->inRandomOrder()->take(10)->get();
         $feature_posts = Post::PublicList($tagSlug)->inRandomOrder()->take(10)->get();
-        
+
         $academia_category_id = Category::NAME['Academia'];
         $academia_posts = Post::PublicList($tagSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
             $query->where('category_id', $academia_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $business_category_id = Category::NAME['Business'];
         $business_posts = Post::PublicList($tagSlug)->whereHas('categories', function ($query) use ($business_category_id) {
             $query->where('category_id', $business_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $culture_category_id = Category::NAME['Culture'];
         $culture_posts = Post::PublicList($tagSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
             $query->where('category_id', $culture_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();

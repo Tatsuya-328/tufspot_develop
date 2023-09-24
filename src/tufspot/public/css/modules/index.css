@@ -63,7 +63,6 @@
     display: block;
     width: 100%;
     height: 300px;
-    transition: 1s;
     background: linear-gradient(
         to bottom,
         transparent 0%,
@@ -73,7 +72,13 @@
     );
 }
 
-.read-more-button {
+@media screen and (max-width: 1199px) {
+    .blur-back {
+        display: none;
+    }
+}
+
+.read-more-button-pc {
     position: absolute;
     bottom: 30px;
     left: 50%;
@@ -85,12 +90,38 @@
     line-height: 160%;
 }
 
-.read-more-button:hover {
+.read-more-button-pc:hover {
     cursor: pointer;
 }
 
-.read-more-button span {
+.read-more-button-pc span {
     font-size: 50px;
+}
+
+.read-more-button-sp {
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 0;
+    text-align: center;
+    font-weight: 550;
+    letter-spacing: 5px;
+    font-size: 25px;
+    border: 2px solid;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 575px) {
+    .read-more-button-sp {
+        width: 200px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .read-more-button-sp {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 320px) {
