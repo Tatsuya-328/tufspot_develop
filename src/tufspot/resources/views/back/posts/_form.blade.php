@@ -120,6 +120,28 @@
         @enderror
     </div>
 </div>
+<div class="form-group row">
+    {!! Form::label('features', '特集項目 ', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        <div class="{{ $errors->has('features.*') ? 'is-invalid' : '' }}">
+            @if ($features)
+                @foreach ($features as $key => $feature)
+                    <div class="form-check form-check-inline">
+                        {!! Form::checkbox('features[]', $key, null, ['class' => 'form-check-input', 'id' => 'feature' . $key]) !!}
+                        <label class="form-check-label" for="feature{{ $key }}">{{ $feature }}</label>
+                    </div>
+                @endforeach
+            @else
+                特集項目未登録
+            @endif
+        </div>
+        @error('features.*')
+            <span class="invalid-feedback" role="alert">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
+</div>
 
 <div class="form-group row">
     {{ Form::label('is_public', '状態', ['class' => 'col-sm-2 col-form-label']) }}

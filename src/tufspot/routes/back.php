@@ -10,6 +10,7 @@ Route::group(['middleware' => 'can:admin'], function () {
     Route::resource('posts', 'PostController')->except('show');
     Route::resource('tags', 'TagController')->except('show');
     Route::resource('categories', 'CategoryController')->except('show');
+    Route::resource('features', 'FeatureController')->except('show');
 
     // 記事プレビュー
     Route::put('preview/{id}', [PostController::class, 'preview'])->name('post_preview');

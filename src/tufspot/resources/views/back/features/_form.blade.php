@@ -1,10 +1,10 @@
 <?php
 /**
- * @var \App\Models\Category $category
+ * @var \App\Models\Category $feature
  */
 ?>
 <div class="form-group row">
-    {{ Form::label('name', 'カテゴリー名', ['class' => 'col-sm-2 col-form-label']) }}
+    {{ Form::label('name', '特集名', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::text('name', null, [
             'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),
@@ -34,7 +34,7 @@
 </div>
 
 <div class="form-group row">
-    {{ Form::label('description', '説明文(カテゴリー一覧等に表示)', ['class' => 'col-sm-2 col-form-label']) }}
+    {{ Form::label('description', '説明文(特集記事一覧等に表示)', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::textarea('description', null, [
             'class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),
@@ -48,6 +48,7 @@
     </div>
 </div>
 
+{{-- TODO 全記事 ＋ 対象記事にはチェック --}}
 @if (0 < $posts->count())
     {{-- 対象記事のみ表示ボタン --}}
     {{-- 押すとチェックが入っているもの以外をhideする --}}
@@ -77,11 +78,7 @@
             @foreach ($posts as $key => $post)
                 <tr>
                     <td>
-                        @if (!empty($added_posts))
-                            {{ Form::checkbox('add_post_ids[]', $key + 1, in_array($key + 1, old('add_post_ids', $added_posts->pluck('id')->toArray())), ['id' => 'add_post_id' . $key + 1, 'class' => 'form-check-input']) }}
-                        @else
-                            {{ Form::checkbox('add_post_ids[]', $key + 1), ['id' => 'add_post_id' . $key + 1, 'class' => 'form-check-input'] }}
-                        @endif
+                        {{ Form::checkbox('add_post_ids[]', $key + 1, in_array($key + 1, old('add_post_ids', $added_posts->pluck('id')->toArray())), ['id' => 'add_post_id' . $key + 1, 'class' => 'form-check-input']) }}
                     </td>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
@@ -128,10 +125,12 @@
         {{ $posts->appends($search)->links() }}
     </div> --}}
 @endif
+
+
 <div class="form-group row">
     <div class="col-sm-10">
         <button type="submit" class="btn btn-primary">保存</button>
-        {{ link_to_route('back.categories.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
+        {{ link_to_route('back.features.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
     </div>
 </div>
 

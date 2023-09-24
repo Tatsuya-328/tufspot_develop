@@ -181,6 +181,49 @@ class Post extends Model
     }
 
     /**
+     * カテゴリー・特集取得
+     *
+     * @param Builder $query
+     * @param Array $ids
+     * @return Builder
+     */
+    public function scopeSearchByArray(Builder $query, array $ids)
+    {
+        // // タイトル
+        // if (!empty($ids['title'])) {
+        //     $query->where('title', 'like', "%$ids->title%");
+        // }
+        // // ユーザー
+        // if (!empty($ids['user_id'])) {
+        //     $query->where('user_id', $ids->user_id);
+        // }
+        // // 公開・非公開
+        // if (!empty($ids['is_public'])) {
+        //     $query->where('is_public', $ids->is_public);
+        // }
+        // // タグ
+        // if (!empty($ids['tag_id'])) {
+        //     $query->whereHas('tags', function ($query) use ($ids) {
+        //         $query->where('tag_id', $ids->tag_id);
+        //     });
+        // }
+        // カテゴリー
+        if (!empty($ids['category_id'])) {
+            $query->whereHas('categories', function ($query) use ($ids) {
+                $query->where('category_id', $ids['category_id']);
+            });
+        }
+        // カテゴリー
+        if (!empty($ids['feature_id'])) {
+            $query->whereHas('features', function ($query) use ($ids) {
+                $query->where('feature_id', $ids['feature_id']);
+            });
+        }
+        return $query;
+    }
+
+
+    /**
      * 公開日を年月日で表示
      *
      * @return string
