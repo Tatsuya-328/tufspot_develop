@@ -1,6 +1,7 @@
 @import url('./modules/index.css');
 @import url('./modules/about.css');
 @import url('./modules/post.css');
+@import url('./modules/categoryDetail.css');
 
 /* @charset "UTF-8";
 
@@ -270,6 +271,7 @@ footer {
     font-size: 30px;
     color: #565656;
     font-weight: 400;
+    letter-spacing: 6px;
 }
 
 .post_list_explain {
