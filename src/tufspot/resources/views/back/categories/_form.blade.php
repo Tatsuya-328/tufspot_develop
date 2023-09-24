@@ -136,6 +136,7 @@
 </div>
 
 <script>
+    // 項目検索・チェック判定用
     $(function() {
         $('input#id_search').quicksearch('table tbody tr');
         $("[name='has_checked']").change(function() {
@@ -144,6 +145,5 @@
                 var v = $(this).parent().parent().toggle();
             });
         });
-
     });
 </script>

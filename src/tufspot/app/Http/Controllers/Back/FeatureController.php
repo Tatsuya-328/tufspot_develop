@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Models\Feature;
+use App\Models\Post;
 use App\Http\Requests\FeatureRequest;
 
 class FeatureController extends Controller
@@ -26,7 +27,9 @@ class FeatureController extends Controller
      */
     public function create()
     {
-        return view('back.features.create');
+        $posts = Post::get();
+        $added_posts = null;
+        return view('back.features.create', compact('posts' . 'added_posts'));
     }
 
     /**
@@ -38,6 +41,11 @@ class FeatureController extends Controller
     public function store(FeatureRequest $request)
     {
         $feature = Feature::create($request->all());
+
+        // category_postの更新
+        if ($request->add_post_ids) {
+            $feature->posts()->sync($request->add_post_ids);
+        }
 
         if ($feature) {
             return redirect()
@@ -58,7 +66,10 @@ class FeatureController extends Controller
      */
     public function edit(Feature $feature)
     {
-        return view('back.features.edit', compact('feature'));
+        $ids['feature_id'] = $feature['id'];
+        $added_posts = Post::searchByArray($ids);
+        $posts = Post::get();
+        return view('back.features.edit', compact('feature', 'posts', 'added_posts'));
     }
 
     /**
@@ -70,6 +81,11 @@ class FeatureController extends Controller
      */
     public function update(FeatureRequest $request, Feature $feature)
     {
+        // category_postの更新
+        if ($request->add_post_ids) {
+            $feature->posts()->sync($request->add_post_ids);
+        }
+
         if ($feature->update($request->all())) {
             $flash = ['success' => 'データを更新しました。'];
         } else {

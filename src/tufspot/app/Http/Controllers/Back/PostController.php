@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Feature;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
@@ -24,6 +25,12 @@ class PostController extends Controller
         // カテゴリー用
         $this->middleware(function ($request, \Closure $next) {
             \View::share('categories', Category::pluck('name', 'id')->toArray());
+            return $next($request);
+        })->only('index', 'create', 'edit');
+
+        // 特集項目用
+        $this->middleware(function ($request, \Closure $next) {
+            \View::share('features', Feature::pluck('name', 'id')->toArray());
             return $next($request);
         })->only('index', 'create', 'edit');
     }
@@ -77,11 +84,12 @@ class PostController extends Controller
             'is_public' => $request['is_public'],
             'published_at' => $request['published_at'],
         ]);
-        // $post = Post::create($request->all());
         // タグを追加
         $post->tags()->attach($request->tags);
         // カテゴリーを追加
         $post->categories()->attach($request->categories);
+        // 特集項目を追加
+        $post->features()->attach($request->features);
         if ($post) {
             return redirect()
                 ->route('back.posts.edit', $post)
@@ -148,6 +156,8 @@ class PostController extends Controller
         $post->tags()->sync($request->tags);
         // カテゴリーを更新
         $post->categories()->sync($request->categories);
+        // 特集項目を更新
+        $post->features()->sync($request->features);
 
         // 画像保存
         // ディレクトリ名

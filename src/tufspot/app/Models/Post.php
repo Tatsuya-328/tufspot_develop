@@ -184,33 +184,39 @@ class Post extends Model
      * カテゴリー・特集取得
      *
      * @param Builder $query
-     * @param Request $request
+     * @param Array $ids
      * @return Builder
      */
-    public function scopeSearchByArray(Builder $query, array $request)
+    public function scopeSearchByArray(Builder $query, array $ids)
     {
-        // タイトル
-        if (!empty($request['title'])) {
-            $query->where('title', 'like', "%$request->title%");
-        }
-        // ユーザー
-        if (!empty($request['user_id'])) {
-            $query->where('user_id', $request->user_id);
-        }
-        // 公開・非公開
-        if (!empty($request['is_public'])) {
-            $query->where('is_public', $request->is_public);
-        }
-        // タグ
-        if (!empty($request['tag_id'])) {
-            $query->whereHas('tags', function ($query) use ($request) {
-                $query->where('tag_id', $request->tag_id);
+        // // タイトル
+        // if (!empty($ids['title'])) {
+        //     $query->where('title', 'like', "%$ids->title%");
+        // }
+        // // ユーザー
+        // if (!empty($ids['user_id'])) {
+        //     $query->where('user_id', $ids->user_id);
+        // }
+        // // 公開・非公開
+        // if (!empty($ids['is_public'])) {
+        //     $query->where('is_public', $ids->is_public);
+        // }
+        // // タグ
+        // if (!empty($ids['tag_id'])) {
+        //     $query->whereHas('tags', function ($query) use ($ids) {
+        //         $query->where('tag_id', $ids->tag_id);
+        //     });
+        // }
+        // カテゴリー
+        if (!empty($ids['category_id'])) {
+            $query->whereHas('categories', function ($query) use ($ids) {
+                $query->where('category_id', $ids['category_id']);
             });
         }
         // カテゴリー
-        if (!empty($request['category_id'])) {
-            $query->whereHas('categories', function ($query) use ($request) {
-                $query->where('category_id', $request['category_id']);
+        if (!empty($ids['feature_id'])) {
+            $query->whereHas('features', function ($query) use ($ids) {
+                $query->where('feature_id', $ids['feature_id']);
             });
         }
         return $query;
