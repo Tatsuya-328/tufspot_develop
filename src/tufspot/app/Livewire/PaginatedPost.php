@@ -19,6 +19,12 @@ class PaginatedPost extends Component
     public $featureSlug = null;
     public $per_page = 6; // ページ内の表示数調整
 
+    // ページ遷移後、スクロールアップ
+    public function updatedPage($page)
+    {
+        $this->dispatch('page-updated');
+    }
+
     public function mount()
     {
         switch ($this->type) {
