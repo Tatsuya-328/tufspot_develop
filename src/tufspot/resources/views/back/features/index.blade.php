@@ -17,7 +17,7 @@ $title = '特集記事一覧';
                         <th scope="col">ID</th>
                         <th scope="col">カテゴリー名</th>
                         <th scope="col">スラッグ(URL名)</th>
-                        <th scope="col" style="width: 12em">編集</th>
+                        <th scope="col" style="width: 12em">編集(記事選択)</th>
                     </tr>
                 </thead>
                 <tbody>
