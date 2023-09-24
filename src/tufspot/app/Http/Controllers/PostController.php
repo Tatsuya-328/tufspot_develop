@@ -71,7 +71,6 @@ class PostController extends Controller
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
-
         return view('index', compact('carousel_posts', 'pickup_posts', 'feature_posts', 'academia_posts', 'business_posts', 'culture_posts'));
     }
 
