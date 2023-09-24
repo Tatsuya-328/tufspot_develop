@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use App\Http\Requests\CategoryRequest;
+use GuzzleHttp\Psr7\Request;
 
 class CategoryController extends Controller
 {
@@ -26,7 +28,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('back.categories.create');
+        $posts = Post::get();
+        return view('back.categories.create', compact('posts'));
     }
 
     /**
@@ -38,6 +41,11 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $category = Category::create($request->all());
+
+        // category_postの更新
+        if ($request->add_post_ids) {
+            $category->posts()->sync($request->add_post_ids);
+        }
 
         if ($category) {
             return redirect()
@@ -58,7 +66,18 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('back.categories.edit', compact('category'));
+        $request['category_id'] = $category['id'];
+        $added_posts = Post::searchByArray($request);
+        $posts = Post::get();
+        // foreach ($posts as &$post) {
+        //     foreach ($post['categories'] as $post_category) {
+        //         if ($post_category['id'] === $category['id']) {
+        //             $post['has_category'] = 1;
+        //         }
+        //     }
+        // }
+        // unset($post);
+        return view('back.categories.edit', compact('category', 'posts', 'added_posts'));
     }
 
     /**
@@ -70,6 +89,12 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
+        // category_postの更新
+        if ($request->add_post_ids) {
+            $category->posts()->sync($request->add_post_ids);
+        }
+
+        // category自体の更新
         if ($category->update($request->all())) {
             $flash = ['success' => 'データを更新しました。'];
         } else {
@@ -90,6 +115,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $category->posts()->sync(null);
         if ($category->delete()) {
             $flash = ['success' => 'データを削除しました。'];
         } else {

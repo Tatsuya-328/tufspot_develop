@@ -26,6 +26,13 @@
     {{-- Quill editor --}}
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+    {{-- editのテーブル検索用 --}}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    {{-- <script src="jquery.quicksearch.js"></script> --}}
+    <script src="{{ asset('js/jquery.quicksearch.js') }}" async></script>
+
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;

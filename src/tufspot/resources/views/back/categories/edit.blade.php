@@ -10,7 +10,7 @@ $title = 'カテゴリー編集';
     <div class="card-header">{{ $title }}</div>
     <div class="card-body">
         {!! Form::model($category, [
-            'route' => ['back.categories.update', $category],
+            'route' => ['back.categories.update', [$category]],
             'method' => 'put',
         ]) !!}
         @include('back.categories._form')

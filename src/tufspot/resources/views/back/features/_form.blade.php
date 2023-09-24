@@ -48,6 +48,9 @@
     </div>
 </div>
 
+{{-- TODO 全記事 ＋ 対象記事にはチェック --}}
+
+
 
 <div class="form-group row">
     <div class="col-sm-10">

@@ -66,7 +66,7 @@ class PostController extends Controller
         $dir = 'image/post';
         $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
         // ファイル情報をDBに保存
-        $featured_image_path = str_replace("public","storage",$featured_image_path);
+        $featured_image_path = str_replace("public", "storage", $featured_image_path);
         // TODO プレビュー時のtmp画像削除する
 
         $post = Post::create([
@@ -102,11 +102,11 @@ class PostController extends Controller
     public function preview(int $id = null, PostUpdateRequest $request)
     {
         $post = $request;
-        
+
         if ($id && Post::findById($id)) {
-            $savedPost = Post::findById($id);    
+            $savedPost = Post::findById($id);
         }
-        
+
         if (empty($post['featured_image'])) {
             $post['featured_image_path'] = $savedPost['featured_image_path'];
         } else {
@@ -115,7 +115,7 @@ class PostController extends Controller
             $dir = 'image/post/tmp';
             $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
             // ファイル情報をDBに保存
-            $featured_image_path = str_replace("public","storage",$featured_image_path);
+            $featured_image_path = str_replace("public", "storage", $featured_image_path);
             $post['featured_image_path'] = $featured_image_path;
         }
 
@@ -155,11 +155,11 @@ class PostController extends Controller
             $dir = 'image/post';
             $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
             // ファイル情報をDBに保存
-            $featured_image_path = str_replace("public","storage",$featured_image_path);
+            $featured_image_path = str_replace("public", "storage", $featured_image_path);
         } else {
             $featured_image_path = $post['featured_image_path'];
         }
-    
+
         if (
             $post->update([
                 'title' => $request['title'],
