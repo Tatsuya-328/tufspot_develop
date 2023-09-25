@@ -2,7 +2,7 @@
 /**
  * @var Illuminate\Pagination\LengthAwarePaginator|\App\Models\Post[] $posts
  */
-$title = '投稿一覧';
+$title = '記事一覧';
 ?>
 @extends('back.layouts.base')
 
@@ -161,7 +161,11 @@ $title = '投稿一覧';
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
-                {{ $posts->appends($search)->links() }}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {{ $posts->appends($search)->links() }}
+                    </ul>
+                </nav>
             </div>
         @endif
     </div>
