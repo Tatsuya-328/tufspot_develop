@@ -10,7 +10,7 @@
                 {!! nl2br($category->description) !!}
             </p>
         </div>
-        <livewire:category-detail :type="$type" :slug="$slug" />
+        <livewire:paginated-post-list :type="$type" :slug="$slug" page_flag="category_detail" />
     </x-main>
     <x-footer />
 </x-template>

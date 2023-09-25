@@ -58,7 +58,7 @@
                 <p class="writer-detail-title">
                     ▼<span>記事</span>
                 </p>
-                <livewire:user-post-list :user="$user" page_flag="writer_detail" />
+                <livewire:paginated-post-list :user="$user" page_flag="writer_detail" />
                 {{-- TODO 記事表示 --}}
                 {{-- <div class="row row-cols-3"> --}}
                 {{-- <x-post_card place="ハロン湾" />

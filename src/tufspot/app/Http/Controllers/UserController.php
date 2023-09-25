@@ -74,8 +74,6 @@ class UserController extends Controller
         // formファザード用
         $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
 
-        // TODO: お気に入りはひとまず6件だけ取得、必要ならあとからPagination追加
-        // $liked_posts = $user->likes()->take(6)->get();
         // TODO: 閲覧履歴 仮で適当に取得
         $history_posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->take(6)->get();
         // TODO: とりあえずフォロー済ライターを全件取得

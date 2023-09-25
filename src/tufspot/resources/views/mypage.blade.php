@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div id="panel2" class="tab_panel2">
-                    <livewire:user-post-list :user="$user" page_flag="mypage" />
+                    <livewire:paginated-post-list :user="$user" page_flag="mypage" />
                 </div>
                 <div id="panel3" class="tab_panel3">
                     <div class="d-flex justify-content-center flex-wrap">
