@@ -71,3 +71,12 @@
 .sidebar .nav-link.active {
   color: #0d6efd;
 }
+
+/* post.index */
+.bi-pencil-fill {
+  margin: 0 7px 3px 0;
+}
+
+.bi-three-dots {
+  margin: 7px 0 0 0;
+}
