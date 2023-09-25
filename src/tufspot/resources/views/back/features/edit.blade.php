@@ -1,28 +1,28 @@
 <?php
 /**
- * @var \App\Models\Category $category
+ * @var \App\Models\Category $feature
  */
-$title = 'カテゴリー編集';
+$title = '特集記事編集';
 ?>
 @extends('back.layouts.base')
 
 @section('content')
     <div class="card-header">{{ $title }}</div>
     <div class="card-body">
-        {!! Form::model($category, [
-            'route' => ['back.categories.update', [$category]],
+        {!! Form::model($feature, [
+            'route' => ['back.features.update', $feature],
             'method' => 'put',
         ]) !!}
-        @include('back.categories._form')
+        @include('back.features._form')
         {!! Form::close() !!}
         <table class="table">
             <tr>
                 <th>登録日時</th>
-                <td>{{ $category->created_at }}</td>
+                <td>{{ $feature->created_at }}</td>
             </tr>
             <tr>
                 <th>編集日時</th>
-                <td>{{ $category->updated_at }}</td>
+                <td>{{ $feature->updated_at }}</td>
             </tr>
         </table>
     </div>
