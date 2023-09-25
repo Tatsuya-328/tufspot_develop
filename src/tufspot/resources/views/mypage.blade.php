@@ -34,17 +34,7 @@
                     </div>
                 </div>
                 <div id="panel2" class="tab_panel2">
-                    <div class="d-flex justify-content-center flex-wrap">
-                        @foreach ($liked_posts as $post)
-                            <x-post_card :post=$post />
-                        @endforeach
-                        {{-- <x-post_card place="ハロン湾" />
-                        <x-post_card place="スイティエン" />
-                        <x-post_card place="アンコールワット" />
-                        <x-post_card place="ハロン湾" />
-                        <x-post_card place="スイティエン" />
-                        <x-post_card place="アンコールワット" /> --}}
-                    </div>
+                    <livewire:user-post-list :user="$user" page_flag="mypage" />
                 </div>
                 <div id="panel3" class="tab_panel3">
                     <div class="d-flex justify-content-center flex-wrap">
