@@ -6,7 +6,7 @@ use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PaginatedPost extends Component
+class CategoryDetail extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -40,6 +40,6 @@ class PaginatedPost extends Component
     public function render()
     {
         $posts = Post::publicList(null, $this->categorySlug, $this->featureSlug)->paginate($this->per_page);
-        return view('livewire.paginated-post', compact('posts'));
+        return view('livewire.category-detail', compact('posts'));
     }
 }
