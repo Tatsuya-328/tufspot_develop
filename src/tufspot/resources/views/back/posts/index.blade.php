@@ -10,20 +10,10 @@ $title = '投稿一覧';
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">{{ $title }}</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-            {{ link_to_route('back.posts.create', '新規登録', null, ['class' => 'btn btn-primary']) }}
-            {{-- <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-            </div> --}}
-            {{-- <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                This week
-            </button> --}}
+            <a href="{{ route('back.posts.create') }}" class="btn btn-success">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill v" viewBox="0 0 16 16">
+                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                </svg>登録</a>
         </div>
     </div>
     {{-- <h1>{{ $title }}</h1> --}}
@@ -78,14 +68,15 @@ $title = '投稿一覧';
                 ]) }}
             </div>
             <div class="">
-                <button type="submit" class="btn btn-primary">検索</button>
+                <button type="submit" class="btn btn-outline-dark">検索</button>
             </div>
 
         </div>
         {{ Form::close() }}
 
         @if (0 < $posts->count())
-            <table class="table table-striped table-bordered table-hover table-sm">
+            {{-- <table class="table table-striped table-bordered table-hover table-sm"> --}}
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -95,7 +86,8 @@ $title = '投稿一覧';
                         <th scope="col" style="width: 10em">特集項目</th>
                         <th scope="col" style="width: 10em">公開日</th>
                         <th scope="col" style="width: 10em">執筆者</th>
-                        <th scope="col" style="width: 15em"></th>
+                        <th scope="col" style="width: 5em"></th>
+                        <th scope="col" style=""></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -122,27 +114,47 @@ $title = '投稿一覧';
                             </td>
                             <td>{{ $post->published_format }}</td>
                             <td>{{ $post->user->name }}</td>
-                            <td class="d-flex justify-content-center">
-                                {{ link_to_route('post_detail', '本番確認', $post, [
-                                    'class' => 'btn btn-secondary btn-sm m-1',
+                            <td>
+                                {{-- {{ link_to_route('post_detail', '本番確認', $post, [
+                                    'class' => 'btn btn-outline-dark btn-sm m-1',
                                     'target' => '_blank',
-                                ]) }}
+                                ]) }} --}}
                                 {{-- {{ link_to_route('index', '詳細', $post, [
                                     'class' => 'btn btn-secondary btn-sm m-1',
                                     'target' => '_blank',
                                 ]) }} --}}
                                 {{ link_to_route('back.posts.edit', '編集', $post, [
-                                    'class' => 'btn btn-secondary btn-sm m-1',
+                                    'class' => 'btn btn-outline-dark btn-sm m-1',
                                 ]) }}
-                                {{ Form::model($post, [
-                                    'route' => ['back.posts.destroy', $post],
-                                    'method' => 'delete',
-                                ]) }}
-                                {{ Form::submit('削除', [
-                                    'onclick' => "return confirm('本当に削除しますか?')",
-                                    'class' => 'btn btn-danger btn-sm m-1',
-                                ]) }}
-                                {{ Form::close() }}
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a class="text-decoration-none link-dark pb-3" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+                                        </svg>
+                                    </a>
+                                    {{-- <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+                                        </svg>
+                                    </button> --}}
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        {{-- <li><a class="dropdown-item" href="#">Action</a></li> --}}
+                                        <li><a class="dropdown-item" href="{{ route('post_detail', [$post]) }}">本番確認</a></li>
+                                        <li>
+                                            {{ Form::model($post, [
+                                                'route' => ['back.posts.destroy', $post],
+                                                'method' => 'delete',
+                                            ]) }}
+                                            {{ Form::submit('削除', [
+                                                'onclick' => "return confirm('本当に削除しますか?')",
+                                                'class' => 'dropdown-item text-danger',
+                                            ]) }}
+                                            {{ Form::close() }}
+                                        </li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
