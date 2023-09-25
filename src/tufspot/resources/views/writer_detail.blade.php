@@ -58,20 +58,16 @@
                 <p class="writer-detail-title">
                     ▼<span>記事</span>
                 </p>
-                <div class="d-flex justify-content-center flex-wrap">
-                    @foreach ($written_posts as $post)
-                        <x-post_card :post=$post />
-                    @endforeach
-                    {{-- TODO 記事表示 --}}
-                    {{-- <div class="row row-cols-3"> --}}
-                    {{-- <x-post_card place="ハロン湾" />
+                <livewire:user-post-list :user="$user" />
+                {{-- TODO 記事表示 --}}
+                {{-- <div class="row row-cols-3"> --}}
+                {{-- <x-post_card place="ハロン湾" />
                     <x-post_card place="スイティエン" />
                     <x-post_card place="アンコールワット" /> --}}
-                    {{-- 最終行も左寄せには、空要素入れるしかなさそう https://qiita.com/QUANON/items/e14949abab3711ca8646 --}}
-                    {{-- <x-post_card place="ハロン湾" />
+                {{-- 最終行も左寄せには、空要素入れるしかなさそう https://qiita.com/QUANON/items/e14949abab3711ca8646 --}}
+                {{-- <x-post_card place="ハロン湾" />
                     <x-post_card place="スイティエン" />
                     <x-post_card place="アンコールワット" /> --}}
-                </div>
             </div>
         </div>
     </x-main>
