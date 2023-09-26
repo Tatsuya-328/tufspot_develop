@@ -5,7 +5,7 @@
 
   // 自動整形
   // vscodeデフォルト
-  "editor.formatOnSave": true,  
+  "editor.formatOnSave": false,  
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
