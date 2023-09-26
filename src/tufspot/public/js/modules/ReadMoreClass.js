@@ -12,12 +12,12 @@ class ReadMore {
                 if (window.innerWidth <= 425) {
                     const targetElement = this.articleContainer.querySelector('.top_pickup_title_link');
                     const redirectLink = targetElement.getAttribute('href');
-                    window.location.href = redirectLink;
+                    window.open(redirectLink, '_blank');
                 } else if (window.innerWidth <= 1199) {
                     if (this.isClicked === true) {
                         const targetElement = this.articleContainer.querySelector('.top_pickup_title_link');
                         const redirectLink = targetElement.getAttribute('href');
-                        window.location.href = redirectLink;
+                        window.open(redirectLink, '_blank');
                         return;
                     }
 
@@ -40,7 +40,7 @@ class ReadMore {
                     } else {
                         const targetElement = this.articleContainer.querySelector('.top_pickup_title_link');
                         const redirectLink = targetElement.getAttribute('href');
-                        window.location.href = redirectLink;
+                        window.open(redirectLink, '_blank');
                     }
                 }
             });
