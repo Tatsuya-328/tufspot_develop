@@ -37,9 +37,7 @@ class UserController extends Controller
             abort(404, '存在しないページです');
         }
 
-        // TODO: 執筆記事取得 仮で適当に取得
-        $written_posts = Post::latest()->take(6)->get();
-        return view('writer_detail', compact('user', 'written_posts'));
+        return view('writer_detail', compact('user'));
     }
 
     /**
@@ -76,14 +74,12 @@ class UserController extends Controller
         // formファザード用
         $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
 
-        // TODO: お気に入りはひとまず6件だけ取得、必要ならあとからPagination追加
-        $liked_posts = $user->likes()->take(6)->get();
         // TODO: 閲覧履歴 仮で適当に取得
         $history_posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->take(6)->get();
         // TODO: とりあえずフォロー済ライターを全件取得
         $following_writers = $user->followings()->get();
 
-        return view('mypage', compact('user', 'liked_posts', 'history_posts', 'following_writers'));
+        return view('mypage', compact('user', 'history_posts', 'following_writers'));
     }
 
     /**

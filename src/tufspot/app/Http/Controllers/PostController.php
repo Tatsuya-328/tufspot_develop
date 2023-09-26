@@ -108,6 +108,8 @@ class PostController extends Controller
      */
     public function category_detail($type, $slug)
     {
+        // カテゴリー取得のためのswitch文
+        // 投稿はLivewire側で取得する（ページネーションのため）
         switch ($type) {
             case 'category':
                 $this->categorySlug = $slug;
@@ -118,9 +120,7 @@ class PostController extends Controller
                 $category = Feature::where('slug', $slug)->first();
                 break;
         }
-        $posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->get();
-        // $category = $this->category;
-        return view('category_detail', compact('posts', 'category'));
+        return view('category_detail', compact('category', 'type', 'slug'));
     }
 
     // public function index(string $tagSlug = null)
