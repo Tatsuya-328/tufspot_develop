@@ -3,14 +3,7 @@
     <x-header />
     <x-post_list_title class="unset-shadow" listTitle="ライター一覧" />
     <x-main>
-        <div class="d-flex flex-wrap flex-column justify-content-center align-content-center">
-            @foreach ($writers as $writer)
-                <x-writer_explain :writer=$writer />
-            @endforeach
-            {{-- <x-writer_explain />
-            <x-writer_explain />
-            <x-writer_explain /> --}}
-        </div>
+        <livewire:writer-list />
     </x-main>
     <x-footer />
 </x-template>
