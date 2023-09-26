@@ -11,8 +11,7 @@ class WriterList extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    // TODO: シーダー流して動作確認
-    public $per_page = 1;
+    public $per_page = 6;
 
     // ページ遷移後、スクロールアップ
     public function updatedPage($page)
