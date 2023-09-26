@@ -9,6 +9,6 @@
         </p>
     </a>
     @if (!$writer->isAuthUser())
-        <livewire:follow :followed_user=$writer />
+        <livewire:follow :followed_user=$writer wire:key="followed-writer-{{ $writer->id }}" />
     @endif
 </div>
