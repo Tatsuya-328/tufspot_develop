@@ -57,17 +57,17 @@ class PostController extends Controller
         $academia_category_id = Category::NAME['Academia'];
         $academia_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
             $query->where('category_id', $academia_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $business_category_id = Category::NAME['Business'];
         $business_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($business_category_id) {
             $query->where('category_id', $business_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $culture_category_id = Category::NAME['Culture'];
         $culture_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
             $query->where('category_id', $culture_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
