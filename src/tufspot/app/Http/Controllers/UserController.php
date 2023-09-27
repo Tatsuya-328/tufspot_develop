@@ -12,6 +12,10 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
+    private $tagSlug = null;
+    private $categorySlug = null;
+    private $featureSlug = null;
+
     /**
      * 詳細画面
      *
@@ -22,20 +26,18 @@ class UserController extends Controller
     {
         // 管理者かつ記事を持っている(公開済み)ユーザーのみ表示（ユーザー一覧でもやる）
         $user = User::with('posts')->where([
-                ['id', '=', $user['id']],
-                ['role', '=', 1],
-            ])->whereHas('posts', function($q){
-                $q->whereExists(function($q){
-                    return $q;
-                });
-            })->first();
+            ['id', '=', $user['id']],
+            ['role', '=', 1],
+        ])->whereHas('posts', function ($q) {
+            $q->whereExists(function ($q) {
+                return $q;
+            });
+        })->first();
         if (empty($user)) {
             abort(404, '存在しないページです');
-        }        
-        
-        // TODO: 執筆記事取得 仮で適当に取得
-        $written_posts = Post::latest()->take(6)->get();
-        return view('writer_detail', compact('user', 'written_posts'));
+        }
+
+        return view('writer_detail', compact('user'));
     }
 
     /**
@@ -49,14 +51,14 @@ class UserController extends Controller
         $public = 1;
         // TODO: ページネーションで一度に表示人数絞る
         $writers = User::where([
-                        ['role', '=', 1],
-                    ])->with(['posts' => function ($query) use ($public) {
-                        $query->where('is_public', $public);
-                    }])->whereHas('posts', function($query){
-                        $query->whereExists(function($query){
-                            return $query;
-                        });
-                    })->get();
+            ['role', '=', 1],
+        ])->with(['posts' => function ($query) use ($public) {
+            $query->where('is_public', $public);
+        }])->whereHas('posts', function ($query) {
+            $query->whereExists(function ($query) {
+                return $query;
+            });
+        })->get();
         return view('writer_list', compact('writers'));
     }
 
@@ -72,25 +74,12 @@ class UserController extends Controller
         // formファザード用
         $user['phone_number'] = $user->gaigokaiMembers[0]['phone_number'];
 
-        // タグ検索していないためnull
-        $tagSlug =null;
-        // TODO: お気に入り記事（保存記事）仮で適当に取得
-        $favorited_posts = Post::PublicList($tagSlug)->take(6)->get();
         // TODO: 閲覧履歴 仮で適当に取得
-        $history_posts = Post::PublicList($tagSlug)->take(6)->get();
-        // TODO: フォロー済みライター(管理者かつ記事持ってる) 仮で適当に取得
-        $public = 1;
-        $follow_writers = User::where([
-                            ['role', '=', 1],
-                        ])->with(['posts' => function ($query) use ($public) {
-                            $query->where('is_public', $public);
-                        }])->whereHas('posts', function($query){
-                            $query->whereExists(function($query){
-                                return $query;
-                            });
-                        })->get();
+        $history_posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->take(6)->get();
+        // TODO: とりあえずフォロー済ライターを全件取得
+        $following_writers = $user->followings()->get();
 
-        return view('mypage', compact('user', 'favorited_posts', 'history_posts', 'follow_writers'));
+        return view('mypage', compact('user', 'history_posts', 'following_writers'));
     }
 
     /**

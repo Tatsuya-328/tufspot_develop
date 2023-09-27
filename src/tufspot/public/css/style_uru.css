@@ -1,6 +1,7 @@
 @import url('./modules/index.css');
 @import url('./modules/about.css');
 @import url('./modules/post.css');
+@import url('./modules/categoryDetail.css');
 
 /* @charset "UTF-8";
 
@@ -37,6 +38,10 @@ a:hover {
 /* tufspot */
 * {
   font-family: "Hiragino Sans";
+}
+
+.gray_color {
+  color: #565656;
 }
 
 p {
@@ -264,12 +269,13 @@ footer {
 .post_list_title_text {
   text-align: center;
   font-size: 30px;
-  color: #565656;
-  font-weight: 400;
+  color: #2f2f2f;
+  font-weight: 550;
+  letter-spacing: 6px;
 }
 
 .post_list_explain {
-  margin: 0 auto 70px auto;
+  margin: 0 auto 100px auto;
   max-width: 780px;
 }
 
@@ -898,12 +904,13 @@ input[type="radio"] {
 }
 
 @media screen and (max-width: 350px) {
-    .about-concept-spot-title {
-        font-size: 12px;
-    }
-    .about-concept-spot-headline {
-        font-size: 35px;
-    }
+  .about-concept-spot-title {
+    font-size: 12px;
+  }
+
+  .about-concept-spot-headline {
+    font-size: 35px;
+  }
 }
 
 .about-concept-spot-headline>span {
@@ -1602,10 +1609,12 @@ li.slick-slide>.post_card {
   color: #505050;
 }
 
-.top_pickup_title>a {
+.top_pickup_title {
   font-size: 30px;
+  font-weight: 550;
   letter-spacing: 6px;
   color: #2f2f2f;
+  margin-top: 10px;
 }
 
 .top_pickup_title_text {
@@ -1621,16 +1630,20 @@ li.slick-slide>.post_card {
   height: 600px;
   height: 100%;
   /* padding: 0 0 60px 0; */
-  margin:115px 0 0 0;
+  margin: 115px 0 0 0;
 }
 
 .top_feature_wrapper:nth-child(1) {
-    margin-top: 40px;
+  margin-top: 40px;
+  height: 600px;
+  height: 100%;
+  /* padding: 0 0 60px 0; */
+  margin: 40px 0 0 0;
 }
 
 .top_feature_title_text {
   border-bottom: 1px solid;
-  margin: 10px auto;
+  margin: 20px auto;
   width: 115px;
 }
 
@@ -1680,7 +1693,7 @@ li.slick-slide>.post_card {
     height: 26px;
   }
 
-  .top_pickup_title {
+  .top_pickup_title_wrapper .top_pickup_title {
     font-size: 20px;
     letter-spacing: 5px;
   }

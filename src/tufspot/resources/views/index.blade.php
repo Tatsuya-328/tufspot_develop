@@ -17,17 +17,19 @@
 
     {{-- Pick Up --}}
     {{-- ランダム10 --}}
-    <x-top_slider title="Pick Up" text="注目記事" :posts=$pickup_posts />
+    {{-- これは「注目記事」という特集にした方がよい？ --}}
+    <x-top_slider title="Pick Up" text="注目記事" detail_type="feature" slug="pickup" :posts=$pickup_posts />
 
     {{-- Academia etc... --}}
-    {{-- それぞれ最新を12つずつ --}}
-    <x-top_category title="Academia" imagePath="image/BOOK.png" :posts=$academia_posts />
-    <x-top_category title="Business and Career" imagePath="image/TALK.png" :posts=$business_posts />
-    <x-top_category title="Culture and Essay" imagePath="image/EARTH.png" :posts=$culture_posts />
+    {{-- それぞれ最新を6つずつ --}}
+    {{-- TODO:　sulgをDBから持ってくる --}}
+    <x-top_category title="Academia" type="category" slug="academia" imagePath="image/BOOK.png" :posts=$academia_posts />
+    <x-top_category title="Business and Career" type="category" slug="business-and-career" imagePath="image/TALK.png" :posts=$business_posts />
+    <x-top_category title="Culture and Essay" type="category" slug="culture-and-essay" imagePath="image/EARTH.png" :posts=$culture_posts />
 
     {{-- Feature --}}
     {{-- ランダム10 --}}
-    <x-top_slider title="Feature" text="特集" type="feature" :posts=$feature_posts />
+    <x-top_slider title="Feature" text="特集" slide_type="特集" :posts=$feature_posts />
 
     <div class="top_links_wrapper d-flex justify-content-center ">
         <div class="top_links d-flex align-items-center justify-content-center">

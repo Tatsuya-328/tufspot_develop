@@ -26,6 +26,8 @@
     <link href="{{ asset('css/post.css') }}" rel="stylesheet">
     {{-- 目次生成 --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/mokuji.css') }}">
+
+    @livewireStyles
 </head>
 
 <body alink=”#0056b3 class="body">
@@ -96,6 +98,8 @@
             });
         }
     </script>
+
+    @livewireScripts
 </body>
 
 </html>

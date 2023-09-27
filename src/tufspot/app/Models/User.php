@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
@@ -16,7 +17,7 @@ class User extends Authenticatable
         // 全ての呼び出しでリレーション
         // 親のメソッドを呼び出す。もともとはクエリビルダーを新規作成するときに呼び出されるメソッド。
         $query = parent::newQuery();
-        $query = $query->with(['snsAccounts','gaigokaiMembers']);
+        $query = $query->with(['snsAccounts', 'gaigokaiMembers']);
 
         return $query;
     }
@@ -100,6 +101,38 @@ class User extends Authenticatable
     }
 
     /**
+     * いいねのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
+    }
+
+    /**
+     * フォロー機能のリレーション
+     * 特定のユーザーがフォローしているユーザーを取得する
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'followed_user_id');
+    }
+
+    /**
+     * フォロー機能のリレーション
+     * 特定のユーザーをフォローしているユーザーを取得する
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followed_user_id', 'user_id');
+    }
+
+    /**
      * 権限をラベル表示
      *
      * @return string
@@ -107,5 +140,26 @@ class User extends Authenticatable
     public function getRoleLabelAttribute()
     {
         return config('common.user.roles')[$this->role];
+    }
+
+    /**
+     * ログインしているユーザーが、特定のユーザーをフォロー中かどうか判定
+     *
+     * @return bool
+     */
+    public function hasFollower(User $followed_user)
+    {
+        $followingIdList = $this->followings()->pluck('followed_user_id');
+        return $followingIdList->contains($followed_user->id);
+    }
+
+    /**
+     * 特定のユーザーが自分自身かどうかを判定
+     *
+     * @return bool
+     */
+    public function isAuthUser()
+    {
+        return $this->id == Auth::id();
     }
 }

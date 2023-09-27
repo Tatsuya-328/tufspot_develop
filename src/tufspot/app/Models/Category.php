@@ -18,4 +18,12 @@ class Category extends Model
         'Business' => 2,
         'Culture' => 3,
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

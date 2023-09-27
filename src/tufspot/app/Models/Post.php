@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title', 'body','description', 'is_public', 'published_at', 'featured_image_path'
+        'title', 'body', 'description', 'is_public', 'published_at', 'featured_image_path'
     ];
 
     protected $casts = [
@@ -25,17 +26,17 @@ class Post extends Model
         // 全ての呼び出しでリレーション
         // 親のメソッドを呼び出す。もともとはクエリビルダーを新規作成するときに呼び出されるメソッド。
         $query = parent::newQuery();
-        $query = $query->with(['user', 'tags', 'categories']);
+        $query = $query->with(['user', 'tags', 'categories', 'features']);
 
         return $query;
     }
-    
+
     protected static function boot()
     {
         parent::boot();
 
         // 保存時user_idをログインユーザーに設定
-        self::saving(function($post) {
+        self::saving(function ($post) {
             $post->user_id = \Auth::id();
         });
     }
@@ -68,6 +69,24 @@ class Post extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function features()
+    {
+        return $this->belongsToMany(Feature::class);
+    }
+
+    /**
+     * いいねのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'likes', 'post_id', 'user_id');
+    }
+
+    /**
      * 公開のみ表示
      *
      * @param Builder $query
@@ -85,18 +104,27 @@ class Post extends Model
      * @param string|null $tagSlug
      * @return Builder
      */
-    public function scopePublicList(Builder $query, ?string $tagSlug)
+    public function scopePublicList(Builder $query, ?string $tagSlug, ?string $categorySlug, ?string $featureSlug)
     {
         if ($tagSlug) {
-            $query->whereHas('tags', function($query) use ($tagSlug) {
+            $query->whereHas('tags', function ($query) use ($tagSlug) {
                 $query->where('slug', $tagSlug);
             });
         }
+        if ($categorySlug) {
+            $query->whereHas('categories', function ($query) use ($categorySlug) {
+                $query->where('slug', $categorySlug);
+            });
+        }
+        if ($featureSlug) {
+            $query->whereHas('features', function ($query) use ($featureSlug) {
+                $query->where('slug', $featureSlug);
+            });
+        }
         return $query
-            ->with('tags')
             ->public()
             ->latest('published_at');
-            // ->paginate(10);
+        // ->paginate(10);
     }
 
     /**
@@ -145,12 +173,55 @@ class Post extends Model
         }
         // タグ
         if ($request->anyFilled('tag_id')) {
-            $query->whereHas('tags', function($query) use ($request) {
+            $query->whereHas('tags', function ($query) use ($request) {
                 $query->where('tag_id', $request->tag_id);
             });
         }
         return $query;
     }
+
+    /**
+     * カテゴリー・特集取得
+     *
+     * @param Builder $query
+     * @param Array $ids
+     * @return Builder
+     */
+    public function scopeSearchByArray(Builder $query, array $ids)
+    {
+        // // タイトル
+        // if (!empty($ids['title'])) {
+        //     $query->where('title', 'like', "%$ids->title%");
+        // }
+        // // ユーザー
+        // if (!empty($ids['user_id'])) {
+        //     $query->where('user_id', $ids->user_id);
+        // }
+        // // 公開・非公開
+        // if (!empty($ids['is_public'])) {
+        //     $query->where('is_public', $ids->is_public);
+        // }
+        // // タグ
+        // if (!empty($ids['tag_id'])) {
+        //     $query->whereHas('tags', function ($query) use ($ids) {
+        //         $query->where('tag_id', $ids->tag_id);
+        //     });
+        // }
+        // カテゴリー
+        if (!empty($ids['category_id'])) {
+            $query->whereHas('categories', function ($query) use ($ids) {
+                $query->where('category_id', $ids['category_id']);
+            });
+        }
+        // カテゴリー
+        if (!empty($ids['feature_id'])) {
+            $query->whereHas('features', function ($query) use ($ids) {
+                $query->where('feature_id', $ids['feature_id']);
+            });
+        }
+        return $query;
+    }
+
 
     /**
      * 公開日を年月日で表示
@@ -170,5 +241,16 @@ class Post extends Model
     public function getIsPublicLabelAttribute()
     {
         return config('common.public_status')[$this->is_public];
+    }
+
+    /**
+     * いいね判定
+     *
+     * @return bool
+     */
+    public function isLiked()
+    {
+        $userList = $this->likes()->pluck('user_id');
+        return $userList->contains(Auth::id());
     }
 }

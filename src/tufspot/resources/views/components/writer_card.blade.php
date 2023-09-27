@@ -8,8 +8,7 @@
             {{ $writer['name'] }}
         </p>
     </a>
-    <div class="writer-card-button-wrapper">
-        <a href="#" class="writer-card-button text-center">フォローを外す</a>
-    </div>
-
+    @if (!$writer->isAuthUser())
+        <livewire:follow :followed_user=$writer />
+    @endif
 </div>

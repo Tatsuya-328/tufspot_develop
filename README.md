@@ -2,6 +2,11 @@
 share develop repository
 開発用リポジトリ、デプロイ用は別でsrc/tufspot配下のみ
 
+## developをプルしてエラーがでたら
+- src/tufspotにて`$composer update`と`$npm update`
+- コンテナにて seederキャッシュクリア`composer dump-autoload` migrate実行`php artisan migrate:fresh --seed`
+- 下部のキャッシュ削除コマンド
+
 ## 環境構築
 - 新たにdevelopをCloneする時は、元々のtufspotのDockerコンテナ、イメージを削除してからやらないと重複してエラーになる（db/dateが空であること）
 - Clone
@@ -28,6 +33,68 @@ DB_PASSWORD=tufspot_pass
   - testtest
 - /adminで記事管理画面
 
+## VSCodeフォーマッター
+保存時の自動フォーマッター動作
+.php: returnの下の改行させない。インデント揃える
+.blade: インデント揃える
+.js: 不要な改行させない。インデント揃える
+.css: インデント揃える
+
+拡張機能
+- prittier
+  - 名前: Prettier - Code formatter
+  - ID: esbenp.prettier-vscode
+  - 説明: Code formatter using prettier
+  - バージョン: 10.1.0
+  - パブリッシャー: Prettier
+  - VS Marketplace リンク: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+- intelephense
+  - 名前: PHP Intelephense
+  - ID: bmewburn.vscode-intelephense-client
+  - 説明: PHP code intelligence for Visual Studio Code
+  - バージョン: 1.9.5
+  - パブリッシャー: Ben Mewburn
+  - VS Marketplace リンク: https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client
+- bladeformmater
+  - 名前: Laravel Blade formatter
+  - ID: shufo.vscode-blade-formatter
+  - 説明: Laravel Blade formatter for VSCode
+  - バージョン: 0.23.1
+  - パブリッシャー: Shuhei Hayashibara
+  - VS Marketplace リンク: https://marketplace.visualstudio.com/items?itemName=shufo.vscode-blade-formatter
+
+フォーマッター設定
+setting.json
+```
+  // vscodeデフォルト
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+
+  // prittier
+  "prettier.printWidth": 5000,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+
+  // intelephense
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "intelephense.diagnostics.undefinedClassConstants": false,
+  "intelephense.diagnostics.undefinedConstants": false,
+  "intelephense.diagnostics.undefinedFunctions": false,
+  "intelephense.diagnostics.undefinedProperties": false,
+  "intelephense.diagnostics.undefinedMethods": false,
+  "intelephense.diagnostics.undefinedTypes": false,
+
+  // bladeformmater
+  "bladeFormatter.format.wrapLineLength": 1200,
+  "[blade]":{
+      "editor.defaultFormatter": "shufo.vscode-blade-formatter"
+  },
+  "blade.format.enable": true,
+```
 ## 参考コマンド
 Laravelキャッシュ削除コマンド
 ```

@@ -17,5 +17,28 @@ class PostSeeder extends Seeder
         \Event::fakeFor(function () {
             Post::factory()->count(50)->create();
         });
+
+        \DB::table('likes')->insert([
+            [
+                'user_id' => 2,
+                'post_id' => 1,
+            ],
+            [
+                'user_id' => 2,
+                'post_id' => 2,
+            ],
+            [
+                'user_id' => 2,
+                'post_id' => 3,
+            ],
+            [
+                'user_id' => 2,
+                'post_id' => 4,
+            ],
+            [
+                'user_id' => 2,
+                'post_id' => 5,
+            ],
+        ]);
     }
 }
