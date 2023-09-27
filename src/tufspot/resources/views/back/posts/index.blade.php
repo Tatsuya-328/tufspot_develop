@@ -16,7 +16,6 @@ $title = '記事一覧';
                 </svg>登録</a>
         </div>
     </div>
-    {{-- <h1>{{ $title }}</h1> --}}
     <div class="">
         {!! Form::model($search, [
             'route' => 'back.posts.index',

@@ -6,13 +6,13 @@
 {{-- <form action="{{ 'PostsController@save' }}" method="post"> --}}
 {{-- <form action="" method="post"> --}}
 <div class="form-group row">
-    {{ Form::label('title', 'タイトル', ['class' => 'col-sm-2 col-form-label']) }}
+    {{-- {{ Form::label('title', 'タイトル', ['class' => 'col-sm-2 col-form-label']) }} --}}
     <div class="col-sm-10">
         {{-- {{ Form::text('title', null, [
                 'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
                 'required',
             ]) }} --}}
-        <textarea type="textarea" class="form-control" name="title">{{ old('title') }}</textarea>
+        <textarea type="textarea" class="form-control" name="title" placeholder="タイトル">{{ old('title') }}</textarea>
         @error('title')
             <div class="invalid-feedback">
                 {{ $message }}
