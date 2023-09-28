@@ -246,22 +246,22 @@
         document.ansform.submit();
     });
 
-    // $(function() {
-    //     var $title_textarea = $('#title_textarea');
-    //     var lineHeight = parseInt($title_textarea.css('lineHeight'));
-    //     $title_textarea.on('input', function(e) {
-    //         var lines = ($(this).val() + '\n').match(/\n/g).length;
-    //         $(this).height(lineHeight * lines);
-    //     });
-    // });
-    // $(function() {
-    //     var $description_textarea = $('#description_textarea');
-    //     var lineHeight = parseInt($description_textarea.css('lineHeight'));
-    //     $description_textarea.on('input', function(e) {
-    //         var lines = ($(this).val() + '\n').match(/\n/g).length;
-    //         $(this).height(lineHeight * lines);
-    //     });
-    // });
+    $(function() {
+        var $title_textarea = $('#title_textarea');
+        var lineHeight = parseInt($title_textarea.css('lineHeight'));
+        $title_textarea.on('input', function(e) {
+            var lines = ($(this).val() + '\n').match(/\n/g).length;
+            $(this).height(lineHeight * lines);
+        });
+    });
+    $(function() {
+        var $description_textarea = $('#description_textarea');
+        var lineHeight = parseInt($description_textarea.css('lineHeight'));
+        $description_textarea.on('input', function(e) {
+            var lines = ($(this).val() + '\n').match(/\n/g).length;
+            $(this).height(lineHeight * lines);
+        });
+    });
 
     $(function() {
         $('#description_textarea')
@@ -277,7 +277,7 @@
 
     $(function() {
         $('#title_textarea')
-            .on('change keyup keydown paste cut', function() {
+            .on('change keydown paste cut', function() {
                 if ($(this).outerHeight() > this.scrollHeight) {
                     $(this).height(1)
                 }
