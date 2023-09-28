@@ -7,9 +7,9 @@
     {{ Form::label('title', 'タイトル', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
     <div class="col post-form-col">
         @if (Request::is('admin/posts/create'))
-            <textarea type="textarea" class="form-control" name="title">{{ old('title') }}</textarea>
+            <textarea id="title_textarea" type="textarea" class="form-control" name="title">{{ old('title') }}</textarea>
         @else
-            <textarea type="text" class="form-control" name="title">{{ old('title', $post['title']) }}</textarea>
+            <textarea id="title_textarea" type="text" class="form-control" name="title">{{ old('title', $post['title']) }}</textarea>
         @endif
         @error('title')
             <div class="invalid-feedback">
@@ -23,9 +23,9 @@
     {{ Form::label('description', '説明文', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
     <div class="col post-form-col">
         @if (Request::is('admin/posts/create'))
-            <textarea type="textarea" class="form-control" name="description">{{ old('description') }} </textarea>
+            <textarea id="description_textarea" type="textarea" class="form-control" name="description">{{ old('description') }} </textarea>
         @else
-            <textarea type="text" class="form-control" name="description">{{ old('description', $post['description']) }}</textarea>
+            <textarea id="description_textarea" type="text" class="form-control" name="description">{{ old('description', $post['description']) }}</textarea>
         @endif
         @error('description')
             <div class="invalid-feedback">
@@ -244,5 +244,46 @@
         document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
         // 送信
         document.ansform.submit();
+    });
+
+    // $(function() {
+    //     var $title_textarea = $('#title_textarea');
+    //     var lineHeight = parseInt($title_textarea.css('lineHeight'));
+    //     $title_textarea.on('input', function(e) {
+    //         var lines = ($(this).val() + '\n').match(/\n/g).length;
+    //         $(this).height(lineHeight * lines);
+    //     });
+    // });
+    // $(function() {
+    //     var $description_textarea = $('#description_textarea');
+    //     var lineHeight = parseInt($description_textarea.css('lineHeight'));
+    //     $description_textarea.on('input', function(e) {
+    //         var lines = ($(this).val() + '\n').match(/\n/g).length;
+    //         $(this).height(lineHeight * lines);
+    //     });
+    // });
+
+    $(function() {
+        $('#description_textarea')
+            .on('change keyup keydown paste cut', function() {
+                if ($(this).outerHeight() > this.scrollHeight) {
+                    $(this).height(1)
+                }
+                while ($(this).outerHeight() < this.scrollHeight) {
+                    $(this).height($(this).height() + 1)
+                }
+            }).trigger('change');
+    });
+
+    $(function() {
+        $('#title_textarea')
+            .on('change keyup keydown paste cut', function() {
+                if ($(this).outerHeight() > this.scrollHeight) {
+                    $(this).height(1)
+                }
+                while ($(this).outerHeight() < this.scrollHeight) {
+                    $(this).height($(this).height() + 1)
+                }
+            }).trigger('change');
     });
 </script>
