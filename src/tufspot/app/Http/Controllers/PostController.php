@@ -57,17 +57,17 @@ class PostController extends Controller
         $academia_category_id = Category::NAME['Academia'];
         $academia_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
             $query->where('category_id', $academia_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $business_category_id = Category::NAME['Business'];
         $business_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($business_category_id) {
             $query->where('category_id', $business_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $culture_category_id = Category::NAME['Culture'];
         $culture_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
             $query->where('category_id', $culture_category_id);
-        })->take(6)->get();
+        })->take(12)->get();
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
@@ -108,6 +108,8 @@ class PostController extends Controller
      */
     public function category_detail($type, $slug)
     {
+        // カテゴリー取得のためのswitch文
+        // 投稿はLivewire側で取得する（ページネーションのため）
         switch ($type) {
             case 'category':
                 $this->categorySlug = $slug;
@@ -118,9 +120,7 @@ class PostController extends Controller
                 $category = Feature::where('slug', $slug)->first();
                 break;
         }
-        $posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->get();
-        // $category = $this->category;
-        return view('category_detail', compact('posts', 'category'));
+        return view('category_detail', compact('category', 'type', 'slug'));
     }
 
     // public function index(string $tagSlug = null)
