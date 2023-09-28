@@ -17,7 +17,7 @@ $title = '投稿編集';
             'files' => true,
             'enctype' => 'multipart/form-data',
         ]) !!}
-        @include('back.posts.edit_form')
+        @include('back.posts._form')
         {!! Form::close() !!}
         <table class="table">
             <tr>

@@ -3,17 +3,14 @@
  * @var \App\Models\Post $post
  */
 ?>
-{{-- <form action="{{ 'PostsController@save' }}" method="post"> --}}
-{{-- <form action="" method="post"> --}}
 <div class="form-group row mb-2">
-    {{-- {{ Form::label('title', 'タイトル', ['class' => 'form-label']) }} --}}
     {{ Form::label('title', 'タイトル', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
     <div class="col post-form-col">
-        {{-- {{ Form::text('title', null, [
-                'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
-                'required',
-            ]) }} --}}
-        <textarea type="textarea" class="form-control" name="title">{{ old('title') }}</textarea>
+        @if (Request::is('admin/posts/create'))
+            <textarea type="textarea" class="form-control" name="title">{{ old('title') }}</textarea>
+        @else
+            <textarea type="text" class="form-control" name="title">{{ old('title', $post['title']) }}</textarea>
+        @endif
         @error('title')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -23,14 +20,13 @@
 </div>
 
 <div class="form-group row mb-2">
-    {{-- {{ Form::label('description', '説明文', ['class' => 'form-label']) }} --}}
     {{ Form::label('description', '説明文', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
     <div class="col post-form-col">
-        {{-- {{ Form::text('title', null, [
-                'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''),
-                'required',
-            ]) }} --}}
-        <textarea type="textarea" class="form-control" name="description">{{ old('description') }} </textarea>
+        @if (Request::is('admin/posts/create'))
+            <textarea type="textarea" class="form-control" name="description">{{ old('description') }} </textarea>
+        @else
+            <textarea type="text" class="form-control" name="description">{{ old('description', $post['description']) }}</textarea>
+        @endif
         @error('description')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -40,20 +36,16 @@
 </div>
 
 <div class="form-group row mb-5">
-    {{-- {{ Form::label('body', '本文', ['class' => 'form-label']) }} --}}
     {{ Form::label('body', '本文', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
     <div class="col post-form-col h-100" id="">
-        {{-- {{ Form::textarea('body', null, [
-                'class' => 'form-control' . ($errors->has('body') ? ' is-invalid' : ''),
-                'rows' => 5,
-            ]) }} --}}
-
-        {{-- quill editor --}}
         <div id="quill_editor" class="">
-            {!! old('body') !!}
+            @if (Request::is('admin/posts/create'))
+                {!! old('body') !!}
+            @else
+                {!! $post['body'] !!}
+            @endif
         </div>
         {{-- quill変換後DB保存用隠し --}}
-        {{-- <input type="hidden" name="main"> --}}
         <input name="body" style="display:none" id="body">
         @error('body')
             <div class="invalid-feedback">
@@ -64,13 +56,19 @@
 </div>
 
 <div class="row mb-2">
-    {{-- {{ Form::label('featured_image', 'アイキャッチ画像', ['class' => 'form-label']) }} --}}
     {{ Form::label('featured_image', 'アイキャッチ', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
     <div class="col post-form-col">
+        @if (!Request::is('admin/posts/create'))
+            @if ($post['featured_image_path'])
+                既存<br>
+                <img class="featured_image" src="{{ asset($post->featured_image_path) }}" alt="">
+            @endif
+        @endif
         <input type="file" class="form-control" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
-        <input type="button" id="clear" value="画像選択解除" onclick="test();" style="display: none">
+        <input type="button" id="clear" value="画像選択解除" onclick="unsetImage();" style="display: none">
         <div class="image_preview" id="image_preview" style="display: none">
             登録する画像<br>
+            {{-- 画像入れ替える様に極小画像置いておく --}}
             <img class="featured_image" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         </div>
         @error('featured_image')
@@ -201,7 +199,7 @@
 
         // stop sending
         e.preventDefault();
-        // admin/posts
+
         // set variables
         var blogForm = document.getElementById("ansform");
         var defaultAction = blogForm.getAttribute("action");
@@ -211,8 +209,6 @@
         // rewrite action & submit
         blogForm.setAttribute("action", previewAction);
         blogForm.setAttribute("target", "_blank");
-        // blogForm.setAttribute("method", "put");
-        // blogForm.setAttribute("method", "PUT");
 
         blogForm.submit();
 
@@ -224,7 +220,8 @@
 
     });
 
-    function test() {
+    // 選択画像削除
+    function unsetImage() {
         var obj = document.getElementById("featured_image");
         obj.value = null;
         document.getElementById('image_preview').style.display = 'none';
@@ -244,18 +241,8 @@
 
     // 回答フォームを送信
     document.ansform.subbtn.addEventListener('click', function() {
-        // ブログの試し html用のタグ付きのデータ保存はできた
-        // TODO 編集時のこと考えると、公式で保存して、見た目もcss適用してブログと同じようにした方が楽？
         document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
-
-        // 公式demo qulill用のデータになった。編集画面で再度エディター表示するならこれを使う？
-        // var hoge = JSON.stringify(quill.getContents());
-        // document.querySelector('input[name=body]').value = hoge;
-
         // 送信
         document.ansform.submit();
-        // console.log("Submitted", $(form).serialize(), $(form).serializeArray());
-
-        // };
     });
 </script>
