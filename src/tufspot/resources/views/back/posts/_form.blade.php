@@ -50,11 +50,11 @@
 
         {{-- quill editor --}}
         <div id="quill_editor" class="">
+            {!! old('body') !!}
         </div>
         {{-- quill変換後DB保存用隠し --}}
         {{-- <input type="hidden" name="main"> --}}
         <input name="body" style="display:none" id="body">
-
         @error('body')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -159,9 +159,9 @@
                     'class' => 'form-check-input' . ($errors->has('is_public') ? ' is-invalid' : ''),
                 ]) }}
                 {{ Form::label('is_public' . $key, $value, ['class' => 'form-check-label']) }}
-                @if ($key === 0)
+                @if ($key === 1)
                     @error('is_public')
-                        <div class="invalid-feedback">
+                        <div class="text-danger form-check form-check-inline">
                             {{ $message }}
                         </div>
                     @enderror
