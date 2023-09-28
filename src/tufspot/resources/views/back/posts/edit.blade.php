@@ -7,8 +7,10 @@ $title = '投稿編集';
 @extends('back.layouts.base')
 
 @section('content')
-    <div class="card-header">{{ $title }}</div>
-    <div class="card-body">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">{{ $title }}</h1>
+    </div>
+    <div class="">
         {!! Form::model($post, [
             'name' => 'ansform',
             'id' => 'ansform',
@@ -17,7 +19,7 @@ $title = '投稿編集';
             'files' => true,
             'enctype' => 'multipart/form-data',
         ]) !!}
-        @include('back.posts.edit_form')
+        @include('back.posts._form')
         {!! Form::close() !!}
         <table class="table">
             <tr>

@@ -51,7 +51,7 @@
     </style>
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/post.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/adminPost.css') }}" rel="stylesheet">
 </head>
 
 <body class="vsc-initialized">
@@ -219,9 +219,9 @@
                         [{
                             header: [1, false]
                         }],
-                        [{
-                            'size': ['small', false, 'large']
-                        }],
+                        // [{
+                        //     'size': ['small', false, 'large']
+                        // }],
                         [{
                             'list': 'ordered'
                         }, {
@@ -235,8 +235,10 @@
                     ]
                 },
                 scrollingContainer: '#scrolling-container',
-                placeholder: 'Compose an epic...',
-                theme: 'bubble',
+                // placeholder: 'Compose an epic...',
+                // theme: 'bubble',
+                theme: 'snow',
+                // theme: ['snow', 'bubble'],
                 // readOnly: true,
             });
         }
