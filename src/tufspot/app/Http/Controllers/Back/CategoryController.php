@@ -40,6 +40,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        // TODO: 記事登録と中間更新をトランザクションにする
         $category = Category::create($request->all());
 
         // category_postの更新

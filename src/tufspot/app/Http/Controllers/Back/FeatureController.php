@@ -29,7 +29,7 @@ class FeatureController extends Controller
     {
         $posts = Post::get();
         $added_posts = null;
-        return view('back.features.create', compact('posts' . 'added_posts'));
+        return view('back.features.create', compact('posts', 'added_posts'));
     }
 
     /**
@@ -40,6 +40,7 @@ class FeatureController extends Controller
      */
     public function store(FeatureRequest $request)
     {
+        // TODO: 記事登録と中間更新をトランザクションにする
         $feature = Feature::create($request->all());
 
         // category_postの更新

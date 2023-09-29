@@ -78,7 +78,11 @@
             @foreach ($posts as $key => $post)
                 <tr>
                     <td>
-                        {{ Form::checkbox('add_post_ids[]', $key + 1, in_array($key + 1, old('add_post_ids', $added_posts->pluck('id')->toArray())), ['id' => 'add_post_id' . $key + 1, 'class' => 'form-check-input']) }}
+                        @if (!empty($added_posts))
+                            {{ Form::checkbox('add_post_ids[]', $key + 1, in_array($key + 1, old('add_post_ids', $added_posts->pluck('id')->toArray())), ['id' => 'add_post_id' . $key + 1, 'class' => 'form-check-input']) }}
+                        @else
+                            {{ Form::checkbox('add_post_ids[]', $key + 1), ['id' => 'add_post_id' . $key + 1, 'class' => 'form-check-input'] }}
+                        @endif
                     </td>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
