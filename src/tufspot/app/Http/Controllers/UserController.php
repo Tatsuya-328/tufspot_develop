@@ -47,19 +47,7 @@ class UserController extends Controller
      */
     public function list()
     {
-        // 管理者かつ記事を持っている(公開)ユーザーのみ表示
-        $public = 1;
-        // TODO: ページネーションで一度に表示人数絞る
-        $writers = User::where([
-            ['role', '=', 1],
-        ])->with(['posts' => function ($query) use ($public) {
-            $query->where('is_public', $public);
-        }])->whereHas('posts', function ($query) {
-            $query->whereExists(function ($query) {
-                return $query;
-            });
-        })->get();
-        return view('writer_list', compact('writers'));
+        return view('writer_list');
     }
 
     /**
@@ -77,9 +65,9 @@ class UserController extends Controller
         // TODO: 閲覧履歴 仮で適当に取得
         $history_posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->take(6)->get();
         // TODO: とりあえずフォロー済ライターを全件取得
-        $following_writers = $user->followings()->get();
+        // $following_writers = $user->followings()->get();
 
-        return view('mypage', compact('user', 'history_posts', 'following_writers'));
+        return view('mypage', compact('user', 'history_posts'));
     }
 
     /**
