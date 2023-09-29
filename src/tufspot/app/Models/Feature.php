@@ -12,4 +12,12 @@ class Feature extends Model
     protected $fillable = [
         'slug', 'name', 'description'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }
