@@ -15,9 +15,19 @@ class FollowingWriterList extends Component
 
     public $per_page = 6;
 
-    // ページ遷移後、スクロールアップ
     public function updatedPage($page)
     {
+        $following_user_count = $this->user->followings()->count();
+
+        // 今の件数が、次のページを持つべきでない場合
+        if (
+            $following_user_count <=
+            $this->per_page * ($page - 1)
+        ) {
+            $this->resetPage();
+        }
+
+        // ページ遷移後、スクロールアップ
         $this->dispatch('page-updated');
     }
 
