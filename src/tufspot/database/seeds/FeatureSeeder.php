@@ -20,6 +20,7 @@ class FeatureSeeder extends Seeder
                 'name' => '注目記事',
                 'slug' => 'pickup',
                 'description' => $faker->realText(rand(100, 200)),
+                'is_public' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -27,18 +28,21 @@ class FeatureSeeder extends Seeder
                 'name' => 'アジア特集',
                 'slug' => 'asia',
                 'description' => $faker->realText(rand(100, 200)),
+                'is_public' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ], [
                 'name' => '大阪万博',
                 'slug' => 'osaka-expo',
                 'description' => $faker->realText(rand(100, 200)),
+                'is_public' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ], [
                 'name' => '外語祭関連',
                 'slug' => 'gaigosai',
                 'description' => $faker->realText(rand(100, 200)),
+                'is_public' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ]

@@ -10,7 +10,7 @@ class Feature extends Model
     use HasFactory;
 
     protected $fillable = [
-        'slug', 'name', 'description'
+        'slug', 'name', 'description', 'is_public'
     ];
 
     /**

@@ -21,17 +21,20 @@
         @endforeach
         @foreach ($features as $feature)
             {{-- <div class="feature_box" id="makeImg"></div> --}}
-            <div class="post_list_explain d-flex flex-column justify-content-center">
-                <a class="text-decoration-none gray_color" href="{{ route('category_detail', ['feature', $feature->slug]) }}">
-                    <h2 class="text-center mb-4 gray_color">{{ $feature->name }}</h2>
-                    <p class="post_list_explain_text m-0">
-                        {!! nl2br($feature->description) !!}
-                        {{-- ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
+            {{-- 公開中のみ表示 --}}
+            @if ($feature->is_public)
+                <div class="post_list_explain d-flex flex-column justify-content-center">
+                    <a class="text-decoration-none gray_color" href="{{ route('category_detail', ['feature', $feature->slug]) }}">
+                        <h2 class="text-center mb-4 gray_color">{{ $feature->name }}</h2>
+                        <p class="post_list_explain_text m-0">
+                            {!! nl2br($feature->description) !!}
+                            {{-- ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
                 ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
                 ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。 --}}
-                    </p>
-                </a>
-            </div>
+                        </p>
+                    </a>
+                </div>
+            @endif
         @endforeach
 
         {{-- <div class="feature_box" id="makeImg">
