@@ -234,8 +234,11 @@
         var blogForm = document.getElementById("ansform");
         var defaultAction = blogForm.getAttribute("action");
         // var previewAction = defaultAction.replace("/store/", "/preview/");
-        var previewAction = defaultAction.replace("/posts", "/preview/1");
-
+        if (document.URL.match("edit")) {
+            var previewAction = defaultAction.replace("/posts", "/preview");
+        } else {
+            var previewAction = defaultAction.replace("/posts", "/preview/1");
+        }
         // rewrite action & submit
         blogForm.setAttribute("action", previewAction);
         blogForm.setAttribute("target", "_blank");
@@ -247,6 +250,7 @@
         blogForm.removeAttribute("target");
         // blogForm.removeAttribute("method");
         blogForm.setAttribute("method", "POST");
+        changeFlg = true;
     });
 
     // 選択画像削除
