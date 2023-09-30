@@ -25,7 +25,29 @@
   display: none;
 } */
 
-/* サイドバースライド用 */
+.sidebar {
+  width: 150px;
+}
+
+/* サイドー横伸縮ためし */
+/* .sidebar:hover {
+  width: 150px;
+  transition: width 0.3s;
+} */
+
+/* 
+#sidebar li {
+  width: 100%;
+  -webkit-transition: width 0.3s ease-out;
+  transition: width 0.3s ease-out;
+}
+
+#sidebar li:hover {
+  width: 200%;
+}
+ */
+
+/* サイドバー上下スライド用 */
 .sidebar {
   position: fixed;
   top: 0;
@@ -49,7 +71,7 @@
 }
 
 .admin-main {
-  margin-top: 8rem;
+  margin-top: 1rem;
 }
 
 @media (min-width: 767.98px) {
@@ -59,9 +81,9 @@
     z-index: 999;
   }
 
-  .admin-main {
+  /* .admin-main {
     margin-top: 5rem;
-  }
+  } */
 }
 
 .sidebar .nav-link {
