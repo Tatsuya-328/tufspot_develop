@@ -19,19 +19,22 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Academia',
                 'slug' => 'academia',
-                'description' => $faker->realText(rand(100,200)),
+                'description' => $faker->realText(rand(100, 200)),
+                'is_public' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
-            ],[
+            ], [
                 'name' => 'Business and Career',
                 'slug' => 'business-and-career',
-                'description' => $faker->realText(rand(100,200)),
+                'description' => $faker->realText(rand(100, 200)),
+                'is_public' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
-            ],[
+            ], [
                 'name' => 'Culture and Essay',
                 'slug' => 'culture-and-essay',
-                'description' => $faker->realText(rand(100,200)),
+                'description' => $faker->realText(rand(100, 200)),
+                'is_public' => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ]
@@ -40,7 +43,7 @@ class CategorySeeder extends Seeder
         for ($i = 1; $i <= 50; $i++) {
             \DB::table('category_post')->insert([
                 'post_id' => $i,
-                'category_id' => $faker->numberBetween(1,3)
+                'category_id' => $faker->numberBetween(1, 3)
             ]);
         }
     }
