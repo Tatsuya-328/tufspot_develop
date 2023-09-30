@@ -130,6 +130,27 @@
     </div> --}}
 @endif
 
+<div class="form-group row">
+    {{ Form::label('is_public', '状態', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
+    <div class="col post-form-col">
+        @foreach (config('common.public_status') as $key => $value)
+            <div class="form-check form-check-inline">
+                {{ Form::radio('is_public', $key, $key === 1 ? true : false, [
+                    'id' => 'is_public' . $key,
+                    'class' => 'form-check-input' . ($errors->has('is_public') ? ' is-invalid' : ''),
+                ]) }}
+                {{ Form::label('is_public' . $key, $value, ['class' => 'form-check-label']) }}
+                @if ($key === 1)
+                    @error('is_public')
+                        <div class="text-danger form-check form-check-inline">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                @endif
+            </div>
+        @endforeach
+    </div>
+</div>
 
 <div class="form-group row">
     <div class="col-sm-10">
