@@ -54,23 +54,37 @@ class PostController extends Controller
         // 特集項目を選択する？特集全体からランダム？一旦全体からランダム
         $feature_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->inRandomOrder()->take(10)->get();
 
+        // TODO: Category::NAMEよりもCategory::IDの方が直感的な気がする、影響範囲が不明のためいったん放置
+        // 公開・非公開の出し分けはview側でもできるが、Controller内の方が無駄なクエリを発行せずに済みそう
         $academia_category_id = Category::NAME['Academia'];
         $academia_category = Category::find($academia_category_id);
-        $academia_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
-            $query->where('category_id', $academia_category_id);
-        })->take(12)->get();
+        $is_academia_public = $academia_category->is_public;
+        $academia_posts = null;
+        if ($is_academia_public) {
+            $academia_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
+                $query->where('category_id', $academia_category_id);
+            })->take(12)->get();
+        }
 
         $business_category_id = Category::NAME['Business'];
         $business_category = Category::find($business_category_id);
-        $business_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($business_category_id) {
-            $query->where('category_id', $business_category_id);
-        })->take(12)->get();
+        $is_business_public = $business_category->is_public;
+        $business_posts = null;
+        if ($is_business_public) {
+            $business_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($business_category_id) {
+                $query->where('category_id', $business_category_id);
+            })->take(12)->get();
+        }
 
         $culture_category_id = Category::NAME['Culture'];
         $culture_category = Category::find($culture_category_id);
-        $culture_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
-            $query->where('category_id', $culture_category_id);
-        })->take(12)->get();
+        $is_culture_public = $culture_category->is_public;
+        $culture_posts = null;
+        if ($is_culture_public) {
+            $culture_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
+                $query->where('category_id', $culture_category_id);
+            })->take(12)->get();
+        }
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
