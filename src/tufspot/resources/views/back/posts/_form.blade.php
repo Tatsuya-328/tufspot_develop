@@ -274,12 +274,28 @@
 
     // 回答フォームを送信
     document.ansform.subbtn.addEventListener('click', function() {
+        let condition = $('[name="is_public"]:checked').val();
+        if (condition === '0') {
+            window.confirm("公開状態は以下で間違いないですか？\n状態：下書き");
+        } else if (condition === '1') {
+            window.confirm("公開状態は以下で間違いないですか？\n状態：公開");
+        } else {
+            window.confirm("公開状態が選択されていません。");
+        }
         changeFlg = false;
         document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
         document.ansform.submit();
     });
     // ページ上部のボタン送信
     document.ansform.headsubbtn.addEventListener('click', function() {
+        let condition = $('[name="is_public"]:checked').val();
+        if (condition === '0') {
+            window.confirm("公開状態は以下で間違いないですか？\n下書き");
+        } else if (condition === '1') {
+            window.confirm("公開状態は以下で間違いないですか？\n公開");
+        } else {
+            window.confirm("公開状態が選択されていません。");
+        }
         changeFlg = false;
         document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
         document.ansform.submit();
