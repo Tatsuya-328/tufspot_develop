@@ -4,15 +4,16 @@
     <x-header />
     <x-post_list_title class="unset-shadow" listTitle="検索結果" />
     <x-main>
-        <div class="d-flex justify-content-center flex-wrap">
-            {{-- <div class="row row-cols-3"> --}}
-            <x-post_card />
-            <x-post_card />
-            <x-post_card />
-            {{-- 最終行も左寄せには、空要素入れるしかなさそう https://qiita.com/QUANON/items/e14949abab3711ca8646 --}}
-            {{-- <x-post_card />
-            <x-post_card />
-            <x-post_card /> --}}
+        {{-- TODO: 検索ワードのスタイリングはいったんカテゴリーからとってきてる、要修正 --}}
+        <div class="post_list_explain d-flex flex-column justify-content-center">
+            @foreach ($keywordArr as $keyword)
+                <p class="post_list_explain_text m-0">
+                    {{ $keyword }}
+                </p>
+            @endforeach
+        </div>
+        <div class="article-list-area">
+            <livewire:paginated-post-list :keywords="$keywordArr" page_flag="search" />
         </div>
     </x-main>
     <x-footer />
