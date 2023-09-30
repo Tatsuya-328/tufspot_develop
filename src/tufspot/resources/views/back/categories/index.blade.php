@@ -24,10 +24,10 @@ $title = 'カテゴリー一覧';
             <table class="table ">
                 <thead>
                     <tr>
-                        <th scope="col" class="text-nowrap">ID</th>
-                        <th scope="col" style="width: 15em" class="text-nowrap">カテゴリー名</th>
-                        {{-- <th scope="col" style="width: 5em" class="text-nowrap">状態</th> --}}
+                        <th scope="col" style="width: 2em" class="text-nowrap">ID</th>
+                        <th scope="col" style="width: 12em" class="text-nowrap">カテゴリー名</th>
                         <th scope="col" style="width: 10em" class="text-nowrap">スラッグ(URL名)</th>
+                        <th scope="col" style="width: 5em" class="text-nowrap">状態</th>
                         {{-- <th scope="col" style="width: 10em" class="text-nowrap">特集項目</th> --}}
                         {{-- <th scope="col" style="width: 10em" class="text-nowrap">公開日</th> --}}
                         {{-- <th scope="col" style="width: 10em" class="text-nowrap">執筆者</th> --}}
@@ -41,7 +41,7 @@ $title = 'カテゴリー一覧';
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->slug }}</td>
-                            {{-- <td>{{ $category->is_public_label }}</td> --}}
+                            <td>{{ $category->is_public_label }}</td>
                             {{-- <td>
                                 @foreach ($category->categories as $category)
                                     @if (!$loop->first)

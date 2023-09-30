@@ -43,7 +43,6 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $posts = Post::with('user', 'tags', 'categories')->search($request)->latest('id')->paginate(20);
-
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
 
