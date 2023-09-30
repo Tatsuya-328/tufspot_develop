@@ -18,7 +18,7 @@ class CreateFeaturesTable extends Migration
             $table->string('slug')->unique();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->boolean('is_public')->default(true)->comment('公開・非公開');
+            $table->boolean('is_public')->comment('公開・非公開');
             $table->timestamps();
         });
 
