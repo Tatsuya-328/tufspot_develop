@@ -3,6 +3,7 @@
  * @var \App\Models\Post $post
  */
 ?>
+
 <div class="form-group row mb-2">
     {{ Form::label('title', 'タイトル', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
     <div class="col post-form-col">
@@ -55,22 +56,38 @@
     </div>
 </div>
 
-<div class="row mb-2">
-    {{ Form::label('featured_image', 'アイキャッチ', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
-    <div class="col post-form-col">
-        @if (!Request::is('admin/posts/create'))
+@if (!Request::is('admin/posts/create'))
+    <div class="row mb-3">
+        {{ Form::label('featured_image', 'アイキャッチ', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
+        <div class="col post-form-col">
             @if ($post['featured_image_path'])
-                既存<br>
                 <img class="featured_image" src="{{ asset($post->featured_image_path) }}" alt="">
+            @else
+                画像未登録
             @endif
-        @endif
-        <input type="file" class="form-control" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
-        <input type="button" id="clear" value="画像選択解除" onclick="unsetImage();" style="display: none">
+            {{-- <input type="file" class="form-control mt-3 mb-3" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
         <div class="image_preview" id="image_preview" style="display: none">
-            登録する画像<br>
-            {{-- 画像入れ替える様に極小画像置いておく --}}
-            <img class="featured_image" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <img class="featured_image" class="mt-3" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         </div>
+        <input type="button" class="mt-3" id="clear" value="登録解除" onclick="unsetImage();" style="display: none"> --}}
+        </div>
+    </div>
+@endif
+
+<div class="row mb-2">
+    @if (!Request::is('admin/posts/create'))
+        {{ Form::label('featured_image', '画像変更', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
+    @else
+        {{ Form::label('featured_image', 'アイキャッチ', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
+    @endif
+    <div class="col post-form-col">
+        <input type="file" class="form-control mb-3" id="image_input" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
+        <div class="image_preview" id="image_preview" style="display: none">
+            {{-- 画像入れ替える様に極小画像置いておく --}}
+            <img class="featured_image" class="mt-3" id="preview_featured_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        </div>
+        <input type="button" class="mt-3 btn btn-outline-dark" id="clear" value="登録解除" onclick="unsetImage();" style="display: none">
+
         @error('featured_image')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -79,7 +96,7 @@
     </div>
 </div>
 
-<div class="form-group row">
+<div class="form-group row mt-4">
     {!! Form::label('tags', 'タグ', ['class' => 'col-sm-1 control-label w-auto post-form']) !!}
     <div class="col post-form-col">
         <div class="{{ $errors->has('tags.*') ? 'is-invalid' : '' }}">
@@ -148,7 +165,7 @@
 </div>
 
 <div class="form-group row">
-    {{ Form::label('is_public', '状態', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
+    {{ Form::label('is_public', '状態', ['class' => 'col-sm-1 control-label w-auto post-form']) }}
     <div class="col post-form-col">
         @foreach (config('common.public_status') as $key => $value)
             <div class="form-check form-check-inline">
@@ -169,32 +186,45 @@
     </div>
 </div>
 
-<div class="form-group row">
-    {{ Form::label('published_at', '公開日', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
-    <div class="col post-form-col">
-        {{ Form::datetime('published_at', isset($post->published_at) ? $post->published_at->format('Y-m-d H:i') : now()->format('Y-m-d H:i'), ['class' => 'form-control' . ($errors->has('published_at') ? ' is-invalid' : '')]) }}
-        @error('published_at')
+{{-- <div class="form-group row">
+    {{ Form::label('published_at', '公開日', ['class' => 'col-sm-1 control-label w-auto post-form']) }}
+    <div class="col post-form-col"> --}}
+{{ Form::datetime('published_at', isset($post->published_at) ? $post->published_at->format('Y-m-d H:i') : now()->format('Y-m-d H:i'), ['class' => 'form-control visually-hidden' . ($errors->has('published_at') ? ' is-invalid' : '')]) }}
+{{-- @error('published_at')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
     </div>
-</div>
+</div> --}}
 
-<div class="d-flex justify-content-between mt-4">
+<div class="d-flex justify-content-between mt-4 mb-4">
     <div class="">
-        {{ link_to_route('back.posts.index', '一覧へ', null, ['class' => 'btn btn-secondary']) }}
+        {{ link_to_route('back.posts.index', '一覧へ', null, ['class' => 'btn btn-outline-dark']) }}
     </div>
     <div class="">
-        <button id="admin-blog-preview-btn" class="btn btn-secondary" type="submit">プレビュー</button>
+        <button id="admin-blog-preview-btn" class="btn btn-outline-dark" type="submit">プレビュー</button>
         <button type="button" class="btn btn-success" name="subbtn">保存</button>
     </div>
 </div>
 {{-- </form> --}}
 <script>
+    // 画面遷移時の保存警告
+    changeFlg = true;
+    $(function() {
+        $(window).on('beforeunload', function() {
+            if (changeFlg) {
+                // ブラウザデフォルトメッセージ表示
+                return '投稿が完了していません。このまま移動しますか？';
+            }
+        });
+    });
+
     // プレビュー用
     var prevBtn = document.getElementById("admin-blog-preview-btn");
     prevBtn.addEventListener("click", function(e) {
+        changeFlg = false;
+
         document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
 
         // stop sending
@@ -217,12 +247,11 @@
         blogForm.removeAttribute("target");
         // blogForm.removeAttribute("method");
         blogForm.setAttribute("method", "POST");
-
     });
 
     // 選択画像削除
     function unsetImage() {
-        var obj = document.getElementById("featured_image");
+        var obj = document.getElementById("image_input");
         obj.value = null;
         document.getElementById('image_preview').style.display = 'none';
         document.getElementById('clear').style.display = 'none';
@@ -232,7 +261,7 @@
     function previewImage(obj) {
         var fileReader = new FileReader();
         fileReader.onload = (function() {
-            document.getElementById('preview').src = fileReader.result;
+            document.getElementById('preview_featured_image').src = fileReader.result;
             document.getElementById('image_preview').style.display = 'block';
             document.getElementById('clear').style.display = 'block';
         });
@@ -241,11 +270,18 @@
 
     // 回答フォームを送信
     document.ansform.subbtn.addEventListener('click', function() {
+        changeFlg = false;
         document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
-        // 送信
+        document.ansform.submit();
+    });
+    // ページ上部のボタン送信
+    document.ansform.headsubbtn.addEventListener('click', function() {
+        changeFlg = false;
+        document.querySelector('input[name=body]').value = document.querySelector('.ql-editor').innerHTML;
         document.ansform.submit();
     });
 
+    // テキストエリアの伸縮
     $(function() {
         var $title_textarea = $('#title_textarea');
         var lineHeight = parseInt($title_textarea.css('lineHeight'));
@@ -263,6 +299,7 @@
         });
     });
 
+    // テキストエリアの伸縮
     $(function() {
         $('#description_textarea')
             .on('change keyup keydown paste cut', function() {
