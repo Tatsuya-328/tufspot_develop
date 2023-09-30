@@ -135,7 +135,8 @@
     <div class="col post-form-col">
         @foreach (config('common.public_status') as $key => $value)
             <div class="form-check form-check-inline">
-                {{ Form::radio('is_public', $key, $key === 1 ? true : false, [
+                {{-- 特集作成時のみ公開にデフォルトでチェックを入れておく --}}
+                {{ Form::radio('is_public', $key, Route::is('back.features.create') && $key === 1 ? true : null, [
                     'id' => 'is_public' . $key,
                     'class' => 'form-check-input' . ($errors->has('is_public') ? ' is-invalid' : ''),
                 ]) }}
