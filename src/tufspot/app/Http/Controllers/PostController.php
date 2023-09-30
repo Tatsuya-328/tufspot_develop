@@ -49,29 +49,32 @@ class PostController extends Controller
         // タグ検索していないためthis->slugでよい
         // 最新
         $carousel_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug,)->take(5)->get();
-        // 注目記事という特集項目から取得
+        // TODO: 注目記事という特集項目から取得
         $pickup_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->inRandomOrder()->take(10)->get();
         // 特集項目を選択する？特集全体からランダム？一旦全体からランダム
         $feature_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->inRandomOrder()->take(10)->get();
 
         $academia_category_id = Category::NAME['Academia'];
+        $academia_category = Category::find($academia_category_id);
         $academia_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
             $query->where('category_id', $academia_category_id);
         })->take(12)->get();
 
         $business_category_id = Category::NAME['Business'];
+        $business_category = Category::find($business_category_id);
         $business_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($business_category_id) {
             $query->where('category_id', $business_category_id);
         })->take(12)->get();
 
         $culture_category_id = Category::NAME['Culture'];
+        $culture_category = Category::find($culture_category_id);
         $culture_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
             $query->where('category_id', $culture_category_id);
         })->take(12)->get();
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
-        return view('index', compact('carousel_posts', 'pickup_posts', 'feature_posts', 'academia_posts', 'business_posts', 'culture_posts'));
+        return view('index', compact('carousel_posts', 'pickup_posts', 'feature_posts', 'academia_posts', 'academia_category', 'business_posts', 'business_category', 'culture_posts', 'culture_category'));
     }
 
     /**

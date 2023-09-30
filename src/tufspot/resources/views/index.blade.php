@@ -21,11 +21,17 @@
     <x-top_slider title="Pick Up" text="注目記事" detail_type="feature" slug="pickup" :posts=$pickup_posts />
 
     {{-- Academia etc... --}}
-    {{-- それぞれ最新を6つずつ --}}
-    {{-- TODO:　sulgをDBから持ってくる --}}
-    <x-top_category title="Academia" type="category" slug="academia" imagePath="image/BOOK.png" :posts=$academia_posts />
-    <x-top_category title="Business and Career" type="category" slug="business-and-career" imagePath="image/TALK.png" :posts=$business_posts />
-    <x-top_category title="Culture and Essay" type="category" slug="culture-and-essay" imagePath="image/EARTH.png" :posts=$culture_posts />
+    {{-- それぞれ最新を12つずつ --}}
+    {{-- ループしたいが、デザインや並び固定のため、一旦最低限 --}}
+    @if (!empty($academia_posts))
+        <x-top_category title="{{ $academia_category['name'] }}" type="category" slug="{{ $academia_category['slug'] }}" imagePath="image/BOOK.png" :posts=$academia_posts />
+    @endif
+    @if (!empty($business_posts))
+        <x-top_category title="{{ $business_category['name'] }}" type="category" slug="{{ $business_category['slug'] }}r" imagePath="image/TALK.png" :posts=$business_posts />
+    @endif
+    @if (!empty($culture_posts))
+        <x-top_category title="{{ $culture_category['name'] }}" type="category" slug="{{ $culture_category['slug'] }}" imagePath="image/EARTH.png" :posts=$culture_posts />
+    @endif
 
     {{-- Feature --}}
     {{-- ランダム10 --}}
