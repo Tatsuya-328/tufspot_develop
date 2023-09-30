@@ -35,15 +35,13 @@ Route::get('/category', [PostController::class, 'category'])->name('category');
 Route::get('/{type}/list/{slug}', [PostController::class, 'category_detail'])->name('category_detail');
 
 
-// TODO：記事検索と、ハッシュタグ検索はほぼ同じ？
-Route::get('/search_result', function () {
-    return view('search_result');
-})->name('search_result');
-
-// Route::get('/hashtag_result/{id}', function () {
-//     return view('hashtag_result');
-// })->name('hashtag_result');
-Route::get('/hashtag_result/{tagSlug}', [PostController::class, 'index'])->where('tagSlug', '[a-z]+')->name('hashtag_result');
+// TODO 記事検索。Contorllerの関数も用意してない。bladeは簡易用意してあるけど、componentに変数渡さないとエラーなるはず（search_result.blade）
+// TODO ハッシュタグ検索、これも用意してない。bladeを用意してあるけれど、serachとほぼ同じ内容だから、searchのblade共通で使って条件分岐の方が楽かも（hashtag_result.blade）
+// routeの書き方も、contollerもbladeも自由にかえてOK。
+// 追記）というかそもそも, serach_resultだけで事足りるかもしれない。
+// http://localhost/admin の検索フォームが参考になるかと。これプラスで別画面遷移と、検索ワードやハッシュタグを表示させれればOK。
+Route::get('/search_result', [PostController::class, 'search'])->name('search_result');
+Route::get('/hashtag_result/{tagSlug}', [PostController::class, 'hashtag'])->name('hashtag_result');
 
 // mypage
 Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
