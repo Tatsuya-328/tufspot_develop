@@ -36,8 +36,13 @@
 .post-page .post-title {
   width: 90%;
   margin: 25px 0;
-  display: flex;
   justify-content: space-between;
+}
+
+@media screen and (min-width: 1199px) {
+  .post-page .post-title {
+    display: flex;
+  }
 }
 
 .post-title-text {
@@ -139,8 +144,13 @@
   margin: unset;
 }
 
+.buttons-area {
+    display: flex;
+    margin-top: 20px;
+}
+
 .post-card-button {
-  margin: 0 0 0 15px;
+  margin: 0 0 0 0px;
   display: flex;
   align-items: center;
   justify-content: center;

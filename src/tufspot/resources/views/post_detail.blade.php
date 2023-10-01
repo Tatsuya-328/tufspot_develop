@@ -125,7 +125,7 @@
             <div class="post-detail-list">
                 {{-- ボーダー用pタグ --}}
                 <p class="post-detail-border writer-last"></p>
-                <div class="post-detail-writer-wrapper d-flex align-items-center">
+                <div class="post-detail-writer-wrapper align-items-center">
                     <a href="{{ route('writer_detail', ['user' => $post['user']['id']]) }}" class="text-decoration-none">
                         <svg class="d-inline text-secondary" xmlns="http://www.w3.org/2000/svg" width="47" height="47" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -136,12 +136,14 @@
                             {{ $post['user']['name'] }}
                         </p>
                     </a>
-                    <div class="writer-card-button-wrapper">
-                        <a href="{{ route('writer_detail', ['user' => $post['user']['id']]) }}" class="post-card-button text-center me-2">プロフィールを見る</a>
+                    <div class="buttons-area">
+                        <div class="writer-card-button-wrapper">
+                            <a href="{{ route('writer_detail', ['user' => $post['user']['id']]) }}" class="post-card-button text-center me-2">プロフィールを見る</a>
+                        </div>
+                        @if (!$post->user->isAuthUser())
+                            <livewire:follow :followed_user="$post->user" />
+                        @endif
                     </div>
-                    @if (!$post->user->isAuthUser())
-                        <livewire:follow :followed_user="$post->user" />
-                    @endif
                 </div>
             </div>
     </x-main>
