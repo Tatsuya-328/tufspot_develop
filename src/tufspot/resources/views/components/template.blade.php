@@ -40,6 +40,7 @@
     <script src="{{ asset('js/modules/fadeIn.js') }}"></script>
     <script src="{{ asset('js/modules/topCategory.js') }}"></script>
     <script src="{{ asset('js/modules/postDetail.js') }}"></script>
+    <script src="{{ asset('js/modules/readMore.js') }}" type="module"></script>
     {{-- カルーセル --}}
     <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

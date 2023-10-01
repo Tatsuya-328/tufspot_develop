@@ -1,10 +1,10 @@
 <?php
 /**
- * @var \App\Models\Category $category
+ * @var \App\Models\Category $feature
  */
 ?>
 <div class="form-group row">
-    {{ Form::label('name', 'カテゴリー名', ['class' => 'col-sm-2 col-form-label']) }}
+    {{ Form::label('name', '特集名', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::text('name', null, [
             'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),
@@ -34,7 +34,7 @@
 </div>
 
 <div class="form-group row">
-    {{ Form::label('description', '説明文(カテゴリー一覧等に表示)', ['class' => 'col-sm-2 col-form-label']) }}
+    {{ Form::label('description', '説明文(特集記事一覧等に表示)', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::textarea('description', null, [
             'class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),
@@ -48,6 +48,7 @@
     </div>
 </div>
 
+{{-- TODO 全記事 ＋ 対象記事にはチェック --}}
 @if (0 < $posts->count())
     {{-- 対象記事のみ表示ボタン --}}
     {{-- 押すとチェックが入っているもの以外をhideする --}}
@@ -134,8 +135,8 @@
     <div class="col post-form-col">
         @foreach (config('common.public_status') as $key => $value)
             <div class="form-check form-check-inline">
-                {{-- カテゴリー作成時のみ公開にデフォルトでチェックを入れておく --}}
-                {{ Form::radio('is_public', $key, Route::is('back.categories.create') && $key === 1 ? true : null, [
+                {{-- 特集作成時のみ公開にデフォルトでチェックを入れておく --}}
+                {{ Form::radio('is_public', $key, Route::is('back.features.create') && $key === 1 ? true : null, [
                     'id' => 'is_public' . $key,
                     'class' => 'form-check-input' . ($errors->has('is_public') ? ' is-invalid' : ''),
                 ]) }}
@@ -155,7 +156,7 @@
 <div class="form-group row">
     <div class="col-sm-10">
         <button type="submit" class="btn btn-primary">保存</button>
-        {{ link_to_route('back.categories.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
+        {{ link_to_route('back.features.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
     </div>
 </div>
 

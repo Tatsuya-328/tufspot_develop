@@ -49,30 +49,46 @@ class PostController extends Controller
         // タグ検索していないためthis->slugでよい
         // 最新
         $carousel_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug,)->take(5)->get();
-        // 注目記事という特集項目から取得
+        // TODO: 注目記事という特集項目から取得
         $pickup_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->inRandomOrder()->take(10)->get();
         // 特集項目を選択する？特集全体からランダム？一旦全体からランダム
         $feature_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->inRandomOrder()->take(10)->get();
 
+        // TODO: Category::NAMEよりもCategory::IDの方が直感的な気がする、影響範囲が不明のためいったん放置
+        // 公開・非公開の出し分けはview側でもできるが、Controller内の方が無駄なクエリを発行せずに済みそう
         $academia_category_id = Category::NAME['Academia'];
-        $academia_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
-            $query->where('category_id', $academia_category_id);
-        })->take(6)->get();
+        $academia_category = Category::find($academia_category_id);
+        $is_academia_public = $academia_category->is_public;
+        $academia_posts = null;
+        if ($is_academia_public) {
+            $academia_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($academia_category_id) {
+                $query->where('category_id', $academia_category_id);
+            })->take(12)->get();
+        }
 
         $business_category_id = Category::NAME['Business'];
-        $business_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($business_category_id) {
-            $query->where('category_id', $business_category_id);
-        })->take(6)->get();
+        $business_category = Category::find($business_category_id);
+        $is_business_public = $business_category->is_public;
+        $business_posts = null;
+        if ($is_business_public) {
+            $business_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($business_category_id) {
+                $query->where('category_id', $business_category_id);
+            })->take(12)->get();
+        }
 
         $culture_category_id = Category::NAME['Culture'];
-        $culture_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
-            $query->where('category_id', $culture_category_id);
-        })->take(6)->get();
+        $culture_category = Category::find($culture_category_id);
+        $is_culture_public = $culture_category->is_public;
+        $culture_posts = null;
+        if ($is_culture_public) {
+            $culture_posts = Post::PublicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->whereHas('categories', function ($query) use ($culture_category_id) {
+                $query->where('category_id', $culture_category_id);
+            })->take(12)->get();
+        }
 
         $search = $request->all();
         $users = User::pluck('name', 'id')->toArray();
-
-        return view('index', compact('carousel_posts', 'pickup_posts', 'feature_posts', 'academia_posts', 'business_posts', 'culture_posts'));
+        return view('index', compact('carousel_posts', 'pickup_posts', 'feature_posts', 'academia_posts', 'academia_category', 'business_posts', 'business_category', 'culture_posts', 'culture_category'));
     }
 
     /**
@@ -109,6 +125,8 @@ class PostController extends Controller
      */
     public function category_detail($type, $slug)
     {
+        // カテゴリー取得のためのswitch文
+        // 投稿はLivewire側で取得する（ページネーションのため）
         switch ($type) {
             case 'category':
                 $this->categorySlug = $slug;
@@ -119,9 +137,21 @@ class PostController extends Controller
                 $category = Feature::where('slug', $slug)->first();
                 break;
         }
-        $posts = Post::publicList($this->tagSlug, $this->categorySlug, $this->featureSlug)->get();
-        // $category = $this->category;
-        return view('category_detail', compact('posts', 'category'));
+        return view('category_detail', compact('category', 'type', 'slug'));
+    }
+
+    /**
+     * 記事検索
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function search(Request $request)
+    {
+        // 全角スペースを半角スペースに変換
+        $keywords = mb_convert_kana($request->keywords, 's', 'UTF-8');
+        $keywordArr = explode(" ", $keywords);
+
+        return view('search_result', compact('keywordArr'));
     }
 
     // public function index(string $tagSlug = null)

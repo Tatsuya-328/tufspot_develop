@@ -28,7 +28,11 @@
             </div>
         </a>
     @endif
-    <ul class="slider">
+    <ul class="slider hoge">
+        {{-- TODO なぜか２回foreach書かないと注目記事のスライダーが表示されない --}}
+        @foreach ($posts as $post)
+            <x-post_card :post=$post />
+        @endforeach
         @foreach ($posts as $post)
             <x-post_card :post=$post />
         @endforeach

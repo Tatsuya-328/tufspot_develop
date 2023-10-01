@@ -8,10 +8,11 @@
                 <img src="{{ asset('image/logo_side.png') }}" class="" alt="...">
 
             </a>
-            <form action="#" class="header-search search-form-011">
+            <form action="{{ route('search_result') }}" method="GET" class="header-search search-form-011">
+                @csrf
                 <button type="submit" aria-label="検索"></button>
-                <label>
-                    <input type="text" placeholder="search">
+                <label for="search">
+                    <input type="text" id="search" name="keywords" placeholder="search">
                 </label>
             </form>
             <div class="header-humbeger dropdown text-end btn-group">
