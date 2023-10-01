@@ -140,6 +140,20 @@ class PostController extends Controller
         return view('category_detail', compact('category', 'type', 'slug'));
     }
 
+    /**
+     * 記事検索
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function search(Request $request)
+    {
+        // 全角スペースを半角スペースに変換
+        $keywords = mb_convert_kana($request->keywords, 's', 'UTF-8');
+        $keywordArr = explode(" ", $keywords);
+
+        return view('search_result', compact('keywordArr'));
+    }
+
     // public function index(string $tagSlug = null)
     // {
     //     // 公開・新しい順に表示
