@@ -154,6 +154,17 @@ class PostController extends Controller
         return view('search_result', compact('keywordArr'));
     }
 
+    /**
+     * ハッシュタグによる記事一覧表示
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function hashtag(string $tag_slug)
+    {
+        $tag_name = Tag::where('slug', $tag_slug)->first()->name;
+        return view('hashtag_result', compact('tag_slug', 'tag_name'));
+    }
+
     // public function index(string $tagSlug = null)
     // {
     //     // 公開・新しい順に表示
