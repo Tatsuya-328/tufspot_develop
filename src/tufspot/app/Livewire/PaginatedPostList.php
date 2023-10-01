@@ -21,6 +21,9 @@ class PaginatedPostList extends Component
     // 検索結果表示用
     public $keywords;
 
+    // ハッシュタグ検索結果表示用
+    public $tag_slug;
+
     public User $user;
     public $per_page = 6; // ページ内の表示数調整
     public $page_flag; // どのページを表示するのか、コンポーネントを使いまわすために利用
@@ -77,6 +80,14 @@ class PaginatedPostList extends Component
 
             $posts = $query->paginate($this->per_page);
         }
+
+        // ハッシュタグ検索一覧
+        if ($this->page_flag === "hashtag") {
+            $posts = Post::whereHas('tags', function ($q) {
+                $q->where('slug', $this->tag_slug);
+            })->paginate($this->per_page);
+        }
+
         return view('livewire.paginated-post-list', compact('posts'));
     }
 }

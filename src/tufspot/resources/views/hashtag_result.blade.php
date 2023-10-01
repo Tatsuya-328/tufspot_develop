@@ -4,18 +4,14 @@
     <x-header />
     <x-post_list_title class="unset-shadow" listTitle="#ハッシュタグ" />
     <x-main>
-        <div class="d-flex justify-content-center flex-wrap">
-            {{-- <div class="row row-cols-3"> --}}
-            <x-post_card place="ハロン湾" />
-            <x-post_card place="スイティエン" />
-            <x-post_card place="アンコールワット" />
-            {{-- 最終行も左寄せには、空要素入れるしかなさそう https://qiita.com/QUANON/items/e14949abab3711ca8646 --}}
-            <div class="post_card">
-            </div>
-            {{-- <div class="post_card">
-            </div>
-            <div class="post_card">
-            </div> --}}
+        {{-- TODO: 検索ワードのスタイリングはいったんカテゴリーからとってきてる、要修正 --}}
+        <div class="post_list_explain d-flex flex-column justify-content-center">
+            <p class="post_list_explain_text m-0">
+                #{{ $tag_name }}
+            </p>
+        </div>
+        <div class="article-list-area">
+            <livewire:paginated-post-list :tag_slug="$tag_slug" page_flag="hashtag" />
         </div>
     </x-main>
     <x-footer />
