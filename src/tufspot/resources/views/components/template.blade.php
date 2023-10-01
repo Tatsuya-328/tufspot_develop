@@ -39,6 +39,7 @@
     {{-- とりあえずここでフェードインのスクリプト読み込んでる。後で修正する --}}
     <script src="{{ asset('js/modules/fadeIn.js') }}"></script>
     <script src="{{ asset('js/modules/topCategory.js') }}"></script>
+    <script src="{{ asset('js/modules/postDetail.js') }}"></script>
     <script src="{{ asset('js/modules/readMore.js') }}" type="module"></script>
     {{-- カルーセル --}}
     <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script>
