@@ -71,10 +71,10 @@
 </div>
 
 <div class="row mb-2">
-    {{ Form::label('featured_image', 'アイコン画像', ['class' => 'col-sm-2 col-form-label']) }}
+    {{ Form::label('profile_image', 'アイコン画像', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col post-form-col">
-        @if ($user['featured_image_path'])
-            <img class="featured_image form-control" src="{{ asset($post->featured_image_path) }}" alt="">
+        @if ($user['profile_image_path'])
+            <img class="profile_image form-control" src="{{ asset($user->profile_image_path) }}" alt="">
         @else
             <div class="form-control">
                 画像未登録
@@ -89,16 +89,16 @@
 </div>
 
 <div class="row">
-    {{ Form::label('featured_image', '画像変更', ['class' => 'col-sm-2 col-form-label']) }}
+    {{ Form::label('profile_image', '画像変更', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col post-form-col">
-        <input type="file" class="form-control mb-3" id="image_input" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
+        <input type="file" class="form-control mb-3" id="image_input" name="profile_image" value="{{ old('profile_image') }}" onchange="previewImage(this);">
         <div class="image_preview" id="image_preview" style="display: none">
             {{-- 画像入れ替える様に極小画像置いておく --}}
-            <img class="featured_image form-control" class="mt-3" id="preview_featured_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <img class="profile_image form-control" class="mt-3" id="preview_profile_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         </div>
         <input type="button" class="mt-3 btn btn-outline-dark" id="clear" value="登録解除" onclick="unsetImage();" style="display: none">
 
-        @error('featured_image')
+        @error('profile_image')
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
@@ -181,7 +181,7 @@
     function previewImage(obj) {
         var fileReader = new FileReader();
         fileReader.onload = (function() {
-            document.getElementById('preview_featured_image').src = fileReader.result;
+            document.getElementById('preview_profile_image').src = fileReader.result;
             document.getElementById('image_preview').style.display = 'block';
             document.getElementById('clear').style.display = 'block';
         });

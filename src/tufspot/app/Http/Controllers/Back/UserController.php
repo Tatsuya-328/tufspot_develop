@@ -78,9 +78,9 @@ class UserController extends Controller
         // 画像保存
         // ディレクトリ名
         if ($request->file('profile_image')) {
-            $dir = 'image/user';
+            $dir = 'image/profile';
+            // ファイルをストレージに保存
             $profile_image_path = $request->file('profile_image')->store('public/' . $dir);
-            // ファイル情報をDBに保存
             $profile_image_path = str_replace("public", "storage", $profile_image_path);
         } else {
             $profile_image_path = $user['profile_image_path'];
