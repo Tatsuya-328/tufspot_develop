@@ -30,7 +30,7 @@
     {{-- editのテーブル検索用 --}}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     {{-- <script src="jquery.quicksearch.js"></script> --}}
-    <script src="{{ asset('js/jquery.quicksearch.js') }}" async></script>
+    <script src="{{ asset('js/jquery.quicksearch.js') }}" type="text/javascript"></script>
 
 
 
