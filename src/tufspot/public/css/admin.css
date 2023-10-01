@@ -110,3 +110,7 @@
 .post-form-col {
   min-width: 270px
 }
+
+.bt_deleteForm {
+  width: 10px;
+}

@@ -106,9 +106,10 @@
     </div>
 </div>
 
-<div class="mb-4 row">
-    <label for="input" class="col-sm-2 col-form-label">SNS</label>
-    @if (!empty($user['snsAccounts'][0]))
+@if (!empty($user['snsAccounts'][0]))
+
+    <div class="mb-4 row">
+        <label for="input" class="col-sm-2 col-form-label">SNS</label>
         <div id="form-group" class="w-100">
             <div class="d-flex ms-1">
                 @foreach ($user['snsAccounts'] as $snsAccount)
@@ -129,23 +130,34 @@
             </div>
         </div>
         <input type="button" class="btn btn-outline-dark h-25 align-self-end" value="追加" onclick="addForm({{ $cnt }})" />
-    @else
+    </div>
+@else
+    <div class="mb-2 row">
+        <label for="input" class="col-sm-2 col-form-label">SNS</label>
         {{-- <div id="form-group" class="col post-form-col"> --}}
-        {{-- <div class="ms-1 row"> --}}
-        <div class="col me-2" id="form_area1">
-            <input type="text" class="form-control" name="newSnsAccounts[1][name]" value="" placeholder="Instagram" />
-        </div>
-        <div class="col me-2" id="form_area2">
-            <input type="text" class="form-control" name="newSnsAccounts[1][url]" value="" placeholder="https://www.instagram.com/" />
-        </div>
-        <div class=" col bt_deleteForm">
-            <input type="button" value="削除" class="formRemove btn btn-outline-dark" onclick="removeForm(this)">
+        <div class="col row" id="form-group">
+            <div class="col-sm-3" id="form_area1">
+                <input type="text" class="form-control" name="newSnsAccounts[1][name]" value="" placeholder="Instagram" />
+            </div>
+            <div class="col-sm-7" id="form_area2">
+                <input type="text" class="form-control" name="newSnsAccounts[1][url]" value="" placeholder="https://www.instagram.com" />
+            </div>
+            <div class="bt_deleteForm">
+                <input type="button" value="削除" class="formRemove btn btn-outline-dark" onclick="removeForm(this)">
+            </div>
+            {{-- <div class="bt_deleteForm">
+                <input type="button" class="btn btn-outline-dark align-self-end" value="追加" onclick="addForm(1)" />
+            </div> --}}
         </div>
         {{-- </div> --}}
-        {{-- </div> --}}
-        <input type="button" class="btn btn-outline-dark h-25 align-self-end" value="追加" onclick="addForm(1)" />
-    @endif
-</div>
+        {{-- <div class="col-sm-1"> --}}
+    </div>
+    <div class="d-flex justify-content-end mb-4">
+        <input type="button" class="btn btn-outline-dark" value="追加" onclick="addForm(1)" />
+    </div>
+    {{-- </div> --}}
+
+@endif
 
 
 <div class="d-flex justify-content-between mt-4 mb-4">
@@ -180,11 +192,11 @@
     function addForm(Cnt) {
         var Cnt = Cnt + 1;
         let textbox_element = document.getElementById('form-group');
-        const createElement = '<div class="d-flex ms-1 mt-1"><div class="col-sm-5 me-2" id="form_area' + Cnt +
+        const createElement = '<div class="col-sm-3 mt-1" id="form_area' + Cnt +
             '"><input type="text" class="form-control " name="newSnsAccounts[' + Cnt +
-            '][name]" value="" /> </div> <div class = "col-sm-5 me-2"id = "form_area' + Cnt +
+            '][name]" value="" placeholder="Instagram" /> </div> <div class = "col-sm-7 mt-1"id = "form_area' + Cnt +
             '" ><input type = "text"class = "form-control "name = "newSnsAccounts[' + Cnt +
-            '][url]"value = "" / ></div>    <div class="bt_deleteForm col-sm-2">   <input type="button" value="削除" class="formRemove btn btn-outline-dark"  onclick="removeForm(this)" ></div></div>';
+            '][url]"value = "" placeholder="https://www.instagram.com" / ></div>    <div class="bt_deleteForm col-sm-2">   <input type="button" value="削除" class="formRemove btn btn-outline-dark"  onclick="removeForm(this)" ></div>';
         // 指定した要素の中の末尾に挿入
         textbox_element.insertAdjacentHTML('beforeend', createElement);
     }
@@ -193,7 +205,7 @@
     function removeForm(e) {
         e.parentNode.previousElementSibling.remove();
         e.parentNode.previousElementSibling.remove();
-        e.parentNode.parentNode.remove();
+        // e.parentNode.parentNode.remove();
         e.parentNode.remove();
         e.remove();
     }
