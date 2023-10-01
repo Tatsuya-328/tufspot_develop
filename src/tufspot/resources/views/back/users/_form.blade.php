@@ -3,7 +3,7 @@
  * @var \App\Models\User $user
  */
 ?>
-<div class="form-group row">
+<div class="form-group row mb-2">
     {{ Form::label('name', 'ユーザー名', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         <input type="hidden" name="user_id" value="{{ $user['id'] }}" />
@@ -19,7 +19,14 @@
     </div>
 </div>
 
-<div class="form-group row">
+<div class="form-group row mb-2">
+    {{ Form::label('role', '権限', ['class' => 'col-sm-2 col-form-label']) }}
+    <div class="col-sm-10">
+        {{ Form::select('role', config('common.user.roles'), null, ['class' => 'form-control']) }}
+    </div>
+</div>
+
+<div class="form-group row mb-2">
     {{ Form::label('email', 'メールアドレス', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::email('email', null, [
@@ -34,7 +41,7 @@
     </div>
 </div>
 
-<div class="form-group row">
+<div class="form-group row mb-5">
     {{ Form::label('password', 'パスワード', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::password('password', [
@@ -48,36 +55,7 @@
     </div>
 </div>
 
-<div class="form-group row">
-    {{ Form::label('role', '権限', ['class' => 'col-sm-2 col-form-label']) }}
-    <div class="col-sm-10">
-        {{ Form::select('role', config('common.user.roles'), null, ['class' => 'form-control']) }}
-    </div>
-</div>
-
-<div class="form-group row">
-    {{ Form::label('profile_image', 'プロフィール画像', ['class' => 'col-sm-2 col-form-label']) }}
-    <div class="col-sm-10">
-        @if ($user['profile_image_path'])
-            既存<br>
-            <img class="featured_image" src="{{ asset($user->profile_image_path) }}" alt="">
-        @endif
-        <input type="file" class="form-control" name="profile_image" id="profile_image" value="{{ old('profile_image') }}" onchange="previewImage(this);">
-        <input type="button" id="clear" value="画像選択解除" onclick="test();" style="display: none">
-        <div class="image_preview" id="image_preview" style="display: none">
-            変更する画像<br>
-            <img class="featured_image" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-        </div>
-
-        @error('profile_image')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
-    </div>
-</div>
-
-<div class="form-group row">
+<div class="form-group row mb-2">
     {{ Form::label('introduction', '自己紹介', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::textarea('introduction', null, [
@@ -91,57 +69,97 @@
         @enderror
     </div>
 </div>
-<label for="input" class="col-sm-2 col-form-label">SNS</label>
 
-
-@if (!empty($user['snsAccounts'][0]))
-    <div class="form-group row" id="form-group">
-        {{-- <div id="form_area"> --}}
-        {{-- <div class="form-group"> --}}
-        @foreach ($user['snsAccounts'] as $snsAccount)
-            <input type="hidden" name="alreadySnsAccounts[{{ $loop->iteration }}]['id']" value="{{ $snsAccount['id'] }}" />
-            <div class="col-sm-5" id="form_area{{ $loop->iteration }}">
-                <input type="text" class="form-control col-sm-11" name="alreadySnsAccounts[{{ $loop->iteration }}][name]" value="{{ $snsAccount['name'] }}" />
+<div class="row mb-2">
+    {{ Form::label('featured_image', 'アイコン画像', ['class' => 'col-sm-2 col-form-label']) }}
+    <div class="col post-form-col">
+        @if ($user['featured_image_path'])
+            <img class="featured_image form-control" src="{{ asset($post->featured_image_path) }}" alt="">
+        @else
+            <div class="form-control">
+                画像未登録
             </div>
-            <div class="col-sm-5" id="form_area{{ $loop->iteration }}">
-                <input type="text" class="form-control col-sm-11" name="alreadySnsAccounts[{{ $loop->iteration }}][url]" value="{{ $snsAccount['url'] }}" />
-            </div>
-            <div class="bt_deleteForm col-sm-2">
-                <input type="button" value="削除" class="formRemove" onclick="removeForm(this)">
-            </div>
-            @php
-                $cnt = $loop->iteration;
-            @endphp
-        @endforeach
-    </div>
-    <input type="button" class="btn btn-info" value="追加" onclick="addForm({{ $cnt }})" />
-@else
-    <div class="form-group row" id="form-group">
-        {{-- <div id="form_area"> --}}
-        {{-- <div class="form-group"> --}}
-        <div class="col-sm-5" id="form_area1">
-            <input type="text" class="form-control col-sm-11" name="newSnsAccounts[1][name]" value="" />
+        @endif
+        {{-- <input type="file" class="form-control mt-3 mb-3" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
+        <div class="image_preview" id="image_preview" style="display: none">
+            <img class="featured_image" class="mt-3" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         </div>
-        <div class="col-sm-5" id="form_area2">
-            <input type="text" class="form-control col-sm-11" name="newSnsAccounts[1][url]" value="" />
-        </div>
-        <div class="bt_deleteForm col-sm-2">
-            <input type="button" value="削除" class="formRemove" onclick="removeForm(this)">
-        </div>
-    </div>
-    <input type="button" class="btn btn-info" value="追加" onclick="addForm(1)" />
-@endif
-
-<div class="form-group row">
-    <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">保存</button>
-        {{ link_to_route('back.users.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
+        <input type="button" class="mt-3" id="clear" value="登録解除" onclick="unsetImage();" style="display: none"> --}}
     </div>
 </div>
 
+<div class="row">
+    {{ Form::label('featured_image', '画像変更', ['class' => 'col-sm-2 col-form-label']) }}
+    <div class="col post-form-col">
+        <input type="file" class="form-control mb-3" id="image_input" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
+        <div class="image_preview" id="image_preview" style="display: none">
+            {{-- 画像入れ替える様に極小画像置いておく --}}
+            <img class="featured_image form-control" class="mt-3" id="preview_featured_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        </div>
+        <input type="button" class="mt-3 btn btn-outline-dark" id="clear" value="登録解除" onclick="unsetImage();" style="display: none">
+
+        @error('featured_image')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+</div>
+
+<div class="mb-4 row">
+    <label for="input" class="col-sm-2 col-form-label">SNS</label>
+    @if (!empty($user['snsAccounts'][0]))
+        <div id="form-group" class="w-100">
+            <div class="d-flex ms-1">
+                @foreach ($user['snsAccounts'] as $snsAccount)
+                    <input type="hidden" name="alreadySnsAccounts[{{ $loop->iteration }}]['id']" value="{{ $snsAccount['id'] }}" />
+                    <div class="me-2" id="form_area{{ $loop->iteration }}">
+                        <input type="text" class="form-control" name="alreadySnsAccounts[{{ $loop->iteration }}][name]" value="{{ $snsAccount['name'] }}" />
+                    </div>
+                    <div class="me-2" id="form_area{{ $loop->iteration }}">
+                        <input type="text" class="form-control" name="alreadySnsAccounts[{{ $loop->iteration }}][url]" value="{{ $snsAccount['url'] }}" />
+                    </div>
+                    <div class="bt_deleteForm col-sm-2">
+                        <input type="button" value="削除" class="formRemove btn btn-outline-dark" onclick="removeForm(this)">
+                    </div>
+                    @php
+                        $cnt = $loop->iteration;
+                    @endphp
+                @endforeach
+            </div>
+        </div>
+        <input type="button" class="btn btn-outline-dark h-25 align-self-end" value="追加" onclick="addForm({{ $cnt }})" />
+    @else
+        {{-- <div id="form-group" class="col post-form-col"> --}}
+        {{-- <div class="ms-1 row"> --}}
+        <div class="col me-2" id="form_area1">
+            <input type="text" class="form-control" name="newSnsAccounts[1][name]" value="" placeholder="Instagram" />
+        </div>
+        <div class="col me-2" id="form_area2">
+            <input type="text" class="form-control" name="newSnsAccounts[1][url]" value="" placeholder="https://www.instagram.com/" />
+        </div>
+        <div class=" col bt_deleteForm">
+            <input type="button" value="削除" class="formRemove btn btn-outline-dark" onclick="removeForm(this)">
+        </div>
+        {{-- </div> --}}
+        {{-- </div> --}}
+        <input type="button" class="btn btn-outline-dark h-25 align-self-end" value="追加" onclick="addForm(1)" />
+    @endif
+</div>
+
+
+<div class="d-flex justify-content-between mt-4 mb-4">
+    <div class="">
+        {{ link_to_route('back.users.index', '一覧へ', null, ['class' => 'btn btn-outline-dark']) }}
+    </div>
+    <div class="">
+        <button type="submit" class="btn btn-success" name="subbtn">保存</button>
+    </div>
+</div>
 <script>
-    function test() {
-        var obj = document.getElementById("featured_image");
+    // 選択画像削除
+    function unsetImage() {
+        var obj = document.getElementById("image_input");
         obj.value = null;
         document.getElementById('image_preview').style.display = 'none';
         document.getElementById('clear').style.display = 'none';
@@ -150,49 +168,33 @@
     // 画像プレビュー
     function previewImage(obj) {
         var fileReader = new FileReader();
-
         fileReader.onload = (function() {
-            document.getElementById('preview').src = fileReader.result;
+            document.getElementById('preview_featured_image').src = fileReader.result;
             document.getElementById('image_preview').style.display = 'block';
             document.getElementById('clear').style.display = 'block';
         });
         fileReader.readAsDataURL(obj.files[0]);
     }
 
+    // form追加
     function addForm(Cnt) {
         var Cnt = Cnt + 1;
-        // var Cnt2 = Cnt + 1;
-        // let Cnt2 = Cnt + 1
-        // id属性で要素を取得
         let textbox_element = document.getElementById('form-group');
-        // let textbox_element2 = document.getElementById('form_area' + Cnt2);
-
-        // 新しいHTML要素を作成
-        // let new_element = document.createElement('p');
-        // new_element.textContent = '';
-        // const createElement = '<div>追加テキスト</div>';
-        const createElement = '<div class="col-sm-5" id="form_area' + Cnt +
-            '"><input type="text" class="form-control col-sm-11" name="newSnsAccounts[' + Cnt +
-            '][name]" value="" /> </div> <div class = "col-sm-5"id = "form_area' + Cnt +
-            '" ><input type = "text"class = "form-control col-sm-11"name = "newSnsAccounts[' + Cnt +
-            '][url]"value = "" / ></div>    <div class="bt_deleteForm col-sm-2">   <input type="button" value="削除" class="formRemove"  onclick="removeForm(this)" ></div>';
+        const createElement = '<div class="d-flex ms-1 mt-1"><div class="col-sm-5 me-2" id="form_area' + Cnt +
+            '"><input type="text" class="form-control " name="newSnsAccounts[' + Cnt +
+            '][name]" value="" /> </div> <div class = "col-sm-5 me-2"id = "form_area' + Cnt +
+            '" ><input type = "text"class = "form-control "name = "newSnsAccounts[' + Cnt +
+            '][url]"value = "" / ></div>    <div class="bt_deleteForm col-sm-2">   <input type="button" value="削除" class="formRemove btn btn-outline-dark"  onclick="removeForm(this)" ></div></div>';
         // 指定した要素の中の末尾に挿入
-        // textbox_element.appendChild(createElement);
-        // textbox_element2.appendChild(new_element);
         textbox_element.insertAdjacentHTML('beforeend', createElement);
     }
 
+    // form削除
     function removeForm(e) {
-        // var button = document.getElementsByClassName('formRemove');
-        // for (i = 0; i < button.length; i++) {
-        //     console.log(button);
-        // button[i].addEventListener("click", function() {
         e.parentNode.previousElementSibling.remove();
         e.parentNode.previousElementSibling.remove();
+        e.parentNode.parentNode.remove();
         e.parentNode.remove();
         e.remove();
-        // this.parentNode.previousElementSibling.previousElementSibling.remove();
-        // });
-        // }
     }
 </script>
