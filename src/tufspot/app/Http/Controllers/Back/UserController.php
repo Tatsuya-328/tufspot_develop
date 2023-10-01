@@ -8,6 +8,7 @@ use App\Models\SnsAccount;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -79,7 +80,15 @@ class UserController extends Controller
         // ディレクトリ名
         if ($request->file('profile_image')) {
             $dir = 'image/profile';
-            // ファイルをストレージに保存
+
+            // 既存のアイコンがある場合、先にストレージから削除しておく
+            if ($user->profile_image_path) {
+                $current_profile_image_filename = $user->profile_image_path;
+                $current_profile_image_filename = str_replace('storage/image/profile/', '', $current_profile_image_filename);
+                Storage::disk('public')->delete($dir . '/' . $current_profile_image_filename);
+            }
+
+            // 新規アイコン画像ファイルをストレージに保存
             $profile_image_path = $request->file('profile_image')->store('public/' . $dir);
             $profile_image_path = str_replace("public", "storage", $profile_image_path);
         } else {
