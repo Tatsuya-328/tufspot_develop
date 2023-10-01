@@ -87,6 +87,16 @@ class Post extends Model
     }
 
     /**
+     * 閲覧履歴のリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function histories()
+    {
+        return $this->belongsToMany(User::class, 'histories', 'post_id', 'user_id');
+    }
+
+    /**
      * 公開のみ表示
      *
      * @param Builder $query
