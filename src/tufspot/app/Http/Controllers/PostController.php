@@ -10,7 +10,9 @@ use App\Models\Feature;
 use App\Models\User;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -99,7 +101,17 @@ class PostController extends Controller
      */
     public function show(int $id)
     {
+        $user = Auth::user();
         $post = Post::publicFindById($id);
+
+        // 閲覧履歴の登録、更新（updated_atで管理）
+        if ($user->histories->contains($post->id)) {
+            $user->histories()->updateExistingPivot($post->id, [
+                'updated_at' => Carbon::now(),
+            ]);
+        } else {
+            $user->histories()->attach($post->id);
+        }
         // return view('front.posts.show', compact('post'));
         return view('post_detail', compact('post'));
     }

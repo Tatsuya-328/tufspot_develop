@@ -139,7 +139,7 @@ class User extends Authenticatable
      */
     public function histories()
     {
-        return $this->belongsToMany(Post::class, 'histories', 'user_id', 'post_id');
+        return $this->belongsToMany(Post::class, 'histories', 'user_id', 'post_id')->withTimestamps();
     }
 
     /**
