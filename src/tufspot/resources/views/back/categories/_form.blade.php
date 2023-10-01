@@ -3,9 +3,9 @@
  * @var \App\Models\Category $category
  */
 ?>
-<div class="form-group row">
-    {{ Form::label('name', 'カテゴリー名', ['class' => 'col-sm-2 col-form-label']) }}
-    <div class="col-sm-10">
+<div class="form-group row mb-2">
+    {{ Form::label('name', 'カテゴリー名', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
+    <div class="col post-form-col">
         {{ Form::text('name', null, [
             'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),
             'required',
@@ -18,9 +18,9 @@
     </div>
 </div>
 
-<div class="form-group row">
-    {{ Form::label('slug', 'スラッグ(URL名)', ['class' => 'col-sm-2 col-form-label']) }}
-    <div class="col-sm-10">
+<div class="form-group row mb-2">
+    {{ Form::label('slug', 'URL末尾', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
+    <div class="col post-form-col">
         {{ Form::text('slug', null, [
             'class' => 'form-control' . ($errors->has('slug') ? ' is-invalid' : ''),
             'required',
@@ -33,11 +33,12 @@
     </div>
 </div>
 
-<div class="form-group row">
-    {{ Form::label('description', '説明文(カテゴリー一覧等に表示)', ['class' => 'col-sm-2 col-form-label']) }}
-    <div class="col-sm-10">
+<div class="form-group row mb-5">
+    {{ Form::label('description', '説明文', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
+    <div class="col post-form-col">
         {{ Form::textarea('description', null, [
             'class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''),
+            'placeholder' => 'カテゴリー一覧等に表示する文章',
             'required',
         ]) }}
         @error('description')
@@ -52,13 +53,15 @@
     {{-- 対象記事のみ表示ボタン --}}
     {{-- 押すとチェックが入っているもの以外をhideする --}}
     {{-- <button type="button">対象記事のみ表示</button> --}}
-    <div>
-        <input type="checkbox" value="has_checked" name="has_checked" id="checkbox">
-        <label for="checkbox">選択済みのみ表示</label>
-    </div>
-    <div>
-        <label for="search">項目検索</label>
-        <input type="text" name="search" value="" id="id_search" />
+    <div class="d-flex align-items-center mb-3">
+        <div class="me-3">
+            <input class="form-check-input" type="checkbox" value="has_checked" name="has_checked" id="checkbox">
+            <label for="checkbox">選択済み表示</label>
+        </div>
+        <div class="d-flex align-items-center">
+            <input class="form-control me-2" type="text" name="search" value="" id="id_search" />
+            <label class="w-100" for="search">項目検索</label>
+        </div>
     </div>
     <table class="table table-striped table-bordered table-hover table-sm">
         <thead>
@@ -152,13 +155,14 @@
     </div>
 </div>
 
-<div class="form-group row">
-    <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">保存</button>
-        {{ link_to_route('back.categories.index', '一覧へ戻る', null, ['class' => 'btn btn-secondary']) }}
+<div class="d-flex justify-content-between mt-4 mb-4">
+    <div class="">
+        {{ link_to_route('back.categories.index', '一覧へ', null, ['class' => 'btn btn-outline-dark']) }}
+    </div>
+    <div class="">
+        <button type="submit" class="btn btn-success" name="subbtn">保存</button>
     </div>
 </div>
-
 <script>
     // 項目検索・チェック判定用
     $(function() {
