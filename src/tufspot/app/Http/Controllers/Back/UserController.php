@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\SnsAccount;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -72,16 +73,15 @@ class UserController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        // dd($request);
         // 画像保存
         // ディレクトリ名
         if ($request->file('profile_image')) {
             $dir = 'image/user';
             $profile_image_path = $request->file('profile_image')->store('public/' . $dir);
             // ファイル情報をDBに保存
-            $profile_image_path = str_replace("public","storage",$profile_image_path);
+            $profile_image_path = str_replace("public", "storage", $profile_image_path);
         } else {
             $profile_image_path = $user['profile_image_path'];
         }
@@ -91,9 +91,9 @@ class UserController extends Controller
         if ($request['alreadySnsAccounts']) {
             foreach ($request['alreadySnsAccounts'] as $alreadySnsAccount) {
                 if (!empty($alreadySnsAccount['name']) && !empty($alreadySnsAccount['url'])) {
-                // Employee::where('id', $alreadySnsAccount['id'])
-                //     ->update([
-                SnsAccount::create([
+                    // Employee::where('id', $alreadySnsAccount['id'])
+                    //     ->update([
+                    SnsAccount::create([
                         'user_id' => $request['user_id'],
                         'name' => $alreadySnsAccount['name'],
                         'url' => $alreadySnsAccount['url'],
@@ -102,27 +102,27 @@ class UserController extends Controller
             }
         }
         if ($request['newSnsAccounts']) {
-        foreach ($request['newSnsAccounts'] as $newSnsAccount) {
-            if (!empty($newSnsAccount['name']) && !empty($newSnsAccount['url'])) {
-            SnsAccount::create([
-                    'user_id' => $request['user_id'],
-                    'name' => $newSnsAccount['name'],
-                    'url' => $newSnsAccount['url'],
-                ]);
+            foreach ($request['newSnsAccounts'] as $newSnsAccount) {
+                if (!empty($newSnsAccount['name']) && !empty($newSnsAccount['url'])) {
+                    SnsAccount::create([
+                        'user_id' => $request['user_id'],
+                        'name' => $newSnsAccount['name'],
+                        'url' => $newSnsAccount['url'],
+                    ]);
                 }
             }
-    }
+        }
         // if ($user->update($request->all())) {
-            if (
-                $user->update([
-                    'name' => $request['name'],
-                    'email' => $request['email'],
-                    'profile_image_path' => $profile_image_path,
-                    'password' => Hash::make($request['password']),
-                    'role' => $request['role'],
-                    'introduction' => $request['introduction'],
-                ])
-                ) {
+        if (
+            $user->update([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'profile_image_path' => $profile_image_path,
+                'password' => Hash::make($request['password']),
+                'role' => $request['role'],
+                'introduction' => $request['introduction'],
+            ])
+        ) {
             $flash = ['success' => 'データを更新しました。'];
         } else {
             $flash = ['error' => 'データの更新に失敗しました'];
