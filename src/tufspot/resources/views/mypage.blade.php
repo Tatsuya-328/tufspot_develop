@@ -37,17 +37,7 @@
                     <livewire:paginated-post-list :user="$user" page_flag="mypage" />
                 </div>
                 <div id="panel3" class="tab_panel3">
-                    <div class="d-flex justify-content-center flex-wrap">
-                        @foreach ($history_posts as $post)
-                            <x-post_card :post=$post />
-                        @endforeach
-                        {{-- <x-post_card place="ハロン湾" />
-                        <x-post_card place="スイティエン" />
-                        <x-post_card place="アンコールワット" />
-                        <x-post_card place="ハロン湾" />
-                        <x-post_card place="スイティエン" />
-                        <x-post_card place="アンコールワット" /> --}}
-                    </div>
+                    <livewire:paginated-post-list :user="$user" page_flag="history" />
                 </div>
                 <div id="panel4" class="tab_panel4">
                     <livewire:following-writer-list :user="$user" />

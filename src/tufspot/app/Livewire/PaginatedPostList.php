@@ -61,6 +61,11 @@ class PaginatedPostList extends Component
             $posts = $this->user->posts()->paginate($this->per_page);
         }
 
+        // マイページの閲覧履歴一覧
+        if ($this->page_flag === "history") {
+            $posts = $this->user->histories()->orderByPivot('updated_at', 'desc')->paginate($this->per_page);
+        }
+
         // マイページの保存記事一覧
         if ($this->page_flag === "mypage") {
             $posts = $this->user->likes()->paginate($this->per_page);
