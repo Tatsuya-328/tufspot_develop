@@ -133,6 +133,16 @@ class User extends Authenticatable
     }
 
     /**
+     * 閲覧履歴のリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function histories()
+    {
+        return $this->belongsToMany(Post::class, 'histories', 'user_id', 'post_id')->withTimestamps();
+    }
+
+    /**
      * 権限をラベル表示
      *
      * @return string

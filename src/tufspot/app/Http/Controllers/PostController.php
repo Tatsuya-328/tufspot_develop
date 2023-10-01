@@ -10,13 +10,18 @@ use App\Models\Feature;
 use App\Models\User;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     private $tagSlug = null;
     private $categorySlug = null;
     private $featureSlug = null;
+
+    // 閲覧履歴の最大保持数
+    const MAX_HISTORY_COUNT = 12;
 
     // タグの読み込み処理を共通にする
     public function __construct()
@@ -99,8 +104,21 @@ class PostController extends Controller
      */
     public function show(int $id)
     {
+        $user = Auth::user();
         $post = Post::publicFindById($id);
-        // return view('front.posts.show', compact('post'));
+
+        if ($user->histories->contains($post->id)) { // 閲覧履歴の更新
+            $user->histories()->updateExistingPivot($post->id, [
+                'updated_at' => Carbon::now(),
+            ]);
+        } else if ($user->histories()->count() >= self::MAX_HISTORY_COUNT) { // 最も古い閲覧履歴の削除後、新規追加
+            $oldest_history_post = $user->histories()->orderByPivot('updated_at', 'asc')->first();
+            $user->histories()->detach($oldest_history_post->id);
+            $user->histories()->attach($post->id);
+        } else { // 閲覧履歴の新規追加
+            $user->histories()->attach($post->id);
+        }
+
         return view('post_detail', compact('post'));
     }
 
