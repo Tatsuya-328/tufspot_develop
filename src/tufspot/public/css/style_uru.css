@@ -1,6 +1,7 @@
 @import url('./modules/index.css');
 @import url('./modules/about.css');
 @import url('./modules/post.css');
+@import url('./modules/categoryDetail.css');
 
 /* @charset "UTF-8";
 
@@ -268,8 +269,9 @@ footer {
 .post_list_title_text {
   text-align: center;
   font-size: 30px;
-  color: #565656;
-  font-weight: 400;
+  color: #2f2f2f;
+  font-weight: 550;
+  letter-spacing: 6px;
 }
 
 .post_list_explain {
@@ -1609,8 +1611,10 @@ li.slick-slide>.post_card {
 
 .top_pickup_title {
   font-size: 30px;
+  font-weight: 550;
   letter-spacing: 6px;
   color: #2f2f2f;
+  margin-top: 10px;
 }
 
 .top_pickup_title_text {
@@ -1626,12 +1630,20 @@ li.slick-slide>.post_card {
   height: 600px;
   height: 100%;
   /* padding: 0 0 60px 0; */
+  margin: 115px 0 0 0;
+}
+
+.top_feature_wrapper:nth-child(1) {
+  margin-top: 40px;
+  height: 600px;
+  height: 100%;
+  /* padding: 0 0 60px 0; */
   margin: 40px 0 0 0;
 }
 
 .top_feature_title_text {
   border-bottom: 1px solid;
-  margin: 10px auto;
+  margin: 20px auto;
   width: 115px;
 }
 
@@ -1681,7 +1693,7 @@ li.slick-slide>.post_card {
     height: 26px;
   }
 
-  .top_pickup_title {
+  .top_pickup_title_wrapper .top_pickup_title {
     font-size: 20px;
     letter-spacing: 5px;
   }

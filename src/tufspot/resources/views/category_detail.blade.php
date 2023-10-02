@@ -10,18 +10,8 @@
                 {!! nl2br($category->description) !!}
             </p>
         </div>
-        <div class="d-flex justify-content-center flex-wrap">
-            @foreach ($posts as $post)
-                <x-post_card :post=$post />
-            @endforeach
-            {{-- <div class="row row-cols-3"> --}}
-            {{-- <x-post_card place="ハロン湾" />
-            <x-post_card place="スイティエン" />
-            <x-post_card place="アンコールワット" /> --}}
-            {{-- 最終行も左寄せには、空要素入れるしかなさそう https://qiita.com/QUANON/items/e14949abab3711ca8646 --}}
-            {{-- <x-post_card place="ハロン湾" />
-            <x-post_card place="スイティエン" />
-            <x-post_card place="アンコールワット" /> --}}
+        <div class="article-list-area">
+            <livewire:paginated-post-list :type="$type" :slug="$slug" page_flag="category_detail" />
         </div>
     </x-main>
     <x-footer />

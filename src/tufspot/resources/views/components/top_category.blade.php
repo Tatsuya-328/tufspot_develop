@@ -1,6 +1,6 @@
 @props(['title' => 'Academia', 'imagePath', 'slug' => '', 'type' => ''])
 <div class="top_feature_wrapper">
-    <a href="{{ route('category_detail', [$type, $slug]) }}" class="link-opacity-100-hover text-decoration-none gray_color">
+    <a href="{{ route('category_detail', [$type, $slug]) }}" class="top_pickup_title_link link-opacity-100-hover text-decoration-none gray_color">
         <div class="image-on-title-container">
             <img src="{{ asset($imagePath) }}" class="pickup_title_image" alt="記事のセクション画像">
             <div class="top_pickup_title_wrapper fade-in title-wrapper-on-image">
@@ -15,7 +15,7 @@
         </div>
     </a>
     <div class="container">
-        <div class="d-flex justify-content-center flex-wrap">
+        <div class="article-container d-flex justify-content-center flex-wrap">
             @foreach ($posts as $post)
                 <x-post_card :post=$post />
             @endforeach
@@ -27,6 +27,15 @@
             {{-- <x-post_card place="ハロン湾" />
             <x-post_card place="スイティエン" />
             <x-post_card place="アンコールワット" /> --}}
+            <div class="blur-back">
+                <div class="read-more-button-pc js-read-more">
+                    <span>+</span><br>
+                    read more
+                </div>
+            </div>
+        </div>
+        <div class="read-more-button-sp js-read-more">
+            read more
         </div>
     </div>
 </div>

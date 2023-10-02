@@ -22,43 +22,127 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => \Hash::make('admin'),
                 'role' => 1,
-                'introduction' => $faker->realText(rand(100,200)),
+                'introduction' => $faker->realText(rand(100, 200)),
                 'created_at' => now(),
                 'updated_at' => now()
-            ],[
+            ],
+            [
                 'name' => '管理者テスト',
                 'email' => 'test@example.com',
                 'email_verified_at' => now(),
                 'password' => \Hash::make('testtest'),
                 'role' => 1,
-                'introduction' => $faker->realText(rand(100,200)),
+                'introduction' => $faker->realText(rand(100, 200)),
                 'created_at' => now(),
                 'updated_at' => now()
-            ],[
+            ],
+            [
                 'name' => '管理者太郎',
                 'email' => 'taro@example.com',
                 'email_verified_at' => now(),
                 'password' => \Hash::make('hogehoge'),
                 'role' => 1,
-                'introduction' => $faker->realText(rand(100,200)),
+                'introduction' => $faker->realText(rand(100, 200)),
                 'created_at' => now(),
                 'updated_at' => now()
-            ],[
+            ],
+            [
+                'name' => 'テスト用1',
+                'email' => 'test1@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('hogehoge'),
+                'role' => 1,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'テスト用2',
+                'email' => 'test2@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('hogehoge'),
+                'role' => 1,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'テスト用3',
+                'email' => 'test3@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('hogehoge'),
+                'role' => 1,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'テスト用4',
+                'email' => 'test4@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('hogehoge'),
+                'role' => 1,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'テスト用5',
+                'email' => 'test5@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('hogehoge'),
+                'role' => 1,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'テスト用6',
+                'email' => 'test6@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('hogehoge'),
+                'role' => 1,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'テスト用7',
+                'email' => 'test7@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('hogehoge'),
+                'role' => 1,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'テスト用8',
+                'email' => 'test8@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('hogehoge'),
+                'role' => 1,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'name' => '読者一郎',
                 'email' => 'ichiro@example.com',
                 'email_verified_at' => now(),
                 'password' => \Hash::make('hogehoge'),
                 'role' => 2,
-                'introduction' => $faker->realText(rand(100,200)),
+                'introduction' => $faker->realText(rand(100, 200)),
                 'created_at' => now(),
                 'updated_at' => now()
-            ],[
+            ],
+            [
                 'name' => '読者花子',
                 'email' => 'hanako@example.com',
                 'email_verified_at' => now(),
                 'password' => \Hash::make('hogehoge'),
                 'role' => 2,
-                'introduction' => $faker->realText(rand(100,200)),
+                'introduction' => $faker->realText(rand(100, 200)),
                 'created_at' => now(),
                 'updated_at' => now()
             ]
