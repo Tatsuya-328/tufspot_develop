@@ -1,4 +1,4 @@
-<div>
+<div class="d-flex">
     <button wire:click="like" class="border-0 bg-transparent">
         @if ($post->isLiked())
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-heart-fill text-danger" viewBox="0 0 16 16">
