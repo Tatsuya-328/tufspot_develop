@@ -1593,7 +1593,7 @@ li.slick-slide>.post_card {
   background-color: #e2e2e2;
   height: 100%;
   padding: 0 0 40px 0;
-  margin: 0 0 80px 0;
+  margin: 80px 0 80px 0;
 }
 
 .top_pickup_title_wrapper {
@@ -1682,7 +1682,7 @@ li.slick-slide>.post_card {
   }
 
   .top_pickup_wrapper {
-    margin: 0 0 40px 0;
+    margin: 40px 0 40px 0;
   }
 
   .top_pickup_wrapper.feature {

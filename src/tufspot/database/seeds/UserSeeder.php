@@ -147,5 +147,13 @@ class UserSeeder extends Seeder
                 'updated_at' => now()
             ]
         ]);
+
+        // フォローテーブルシーダー（test管理者のみ）
+        for ($i = 3; $i <= 8; $i++) {
+            \DB::table('follows')->insert([
+                'user_id' => 2,
+                'followed_user_id' => $i
+            ]);
+        }
     }
 }

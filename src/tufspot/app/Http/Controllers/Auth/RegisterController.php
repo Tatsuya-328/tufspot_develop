@@ -52,10 +52,10 @@ class RegisterController extends Controller
     {
         try {
             $gaigokai = GaigokaiMember::where('id', $data['id'])->where('phone_number', $data['phone_number'])->first();
-            } catch (\Exception $e) {
-                report($e);
-                session()->flash('flash_message', '登録失敗しました');
-            }
+        } catch (\Exception $e) {
+            report($e);
+            session()->flash('flash_message', '登録失敗しました');
+        }
 
         if (empty($gaigokai)) {
             // 会員IDと電話番号の組み合わせが一致するか確認
@@ -66,7 +66,7 @@ class RegisterController extends Controller
                 'id' => ['exists:gaigokai_members,id'],
                 'phone_number' => ['exists:gaigokai_members,phone_number'],
             ];
-            
+
             $message = [
                 'id.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
                 'phone_number.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
@@ -80,9 +80,9 @@ class RegisterController extends Controller
             $rulus = [
                 'id' => ['exists:gaigokai_members,id'],
             ];
-            
+
             $message = [
-                'id.exists' => 'サイト登録済みの外語会IDです。',
+                'id.exists' => '新規登録済みの外語会IDです。',
             ];
 
             return Validator::make($data, $rulus, $message);

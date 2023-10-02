@@ -18,21 +18,15 @@
             <img class="post-top-img" src="{{ asset('image/post_detail.jpeg') }}" class="" alt="...">
             <div class="post-title">
                 <div class="post-title-text">{!! nl2br($post->title) !!}</div>
-                <div class="post-title-icon align-items-start">
-                    {{-- adminからのpreview用に分岐。存在しないデータ --}}
-                    @if (Request::method() === 'POST' || Request::method() === 'PUT')
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                        </svg>
-                    @else
-                        <livewire:like :post="$post" />
-                    @endif
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-three-dots ms-2" viewBox="0 0 16 16">
+                {{-- いいねボタンはユーザー名の隣に移動 --}}
+                {{-- <div class="post-title-icon align-items-start"> --}}
+                {{-- 初期リリース時3点リーダーに機能ないため非表示 --}}
+                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-three-dots ms-2" viewBox="0 0 16 16">
                         <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                    </svg>
-                </div>
+                    </svg> --}}
+                {{-- </div> --}}
             </div>
-            <div class="post-detail-writer-wrapper">
+            <div class="post-detail-writer-wrapper d-flex justify-content-between">
                 @if (Request::method() === 'POST' || Request::method() === 'PUT')
                     <a href="#" class="text-decoration-none">
                         <svg class="d-inline text-secondary" xmlns="http://www.w3.org/2000/svg" width="47" height="47" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -53,6 +47,14 @@
                             {{ $post['user']['name'] }}
                         </p>
                     </a>
+                @endif
+                {{-- adminからのpreview用に分岐。存在しないデータ --}}
+                @if (Request::method() === 'POST' || Request::method() === 'PUT')
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                    </svg>
+                @else
+                    <livewire:like :post="$post" />
                 @endif
             </div>
             <div class="post-detail-list">

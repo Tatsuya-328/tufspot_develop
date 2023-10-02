@@ -1,5 +1,55 @@
 /* 記事詳細ここから */
 
+/* 記事詳細Quill.jsの表示に使用 */
+
+/* .post-detail-wrapper { */
+.ql-editor {
+    /* margin: 50px auto 0 auto; */
+    width: 100%;
+    max-width: 100%;
+    padding: unset;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* .post-detail-headline { */
+.ql-editor>h1 {
+    color: #505050;
+    font-weight: 500;
+    /* margin: 0 0 40px 0; */
+    padding: 0 0 10px 44px;
+    border-bottom: 2px solid #434343;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+/* .post-detail-explain-text-wrapper {
+        .post-detail-explain-text { */
+.ql-editor>p {
+    padding: 0 44px;
+    font-size: 16px;
+    line-height: 30px;
+    margin: unset;
+}
+
+/* TODO; キャプションつけれるように。画像選択時にエディタでわかりやすく */
+/* .post-detail-explain-image-wrapper { */
+/* .post-detail-explain-image { */
+.ql-editor>p>img {
+    display: inline-block;
+    object-fit: cover;
+    width: 300px;
+    aspect-ratio: 4 / 3;
+
+    /* display: block; */
+    /* width: 500px;
+        height: 290px; */
+    /* background: #434343; */
+    /* margin: 0 auto; */
+    /* margin: 50px auto; */
+}
+
+
 .post-page .container.main-container {
     margin: 0;
     max-width: none;
@@ -8,8 +58,10 @@
 }
 
 .post-page .post-detail-wrapper {
-    margin: 0;
-    width: 100%;
+    /* margin: 0;
+    width: 100%; */
+    width: 80%;
+    max-width: 865px;
 }
 
 .post-detail-wrapper {
@@ -18,36 +70,51 @@
     /* width: calc(720 / 850 * 100%); 記事が右よりになってしまってたため一旦外し*/
 }
 
+@media screen and (max-width: 768px) {
+    .post-detail-wrapper {
+        margin: 30px auto 0 auto;
+    }
+}
+
 .post-page .post-detail-writer-wrapper {
-    width: 90%;
+    width: 100%;
 }
 
 .post-page .mokuji.mokujibox {
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 100%;
 }
 
 .post-top-img {
     max-width: 1079px;
     width: 100%;
     height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+    .post-top-img {
+        width: 100vw;
+    }
 }
 
 @media screen and (min-width: 1199px) {}
 
 .post-page .post-title {
     max-width: 1079px;
-    width: 90%;
+    width: 100%;
     margin: 25px 0;
     justify-content: space-between;
 }
 
-@media screen and (min-width: 1199px) {
-    .post-page .post-title {
-        display: flex;
-    }
+/* @media screen and (min-width: 1199px) { */
+.post-page .post-title {
+    display: flex;
 }
+
+/* } */
 
 .post-title-text {
     font-size: 30px;
@@ -87,10 +154,11 @@
     margin: 0 auto 40px;
     padding: 0 0 10px 0;
     border-bottom: 2px solid #434343;
-    width: 90%;
+    width: 100%;
 }
 
 @media screen and (min-width: 1199px) {
+
     .post-detail-border,
     .post-detail-border.writer-last {
         width: 100%;
@@ -99,7 +167,7 @@
 
 .post-detail-writer-wrapper {
     max-width: 1079px;
-    width: 90%;
+    width: 100%;
     margin: 0 auto 25px;
 }
 
