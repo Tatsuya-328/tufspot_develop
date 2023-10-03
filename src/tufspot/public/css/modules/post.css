@@ -125,6 +125,29 @@
     font-weight: 500;
 }
 
+@media screen and (max-width: 768px) {
+    .post-title-text {
+        /* font-size: 30px;
+        letter-spacing: 3px;
+        line-height: 48px; */
+        /* font-size: 5.42vw; */
+        font-size: min(5.42vw, 30px);
+        line-height: 7vw;
+        margin: 0 0 0.9vw 0;
+    }
+}
+
+/* ゲストアイコンのレスポンシブ（画像もこれ適用？） */
+.post-detail-user-icon {
+    width: 10vw;
+    max-width: 50px;
+}
+
+.post-detail-like-icon {
+    width: 10vw;
+    max-width: 50px;
+}
+
 .post-title-icon {
     margin: 8px 0 0 15px;
     display: flex;
@@ -171,9 +194,9 @@
     margin: 0 auto 25px;
 }
 
-@media screen and (min-width: 1199px) {
+@media screen and (max-width: 768px) {
     .post-detail-writer-wrapper {
-        display: flex;
+        justify-content: center;
     }
 }
 
