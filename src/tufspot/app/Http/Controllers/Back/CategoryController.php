@@ -68,8 +68,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $request['category_id'] = $category['id'];
-        $added_posts = Post::searchByArray($request);
-        $posts = Post::get();
+        $added_post_ids = Post::searchByArray($request)->pluck('id')->toArray();
+        // $posts = Post::get();
         // foreach ($posts as &$post) {
         //     foreach ($post['categories'] as $post_category) {
         //         if ($post_category['id'] === $category['id']) {
@@ -78,7 +78,9 @@ class CategoryController extends Controller
         //     }
         // }
         // unset($post);
-        return view('back.categories.edit', compact('category', 'posts', 'added_posts'));
+        // dd($added_posts);
+        return view('back.categories.edit', compact('category', 'added_post_ids'));
+        // return view('back.categories.edit', compact('category', 'posts', 'added_posts'));
     }
 
     /**
