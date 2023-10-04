@@ -50,9 +50,9 @@
 </div>
 
 @if (Route::is('back.categories.create'))
-    <livewire:back.edit-table :all_posts="$all_posts" />
+    <livewire:back.interactive-table :all_posts="$all_posts" />
 @else
-    <livewire:back.edit-table :add_post_ids="$added_post_ids" :all_posts="$all_posts" />
+    <livewire:back.interactive-table :add_post_ids="$added_post_ids" :all_posts="$all_posts" />
 @endif
 
 <div class="form-group row">

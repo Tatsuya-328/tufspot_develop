@@ -6,7 +6,7 @@ use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class EditTable extends Component
+class InteractiveTable extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -29,6 +29,6 @@ class EditTable extends Component
         } else {
             $posts = Post::paginate($this->per_page);
         }
-        return view('livewire.back.edit-table', compact('posts'));
+        return view('livewire.back.interactive-table', compact('posts'));
     }
 }
