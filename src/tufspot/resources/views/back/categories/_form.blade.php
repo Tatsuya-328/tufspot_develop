@@ -49,7 +49,11 @@
     </div>
 </div>
 
-<livewire:back.edit-table :add_post_ids="$added_post_ids" :all_posts="$all_posts" />
+@if (Route::is('back.categories.create'))
+    <livewire:back.edit-table :all_posts="$all_posts" />
+@else
+    <livewire:back.edit-table :add_post_ids="$added_post_ids" :all_posts="$all_posts" />
+@endif
 
 <div class="form-group row">
     {{ Form::label('is_public', '状態', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}

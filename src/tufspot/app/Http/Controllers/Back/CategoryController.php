@@ -28,8 +28,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $posts = Post::get();
-        return view('back.categories.create', compact('posts'));
+        $all_posts = Post::get();
+        return view('back.categories.create', compact('all_posts'));
     }
 
     /**
