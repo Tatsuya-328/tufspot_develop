@@ -5,7 +5,7 @@
         {{-- <button type="button">対象記事のみ表示</button> --}}
         <div class="d-flex align-items-center mb-3">
             <div class="me-3">
-                <input class="form-check-input" type="checkbox" value="has_checked" name="has_checked" id="checkbox">
+                <input class="form-check-input" type="checkbox" value="has_checked" name="has_checked" id="checkbox" wire:click="showOnlyChecked">
                 <label for="checkbox">選択済み表示</label>
             </div>
             <div class="d-flex align-items-center">
@@ -30,20 +30,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- Livewireで操作した$add_post_idsをCategoryContorollerに渡すための暫定策 --}}
+                    {{-- $postsのforeach内で含めてしまうとPaginateの影響を受けてしまうため、foreach外で回す --}}
+                    @foreach ($all_posts as $post)
+                        @if (in_array($post->id, old('add_post_ids', $add_post_ids)))
+                            <input type="hidden" name="add_post_ids[]" value="{{ $post->id }}">
+                        @endif
+                    @endforeach
                     @foreach ($posts as $key => $post)
                         <tr>
                             <td>
-                                {{-- @if (!empty($added_posts)) --}}
-                                {{-- {{ Form::checkbox('add_post_ids[]', $post->id, in_array($post->id, old('add_post_ids', $added_posts->pluck('id')->toArray())), ['id' => 'add_post_id' . $post->id, 'class' => 'form-check-input']) }} --}}
-                                {{-- <input type="checkbox" name="add_post_ids[]" value="{{ $post->id }}" {{ in_array($post->id, old('add_post_ids', $add_post_ids)) ? 'checked' : '' }} id="{{ $post->id }}" class="form-check-input"> --}}
-                                {{-- <input type="checkbox" wire:model="add_post_ids" value="{{ $post->id }}" {{ in_array($post->id, $added_posts->pluck('id')->toArray()) ? 'checked' : '' }} id="{{ $post->id }}" class="form-check-input"> --}}
-                                <input type="checkbox" wire:model="add_post_ids" value="{{ $post->id }}" id="{{ $post->id }}" class="form-check-input">
-                                {{-- @else --}}
-                                {{-- {{ Form::checkbox('add_post_ids[]', $post->id), ['id' => 'add_post_id' . $post->id, 'class' => 'form-check-input'] }} --}}
-                                {{-- <input type="checkbox" name="add_post_ids[]" value="{{ $post->id }}" id="{{ $post->id }}" class="form-check-input"> --}}
-                                {{-- <input type="checkbox" wire:model="add_post_ids" value="{{ $post->id }}" id="{{ $post->id }}" class="form-check-input"> --}}
-                                {{-- <input type="checkbox" wire:model="add_post_ids" value="{{ $post->id }}" id="{{ $post->id }}" class="form-check-input"> --}}
-                                {{-- @endif --}}
+                                <input type="checkbox" wire:model.live="add_post_ids" value="{{ $post->id }}" id="{{ $post->id }}" class="form-check-input">
                             </td>
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->title }}</td>

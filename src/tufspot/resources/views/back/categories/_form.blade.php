@@ -49,7 +49,7 @@
     </div>
 </div>
 
-<livewire:back.edit-table :add_post_ids="$added_post_ids" />
+<livewire:back.edit-table :add_post_ids="$added_post_ids" :all_posts="$all_posts" />
 
 <div class="form-group row">
     {{ Form::label('is_public', '状態', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
@@ -82,15 +82,3 @@
         <button type="submit" class="btn btn-success" name="subbtn">保存</button>
     </div>
 </div>
-<script>
-    // 項目検索・チェック判定用
-    $(function() {
-        $('input#id_search').quicksearch('table tbody tr');
-        $("[name='has_checked']").change(function() {
-            console.log('hoge');
-            $("[name='add_post_ids[]']:not(:checked)").each(function() {
-                var v = $(this).parent().parent().toggle();
-            });
-        });
-    });
-</script>

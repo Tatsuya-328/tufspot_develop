@@ -69,18 +69,8 @@ class CategoryController extends Controller
     {
         $request['category_id'] = $category['id'];
         $added_post_ids = Post::searchByArray($request)->pluck('id')->toArray();
-        // $posts = Post::get();
-        // foreach ($posts as &$post) {
-        //     foreach ($post['categories'] as $post_category) {
-        //         if ($post_category['id'] === $category['id']) {
-        //             $post['has_category'] = 1;
-        //         }
-        //     }
-        // }
-        // unset($post);
-        // dd($added_posts);
-        return view('back.categories.edit', compact('category', 'added_post_ids'));
-        // return view('back.categories.edit', compact('category', 'posts', 'added_posts'));
+        $all_posts = Post::all();
+        return view('back.categories.edit', compact('category', 'added_post_ids', 'all_posts'));
     }
 
     /**
