@@ -1,34 +1,36 @@
 <div>
-    @if (0 < $posts->count())
-        {{-- 対象記事のみ表示ボタン --}}
-        {{-- 押すとチェックが入っているもの以外をhideする --}}
-        {{-- <button type="button">対象記事のみ表示</button> --}}
-        <div class="d-flex align-items-center mb-3">
-            <div class="me-3">
-                <input class="form-check-input" type="checkbox" value="has_checked" name="has_checked" id="checkbox" wire:click="showOnlyChecked">
-                <label for="checkbox">選択済み表示</label>
-            </div>
-            <div class="d-flex align-items-center">
-                <input class="form-control me-2" type="text" name="search" value="" id="id_search" />
-                <label class="w-100" for="search">項目検索</label>
-            </div>
+
+    {{-- 対象記事のみ表示ボタン --}}
+    {{-- 押すとチェックが入っているもの以外をhideする --}}
+    {{-- <button type="button">対象記事のみ表示</button> --}}
+    <div class="d-flex align-items-center mb-3">
+        <div class="me-3">
+            <input class="form-check-input" type="checkbox" value="has_checked" name="has_checked" id="checkbox" wire:click="showOnlyChecked">
+            <label for="checkbox">選択済み表示</label>
         </div>
-        <div class="table-responsive">
-            <table class="table ">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col" class="text-nowrap">ID</th>
-                        <th scope="col" style="width: 15em" class="text-nowrap">タイトル</th>
-                        <th scope="col" style="width: 5em" class="text-nowrap">状態</th>
-                        <th scope="col" style="width: 10em" class="text-nowrap">カテゴリー</th>
-                        <th scope="col" style="width: 10em" class="text-nowrap">特集項目</th>
-                        <th scope="col" style="width: 10em" class="text-nowrap">公開日</th>
-                        <th scope="col" style="width: 10em" class="text-nowrap">執筆者</th>
-                        <th scope="col" style="width: 5em" class="text-nowrap"></th>
-                        <th scope="col" style=""></th>
-                    </tr>
-                </thead>
+        <div class="d-flex align-items-center">
+            <input class="form-control me-2" type="text" name="search" value="" id="id_search" />
+            <label class="w-100" for="search">項目検索</label>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col" class="text-nowrap">ID</th>
+                    <th scope="col" style="width: 15em" class="text-nowrap">タイトル</th>
+                    <th scope="col" style="width: 5em" class="text-nowrap">状態</th>
+                    <th scope="col" style="width: 10em" class="text-nowrap">カテゴリー</th>
+                    <th scope="col" style="width: 10em" class="text-nowrap">特集項目</th>
+                    <th scope="col" style="width: 10em" class="text-nowrap">公開日</th>
+                    <th scope="col" style="width: 10em" class="text-nowrap">執筆者</th>
+                    <th scope="col" style="width: 5em" class="text-nowrap"></th>
+                    <th scope="col" style=""></th>
+                </tr>
+            </thead>
+
+            @if (!$posts->isEmpty())
                 <tbody>
                     {{-- Livewireで操作した$add_post_idsをCategoryContorollerに渡すための暫定策 --}}
                     {{-- $postsのforeach内で含めてしまうとPaginateの影響を受けてしまうため、foreach外で回す --}}
@@ -108,19 +110,20 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
-        </div>
-        <div class="d-flex justify-content-center">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    {{-- {{ $posts->appends($search)->links() }} --}}
-                    {{ $posts->links() }}
-                </ul>
-            </nav>
-        </div>
+            @endif
+        </table>
+    </div>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                {{-- {{ $posts->appends($search)->links() }} --}}
+                {{ $posts->links() }}
+            </ul>
+        </nav>
+    </div>
 
-        {{-- <div class="d-flex justify-content-center">
+    {{-- <div class="d-flex justify-content-center">
         {{ $posts->appends($search)->links() }}
     </div> --}}
-    @endif
+
 </div>
