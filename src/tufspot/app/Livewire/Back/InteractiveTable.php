@@ -30,7 +30,7 @@ class InteractiveTable extends Component
 
             // 選択している記事内で検索
             if ($this->keyword) {
-                $posts = Post::where('title', 'like', "%{$this->keyword}%")->orWhereHas('user', function ($q) {
+                $posts = Post::where('title', 'like', "%{$this->keyword}%")->whereIn('id', $this->add_post_ids)->orWhereHas('user', function ($q) {
                     $q->where('name', 'like', "%{$this->keyword}%");
                 })->whereIn('id', $this->add_post_ids)->paginate($this->per_page);
             }
