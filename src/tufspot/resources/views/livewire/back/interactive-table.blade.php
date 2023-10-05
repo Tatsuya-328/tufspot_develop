@@ -9,7 +9,7 @@
             <label for="checkbox">選択済み表示</label>
         </div>
         <div class="d-flex align-items-center">
-            <input class="form-control me-2" type="text" name="search" value="" id="id_search" />
+            <input class="form-control me-2" type="text" name="search" value="" id="id_search" wire:model.live.debounce.500ms="keyword" />
             <label class="w-100" for="search">項目検索</label>
         </div>
     </div>
