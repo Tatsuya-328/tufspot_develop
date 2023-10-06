@@ -18,9 +18,29 @@ class InteractiveTable extends Component
 
     private $per_page = 10;
 
-    public function showOnlyChecked()
+    public function updatedKeyword()
     {
-        $this->is_show_only_checked = !$this->is_show_only_checked;
+        // 検索後は1ページ目に戻る
+        $this->resetPage();
+    }
+
+    public function updatedIsShowOnlyChecked()
+    {
+        // 選択済みのみに表示を切り替える場合は1ページ目に戻る
+        $this->resetPage();
+    }
+
+    public function updatedAddPostIds()
+    {
+        // 選択中のみ表示している時に、3ページあるとする
+        // 3ページ目のチェックを全て外す時、2ページ目に戻らなければいけない
+        // 以下で対応
+        if ($this->is_show_only_checked) {
+            $checked_post_count = count($this->add_post_ids);
+            if ($checked_post_count <= $this->per_page * ($this->paginators['page'] - 1)) {
+                $this->setPage($this->paginators['page'] - 1);
+            }
+        }
     }
 
     public function render()
@@ -29,6 +49,7 @@ class InteractiveTable extends Component
             $posts = Post::whereIn('id', $this->add_post_ids)->paginate($this->per_page);
 
             // 選択している記事内で検索
+            // 選択済み表示と項目検索はAND検索
             if ($this->keyword) {
                 $posts = Post::where('title', 'like', "%{$this->keyword}%")->whereIn('id', $this->add_post_ids)->orWhereHas('user', function ($q) {
                     $q->where('name', 'like', "%{$this->keyword}%");

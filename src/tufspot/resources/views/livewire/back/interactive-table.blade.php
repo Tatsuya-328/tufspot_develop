@@ -5,7 +5,7 @@
     {{-- <button type="button">対象記事のみ表示</button> --}}
     <div class="d-flex align-items-center mb-3">
         <div class="me-3">
-            <input class="form-check-input" type="checkbox" value="has_checked" name="has_checked" id="checkbox" wire:click="showOnlyChecked">
+            <input class="form-check-input" type="checkbox" wire:model.live="is_show_only_checked">
             <label for="checkbox">選択済み表示</label>
         </div>
         <div class="d-flex align-items-center">
