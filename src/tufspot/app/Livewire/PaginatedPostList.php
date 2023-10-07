@@ -20,6 +20,7 @@ class PaginatedPostList extends Component
 
     // 検索結果表示用
     public $keywords;
+    public $search_filter;
 
     // ハッシュタグ検索結果表示用
     public $tag_slug;
@@ -75,12 +76,35 @@ class PaginatedPostList extends Component
         if ($this->page_flag === "search") {
             $query = Post::query();
 
-            foreach ($this->keywords as $keyword) {
-                $query->orWhere('title', 'like', "%{$keyword}%")->orWhere('description', 'like', "%{$keyword}%")
-                    ->orWhere('body', 'like', "%{$keyword}%")
-                    ->orWhereHas('user', function ($q) use ($keyword) {
+            if ($this->search_filter === 'all') {
+                foreach ($this->keywords as $keyword) {
+                    $query->orWhere('title', 'like', "%{$keyword}%")->orWhere('description', 'like', "%{$keyword}%")
+                        ->orWhere('body', 'like', "%{$keyword}%")
+                        ->orWhereHas('user', function ($q) use ($keyword) {
+                            $q->where('name', 'like', "%{$keyword}%");
+                        });
+                }
+            }
+
+            if ($this->search_filter === 'title') {
+                foreach ($this->keywords as $keyword) {
+                    $query->orWhere('title', 'like', "%{$keyword}%");
+                }
+            }
+
+            if ($this->search_filter === 'content') {
+                foreach ($this->keywords as $keyword) {
+                    $query->orWhere('description', 'like', "%{$keyword}%")
+                        ->orWhere('body', 'like', "%{$keyword}%");
+                }
+            }
+
+            if ($this->search_filter === 'writer') {
+                foreach ($this->keywords as $keyword) {
+                    $query->orWhereHas('user', function ($q) use ($keyword) {
                         $q->where('name', 'like', "%{$keyword}%");
                     });
+                }
             }
 
             $posts = $query->paginate($this->per_page);

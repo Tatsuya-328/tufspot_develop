@@ -8,12 +8,19 @@
                 <img src="{{ asset('image/logo_side.png') }}" class="" alt="...">
 
             </a>
-            <form action="{{ route('search_result') }}" method="GET" class="header-search search-form-011">
+            <form action="{{ route('search_result') }}" method="GET" class="d-flex">
                 @csrf
-                <button type="submit" aria-label="検索"></button>
-                <label for="search">
-                    <input type="text" id="search" name="keywords" placeholder="search">
-                </label>
+                <div class="header-search search-form-011">
+                    <button type="submit" aria-label="検索"></button>
+                    <label for="search">
+                        <input type="text" id="search" name="keywords" placeholder="search">
+                    </label>
+                </div>
+                <select name="search_filter" class="form-select">
+                    @foreach (config('common.search_filter') as $key => $value)
+                        <option value="{{ $key }}" {{ $key === 'all' ? 'selected' : '' }}>{{ $value }}</option>
+                    @endforeach
+                </select>
             </form>
             <div class="header-humbeger dropdown text-end btn-group">
                 <a href="#" class="d-block link-body-emphasis text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">

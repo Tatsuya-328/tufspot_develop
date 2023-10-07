@@ -6,6 +6,9 @@
     <x-main>
         {{-- TODO: 検索ワードのスタイリングはいったんカテゴリーからとってきてる、要修正 --}}
         <div class="post_list_explain d-flex flex-column justify-content-center">
+            <p>
+                検索対象：{{ config('common.search_filter')[$search_filter] }}
+            </p>
             @foreach ($keywordArr as $keyword)
                 <p class="post_list_explain_text m-0">
                     {{ $keyword }}
@@ -13,7 +16,7 @@
             @endforeach
         </div>
         <div class="article-list-area">
-            <livewire:paginated-post-list :keywords="$keywordArr" page_flag="search" />
+            <livewire:paginated-post-list :keywords="$keywordArr" :search_filter="$search_filter" page_flag="search" />
         </div>
     </x-main>
     <x-footer />
