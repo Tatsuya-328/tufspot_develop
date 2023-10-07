@@ -27,9 +27,8 @@ class FeatureController extends Controller
      */
     public function create()
     {
-        $posts = Post::get();
-        $added_posts = null;
-        return view('back.features.create', compact('posts', 'added_posts'));
+        $all_posts = Post::get();
+        return view('back.features.create', compact('all_posts'));
     }
 
     /**
@@ -68,9 +67,9 @@ class FeatureController extends Controller
     public function edit(Feature $feature)
     {
         $ids['feature_id'] = $feature['id'];
-        $added_posts = Post::searchByArray($ids);
-        $posts = Post::get();
-        return view('back.features.edit', compact('feature', 'posts', 'added_posts'));
+        $added_post_ids = Post::searchByArray($ids)->pluck('id')->toArray();
+        $all_posts = Post::all();
+        return view('back.features.edit', compact('feature', 'added_post_ids', 'all_posts'));
     }
 
     /**

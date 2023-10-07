@@ -13,7 +13,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'body', 'description', 'is_public', 'published_at', 'featured_image_path'
+        'title', 'body', 'description', 'is_public', 'published_at', 'featured_image_path', 'user_id', 'update_user_id'
     ];
 
     protected $casts = [
@@ -31,15 +31,15 @@ class Post extends Model
         return $query;
     }
 
-    protected static function boot()
-    {
-        parent::boot();
+    // protected static function boot()
+    // {
+    //     parent::boot();
 
-        // 保存時user_idをログインユーザーに設定
-        self::saving(function ($post) {
-            $post->user_id = \Auth::id();
-        });
-    }
+    //     // 保存時user_idをログインユーザーに設定
+    //     self::saving(function ($post) {
+    //         $post->user_id = \Auth::id();
+    //     });
+    // }
 
     /**
      * Userのリレーション
@@ -49,6 +49,16 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Userのリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function updateUser()
+    {
+        return $this->belongsTo(User::class, 'update_user_id');
     }
 
     /**

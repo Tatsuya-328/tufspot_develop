@@ -11,6 +11,7 @@ use App\Models\Feature;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -82,6 +83,8 @@ class PostController extends Controller
             'body' => $request['body'],
             'is_public' => $request['is_public'],
             'published_at' => $request['published_at'],
+            'user_id' => Auth::id(),
+            'update_user_id' => Auth::id(),
         ]);
         // タグを追加
         $post->tags()->attach($request->tags);
@@ -177,6 +180,7 @@ class PostController extends Controller
                 'body' => $request['body'],
                 'is_public' => $request['is_public'],
                 'published_at' => $request['published_at'],
+                'update_user_id' => Auth::id(),
             ])
         ) {
             $flash = ['success' => 'データを更新しました。'];
