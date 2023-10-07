@@ -23,8 +23,12 @@ $title = '投稿編集';
     {!! Form::close() !!}
     <table class="table">
         <tr>
-            <th>編集者</th>
+            <th>執筆者</th>
             <td>{{ $post->user->name }}</td>
+        </tr>
+        <tr>
+            <th>最終更新者</th>
+            <td>{{ $post->updateUser->name }}</td>
         </tr>
         <tr>
             <th>登録日時</th>
