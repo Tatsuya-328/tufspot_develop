@@ -184,19 +184,23 @@
                 {{ Form::label('is_public' . $key, $value, ['class' => 'form-check-label']) }}
                 @if ($key === 2)
                     <input type="date" class="form-control">
-                    <select name="hour" id="hour" class="form-select">
-                        @for ($i = 0; $i < 24; $i++)
-                            <option value="{{ $i < 10 ? '0' . $i : $i }}">{{ $i < 10 ? '0' . $i : $i }}</option>
-                        @endfor
-                    </select>
-                    <span>時</span>
-                    <select name="min" id="min" class="form-select">
-                        <option value="00">00</option>
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                    <span>分</span>
+                    <div class="d-flex align-items-center">
+                        <select name="hour" id="hour" class="form-select me-2">
+                            @for ($i = 0; $i < 24; $i++)
+                                <option value="{{ $i < 10 ? '0' . $i : $i }}">{{ $i < 10 ? '0' . $i : $i }}</option>
+                            @endfor
+                        </select>
+                        <span>時</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <select name="min" id="min" class="form-select me-2">
+                            <option value="00">00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                        <span>分</span>
+                    </div>
                     @error('is_public')
                         <div class="text-danger form-check form-check-inline">
                             {{ $message }}
