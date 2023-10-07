@@ -17,7 +17,6 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'is_public' => 'bool',
         'published_at' => 'datetime'
     ];
 
@@ -114,7 +113,7 @@ class Post extends Model
      */
     public function scopePublic(Builder $query)
     {
-        return $query->where('is_public', true);
+        return $query->where('is_public', "1");
     }
 
     /**

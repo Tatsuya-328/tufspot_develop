@@ -183,7 +183,7 @@
                 ]) }}
                 {{ Form::label('is_public' . $key, $value, ['class' => 'form-check-label']) }}
                 @if ($key === 2)
-                    <input type="date" class="form-control">
+                    <input type="date" name="date" class="form-control">
                     <div class="d-flex align-items-center">
                         <select name="hour" id="hour" class="form-select me-2">
                             @for ($i = 0; $i < 24; $i++)

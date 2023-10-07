@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Feature;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
+use App\Models\ReservationPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,6 +69,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $user_id = Auth::id();
         // 画像保存
         // ディレクトリ名
         $dir = 'image/post';
@@ -76,16 +78,39 @@ class PostController extends Controller
         $featured_image_path = str_replace("public", "storage", $featured_image_path);
         // TODO プレビュー時のtmp画像削除する
 
-        $post = Post::create([
-            'title' => $request['title'],
-            'description' => $request['description'],
-            'featured_image_path' => $featured_image_path,
-            'body' => $request['body'],
-            'is_public' => $request['is_public'],
-            'published_at' => $request['published_at'],
-            'user_id' => Auth::id(),
-            'update_user_id' => Auth::id(),
-        ]);
+        if ($request->is_public === "2") {
+            $post = Post::create([
+                'title' => $request['title'],
+                'description' => $request['description'],
+                'featured_image_path' => $featured_image_path,
+                'body' => $request['body'],
+                'is_public' => $request['is_public'],
+                'date' => str_replace('-', '', $request['date']),
+                'time' => $request->hour . $request->min . '00',
+                'published_at' => $request['published_at'],
+                'user_id' => $user_id,
+                'update_user_id' => $user_id,
+            ]);
+
+            ReservationPost::create([
+                'post_id' => $post->id,
+                'user_id' => $user_id,
+                'date' => str_replace('-', '', $request['date']),
+                'time' => $request->hour . $request->min . '00',
+            ]);
+        } else {
+            $post = Post::create([
+                'title' => $request['title'],
+                'description' => $request['description'],
+                'featured_image_path' => $featured_image_path,
+                'body' => $request['body'],
+                'is_public' => $request['is_public'],
+                'published_at' => $request['published_at'],
+                'user_id' => $user_id,
+                'update_user_id' => $user_id,
+            ]);
+        }
+
         // タグを追加
         $post->tags()->attach($request->tags);
         // カテゴリーを追加

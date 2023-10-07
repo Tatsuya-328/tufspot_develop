@@ -34,7 +34,7 @@ class PostFactory extends Factory
             'featured_image_path' => $featured_image_array[$randkey_1],
             'description' => $this->faker->realText(rand(100, 200)),
             'body' => '<h1>大見出し</h1>' . $this->faker->realText(rand(200, 300)) . "<p><br></p><h1>まとめ</h1>" . $this->faker->realText(rand(200, 300)),
-            'is_public' => $this->faker->boolean(90),
+            'is_public' => $this->faker->numberBetween(0, 2),
             'published_at' => $random_date,
             'user_id' => $this->faker->numberBetween(2, 10),
             'update_user_id' => $this->faker->numberBetween(2, 10),
