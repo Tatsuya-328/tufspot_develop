@@ -1260,15 +1260,15 @@ div>.flickity-button:focus {
     width: 5vw;
   }
 
-  div>div>.flickity-page-dots {
+  /* div>div>.flickity-page-dots {
     bottom: 5vw;
-  }
+  } */
 }
 
 @media screen and (max-width:430px) {
-  div>div>.flickity-page-dots {
+  /* div>div>.flickity-page-dots {
     bottom: -6vw;
-  }
+  } */
 }
 
 /* レスポンシブ試し768~940 それ以下はデザイン変える */
@@ -1522,9 +1522,9 @@ div>.flickity-prev-next-button.next {
 } */
 
 
-div>.flickity-page-dots {
+/* div>.flickity-page-dots {
   bottom: -45px;
-}
+} */
 
 div>.flickity-page-dots>.dot {
   border: 1px solid black;

@@ -1,7 +1,7 @@
 @media screen and (max-width: 400px) {
-    .flickity-enabled.is-draggable .flickity-viewport {
+    /* .flickity-enabled.is-draggable .flickity-viewport {
         height: 380px !important;
-    }
+    } */
 }
 
 .fade-in {
@@ -19,6 +19,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -63,13 +64,11 @@
     display: block;
     width: 100%;
     height: 300px;
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgb(247, 247, 247, 9) 10%,
-        rgb(247, 247, 247, 1) 20%,
-        rgb(247, 247, 247, 1) 100%
-    );
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgb(247, 247, 247, 9) 10%,
+            rgb(247, 247, 247, 1) 20%,
+            rgb(247, 247, 247, 1) 100%);
 }
 
 @media screen and (max-width: 1199px) {
@@ -128,7 +127,7 @@
 
 @media screen and (max-width: 320px) {
     .pickup_title_image {
-        transform: translate(-35%,-35%);
+        transform: translate(-35%, -35%);
     }
 }
 
@@ -166,5 +165,4 @@
     }
 }
 
-@media screen and (max-width: 1200px) {
-}
+@media screen and (max-width: 1200px) {}
