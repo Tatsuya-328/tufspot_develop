@@ -1111,13 +1111,13 @@ div>.carousel-cell {
   height: 100%;
 }
 
-div>.flickity-prev-next-button.previous {
+/* div>.flickity-prev-next-button.previous {
   left: 100px;
 }
 
 div>.flickity-button:focus {
   box-shadow: unset;
-}
+} */
 
 .carousel-cell {
   border-radius: 5px;
@@ -1442,13 +1442,13 @@ div>.flickity-prev-next-button.next {
     margin: 40px auto 100px auto;
   }
 
-  div>.flickity-prev-next-button.next {
+  /* div>.flickity-prev-next-button.next {
     right: 5%;
   }
 
   div>.flickity-prev-next-button.previous {
     left: 5%;
-  }
+  } */
 
   .top_liks_wrapper {
     flex-direction: column;
@@ -1461,6 +1461,7 @@ div>.flickity-prev-next-button.next {
   }
 }
 
+/* 
 @media screen and (max-width:400px) {
   div>.flickity-prev-next-button.next {
     right: 1.5%;
@@ -1478,7 +1479,6 @@ div>.flickity-prev-next-button.next {
   }
 
   div>.flickity-prev-next-button.previous {
-    /* left: 29px; */
     left: 5.5vw;
   }
 
@@ -1519,7 +1519,7 @@ div>.flickity-prev-next-button.next {
   div>.flickity-prev-next-button.next {
     right: 200px;
   }
-}
+} */
 
 
 div>.flickity-page-dots {
