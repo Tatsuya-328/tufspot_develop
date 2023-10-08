@@ -12,7 +12,7 @@
     <div class="d-flex top-carousel-wrapper justify-content-center">
         <div class="d-block top-carousel-image-wrapper">
             <a href="{{ route('post_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
-                <img src="{{ asset($post['featured_image_path']) }}" class="top-carousel-image" alt="...">
+                <img loading="lazy" src="{{ asset($post['featured_image_path']) }}" class="top-carousel-image" alt="...">
             </a>
         </div>
         <div class="top-carousel-text-wrapper d-flex flex-column justify-content-center">
