@@ -49,87 +49,10 @@
     </div>
 </div>
 
-@if (0 < $posts->count())
-    {{-- 対象記事のみ表示ボタン --}}
-    {{-- 押すとチェックが入っているもの以外をhideする --}}
-    {{-- <button type="button">対象記事のみ表示</button> --}}
-    <div class="d-flex align-items-center mb-3">
-        <div class="me-3">
-            <input class="form-check-input" type="checkbox" value="has_checked" name="has_checked" id="checkbox">
-            <label for="checkbox">選択済み表示</label>
-        </div>
-        <div class="d-flex align-items-center">
-            <input class="form-control me-2" type="text" name="search" value="" id="id_search" />
-            <label class="w-100" for="search">項目検索</label>
-        </div>
-    </div>
-    <table class="table table-striped table-bordered table-hover table-sm">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">ID</th>
-                <th scope="col">タイトル</th>
-                <th scope="col" style="width: 4.3em">状態</th>
-                <th scope="col" style="width: 7em">タグ</th>
-                <th scope="col" style="width: 9em">公開日</th>
-                <th scope="col">編集者</th>
-                <th scope="col" style="width: 12em">編集</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($posts as $key => $post)
-                <tr>
-                    <td>
-                        @if (!empty($added_posts))
-                            {{ Form::checkbox('add_post_ids[]', $key + 1, in_array($key + 1, old('add_post_ids', $added_posts->pluck('id')->toArray())), ['id' => 'add_post_id' . $key + 1, 'class' => 'form-check-input']) }}
-                        @else
-                            {{ Form::checkbox('add_post_ids[]', $key + 1), ['id' => 'add_post_id' . $key + 1, 'class' => 'form-check-input'] }}
-                        @endif
-                    </td>
-                    <td>{{ $post->id }}</td>
-                    <td>{{ $post->title }}</td>
-                    <td>{{ $post->is_public_label }}</td>
-                    <td>
-                        @foreach ($post->tags as $tag)
-                            @if (!$loop->first)
-                                、
-                            @endif
-                            {{ $tag->name }}
-                        @endforeach
-                    </td>
-                    <td>{{ $post->published_format }}</td>
-                    <td>{{ $post->user->name }}</td>
-                    <td class="d-flex justify-content-center">
-                        {{ link_to_route('post_detail', '本番ページ', $post, [
-                            'class' => 'btn btn-secondary btn-sm m-1',
-                            'target' => '_blank',
-                        ]) }}
-                        {{-- {{ link_to_route('index', '詳細', $post, [
-                                    'class' => 'btn btn-secondary btn-sm m-1',
-                                    'target' => '_blank',
-                                ]) }} --}}
-                        {{ link_to_route('back.posts.edit', '編集', $post, [
-                            'class' => 'btn btn-secondary btn-sm m-1',
-                            'target' => '_blank',
-                        ]) }}
-                        {{-- {{ Form::model($post, [
-                            'route' => ['back.posts.destroy', $post],
-                            'method' => 'delete',
-                        ]) }}
-                        {{ Form::submit('削除', [
-                            'onclick' => "return confirm('本当に削除しますか?')",
-                            'class' => 'btn btn-danger btn-sm m-1',
-                        ]) }}
-                        {{ Form::close() }} --}}
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    {{-- <div class="d-flex justify-content-center">
-        {{ $posts->appends($search)->links() }}
-    </div> --}}
+@if (Route::is('back.categories.create'))
+    <livewire:back.interactive-table :all_posts="$all_posts" />
+@else
+    <livewire:back.interactive-table :add_post_ids="$added_post_ids" :all_posts="$all_posts" />
 @endif
 
 <div class="form-group row">
@@ -163,15 +86,3 @@
         <button type="submit" class="btn btn-success" name="subbtn">保存</button>
     </div>
 </div>
-<script>
-    // 項目検索・チェック判定用
-    $(function() {
-        $('input#id_search').quicksearch('table tbody tr');
-        $("[name='has_checked']").change(function() {
-            console.log('hoge');
-            $("[name='add_post_ids[]']:not(:checked)").each(function() {
-                var v = $(this).parent().parent().toggle();
-            });
-        });
-    });
-</script>
