@@ -37,6 +37,7 @@ class PostFactory extends Factory
             'is_public' => $this->faker->boolean(90),
             'published_at' => $random_date,
             'user_id' => $this->faker->numberBetween(2, 10),
+            'update_user_id' => $this->faker->numberBetween(2, 10),
             // 'user_id' => 1,
             'created_at' => $random_date,
             'updated_at' => $random_date
