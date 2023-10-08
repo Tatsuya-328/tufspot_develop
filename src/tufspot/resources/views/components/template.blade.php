@@ -27,10 +27,9 @@
     {{-- オリジナル --}}
     <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post.css') }}" rel="stylesheet">
-    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script defer src="{{ asset('js/jquery.min.js') }}"></script>
     {{-- 目次生成 --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/mokuji.css') }}">
-
     @livewireStyles
 </head>
 
@@ -64,8 +63,10 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     {{-- スライドショー --}}
-    <script defer src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    {{-- <script defer src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> --}}
+    <script defer src="{{ asset('js/slick.min.js') }}"></script>
+
+
     {{-- quill editor --}}
     <script defer src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     {{-- オリジナル --}}

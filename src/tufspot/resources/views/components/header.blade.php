@@ -71,7 +71,7 @@
 {{-- モーダルここまで --}}
 <script>
     // Enterで送信せずにモーダル表示
-    $(function() {
+    window.onload = function() {
         $("input").keydown(function(e) {
             if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
                 // モーダル内のテキストボックスに代入
@@ -82,5 +82,5 @@
                 return true;
             }
         });
-    });
+    };
 </script>
