@@ -1122,7 +1122,7 @@ div>.flickity-button:focus {
 .carousel-cell {
   border-radius: 5px;
   counter-increment: carousel-cell;
-  height: 360px;
+  /* height: 360px; */
 }
 
 /* レスポンシブ試し */
@@ -1182,7 +1182,7 @@ div>.flickity-button:focus {
   }
 
   .carousel-cell {
-    height: 96vw;
+    /* height: 96vw; */
     /* height: 100vw; */
   }
 
@@ -1300,7 +1300,7 @@ div>.flickity-button:focus {
   }
 
   .carousel-cell {
-    height: 235px;
+    /* height: 235px; */
   }
 
   .top-carousel-hashtag {
@@ -1352,7 +1352,7 @@ div>.flickity-button:focus {
   }
 
   .carousel-cell {
-    height: 25vw;
+    /* height: 25vw; */
   }
 
   .top-carousel-hashtag {
@@ -1407,7 +1407,7 @@ div>.flickity-button:focus {
   }
 
   .carousel-cell {
-    height: 360px;
+    /* height: 360px; */
   }
 
   .top-carousel-hashtag {
