@@ -27,6 +27,7 @@
                         </div>
                         <div>
                             {{-- <a href="#" class="mypage-button">パスワードを変更する</a> --}}
+                            {{-- モーダル開くボタン --}}
                             <a type="button" class="mypage-button" data-bs-toggle="modal" data-bs-target="#mypageModal">
                                 ユーザー情報を変更する
                             </a>

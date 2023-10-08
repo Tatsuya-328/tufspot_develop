@@ -169,7 +169,9 @@ class PostController extends Controller
         $keywords = mb_convert_kana($request->keywords, 's', 'UTF-8');
         $keywordArr = explode(" ", $keywords);
 
-        return view('search_result', compact('keywordArr'));
+        $search_filter = $request->search_filter;
+
+        return view('search_result', compact('keywordArr', 'search_filter'));
     }
 
     /**
