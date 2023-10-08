@@ -61,7 +61,7 @@
         {{ Form::label('featured_image', 'アイキャッチ', ['class' => 'col-sm-1 col-form-label w-auto post-form']) }}
         <div class="col post-form-col">
             @if ($post['featured_image_path'])
-                <img class="featured_image form-control" src="{{ asset($post->featured_image_path) }}" alt="">
+                <img loading="lazy" class="featured_image form-control" src="{{ asset($post->featured_image_path) }}" alt="">
             @else
                 <div class="form-control">
                     画像未登録
@@ -69,7 +69,7 @@
             @endif
             {{-- <input type="file" class="form-control mt-3 mb-3" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
         <div class="image_preview" id="image_preview" style="display: none">
-            <img class="featured_image" class="mt-3" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <img loading="lazy" class="featured_image" class="mt-3" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         </div>
         <input type="button" class="mt-3" id="clear" value="登録解除" onclick="unsetImage();" style="display: none"> --}}
         </div>
@@ -86,7 +86,7 @@
         <input type="file" class="form-control mb-3" id="image_input" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
         <div class="image_preview" id="image_preview" style="display: none">
             {{-- 画像入れ替える様に極小画像置いておく --}}
-            <img class="featured_image form-control" class="mt-3" id="preview_featured_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+            <img loading="lazy" class="featured_image form-control" class="mt-3" id="preview_featured_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         </div>
         <input type="button" class="mt-3 btn btn-outline-dark" id="clear" value="選択解除" onclick="unsetImage();" style="display: none">
 

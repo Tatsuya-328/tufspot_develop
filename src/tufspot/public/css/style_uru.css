@@ -126,7 +126,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 45px;
+  width: 30px;
   height: 45px;
   border: none;
   background-color: transparent;
@@ -1102,17 +1102,19 @@ div>.flickity-button:hover {
 
 div>.carousel-cell {
   /* width: 1580px; */
+  width: 100%;
+  /* full width */
 }
 
 .top-carousel-wrapper {
-  margin: 0 0 0 8vw;
+  /* margin: 0 0 0 8vw; */
   height: 100%;
 }
 
-div>.flickity-prev-next-button.previous {
+/* div>.flickity-prev-next-button.previous {
   left: 100px;
 }
-
+*/
 div>.flickity-button:focus {
   box-shadow: unset;
 }
@@ -1120,7 +1122,7 @@ div>.flickity-button:focus {
 .carousel-cell {
   border-radius: 5px;
   counter-increment: carousel-cell;
-  height: 360px;
+  /* height: 360px; */
 }
 
 /* レスポンシブ試し */
@@ -1180,7 +1182,7 @@ div>.flickity-button:focus {
   }
 
   .carousel-cell {
-    height: 96vw;
+    /* height: 96vw; */
     /* height: 100vw; */
   }
 
@@ -1258,15 +1260,15 @@ div>.flickity-button:focus {
     width: 5vw;
   }
 
-  div>div>.flickity-page-dots {
+  /* div>div>.flickity-page-dots {
     bottom: 5vw;
-  }
+  } */
 }
 
 @media screen and (max-width:430px) {
-  div>div>.flickity-page-dots {
+  /* div>div>.flickity-page-dots {
     bottom: -6vw;
-  }
+  } */
 }
 
 /* レスポンシブ試し768~940 それ以下はデザイン変える */
@@ -1298,7 +1300,7 @@ div>.flickity-button:focus {
   }
 
   .carousel-cell {
-    height: 235px;
+    /* height: 235px; */
   }
 
   .top-carousel-hashtag {
@@ -1350,7 +1352,7 @@ div>.flickity-button:focus {
   }
 
   .carousel-cell {
-    height: 25vw;
+    /* height: 25vw; */
   }
 
   .top-carousel-hashtag {
@@ -1405,7 +1407,7 @@ div>.flickity-button:focus {
   }
 
   .carousel-cell {
-    height: 360px;
+    /* height: 360px; */
   }
 
   .top-carousel-hashtag {
@@ -1440,13 +1442,13 @@ div>.flickity-prev-next-button.next {
     margin: 40px auto 100px auto;
   }
 
-  div>.flickity-prev-next-button.next {
+  /* div>.flickity-prev-next-button.next {
     right: 5%;
   }
 
   div>.flickity-prev-next-button.previous {
     left: 5%;
-  }
+  } */
 
   .top_liks_wrapper {
     flex-direction: column;
@@ -1459,6 +1461,7 @@ div>.flickity-prev-next-button.next {
   }
 }
 
+/* 
 @media screen and (max-width:400px) {
   div>.flickity-prev-next-button.next {
     right: 1.5%;
@@ -1476,7 +1479,6 @@ div>.flickity-prev-next-button.next {
   }
 
   div>.flickity-prev-next-button.previous {
-    /* left: 29px; */
     left: 5.5vw;
   }
 
@@ -1517,12 +1519,12 @@ div>.flickity-prev-next-button.next {
   div>.flickity-prev-next-button.next {
     right: 200px;
   }
-}
+} */
 
 
-div>.flickity-page-dots {
+/* div>.flickity-page-dots {
   bottom: -45px;
-}
+} */
 
 div>.flickity-page-dots>.dot {
   border: 1px solid black;
@@ -1962,7 +1964,8 @@ aside {
 .nav_toggle {
   display: block;
   position: relative;
-  width: 2.5rem;
+  margin: 0 10px;
+  width: 2rem;
   height: 20px;
   margin-top: 3%;
   cursor: pointer;

@@ -5,7 +5,7 @@
             <a href="{{ route('index') }}" class="header-icon d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
                 {{-- TUF
                 <span>SPOT</span> --}}
-                <img src="{{ asset('image/logo_side.png') }}" class="" alt="...">
+                <img loading="lazy" src="{{ asset('image/logo_side.png') }}" class="" alt="...">
             </a>
             <form action="{{ route('search_result') }}" method="GET" class="d-flex">
                 @csrf
@@ -71,7 +71,7 @@
 {{-- モーダルここまで --}}
 <script>
     // Enterで送信せずにモーダル表示
-    $(function() {
+    window.onload = function() {
         $("input").keydown(function(e) {
             if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
                 // モーダル内のテキストボックスに代入
@@ -82,5 +82,5 @@
                 return true;
             }
         });
-    });
+    };
 </script>

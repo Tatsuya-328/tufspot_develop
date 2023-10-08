@@ -5,7 +5,7 @@
     <x-bread />
     <div class="container about-top-wrapper d-flex justify-content-between">
         <div class="">
-            <img src="{{ asset('image/earth_pink.png') }}" class="about-image" alt="...">
+            <img loading="lazy" src="{{ asset('image/earth_pink.png') }}" class="about-image" alt="...">
         </div>
         <div class="about-top">
             <div class="about-top-title">
@@ -52,21 +52,21 @@
             <div class="about-theme-wrapper d-flex">
                 <div class="about-theme d-flex flex-column align-items-center">
                     <p class="about-theme-title text-center"><span>A</span>cademia</p>
-                    <img src="{{ asset('image/about_academia.svg') }}" class="about-theme-image" alt="...">
+                    <img loading="lazy" src="{{ asset('image/about_academia.svg') }}" class="about-theme-image" alt="...">
                     <p class="about-theme-text">
                         東京外大が紡いでいるアカデミアの知見をシェアすることで、新たな知見を得ることができます。
                     </p>
                 </div>
                 <div class="about-theme d-flex flex-column align-items-center">
                     <p class="about-theme-title text-center"><span>B</span>usiness&Carrear</p>
-                    <img src="{{ asset('image/about_business.svg') }}" class="about-theme-image" alt="...">
+                    <img loading="lazy" src="{{ asset('image/about_business.svg') }}" class="about-theme-image" alt="...">
                     <p class="about-theme-text">
                         経済や各ビジネス分野のグローバルな知見や、キャリアの知見をシェアすることで、外大生の自己実現を応援します。
                     </p>
                 </div>
                 <div class="about-theme d-flex flex-column align-items-center">
                     <p class="about-theme-title text-center"><span>C</span>ulture&Essay</p>
-                    <img src="{{ asset('image/about_culture.svg') }}" class="about-theme-image" alt="...">
+                    <img loading="lazy" src="{{ asset('image/about_culture.svg') }}" class="about-theme-image" alt="...">
                     <p class="about-theme-text">
                         カルチャー分野の知見や、各国で過ごす同窓生のエッセイをシェアすることで、新たな視点を得ることができます。
                     </p>
@@ -84,7 +84,7 @@
                             <p class="about-concept-spot-text">
                                 世界中にバラバラに散らばっている外大生たちの知見を、<br class="about_br">この場に集めることがまず一つのこのメディアの価値であると<br class="about_br">考えています。バラバラであることをそのままに。<br class="about_br">ただ、一つの場に集い、お互いの存在を確かめ合う。<br class="about_br">そこから新たな知見が生まれることを願って。
                             </p>
-                            <img src="{{ asset('image/about_pot.svg') }}" class="about-concept-spot-image" alt="">
+                            <img loading="lazy" src="{{ asset('image/about_pot.svg') }}" class="about-concept-spot-image" alt="">
                         </div>
                     </div>
                     <div class="about-concept-spot d-flex flex-column justify-content-center align-items-center">
@@ -94,7 +94,7 @@
                             <p class="about-concept-spot-text spot">
                                 集った知見の中にある光るものにスポットライトを当て、<br class="about_br">多くの同窓生へ伝えていく。それがメディアとしての役割<br class="about_br">であり、そのスポットが次のスポットライトへのきっかけ<br class="about_br">となる。そんな連鎖を生む一つのきっかけになれればと<br class="about_br">考えています。
                             </p>
-                            <img src="{{ asset('image/about_spot.svg') }}" class="about-concept-spot-image" alt="">
+                            <img loading="lazy" src="{{ asset('image/about_spot.svg') }}" class="about-concept-spot-image" alt="">
                         </div>
                     </div>
                 </div>

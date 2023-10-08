@@ -8,7 +8,7 @@
 {{-- @props(['place' => 'ハロン湾']) --}}
 <div class="post_card" style="">
     <a href="{{ route('post_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
-        <img src="{{ asset($post['featured_image_path']) }}" class="post_card_img" alt="...">
+        <img loading="lazy" src="{{ asset($post['featured_image_path']) }}" class="post_card_img" alt="...">
     </a>
     <div class="card-body">
         <p class="fw-bold post-card-text">

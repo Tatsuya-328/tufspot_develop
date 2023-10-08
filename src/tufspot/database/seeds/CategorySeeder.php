@@ -40,7 +40,7 @@ class CategorySeeder extends Seeder
             ]
         ]);
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             \DB::table('category_post')->insert([
                 'post_id' => $i,
                 'category_id' => $faker->numberBetween(1, 3)

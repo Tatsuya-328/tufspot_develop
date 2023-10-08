@@ -48,7 +48,7 @@ class FeatureSeeder extends Seeder
             ]
         ]);
 
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             \DB::table('feature_post')->insert([
                 'post_id' => $i,
                 'feature_id' => $faker->numberBetween(1, 4)
