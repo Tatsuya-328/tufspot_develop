@@ -24,6 +24,7 @@
     {{-- オリジナル --}}
     <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     {{-- 目次生成 --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/mokuji.css') }}">
 
