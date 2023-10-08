@@ -5,7 +5,8 @@
     {{-- 最新記事5つ表示 --}}
     <div class="top-wrapper">
         <div class="top-ariticle-slide">
-            <div class="carousel" data-flickity='{ "wrapAround": true, "cellAlign": "left", "autoPlay": 3000}'>
+            {{-- <div class="carousel" data-flickity='{ "wrapAround": true, "cellAlign": "left", "autoPlay": 3000}'> --}}
+            <div class="carousel" data-flickity='{ "wrapAround": true}'>
                 @foreach ($carousel_posts as $post)
                     <x-post_card_carousel :post=$post />
                 @endforeach

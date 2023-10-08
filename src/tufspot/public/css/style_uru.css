@@ -1102,10 +1102,12 @@ div>.flickity-button:hover {
 
 div>.carousel-cell {
   /* width: 1580px; */
+  width: 100%;
+  /* full width */
 }
 
 .top-carousel-wrapper {
-  margin: 0 0 0 8vw;
+  /* margin: 0 0 0 8vw; */
   height: 100%;
 }
 
