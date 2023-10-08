@@ -17,7 +17,7 @@
     {{-- スライドショー --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     {{-- カルーセル --}}
-    <link async href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link defer href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     {{-- <link rel="stylesheet" href="https://unpkg.com/flickity@2.3.0/dist/flickity.css" media="screen"> --}}
     <link href="{{ asset('css/flicky.css') }}" rel="stylesheet">
 
@@ -58,7 +58,8 @@
     <script src="{{ asset('js/modules/postDetail.js') }}"></script>
     <script src="{{ asset('js/modules/readMore.js') }}" type="module"></script>
     {{-- カルーセル --}}
-    <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script>
+    {{-- <script src="https://unpkg.com/flickity@2.3.0/dist/flickity.pkgd.min.js"></script> --}}
+    <script src="{{ asset('js/flicky.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -69,8 +70,8 @@
     {{-- quill editor --}}
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     {{-- オリジナル --}}
-    <script src="{{ asset('js/top.js') }}" async></script>
-    <script src="{{ asset('js/modules/about.js') }}" async></script>
+    <script src="{{ asset('js/top.js') }}" defer></script>
+    <script src="{{ asset('js/modules/about.js') }}" defer></script>
     {{-- 目次生成 --}}
     <script type="text/javascript" src="{{ asset('js/mokuji.js') }}"></script>
 

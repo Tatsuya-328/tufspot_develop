@@ -24,8 +24,8 @@ class CreateFeaturesTable extends Migration
 
         Schema::create('feature_post', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('post_id')->constrained();
-            $table->foreignId('feature_id')->constrained();
+            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->foreignId('feature_id')->constrained()->onDelete('cascade');
         });
     }
 

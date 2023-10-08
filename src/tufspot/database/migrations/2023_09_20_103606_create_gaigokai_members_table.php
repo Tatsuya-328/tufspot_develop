@@ -25,9 +25,8 @@ return new class extends Migration
         Schema::create('gaigokai_member_user', function (Blueprint $table) {
             $table->increments('id');
             $table->string('gaigokai_member_id')->unique();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreign('gaigokai_member_id')->references('id')->on('gaigokai_members');
-
         });
     }
 
