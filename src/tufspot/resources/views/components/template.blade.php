@@ -9,6 +9,7 @@
 
     <title>{{ $title }}</title>
 
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,7 +28,6 @@
     {{-- オリジナル --}}
     <link href="{{ asset('css/style_uru.css') }}" rel="stylesheet">
     <link href="{{ asset('css/post.css') }}" rel="stylesheet">
-    <script defer src="{{ asset('js/jquery.min.js') }}"></script>
     {{-- 目次生成 --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/mokuji.css') }}">
     @livewireStyles
@@ -68,7 +68,7 @@
 
 
     {{-- quill editor --}}
-    <script defer src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     {{-- オリジナル --}}
     <script defer src="{{ asset('js/top.js') }}"></script>
     <script defer src="{{ asset('js/modules/about.js') }}"></script>
@@ -76,7 +76,7 @@
     <script defer type="text/javascript" src="{{ asset('js/mokuji.js') }}"></script>
 
     {{-- Quill記事編集不可表示用 --}}
-    <script defer>
+    <script>
         if (document.getElementById("quill_editor") != null) {
             var quill = new Quill('#quill_editor', {
                 // var quill = new Quill('#editor-container', {
