@@ -12,4 +12,9 @@ class ReservationPost extends Model
     protected $fillable = [
         'user_id', 'post_id', 'date', 'time',
     ];
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }
