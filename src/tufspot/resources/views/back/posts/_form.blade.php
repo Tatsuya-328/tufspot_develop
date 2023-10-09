@@ -312,6 +312,8 @@
             window.confirm("公開状態は以下で間違いないですか？\n状態：下書き");
         } else if (condition === '1') {
             window.confirm("公開状態は以下で間違いないですか？\n状態：公開");
+        } else if (condition === '2') {
+            window.confirm("公開状態は以下で間違いないですか？\n状態：予約投稿");
         } else {
             window.confirm("公開状態が選択されていません。");
         }
@@ -326,6 +328,8 @@
             window.confirm("公開状態は以下で間違いないですか？\n下書き");
         } else if (condition === '1') {
             window.confirm("公開状態は以下で間違いないですか？\n公開");
+        } else if (condition === '2') {
+            window.confirm("公開状態は以下で間違いないですか？\n予約投稿");
         } else {
             window.confirm("公開状態が選択されていません。");
         }
