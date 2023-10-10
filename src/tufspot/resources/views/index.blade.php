@@ -28,7 +28,7 @@
         <x-top_category title="{{ $academia_category['name'] }}" type="category" slug="{{ $academia_category['slug'] }}" imagePath="image/BOOK.png" :posts=$academia_posts />
     @endif
     @if (!empty($business_posts))
-        <x-top_category title="{{ $business_category['name'] }}" type="category" slug="{{ $business_category['slug'] }}r" imagePath="image/TALK.png" :posts=$business_posts />
+        <x-top_category title="{{ $business_category['name'] }}" type="category" slug="{{ $business_category['slug'] }}" imagePath="image/TALK.png" :posts=$business_posts />
     @endif
     @if (!empty($culture_posts))
         <x-top_category title="{{ $culture_category['name'] }}" type="category" slug="{{ $culture_category['slug'] }}" imagePath="image/EARTH.png" :posts=$culture_posts />

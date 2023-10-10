@@ -74,6 +74,9 @@ header {
 
   z-index: 100;
   position: relative;
+
+  /* safariで filter: drop-shadow が崩れるため transform: translateZ(0); 追加*/
+  transform: translateZ(0);
 }
 
 .header-icon {
@@ -98,6 +101,8 @@ header {
   filter: drop-shadow(0px 3px 4.5px #d3d3d3);
   background-color: #f1f1f1;
   height: 38px;
+  /* safariで filter: drop-shadow が崩れるため transform: translateZ(0); 追加*/
+  transform: translateZ(0);
 }
 
 .search-form-011 input {
@@ -126,7 +131,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
+  width: 45px;
   height: 45px;
   border: none;
   background-color: transparent;
@@ -1225,7 +1230,7 @@ div>.flickity-button:focus {
   }
 
   .post-card-writer {
-    font-size: 0.8vw;
+    /* font-size: 0.8vw; */
     padding-left: 0.4vw;
     margin: unset;
   }
@@ -1250,6 +1255,10 @@ div>.flickity-button:focus {
   }
 
   .header-search>button {}
+
+  .search-form-011 button {
+    width: 30px;
+  }
 
   .header-icon {
     order: 2;
@@ -1314,7 +1323,8 @@ div>.flickity-button:focus {
   }
 
   .post-card-writer {
-    font-size: 7.52px;
+    /* font-size: 7.52px; */
+    font-size: 9px;
     padding-left: 3.76px;
     margin: unset;
   }

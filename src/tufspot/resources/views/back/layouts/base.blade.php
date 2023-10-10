@@ -8,6 +8,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
     <title>TUFSPOT管理</title>
+    <link rel="shortcut icon" href="{{ asset('image/logo_icon-removebg.png') }}">
 
     <link rel="canonical" href="https://getbootstrap.jp/docs/5.0/examples/dashboard/">
     <!-- Bootstrap core CSS -->
