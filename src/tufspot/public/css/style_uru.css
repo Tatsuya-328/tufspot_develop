@@ -74,6 +74,9 @@ header {
 
   z-index: 100;
   position: relative;
+
+  /* safariで filter: drop-shadow が崩れるため transform: translateZ(0); 追加*/
+  transform: translateZ(0);
 }
 
 .header-icon {
@@ -98,6 +101,8 @@ header {
   filter: drop-shadow(0px 3px 4.5px #d3d3d3);
   background-color: #f1f1f1;
   height: 38px;
+  /* safariで filter: drop-shadow が崩れるため transform: translateZ(0); 追加*/
+  transform: translateZ(0);
 }
 
 .search-form-011 input {
