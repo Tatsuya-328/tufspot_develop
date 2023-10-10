@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title }}</title>
+    <link rel="shortcut icon" href="{{ asset('image/logo_icon-removebg.png') }}">
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <link href="{{ asset('css/reset.css') }}" rel="stylesheet">
