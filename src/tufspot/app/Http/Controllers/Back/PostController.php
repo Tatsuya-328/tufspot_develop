@@ -11,6 +11,7 @@ use App\Models\Feature;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Models\ReservationPost;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -87,7 +88,7 @@ class PostController extends Controller
                 'is_public' => $request['is_public'],
                 'date' => str_replace('-', '', $request['date']),
                 'time' => $request->hour . $request->min . '00',
-                'published_at' => $request['published_at'],
+                'published_at' => $request->date . " " . $request->hour . ":" . $request->min . ":00",
                 'user_id' => $user_id,
                 'update_user_id' => $user_id,
             ]);
@@ -179,6 +180,8 @@ class PostController extends Controller
      */
     public function update(PostUpdateRequest $request, Post $post)
     {
+        $update_user_id = Auth::id();
+        $is_success = false;
         // タグを更新
         $post->tags()->sync($request->tags);
         // カテゴリーを更新
@@ -197,17 +200,53 @@ class PostController extends Controller
             $featured_image_path = $post['featured_image_path'];
         }
 
-        if (
+        if ($request->is_public === "2") {
             $post->update([
                 'title' => $request['title'],
                 'description' => $request['description'],
                 'featured_image_path' => $featured_image_path,
                 'body' => $request['body'],
                 'is_public' => $request['is_public'],
-                'published_at' => $request['published_at'],
-                'update_user_id' => Auth::id(),
-            ])
-        ) {
+                'date' => str_replace('-', '', $request['date']),
+                'time' => $request->hour . $request->min . '00',
+                'published_at' => $request->date . " " . $request->hour . ":" . $request->min . ":00",
+                'update_user_id' => $update_user_id,
+            ]);
+
+            if (is_null($post->reservationPost)) {
+                ReservationPost::create([
+                    'post_id' => $post->id,
+                    'user_id' => $update_user_id,
+                    'date' => str_replace('-', '', $request['date']),
+                    'time' => $request->hour . $request->min . '00',
+                ]);
+            } else {
+                $post->reservationPost->update([
+                    'post_id' => $post->id,
+                    'user_id' => $update_user_id,
+                    'date' => str_replace('-', '', $request['date']),
+                    'time' => $request->hour . $request->min . '00',
+                ]);
+            }
+            $is_success = true;
+        } else {
+            $post->update([
+                'title' => $request['title'],
+                'description' => $request['description'],
+                'featured_image_path' => $featured_image_path,
+                'body' => $request['body'],
+                'is_public' => $request['is_public'],
+                'published_at' => Carbon::now()->format('Y-m-d H:i'),
+                'update_user_id' => $update_user_id,
+            ]);
+
+            if (isset($post->reservationPost)) {
+                $post->reservationPost->delete();
+            }
+            $is_success = true;
+        }
+
+        if ($is_success) {
             $flash = ['success' => 'データを更新しました。'];
         } else {
             $flash = ['error' => 'データの更新に失敗しました'];

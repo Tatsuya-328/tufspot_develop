@@ -106,6 +106,16 @@ class Post extends Model
     }
 
     /**
+     * 予約投稿のリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function reservationPost()
+    {
+        return $this->hasOne(ReservationPost::class);
+    }
+
+    /**
      * 公開のみ表示
      *
      * @param Builder $query
