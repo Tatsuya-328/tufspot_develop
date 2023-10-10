@@ -1225,7 +1225,7 @@ div>.flickity-button:focus {
   }
 
   .post-card-writer {
-    font-size: 0.8vw;
+    /* font-size: 0.8vw; */
     padding-left: 0.4vw;
     margin: unset;
   }
@@ -1318,7 +1318,8 @@ div>.flickity-button:focus {
   }
 
   .post-card-writer {
-    font-size: 7.52px;
+    /* font-size: 7.52px; */
+    font-size: 9px;
     padding-left: 3.76px;
     margin: unset;
   }
