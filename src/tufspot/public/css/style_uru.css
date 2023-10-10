@@ -126,7 +126,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
+  width: 45px;
   height: 45px;
   border: none;
   background-color: transparent;
@@ -1245,6 +1245,10 @@ div>.flickity-button:focus {
   }
 
   .header-search>button {}
+
+  .search-form-011 button {
+    width: 30px;
+  }
 
   .header-icon {
     order: 2;
