@@ -709,6 +709,11 @@ input[type="radio"] {
   .about-top {
     margin: 0 0 0 0;
   }
+
+  /* 追加 */
+  .about-top-wrapper {
+    margin: 60px auto 0;
+  }
 }
 
 .about-top-title {
@@ -763,7 +768,7 @@ input[type="radio"] {
   }
 
   .about-top-wrapper {
-    margin: 30px 0 0 0;
+    margin: 30px auto 0;
   }
 
   .about_br {
