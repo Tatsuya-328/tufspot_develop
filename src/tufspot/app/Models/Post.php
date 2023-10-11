@@ -17,7 +17,6 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'is_public' => 'bool',
         'published_at' => 'datetime'
     ];
 
@@ -107,6 +106,16 @@ class Post extends Model
     }
 
     /**
+     * 予約投稿のリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function reservationPost()
+    {
+        return $this->hasOne(ReservationPost::class);
+    }
+
+    /**
      * 公開のみ表示
      *
      * @param Builder $query
@@ -114,7 +123,7 @@ class Post extends Model
      */
     public function scopePublic(Builder $query)
     {
-        return $query->where('is_public', true);
+        return $query->where('is_public', "1");
     }
 
     /**

@@ -182,13 +182,59 @@
                     'class' => 'form-check-input' . ($errors->has('is_public') ? ' is-invalid' : ''),
                 ]) }}
                 {{ Form::label('is_public' . $key, $value, ['class' => 'form-check-label']) }}
-                @if ($key === 1)
+                @if ($key === 2)
+                    @if (Request::is('admin/posts/create'))
+                        <input type="date" name="date" class="form-control" value="{{ old('date') }}">
+                        <div class="d-flex align-items-center">
+                            <select name="hour" id="hour" class="form-select me-2">
+                                @for ($i = 0; $i < 24; $i++)
+                                    <option value="{{ $i < 10 ? '0' . $i : $i }}">{{ $i < 10 ? '0' . $i : $i }}</option>
+                                @endfor
+                            </select>
+                            <span>時</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <select name="min" id="min" class="form-select me-2">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <span>分</span>
+                        </div>
+                    @else
+                        <input type="date" name="date" class="form-control" value="{{ old('date', $post['published_at']->format('Y-m-d')) }}">
+                        <div class="d-flex align-items-center">
+                            <select name="hour" id="hour" class="form-select me-2">
+                                @for ($i = 0; $i < 24; $i++)
+                                    <option value="{{ $i < 10 ? '0' . $i : $i }}" @if ($post['published_at']->format('H') == str($i)) selected @endif>{{ $i < 10 ? '0' . $i : $i }}</option>
+                                @endfor
+                            </select>
+                            <span>時</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <select name="min" id="min" class="form-select me-2">
+                                <option value="00" @if ($post['published_at']->format('i') === '00') selected @endif>00</option>
+                                <option value="15" @if ($post['published_at']->format('i') === '15') selected @endif>15</option>
+                                <option value="30" @if ($post['published_at']->format('i') === '30') selected @endif>30</option>
+                                <option value="45" @if ($post['published_at']->format('i') === '45') selected @endif>45</option>
+                            </select>
+                            <span>分</span>
+                        </div>
+                    @endif
                     @error('is_public')
                         <div class="text-danger form-check form-check-inline">
                             {{ $message }}
                         </div>
                     @enderror
                 @endif
+                {{-- @if ($key === 1)
+                    @error('is_public')
+                        <div class="text-danger form-check form-check-inline">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                @endif --}}
             </div>
         @endforeach
     </div>
@@ -287,6 +333,8 @@
             window.confirm("公開状態は以下で間違いないですか？\n状態：下書き");
         } else if (condition === '1') {
             window.confirm("公開状態は以下で間違いないですか？\n状態：公開");
+        } else if (condition === '2') {
+            window.confirm("公開状態は以下で間違いないですか？\n状態：予約投稿");
         } else {
             window.confirm("公開状態が選択されていません。");
         }
@@ -301,6 +349,8 @@
             window.confirm("公開状態は以下で間違いないですか？\n下書き");
         } else if (condition === '1') {
             window.confirm("公開状態は以下で間違いないですか？\n公開");
+        } else if (condition === '2') {
+            window.confirm("公開状態は以下で間違いないですか？\n予約投稿");
         } else {
             window.confirm("公開状態が選択されていません。");
         }
