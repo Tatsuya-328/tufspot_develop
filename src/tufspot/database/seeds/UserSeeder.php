@@ -47,6 +47,16 @@ class UserSeeder extends Seeder
                 'updated_at' => now()
             ],
             [
+                'name' => '執筆マン',
+                'email' => 'writer@example.com',
+                'email_verified_at' => now(),
+                'password' => \Hash::make('testtest'),
+                'role' => 2,
+                'introduction' => $faker->realText(rand(100, 200)),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
                 'name' => 'テスト用1',
                 'email' => 'test1@example.com',
                 'email_verified_at' => now(),
@@ -131,7 +141,7 @@ class UserSeeder extends Seeder
                 'email' => 'ichiro@example.com',
                 'email_verified_at' => now(),
                 'password' => \Hash::make('hogehoge'),
-                'role' => 2,
+                'role' => 3,
                 'introduction' => $faker->realText(rand(100, 200)),
                 'created_at' => now(),
                 'updated_at' => now()
@@ -141,7 +151,7 @@ class UserSeeder extends Seeder
                 'email' => 'hanako@example.com',
                 'email_verified_at' => now(),
                 'password' => \Hash::make('hogehoge'),
-                'role' => 2,
+                'role' => 3,
                 'introduction' => $faker->realText(rand(100, 200)),
                 'created_at' => now(),
                 'updated_at' => now()
