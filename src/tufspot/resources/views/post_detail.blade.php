@@ -15,7 +15,7 @@
     @endif
     <x-main>
         <div class="post-detail-wrapper d-flex flex-column justify-content-center align-items-center">
-            <img loading="lazy" class="post-top-img" src="{{ asset('image/post_detail.jpeg') }}" class="" alt="...">
+            <img loading="lazy" class="post-top-img" src="{{ $post['featured_image_path'] ?? asset('image/noimage.png') }}" class="" alt="...">
             <div class="post-title">
                 <div class="post-title-text">{!! nl2br($post->title) !!}</div>
                 {{-- いいねボタンはユーザー名の隣に移動 --}}
