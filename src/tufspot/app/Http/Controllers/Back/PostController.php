@@ -72,12 +72,15 @@ class PostController extends Controller
     {
         $user_id = Auth::id();
         // 画像保存
-        // ディレクトリ名
-        $dir = 'image/post';
-        $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
-        // ファイル情報をDBに保存
-        $featured_image_path = str_replace("public", "storage", $featured_image_path);
-        // TODO プレビュー時のtmp画像削除する
+        $featured_image_path = null;
+        if (isset($request->featured_image)) {
+            // ディレクトリ名
+            $dir = 'image/post';
+            $featured_image_path = $request->file('featured_image')->store('public/' . $dir);
+            // ファイル情報をDBに保存
+            $featured_image_path = str_replace("public", "storage", $featured_image_path);
+            // TODO プレビュー時のtmp画像削除する
+        }
 
         if ($request->is_public === "2") {
             $post = Post::create([

@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required|max:100',
-            'featured_image' => 'required',
+            // 'featured_image' => 'required',
             'body' => '',
             'is_public' => 'required|numeric',
             'published_at' => 'required|date_format:Y-m-d H:i',
@@ -40,7 +40,7 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'タイトル',
-            'featured_image' => 'アイキャッチ画像',
+            // 'featured_image' => 'アイキャッチ画像',
             'body' => '内容',
             'is_public' => 'ステータス',
             'published_at' => '公開日',

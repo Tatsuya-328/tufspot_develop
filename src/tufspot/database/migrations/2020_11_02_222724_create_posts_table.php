@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('featured_image_path');
+            $table->string('featured_image_path')->nullable();
             $table->longText('body')->nullable();
             $table->integer('is_public');
             $table->dateTime('published_at')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('公開日');

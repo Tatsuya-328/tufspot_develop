@@ -1,7 +1,7 @@
 {{--
     カードの形式を持ってくる
     画像はフリー画像を、縦223*横299pxで
-    
+
     以下phpで複製後に並び替えるのに使えそう
     https://getbootstrap.jp/docs/5.0/components/card/
 --}}
@@ -12,7 +12,7 @@
     <div class="d-flex top-carousel-wrapper justify-content-center">
         <div class="d-block top-carousel-image-wrapper">
             <a href="{{ route('post_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
-                <img loading="lazy" src="{{ asset($post['featured_image_path']) }}" class="top-carousel-image" alt="...">
+                <img loading="lazy" src="{{ $post['featured_image_path'] ?? asset('image/noimage.png') }}" class="top-carousel-image" alt="...">
             </a>
         </div>
         <div class="top-carousel-text-wrapper d-flex flex-column justify-content-center">

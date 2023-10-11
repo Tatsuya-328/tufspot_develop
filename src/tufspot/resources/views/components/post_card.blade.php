@@ -1,14 +1,14 @@
 {{--
     カードの形式を持ってくる
     画像はフリー画像を、縦223*横299pxで
-    
+
     以下phpで複製後に並び替えるのに使えそう
     https://getbootstrap.jp/docs/5.0/components/card/
 --}}
 {{-- @props(['place' => 'ハロン湾']) --}}
 <div class="post_card" style="">
     <a href="{{ route('post_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
-        <img loading="lazy" src="{{ asset($post['featured_image_path']) }}" class="post_card_img" alt="...">
+        <img loading="lazy" src="{{ $post['featured_image_path'] ?? asset('image/noimage.png') }}" class="post_card_img" alt="...">
     </a>
     <div class="card-body">
         <p class="fw-bold post-card-text">
