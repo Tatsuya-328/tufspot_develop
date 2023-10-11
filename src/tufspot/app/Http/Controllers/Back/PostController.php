@@ -274,6 +274,13 @@ class PostController extends Controller
         // タグを削除
         $post->categories()->detach();
 
+        $post->features()->detach();
+
+        if (isset($post->reservationPost)) {
+            $post->reservationPost->delete();
+        }
+
+
         if ($post->delete()) {
             $flash = ['success' => 'データを削除しました。'];
         } else {
