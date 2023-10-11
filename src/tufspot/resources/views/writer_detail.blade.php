@@ -24,14 +24,14 @@
                     <p class="writer-detail-title">
                         ▼<span>各種SNS</span>
                     </p>
-                    <div class="writer-detail-sns-wrapper">
+                    <div class="writer-detail-sns-wrapper w-100 m-auto">
                         @foreach ($user->snsAccounts as $snsAccount)
-                            <div class="writer-detail-sns-text d-flex">
+                            <div class="writer-detail-sns-text mx-auto d-block d-sm-flex justify-content-center">
                                 <div class="writer-detail-sns-account">
-                                    {{ $snsAccount['name'] }}
+                                    {{ $snsAccount['name'] }}：
                                 </div>
-                                <div>
-                                    ：<a href="{{ $snsAccount['url'] }}" target="_blank" rel="noopener noreferrer">{{ $snsAccount['url'] }}</a>
+                                <div class="writer-detail-sns-link text-break">
+                                    <a href="{{ $snsAccount['url'] }}" target="_blank" rel="noopener noreferrer">{{ $snsAccount['url'] }}</a>
                                 </div>
                             </div>
                         @endforeach

@@ -520,13 +520,36 @@ input[type="radio"] {
 
 .writer-detail-sns-text {
   color: #4a4a4a;
-  line-height: 48px;
-  margin: 10px 0 0 0;
+  line-height: 24px;
+  margin: 24px 0 0 24px;
 }
 
 .writer-detail-sns-account {
-  max-width: 170px;
-  width: 30%;
+  /* max-width: 170px; */
+  width: 20%;
+}
+
+.writer-detail-sns-link {
+  /* max-width: 170px; */
+  width: 50%;
+}
+
+@media (max-width:576px) {
+  .writer-detail-sns-text {
+    margin: 16px 0 0 0;
+  }
+
+  .writer-detail-sns-account {
+    /* max-width: 170px; */
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  .writer-detail-sns-link {
+    /* max-width: 170px; */
+    width: 75%;
+    margin: 5px auto 0 auto;
+  }
 }
 
 .writer-detail-explain-wrapper {
