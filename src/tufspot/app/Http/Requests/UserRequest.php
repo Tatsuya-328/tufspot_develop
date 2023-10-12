@@ -46,7 +46,7 @@ class UserRequest extends FormRequest
             'email' => 'required|string|email|max:255',
             'password' => 'required|string',
             'password_check' => 'required|string',
-            'phone_number' => 'required|string',
+            // 'phone_number' => 'required|string',
         ];
 
         // 更新時はパスワード必須ではない
@@ -57,6 +57,4 @@ class UserRequest extends FormRequest
 
         return $validate;
     }
-
-
 }

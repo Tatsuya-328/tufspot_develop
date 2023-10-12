@@ -94,9 +94,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('back.tags.index') }}">ハッシュタグ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('back.users.index') }}">ユーザー</a>
-                    </li>
+                    @if (Auth::user()->role === 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('back.users.index') }}">ユーザー</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('index') }}" target="_blank" rel="noopener noreferrer">本番サイトへ</a>
                     </li>
