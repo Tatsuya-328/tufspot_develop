@@ -280,8 +280,9 @@ footer {
 }
 
 .post_list_explain {
-  margin: 0 auto 100px auto;
+  margin: 0 auto 60px auto;
   max-width: 780px;
+  padding: 0 20px;
 }
 
 .feature_box {
