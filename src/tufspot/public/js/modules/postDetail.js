@@ -1,7 +1,7 @@
 'use strict';
 
-if (/\/post\/*/.test(window.location.pathname)) {
+if (/\/(post)|(admin\/preview)\/*/.test(window.location.pathname)) {
     // 実行したいコードをここに書く
-    console.log(document.querySelector('.wrapper'))
+    console.log(document.querySelector('.wrapper'));
     document.querySelector('.wrapper').classList.add('post-page');
 }
