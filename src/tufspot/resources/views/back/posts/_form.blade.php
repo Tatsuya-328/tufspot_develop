@@ -71,7 +71,7 @@
         <div class="image_preview" id="image_preview" style="display: none">
             <img loading="lazy" class="featured_image" class="mt-3" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         </div>
-        <input type="button" class="mt-3" id="clear" value="登録解除" onclick="unsetImage();" style="display: none"> --}}
+        <input type="button" class="m-3" id="clear" value="登録解除" onclick="unsetImage();" style="display: none"> --}}
         </div>
     </div>
 @endif

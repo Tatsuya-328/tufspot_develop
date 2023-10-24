@@ -18,7 +18,6 @@
 .featured_image {
   object-fit: cover;
   width: 300px;
-  aspect-ratio: 4 / 3;
 }
 
 /* .image_preview {
