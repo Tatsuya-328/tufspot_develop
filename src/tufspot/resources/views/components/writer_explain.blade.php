@@ -14,15 +14,18 @@
             <p class="writer-explain-hashtag">
                 @php
                     $cnt = 0;
+                    $printed_tag = [];
                 @endphp
                 @foreach ($writer['posts'] as $post)
                     @foreach ($post['tags'] as $tag)
                         @if (!empty($tag))
-                            @php
-                                $cnt++;
-                            @endphp
-                            @if ($cnt > 3)
+                            @if ($cnt > 3 or in_array($tag['name'], $printed_tag))
                                 @continue
+                            @else
+                                @php
+                                    $cnt++;
+                                    array_push($printed_tag, $tag['name']);
+                                @endphp
                             @endif
                             <a href="{{ route('hashtag_result', ['tagSlug' => $tag['slug']]) }}" class="text-decoration-none">#{{ $tag['name'] }}</a>
                         @endif
