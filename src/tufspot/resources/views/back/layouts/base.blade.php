@@ -34,11 +34,24 @@
     <script src="{{ asset('js/jquery.quicksearch.js') }}" type="text/javascript"></script>
     {{-- Cropper.js --}}
     <script src="{{ asset('js/cropper.min.js') }}"></script>
+
+
     <link href="{{ asset('css/cropper.min.css') }}" rel="stylesheet /">
-
-
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/adminPost.css') }}" rel="stylesheet">
 
     <style>
+        .cropper-crop-box,
+        .cropper-view-box {
+            border-radius: 50%;
+        }
+
+        .cropper-view-box {
+            box-shadow: 0 0 0 1px #39f;
+            outline: 0;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -53,9 +66,6 @@
             }
         }
     </style>
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/adminPost.css') }}" rel="stylesheet">
 </head>
 
 <body class="vsc-initialized">
