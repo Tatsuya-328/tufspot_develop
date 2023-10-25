@@ -32,6 +32,9 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     {{-- <script src="jquery.quicksearch.js"></script> --}}
     <script src="{{ asset('js/jquery.quicksearch.js') }}" type="text/javascript"></script>
+    {{-- Cropper.js --}}
+    <script src="{{ asset('js/cropper.min.js') }}"></script>
+    <link href="{{ asset('css/cropper.min.css') }}" rel="stylesheet /">
 
 
 
