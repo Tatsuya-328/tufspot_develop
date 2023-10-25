@@ -172,11 +172,13 @@
                 画像未登録
             </div>
         @endif
-        {{-- <input type="file" class="form-control mt-3 mb-3" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
+        {{--
+        <input type="file" class="form-control mt-3 mb-3" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);">
         <div class="image_preview" id="image_preview" style="display: none">
             <img loading="lazy" class="featured_image" class="mt-3" id="preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         </div>
-        <input type="button" class="m-3" id="clear" value="登録解除" onclick="unsetImage();" style="display: none"> --}}
+        <input type="button" class="m-3" id="clear" value="登録解除" onclick="unsetImage();" style="display: none">
+        --}}
     </div>
 </div>
 
@@ -184,12 +186,14 @@
     {{ Form::label('featured_image', '画像変更', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col post-form-col">
         <input type="file" class="form-control mb-3" id="image_input" name="featured_image" value="{{ old('featured_image') }}" onchange="previewImage(this);" />
-        <div class="image_preview" id="image_preview" style="display: none;">
-            {{-- 画像入れ替える様に極小画像置いておく --}}
-            <img loading="lazy" class="featured_image form-control" class="mt-3" id="preview_featured_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="display: block; max-width: 100%;" />
-        </div>
-        <div id="cropped_image_preview">
-            <img id="cropping_target_image" style="display: none;" />
+        <div id="preview_image_container">
+            <div class="image_preview" id="image_preview" style="display: none;">
+                {{-- 画像入れ替える様に極小画像置いておく --}}
+                <img loading="lazy" class="featured_image form-control" class="mt-3" id="preview_featured_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="display: block;" />
+            </div>
+            <div id="cropped_image_preview" style="display: none;">
+                <img id="cropping_target_image" style="display: none;" />
+            </div>
         </div>
         <input type="button" class="m-3 btn btn-outline-dark" id="clear" value="登録解除" onclick="unsetImage();" style="display: none;" />
 
