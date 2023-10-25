@@ -42,16 +42,6 @@
     <link href="{{ asset('css/adminPost.css') }}" rel="stylesheet">
 
     <style>
-        .cropper-crop-box,
-        .cropper-view-box {
-            border-radius: 50%;
-        }
-
-        .cropper-view-box {
-            box-shadow: 0 0 0 1px #39f;
-            outline: 0;
-        }
-
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
