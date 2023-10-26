@@ -8,6 +8,7 @@ use App\Models\SnsAccount;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -81,23 +82,28 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        // dd($request);
-        // 画像保存
-        // ディレクトリ名
-        if ($request->file('profile_image')) {
-            $dir = 'image/user';
-            $profile_image_path = $request->file('profile_image')->store('public/' . $dir);
-            // ファイル情報をDBに保存
-            $profile_image_path = str_replace("public", "storage", $profile_image_path);
-        } else {
-            $profile_image_path = $user['profile_image_path'];
+        extract($request->toArray());
+        $isSucceeded[] = $user->update(compact('name', 'role', 'email', 'introduction'));
+
+        // パスワード更新
+        if (isset($request['password'])) {
+            $password = Hash::make($request['password']);
+            $isSucceeded[] = $user->update(compact('password'));
+        }
+
+        // 画像保存: 表示されない場合は php artisan storage:link を実行すること
+        if ($request->file('featured_image') !== null) {
+            $dir = 'image/user'; // ディレクトリ名
+            $putPath = Storage::putFile("public/$dir", $request->file('featured_image'));
+            $profile_image_path = Storage::url($putPath);
+            $isSucceeded[] = $user->update(compact('profile_image_path'));
         }
 
         // SNS保存
         SnsAccount::where('user_id', $request['user_id'])->delete();
-        if ($request['alreadySnsAccounts']) {
+        if (isset($request['alreadySnsAccounts'])) {
             foreach ($request['alreadySnsAccounts'] as $alreadySnsAccount) {
-                if (!empty($alreadySnsAccount['name']) && !empty($alreadySnsAccount['url'])) {
+                if (isset($alreadySnsAccount['name'], $alreadySnsAccount['url'])) {
                     // Employee::where('id', $alreadySnsAccount['id'])
                     //     ->update([
                     SnsAccount::create([
@@ -108,9 +114,9 @@ class UserController extends Controller
                 }
             }
         }
-        if ($request['newSnsAccounts']) {
+        if (isset($request['newSnsAccounts'])) {
             foreach ($request['newSnsAccounts'] as $newSnsAccount) {
-                if (!empty($newSnsAccount['name']) && !empty($newSnsAccount['url'])) {
+                if (isset($newSnsAccount['name'], $newSnsAccount['url'])) {
                     SnsAccount::create([
                         'user_id' => $request['user_id'],
                         'name' => $newSnsAccount['name'],
@@ -119,21 +125,13 @@ class UserController extends Controller
                 }
             }
         }
-        // if ($user->update($request->all())) {
-        if (
-            $user->update([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'profile_image_path' => $profile_image_path,
-                'password' => isset($request['password']) ? Hash::make($request['password']) : $user['password'],
-                'role' => $request['role'],
-                'introduction' => $request['introduction'],
-            ])
-        ) {
-            $flash = ['success' => 'データを更新しました。'];
-        } else {
-            $flash = ['error' => 'データの更新に失敗しました'];
-        }
+
+        // 添字配列 $isSucceeded に false (Model::update 失敗時の返り値) が含まれるかどうか
+        $flash = match (in_array(false, $isSucceeded)) {
+            false => ['success' => 'データを更新しました。'],
+            true => ['error' => 'データの更新に失敗しました'],
+        };
+
         return redirect()
             ->route('back.users.edit', $user)
             ->with($flash);

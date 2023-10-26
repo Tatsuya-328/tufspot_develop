@@ -18,7 +18,6 @@
 .featured_image {
   object-fit: cover;
   width: 300px;
-  aspect-ratio: 4 / 3;
 }
 
 /* .image_preview {
@@ -64,6 +63,14 @@
     top: 7rem;
     padding: 0;
   }
+
+  #preview_image_container {
+    flex-direction: column;
+  }
+
+  #cropped_image_preview {
+    margin-top: 10px;
+  }
 }
 
 .navbar {
@@ -84,6 +91,14 @@
   /* .admin-main {
     margin-top: 5rem;
   } */
+
+  #preview_image_container {
+    flex-direction: row;
+  }
+
+  #cropped_image_preview {
+    margin-left: 10px;
+  }
 }
 
 .sidebar .nav-link {
@@ -113,4 +128,25 @@
 
 .bt_deleteForm {
   width: 10px;
+}
+
+/* users.edit */
+
+.cropper-crop-box,
+.cropper-view-box {
+  border-radius: 50%;
+}
+
+.cropper-view-box {
+  box-shadow: 0 0 0 1px #39f;
+  outline: 0;
+}
+
+#preview_image_container {
+  display: flex;
+}
+
+#cropped_image_preview {
+  min-height: 288px;
+  width: 300px;
 }
