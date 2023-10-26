@@ -1510,7 +1510,7 @@ div>.flickity-prev-next-button.next {
   }
 
   .top_liks {
-    margin
+    /* margin */
   }
 }
 
@@ -1781,7 +1781,7 @@ li.slick-slide>.post_card {
     font-family: "Yu Gothic Medium", "游ゴシック　Medium", Yugothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
     line-height: 1.7;
     color: #432;
-    background-color: ;
+    /* background-color: ; */
     background-repeat: no-repeat;
     width: 100%;
   }
@@ -2169,13 +2169,13 @@ aside {
   background-color: #f8f9fa;
 }
 
-*/ @media (max-width:600px) {
+@media (max-width:600px) {
 
   body {
     font-family: "Yu Gothic Medium", "游ゴシック　Medium", Yugothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
     line-height: 1.7;
     color: #432;
-    background-color: ;
+    /* background-color: ; */
     background-repeat: no-repeat;
     width: 100%;
     margin-bottom: 100px;
