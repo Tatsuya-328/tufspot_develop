@@ -1096,7 +1096,7 @@ div>.is-selected {
   font-size: 14px;
   line-height: 25px;
   color: #191919;
-  margin: 0 0 28px 0;
+  margin: 0 0 4px 0;
   width: 320px;
 }
 
@@ -1109,6 +1109,16 @@ div>.is-selected {
 
 .top-carousel-hashtag>a {
   color: inherit;
+}
+
+.post-card-writer-wrapper>a {
+  align-items: center;
+  display: flex;
+}
+
+.post-card-writer-wrapper>a>img {
+  height: 26px;
+  width: 26px;
 }
 
 .top-carousel-image-wrapper {
@@ -1237,7 +1247,7 @@ div>.flickity-button:focus {
   .top-carousel-text {
     font-size: 2vw;
     line-height: 3.5vw;
-    margin: 0 0 0.9vw 0;
+    /* margin: 0 0 0.9vw 0; */
     width: 70vw;
     /* transform: scale(0.9); */
 
@@ -1328,7 +1338,7 @@ div>.flickity-button:focus {
   .top-carousel-text {
     font-size: 9.127px;
     line-height: 16.732px;
-    margin: 0 0 8.46px 0;
+    /* margin: 0 0 8.46px 0; */
     width: 235px;
   }
 
@@ -1346,8 +1356,8 @@ div>.flickity-button:focus {
   }
 
   .top-carousel-hashtag {
-    font-size: 0.94px;
-    margin: 0 0 2.82px 0;
+    /* font-size: .94px; */
+    margin-bottom: 2.82px;
   }
 
   .post-card-writer {
@@ -1381,7 +1391,7 @@ div>.flickity-button:focus {
   .top-carousel-text {
     font-size: 0.971vw;
     line-height: 1.78vw;
-    margin: 0 0 0.9vw 0;
+    /* margin: 0 0 0.9vw 0; */
     width: 25vw;
   }
 
@@ -1399,8 +1409,8 @@ div>.flickity-button:focus {
   }
 
   .top-carousel-hashtag {
-    font-size: 0.1vw;
-    margin: 0 0 0.3vw 0;
+    /* font-size: .1vw; */
+    margin-bottom: .5vw;
   }
 
   .post-card-writer {
@@ -1436,7 +1446,7 @@ div>.flickity-button:focus {
     font-size: 14px;
     line-height: 25px;
     color: #191919;
-    margin: 0 0 28px 0;
+    /* margin: 0 0 28px 0; */
     width: 320px;
   }
 
@@ -1500,7 +1510,7 @@ div>.flickity-prev-next-button.next {
   }
 
   .top_liks {
-    margin
+    /* margin */
   }
 }
 
@@ -1771,7 +1781,7 @@ li.slick-slide>.post_card {
     font-family: "Yu Gothic Medium", "游ゴシック　Medium", Yugothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
     line-height: 1.7;
     color: #432;
-    background-color: ;
+    /* background-color: ; */
     background-repeat: no-repeat;
     width: 100%;
   }
@@ -2159,13 +2169,13 @@ aside {
   background-color: #f8f9fa;
 }
 
-*/ @media (max-width:600px) {
+@media (max-width:600px) {
 
   body {
     font-family: "Yu Gothic Medium", "游ゴシック　Medium", Yugothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
     line-height: 1.7;
     color: #432;
-    background-color: ;
+    /* background-color: ; */
     background-repeat: no-repeat;
     width: 100%;
     margin-bottom: 100px;
