@@ -20,6 +20,7 @@
                     <div class="d-flex flex-wrap flex-column justify-content-center align-content-center">
                         <div class="user-info-text">
                             <p>名前：{{ $user->name }}</p>
+                            <p>TUFSPOT ID：{{ $user->tufspot_id }}</p>
                             <p>電話番号：{{ $user->gaigokaiMembers[0]['phone_number'] }}</p>
                             <p>メールアドレス：{{ $user->email }}</p>
                             <p>外語会ID：{{ $user->gaigokaiMembers[0]['id'] }}</p>

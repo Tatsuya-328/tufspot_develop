@@ -112,6 +112,21 @@
 </div>
 
 <div class="form-group row mb-2">
+    {{ Form::label('tufspot_id', 'TUFSPOT ID', ['class' => 'col-sm-2 col-form-label']) }}
+    <div class="col-sm-10">
+        {{ Form::text('tufspot_id', null, [
+            'class' => 'form-control' . ($errors->has('tufspot_id') ? ' is-invalid' : ''),
+            'required',
+        ]) }}
+        @error('tufspot_id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+</div>
+
+<div class="form-group row mb-2">
     {{ Form::label('role', '権限', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
         {{ Form::select('role', Auth::user()->role === 2 ? [2 => '執筆者'] : config('common.user.roles'), null, ['class' => 'form-control']) }}

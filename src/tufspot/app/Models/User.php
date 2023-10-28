@@ -30,6 +30,7 @@ class User extends Authenticatable
     protected $fillable = [
         'id',
         'name',
+        'tufspot_id',
         'email',
         'password',
         'role',

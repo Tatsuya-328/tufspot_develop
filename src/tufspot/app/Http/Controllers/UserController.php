@@ -28,7 +28,7 @@ class UserController extends Controller
         try {
             // 管理者ユーザーの場合は取得（ユーザー一覧でもやる）
             $user = User::with('posts')->where([
-                ['name', '=', "$user"],
+                ['tufspot_id', '=', "$user"],
                 ['role', '=', 1],
             ])->firstOrFail();
 
