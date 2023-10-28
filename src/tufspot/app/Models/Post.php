@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUlids;
 
     protected $fillable = [
         'title', 'body', 'description', 'is_public', 'published_at', 'featured_image_path', 'user_id', 'update_user_id'
@@ -160,10 +161,10 @@ class Post extends Model
      * 公開記事をIDで取得
      *
      * @param Builder $query
-     * @param int $id
+     * @param string $id
      * @return Builder
      */
-    public function scopePublicFindById(Builder $query, int $id)
+    public function scopePublicFindById(Builder $query, string $id)
     {
         return $query->public()->findOrFail($id);
     }
@@ -172,10 +173,10 @@ class Post extends Model
      * 全記事をIDで取得
      *
      * @param Builder $query
-     * @param int $id
+     * @param string $id
      * @return Builder
      */
-    public function scopeFindById(Builder $query, int $id)
+    public function scopeFindById(Builder $query, string $id)
     {
         return $query->findOrFail($id);
     }

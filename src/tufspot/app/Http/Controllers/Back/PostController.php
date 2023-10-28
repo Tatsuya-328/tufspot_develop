@@ -135,10 +135,10 @@ class PostController extends Controller
     /**
      * プレビュー画面
      *
-     * @param int $id
+     * @param string $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function preview(int $id = null, PostUpdateRequest $request)
+    public function preview(string $id = null, PostUpdateRequest $request)
     {
         $post = $request;
 

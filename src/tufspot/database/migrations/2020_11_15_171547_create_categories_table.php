@@ -24,7 +24,8 @@ class CreateCategoriesTable extends Migration
 
         Schema::create('category_post', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->uuid('post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
         });
     }
