@@ -92,6 +92,20 @@
                             </div>
                         </div>
                         <div class="form-group ">
+                            {{ Form::label('tufspot_id', 'TUFSPOT ID', ['class' => 'col-form-label']) }}
+                            <div class="">
+                                {{ Form::text('tufspot_id', null, [
+                                    'class' => 'form-control' . ($errors->has('tufspot_id') ? ' is-invalid' : ''),
+                                    'required',
+                                ]) }}
+                                @error('tufspot_id')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group ">
                             {{ Form::label('phone_number', '電話番号', ['class' => 'col-form-label']) }}
                             <div class="">
                                 {{ Form::text('phone_number', null, [
