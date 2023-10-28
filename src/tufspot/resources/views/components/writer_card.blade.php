@@ -1,5 +1,5 @@
 <div class="writer-card d-flex flex-wrap flex-column align-content-center" wire:key="writer-{{ $writer->id }}">
-    <a href="{{ route('writer_detail', ['user' => $writer['id']]) }}" class="text-decoration-none">
+    <a href="{{ route('writer_detail', ['user' => $writer['name']]) }}" class="text-decoration-none">
         <div class="d-flex flex-wrap flex-column justify-content-center align-content-center">
             @if ($writer['profile_image_path'])
                 <img loading="lazy" src="{{ $writer['profile_image_path'] }}" class="" alt="{{ $writer['name'] }} のプロフィール画像" style="height: 100px; width: 100px;" />

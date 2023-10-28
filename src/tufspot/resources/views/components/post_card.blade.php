@@ -27,7 +27,7 @@
             </span>
         </p>
         <div class="post-card-writer-wrapper">
-            <a href="{{ route('writer_detail', ['user' => $post['user']['id']]) }}" class="text-decoration-none">
+            <a href="{{ route('writer_detail', ['user' => $post['user']['name']]) }}" class="text-decoration-none">
                 @if ($post['user']['profile_image_path'])
                     <img loading="lazy" src="{{ $post['user']['profile_image_path'] }}" class="" alt="{{ $post['user']['name'] }} のプロフィール画像" />
                 @else
