@@ -88,14 +88,19 @@ class RegisterController extends Controller
             return Validator::make($data, $rulus, $message);
         }
 
+        $messages = [
+            'tufspot_id.regex' => 'TUFSPOT IDには、半角英数字およびアンダースコアのみを指定してください。',
+        ];
+
         return Validator::make($data, [
             // 会員IDと電話番号が存在するか確認
             'id' => ['required', 'string', 'exists:gaigokai_members,id'],
             'phone_number' => ['required', 'string', 'exists:gaigokai_members,phone_number'],
             'name' => ['required', 'string', 'max:255'],
+            'tufspot_id' => ['required', 'string', 'regex:/^[a-z0-9\_]{3,16}$/i'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], $messages);
     }
 
     /**
@@ -109,6 +114,7 @@ class RegisterController extends Controller
         // アプリのユーザー登録
         $user = User::create([
             'name' => $data['name'],
+            'tufspot_id' => $data['tufspot_id'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             // 'password' => bcrypt($data['password']),

@@ -140,6 +140,7 @@ return [
         'id' => '外語会ID',
         'phone number' => '電話番号',
         'phone_number' => '電話番号',
+        'tufspot_id' => 'TUFSPOT ID',
     ],
 
     /*
@@ -153,4 +154,3 @@ return [
     |
     */
 ];
-

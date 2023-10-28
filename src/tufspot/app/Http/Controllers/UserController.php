@@ -9,6 +9,7 @@ use App\Models\GaigokaiMember;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SnsAccount;
 use App\Http\Requests\UserRequest;
+use Exception;
 
 class UserController extends Controller
 {
@@ -22,22 +23,24 @@ class UserController extends Controller
      * @param User $user
      * @return \Illuminate\Contracts\View\View
      */
-    public function show(User $user)
+    public function show(string $user)
     {
-        // 管理者かつ記事を持っている(公開済み)ユーザーのみ表示（ユーザー一覧でもやる）
-        $user = User::with('posts')->where([
-            ['id', '=', $user['id']],
-            ['role', '=', 1],
-        ])->whereHas('posts', function ($q) {
-            $q->whereExists(function ($q) {
-                return $q;
-            });
-        })->first();
-        if (empty($user)) {
+        try {
+            // 管理者ユーザーの場合は取得（ユーザー一覧でもやる）
+            $user = User::with('posts')->where([
+                ['tufspot_id', '=', "$user"],
+                ['role', '=', 1],
+            ])->firstOrFail();
+
+            // 公開済み記事数が 0 の場合も 404 を返す
+            if ($user->posts->count() === 0) {
+                throw new Exception();
+            }
+
+            return view('writer_detail', compact('user'));
+        } catch (Exception) {
             abort(404, '存在しないページです');
         }
-
-        return view('writer_detail', compact('user'));
     }
 
     /**

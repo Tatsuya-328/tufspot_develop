@@ -22,7 +22,8 @@ class CreateTagsTable extends Migration
 
         Schema::create('post_tag', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->uuid('post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreignId('tag_id')->constrained()->onDelete('cascade');
         });
     }

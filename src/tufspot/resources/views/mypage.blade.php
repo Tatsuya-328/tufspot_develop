@@ -20,6 +20,7 @@
                     <div class="d-flex flex-wrap flex-column justify-content-center align-content-center">
                         <div class="user-info-text">
                             <p>名前：{{ $user->name }}</p>
+                            <p>TUFSPOT ID：{{ $user->tufspot_id }}</p>
                             <p>電話番号：{{ $user->gaigokaiMembers[0]['phone_number'] }}</p>
                             <p>メールアドレス：{{ $user->email }}</p>
                             <p>外語会ID：{{ $user->gaigokaiMembers[0]['id'] }}</p>
@@ -84,6 +85,20 @@
                                     'required',
                                 ]) }}
                                 @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            {{ Form::label('tufspot_id', 'TUFSPOT ID', ['class' => 'col-form-label']) }}
+                            <div class="">
+                                {{ Form::text('tufspot_id', null, [
+                                    'class' => 'form-control' . ($errors->has('tufspot_id') ? ' is-invalid' : ''),
+                                    'required',
+                                ]) }}
+                                @error('tufspot_id')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>

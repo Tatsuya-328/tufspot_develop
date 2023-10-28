@@ -43,6 +43,7 @@ class UserRequest extends FormRequest
         $validate = [
             // 'name' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($this->user)],
             'name' => ['required', 'string', 'max:255'],
+            'tufspot_id' => ['required', 'string', 'regex:/^[a-z0-9\_]{3,16}$/i'],
             'email' => 'required|string|email|max:255',
             'password' => 'required|string',
             'password_check' => 'required|string',
@@ -56,5 +57,17 @@ class UserRequest extends FormRequest
         }
 
         return $validate;
+    }
+
+    /**
+     * 定義済みバリデーションルールのエラーメッセージ取得
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'tufspot_id.regex' => 'TUFSPOT IDには、半角英数字およびアンダースコアのみを指定してください。',
+        ];
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeds;
 
 use Illuminate\Database\Seeder;
 use App\Models\Post;
+use App\Models\User;
 
 class PostSeeder extends Seeder
 {
@@ -18,27 +19,9 @@ class PostSeeder extends Seeder
             Post::factory()->count(100)->create();
         });
 
-        \DB::table('likes')->insert([
-            [
-                'user_id' => 2,
-                'post_id' => 1,
-            ],
-            [
-                'user_id' => 2,
-                'post_id' => 2,
-            ],
-            [
-                'user_id' => 2,
-                'post_id' => 3,
-            ],
-            [
-                'user_id' => 2,
-                'post_id' => 4,
-            ],
-            [
-                'user_id' => 2,
-                'post_id' => 5,
-            ],
-        ]);
+        $seedingUser = User::find(2);
+        foreach (Post::take(5)->get() as $post) {
+            $seedingUser->likes()->attach($post->id);
+        }
     }
 }

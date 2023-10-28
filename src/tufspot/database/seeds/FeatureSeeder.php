@@ -2,6 +2,7 @@
 
 namespace Database\Seeds;
 
+use App\Models\Post;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
@@ -48,9 +49,9 @@ class FeatureSeeder extends Seeder
             ]
         ]);
 
-        for ($i = 1; $i <= 100; $i++) {
+        foreach (Post::take(100)->get() as $post) {
             \DB::table('feature_post')->insert([
-                'post_id' => $i,
+                'post_id' => $post->id,
                 'feature_id' => $faker->numberBetween(1, 4)
             ]);
         }

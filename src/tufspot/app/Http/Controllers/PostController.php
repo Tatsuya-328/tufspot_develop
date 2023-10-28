@@ -99,10 +99,10 @@ class PostController extends Controller
     /**
      * 詳細画面
      *
-     * @param int $id
+     * @param string $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function show(int $id)
+    public function show(string $id)
     {
         $user = Auth::user();
         $post = Post::publicFindById($id);
@@ -125,7 +125,7 @@ class PostController extends Controller
     /**
      * カテゴリー・特集項目一覧
      *
-     * @param int $id
+     * @param string $id
      * @return \Illuminate\Contracts\View\View
      */
     public function category()
@@ -138,7 +138,7 @@ class PostController extends Controller
     /**
      * カテゴリー・特集の対象記事一覧
      *
-     * @param int $id
+     * @param string $id
      * @return \Illuminate\Contracts\View\View
      */
     public function category_detail($type, $slug)
