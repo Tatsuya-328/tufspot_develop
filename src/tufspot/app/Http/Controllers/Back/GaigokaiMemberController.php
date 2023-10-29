@@ -16,7 +16,7 @@ class GaigokaiMemberController extends Controller
      */
     public function index()
     {
-        $gaigokaiMembers = GaigokaiMember::orderByDesc('id')->paginate(20);
+        $gaigokaiMembers = GaigokaiMember::with('users')->orderByDesc('id')->paginate(20);
         return view('back.gaigokaiMembers.index', compact('gaigokaiMembers'));
     }
 

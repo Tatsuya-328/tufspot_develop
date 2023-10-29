@@ -25,9 +25,9 @@ $title = '外語会 ID 一覧';
                 <thead>
                     <tr>
                         <th scope="col" style="width: 2em" class="text-nowrap">外語会 ID</th>
+                        <th scope="col" style="width: 10em" class="text-nowrap">TUFSPOT ID</th>
+                        <th scope="col" style="width: 10em" class="text-nowrap">名前</th>
                         <th scope="col" style="width: 10em" class="text-nowrap">電話番号</th>
-                        <th scope="col" style="width: 10em" class="text-nowrap">登録日時</th>
-                        <th scope="col" style="width: 10em" class="text-nowrap">編集日時</th>
                         <th scope="col" style="width: 5em" class="text-nowrap"></th>
                         <th scope="col" style=""></th>
                     </tr>
@@ -36,9 +36,9 @@ $title = '外語会 ID 一覧';
                     @foreach ($gaigokaiMembers as $member)
                         <tr>
                             <td>{{ $member->id }}</td>
+                            <td>{{ $member->users->first()->tufspot_id ?? '' }}</td>
+                            <td>{{ $member->users->first()->name ?? '' }}</td>
                             <td>{{ $member->phone_number }}</td>
-                            <td>{{ $member->created_at ?? '（初期登録）' }}</td>
-                            <td>{{ $member->updated_at ?? '（未編集）' }}</td>
                             <td>
                                 {{ link_to_route('back.gaigokaiMembers.edit', '編集', $member, [
                                     'class' => 'btn btn-outline-dark btn-sm m-1',
