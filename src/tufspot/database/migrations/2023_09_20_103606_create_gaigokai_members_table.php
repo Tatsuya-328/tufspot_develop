@@ -26,7 +26,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('gaigokai_member_id')->unique();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreign('gaigokai_member_id')->references('id')->on('gaigokai_members')->onUpdate('cascade');
+            $table->foreign('gaigokai_member_id')->references('id')->on('gaigokai_members')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
