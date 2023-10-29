@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GaigokaiMember\UpdateRequest;
 use App\Http\Requests\GaigokaiMember\CreateRequest;
 use App\Models\GaigokaiMember;
+use Illuminate\Support\Facades\DB;
 
 class GaigokaiMemberController extends Controller
 {
@@ -92,8 +93,11 @@ class GaigokaiMemberController extends Controller
      */
     public function destroy(GaigokaiMember $gaigokaiMember)
     {
-        $isSucceeded[] = $gaigokaiMember->users->first() === null ?: $gaigokaiMember->users->first()->delete();
-        $isSucceeded[] = $gaigokaiMember->delete();
+        $isSucceeded = DB::transaction(function () use ($gaigokaiMember) {
+            $isSucceeded[] = $gaigokaiMember->users->first() === null ?: $gaigokaiMember->users->first()->delete();
+            $isSucceeded[] = $gaigokaiMember->delete();
+            return $isSucceeded;
+        });
 
         $flash =  match (in_array(false, $isSucceeded)) {
             false => ['success' => 'データを削除しました。'],
