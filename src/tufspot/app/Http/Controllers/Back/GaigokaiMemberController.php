@@ -92,7 +92,7 @@ class GaigokaiMemberController extends Controller
      */
     public function destroy(GaigokaiMember $gaigokaiMember)
     {
-        $isSucceeded[] = $gaigokaiMember->users->first()->delete();
+        $isSucceeded[] = $gaigokaiMember->users->first() === null ?: $gaigokaiMember->users->first()->delete();
         $isSucceeded[] = $gaigokaiMember->delete();
 
         $flash =  match (in_array(false, $isSucceeded)) {

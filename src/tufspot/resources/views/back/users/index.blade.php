@@ -24,7 +24,7 @@ $title = 'ユーザー一覧';
             <table class="table ">
                 <thead>
                     <tr>
-                        <th scope="col" style="width: 2em" class="text-nowrap">ID</th>
+                        <th scope="col" style="width: 10em" class="text-nowrap">TUFSPOT ID</th>
                         <th scope="col" style="width: 10em" class="text-nowrap">ユーザー名</th>
                         <th scope="col" style="width: 10em" class="text-nowrap">メールアドレス</th>
                         <th scope="col" style="width: 5em" class="text-nowrap">権限</th>
@@ -35,7 +35,7 @@ $title = 'ユーザー一覧';
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->tufspot_id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role_label }}</td>
