@@ -15,10 +15,12 @@ Route::group(['middleware' => 'can:writer'], function () {
     // 記事プレビュー
     Route::put('preview/{id}', [PostController::class, 'preview'])->name('post_preview');
     Route::post('preview/{id}', [PostController::class, 'preview'])->name('post_preview');
+
     Route::resource('users', 'UserController')->only(['edit', 'update']);
 });
 
 // adminのみアクセス可能
 Route::group(['middleware' => 'can:admin'], function () {
     Route::resource('users', 'UserController')->except(['show', 'edit', 'update']);
+    Route::resource('gaigokaiMembers', 'GaigokaiMemberController');
 });
