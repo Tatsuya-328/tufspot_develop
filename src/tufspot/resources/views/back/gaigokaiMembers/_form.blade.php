@@ -2,22 +2,26 @@
 /**
  * @var \App\Models\GaigokaiMember $gaigokaiMember
  */
-$textControl = Illuminate\Support\Facades\Route::currentRouteName() === 'back.gaigokaiMembers.edit' ? 'disabled' : 'required';
 ?>
 <div class="form-group row mb-2">
     {{ Form::label('id', '外語会 ID', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
-        {{ Form::text('id', $gaigokaiMember['id'] ?? null, [
+        {{ Form::text('id', null, [
             'class' => 'form-control' . ($errors->has('id') ? ' is-invalid' : ''),
-            "$textControl",
+            'required',
         ]) }}
+        @error('id')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 </div>
 
 <div class="form-group row mb-2">
     {{ Form::label('phone_number', '電話番号', ['class' => 'col-sm-2 col-form-label']) }}
     <div class="col-sm-10">
-        {{ Form::text('phone_number', $gaigokaiMember['phone_number'] ?? null, [
+        {{ Form::text('phone_number', null, [
             'class' => 'form-control' . ($errors->has('phone_number') ? ' is-invalid' : ''),
             'required',
         ]) }}

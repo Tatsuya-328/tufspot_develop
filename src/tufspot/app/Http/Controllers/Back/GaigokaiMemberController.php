@@ -38,7 +38,7 @@ class GaigokaiMemberController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $gaigokaiMember = GaigokaiMember::create($request->all());
+        $gaigokaiMember = GaigokaiMember::create($request->validated());
 
         if ($gaigokaiMember) {
             return redirect()
@@ -71,7 +71,7 @@ class GaigokaiMemberController extends Controller
      */
     public function update(UpdateRequest $request, GaigokaiMember $gaigokaiMember)
     {
-        $isSucceeded = $gaigokaiMember->update(['phone_number' => $request->phone_number]);
+        $isSucceeded = $gaigokaiMember->update($request->validated());
 
         $flash = match ($isSucceeded) {
             true => ['success' => 'データを更新しました。'],
