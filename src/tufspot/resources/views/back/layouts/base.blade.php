@@ -101,6 +101,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('back.users.index') }}">ユーザー</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('back.gaigokaiMembers.index') }}">外語会 ID</a>
+                        </li>
                     @endif
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('index') }}" target="_blank" rel="noopener noreferrer">本番サイトへ</a>
