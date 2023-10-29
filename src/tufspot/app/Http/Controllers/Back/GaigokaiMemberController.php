@@ -92,11 +92,12 @@ class GaigokaiMemberController extends Controller
      */
     public function destroy(GaigokaiMember $gaigokaiMember)
     {
-        $isSucceeded = $gaigokaiMember->delete();
+        $isSucceeded[] = $gaigokaiMember->users->first()->delete();
+        $isSucceeded[] = $gaigokaiMember->delete();
 
-        $flash =  match ($isSucceeded) {
-            true => ['success' => 'データを削除しました。'],
-            false => ['error' => 'データの削除に失敗しました。'],
+        $flash =  match (in_array(false, $isSucceeded)) {
+            false => ['success' => 'データを削除しました。'],
+            true => ['error' => 'データの削除に失敗しました。'],
         };
 
         return redirect()
