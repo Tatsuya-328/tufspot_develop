@@ -2,7 +2,7 @@
 
 <div class="container">
     <nav class="breadcrumb-wrapper" aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb {{ Request::routeIs('about', 'category', 'writer_list', 'mypage') ? 'invisible' : '' }}">
             <li class="breadcrumb-item d-flex justify-content-center align-content-center">
                 {{-- <a class="link-body-emphasis" href="#">
                 <svg class="bi" width="16" height="16">
@@ -23,9 +23,13 @@
             </a>
         </li> --}}
             <li class="active bread-text" aria-current="page">
-                <a href="{{ route('index') }}" class="text-decoration-none">
-                    TOP
-                </a>
+                @if (Request::is('category/list/*', 'feature/list/*'))
+                    <a href="{{ route('category') }}" class="text-decoration-none">カテゴリー一覧</a>
+                @elseif(Request::is('writer/*'))
+                    <a href="{{ route('writer_list') }}" class="text-decoration-none">ライター一覧</a>
+                @else
+                    <a href="{{ route('index') }}" class="text-decoration-none">TOP</a>
+                @endif
             </li>
         </ol>
     </nav>
