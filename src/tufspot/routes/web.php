@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,21 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+
+// パスワードリセット関連
+Route::prefix('password_reset')->name('password_reset.')->group(function () {
+    Route::prefix('email')->name('email.')->group(function () {
+        // パスワードリセットメール送信フォームページ
+        Route::get('/', [PasswordController::class, 'emailFormResetPassword'])->name('form');
+        // メール送信処理
+        Route::post('/', [PasswordController::class, 'sendEmailResetPassword'])->name('send');
+        // メール送信完了ページ
+        Route::get('/send_complete', [PasswordController::class, 'sendComplete'])->name('send_complete');
+    });
+    // パスワード再設定ページ
+    Route::get('/edit', [PasswordController::class, 'edit'])->name('edit');
+    // パスワード更新処理
+    Route::post('/update', [PasswordController::class, 'update'])->name('update');
+    // パスワード更新終了ページ
+    Route::get('/edited', [PasswordController::class, 'edited'])->name('edited');
+});
