@@ -15,9 +15,21 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
+    <style>
+        #submit_button {
+            background-color: #131313;
+        }
+
+        #submit_button[disabled] {
+            background-color: #D3D3D3;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,7 +37,7 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    TUF<span class="navbar-brand-span">SPOT</span>
+                    <img loading="lazy" src="{{ asset('image/logo_side.png') }}" class="" alt="..." height="24">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
