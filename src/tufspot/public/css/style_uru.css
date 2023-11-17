@@ -919,18 +919,20 @@ input[type="radio"] {
 }
 
 .about-concept-spot-title {
+  max-width: 770px;
   white-space: nowrap;
   font-size: 15px;
-  margin-right: auto;
-  margin-left: 18px;
+  width: 100%;
 }
 
 .about-concept-spot-headline {
-  margin: 0 auto 30px 24px;
+  max-width: 770px;
+  margin: 0 0 30px 0;
   letter-spacing: 10px;
   font-weight: 800;
   white-space: nowrap;
   font-size: 48px;
+  width: 100%;
 }
 
 
@@ -941,10 +943,12 @@ input[type="radio"] {
 @media (max-width:992px) {
   .about-concept-spot-title {
     margin: 0 auto;
+    text-align: center;
   }
 
   .about-concept-spot-headline {
     margin: 0 0 30px 0;
+    text-align: center;
   }
 }
 
