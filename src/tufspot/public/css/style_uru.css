@@ -764,7 +764,14 @@ input[type="radio"] {
 .about-top-text {
   font-size: 17px;
   margin: unset;
-  letter-spacing: 2.5px
+  letter-spacing: 2.5px;
+  line-height: 1.75;
+}
+
+@media (max-width: 600px) {
+  .about-top-text {
+    line-height: 2;
+  }
 }
 
 .about-image {
@@ -887,11 +894,12 @@ input[type="radio"] {
 .about-theme-wrapper {}
 
 .about-theme {
-  margin: 0 43px;
+  width: 240px;
+  margin: 0 36px;
 }
 
 .about-theme-top-text {
-  margin: 200px 0 60px 0;
+  margin: 200px 0 90px 0;
   font-size: 30px;
   letter-spacing: 6px;
   color: #222222;
@@ -2209,9 +2217,9 @@ aside {
     margin-left: 3%;
   }
 
-  .wrapper {
+  /* .wrapper {
     margin-top: 7%;
-  }
+  } */
 
   .account_name {
     /* display: none; */
