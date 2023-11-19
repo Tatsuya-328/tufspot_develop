@@ -35,20 +35,20 @@
     </div>
     <x-main>
         <div class="about-wrapper d-flex flex-column align-items-center">
-            <div class="about-concept">
-                <div class="about-concept-title d-flex justify-content-center align-items-center">
-                    メディアコンセプト
-                </div>
-                <div class="about-concept-text hover d-flex justify-content-center align-items-center">
-                    Enjoy Diversity
-                </div>
-                <div class="hover-text-area">
-                    <p class="hover-text">バラバラであることを楽しみ、そこに新たな視点を見出す。<br>それが当たり前のようにできる外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、自分たちが見聞きし、考えたことをシェアしよう。</p>
+            <div class="about-concept" style="height: 300px">
+                <div class="w-100 m-auto position-relative position-absolute" style="max-width: 625px; left: 50%; transform: translate(-50%);">
+                    <div class="about-concept-title d-flex justify-content-center align-items-center">
+                        メディアコンセプト
+                    </div>
+                    <div class="about-concept-text hover d-flex justify-content-center align-items-center">
+                        Enjoy Diversity
+                    </div>
+                    <div class="hover-text-area hidden">
+                        <p class="hover-text">バラバラであることを楽しみ、そこに新たな視点を見出す。<br>それが当たり前のようにできる外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、自分たちが見聞きし、考えたことをシェアしよう。</p>
+                    </div>
                 </div>
             </div>
-            <p class="about-theme-top-text">
-                ［　主に取り扱う3つのテーマ　］
-            </p>
+            <p class="about-theme-top-text"> ［　主に取り扱う3つのテーマ　］</p>
             <div class="about-theme-wrapper d-flex">
                 <div class="about-theme d-flex flex-column align-items-center">
                     <p class="about-theme-title text-center"><span>A</span>cademia</p>
