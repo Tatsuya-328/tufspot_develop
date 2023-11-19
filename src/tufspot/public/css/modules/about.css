@@ -26,17 +26,30 @@
 }
 
 .hover-text-area {
-    position: absolute;
+    /* position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: #505050;
-    opacity: 0;
+    opacity: 0; */
+
+    position: absolute;
+    max-width: 625px;
+    width: 100%;
+    height: 250px;
+    background-color: #ffffff;
+    border: 3px solid #505050;
+    font-size: 16px;
+    letter-spacing: 11px;
+    color: #222222;
+    font-weight: 600;
+    box-sizing: border-box;
 }
 
 .hover-text-area:hover {
     cursor: pointer;
+    background-color: #505050;
 }
 
 .hover-text-area.appear {
@@ -59,11 +72,19 @@
     letter-spacing: 5px;
     text-align: center;
     line-height: 160%;
-    padding: 0 10px;
+    padding: 0 10px 0 20px;
+    background-color: #505050;
+
 }
 
 @media screen and (max-width: 768px) {
     .display-only-pc {
         display: none;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .hover-text-area {
+        height: 300px;
     }
 }
