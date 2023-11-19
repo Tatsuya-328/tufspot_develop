@@ -29,9 +29,16 @@
                 <ul class="dropdown-menu text-small" style="">
                     <li><a class="dropdown-item" href="{{ route('index') }}">Home</a></li>
                     <li><a class="dropdown-item" href="{{ route('about') }}">About</a></li>
+                    <li><a class="dropdown-item" href="{{ route('category_detail', ['feature', 'pickup']) }}">Pick Up</a></li>
+                    <li><a class="dropdown-item" href="{{ route('category_detail', ['category', 'academia']) }}">Academia</a></li>
+                    <li><a class="dropdown-item" href="{{ route('category_detail', ['category', 'business-and-career']) }}">Business and Career</a></li>
+                    <li><a class="dropdown-item" href="{{ route('category_detail', ['category', 'culture-and-essay']) }}">Culture and Essay</a></li>
+                    <li><a class="dropdown-item" href="{{ route('category') }}">Feature</a></li>
+                    {{-- 
                     <li><a class="dropdown-item" href="{{ route('category') }}">CategoryList</a></li>
                     <li><a class="dropdown-item" href="{{ route('writer_list') }}">WriterList</a></li>
                     <li><a class="dropdown-item" href="{{ route('mypage') }}">Mypage</a></li>
+                    --}}
                     <li>
                         <hr class="dropdown-divider">
                     </li>
