@@ -1,0 +1,46 @@
+{{--
+    カードの形式を持ってくる
+    画像はフリー画像を、縦223*横299pxで
+
+    以下phpで複製後に並び替えるのに使えそう
+    https://getbootstrap.jp/docs/5.0/components/card/
+--}}
+{{-- @props(['place' => 'ハロン湾']) --}}
+<div class="post_card" style="">
+    <a href="{{ route('post_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
+        <img loading="lazy" src="{{ $post['featured_image_path'] ?? asset('image/noimage.png') }}" class="post_card_img" alt="...">
+    </a>
+    <div class="card-body">
+        <p class="fw-bold post-card-text">
+            <a href="{{ route('post_detail', ['id' => $post['id']]) }}" class="text-decoration-none">
+                {{-- ここに記事のタイトルが入ります<br>
+                ここに記事のタイトルが入ります。 --}}
+                {!! nl2br($post['title']) !!}
+                <br>
+            </a>
+            <span class="post-card-hashtag">
+                @foreach ($post['tags'] as $tag)
+                    <a href="{{ route('hashtag_result', ['tagSlug' => $tag['slug']]) }}" class="text-decoration-none">#{{ $tag['name'] }}</a>
+                @endforeach
+                {{-- <a href="{{ route('hashtag_result', ['tagSlug' => $post['id']]) }}" class="text-decoration-none">#ハッシュタグ</a>
+                <a href="{{ route('hashtag_result', ['tagSlug' => $post['id']]) }}" class="text-decoration-none">#ハッシュタグ</a> --}}
+            </span>
+        </p>
+        <div class="post-card-writer-wrapper">
+            <a href="{{ route('writer_detail', ['user' => $post['user']['tufspot_id']]) }}" class="text-decoration-none">
+                @if ($post['user']['profile_image_path'])
+                    <img loading="lazy" src="{{ $post['user']['profile_image_path'] }}" class="" alt="{{ $post['user']['name'] }} のプロフィール画像" />
+                @else
+                    <svg class="d-inline text-secondary" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                    </svg>
+                @endif
+                <p class="post-card-writer">
+                    {{-- Writer Name --}}
+                    {{ $post['user']['name'] }}
+                </p>
+            </a>
+        </div>
+    </div>
+</div>

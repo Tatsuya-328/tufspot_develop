@@ -1,0 +1,129 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use App\Models\User;
+use App\Models\GaigokaiMember;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
+class RegisterController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        try {
+            $gaigokai = GaigokaiMember::where('id', $data['id'])->where('phone_number', $data['phone_number'])->first();
+        } catch (\Exception $e) {
+            report($e);
+            session()->flash('flash_message', '登録失敗しました');
+        }
+
+        if (empty($gaigokai)) {
+            // 会員IDと電話番号の組み合わせが一致するか確認
+            $data['id'] = null;
+            $data['phone_number'] = null;
+
+            $rulus = [
+                'id' => ['exists:gaigokai_members,id'],
+                'phone_number' => ['exists:gaigokai_members,phone_number'],
+            ];
+
+            $message = [
+                'id.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
+                'phone_number.exists' => '入力に誤りがあるか、外語会IDと電話番号の組み合わせが一致していません。',
+            ];
+
+            return Validator::make($data, $rulus, $message);
+        } else if (!empty($gaigokai->users()->first())) {
+            // 登録済みの外語会IDではないか
+            $data['id'] = null;
+
+            $rulus = [
+                'id' => ['exists:gaigokai_members,id'],
+            ];
+
+            $message = [
+                'id.exists' => '新規登録済みの外語会IDです。',
+            ];
+
+            return Validator::make($data, $rulus, $message);
+        }
+
+        $messages = [
+            'tufspot_id.regex' => 'TUFSPOT IDには、半角英数字およびアンダースコアのみを指定してください。',
+        ];
+
+        return Validator::make($data, [
+            // 会員IDと電話番号が存在するか確認
+            'id' => ['required', 'string', 'exists:gaigokai_members,id'],
+            'phone_number' => ['required', 'string', 'exists:gaigokai_members,phone_number'],
+            'name' => ['required', 'string', 'max:255'],
+            'tufspot_id' => ['required', 'string', 'regex:/^[a-z0-9\_]{3,16}$/i'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], $messages);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
+    protected function create(array $data)
+    {
+        // アプリのユーザー登録
+        $user = User::create([
+            'name' => $data['name'],
+            'tufspot_id' => $data['tufspot_id'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            // 'password' => bcrypt($data['password']),
+        ]);
+
+        // ここで同時に中間テーブルに外部キーとしてid(外語会ID)を入れる
+        $gaigokai_member = GaigokaiMember::where('id', $data['id'])->where('phone_number', $data['phone_number'])->first();
+        $gaigokai_member->users()->attach($user['id']);
+
+        return $user;
+    }
+}
