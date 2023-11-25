@@ -52,7 +52,7 @@
                                         </label>
                                     </div>
                                     <div class="mt-2">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button disabled type="submit" class="btn btn-primary" id="submit_button">
                                             ログイン
                                         </button>
                                     </div>
