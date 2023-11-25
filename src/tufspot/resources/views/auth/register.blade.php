@@ -91,7 +91,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-6 text-start">
-                                    <a class="link-secondary" href="https://www.gaigokai.or.jp/inquiry.html">
+                                    <a class="link-secondary" href="https://www.gaigokai.or.jp/inquiry.html" target="_blank" rel="noopener noreferrer">
                                         外語会ID・電話番号を忘れた方はこちら
                                     </a>
                                 </div>
