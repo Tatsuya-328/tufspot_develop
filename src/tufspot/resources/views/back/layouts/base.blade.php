@@ -218,8 +218,16 @@
             var quill = new Quill('#quill_editor', {
                 // var quill = new Quill('#editor-container', {
                 modules: {
-                    imageResize: {},
-                    videoResize: {},
+                    imageResize: {
+                        toolbarStyles: {
+                            display: 'none',
+                        },
+                    },
+                    videoResize: {
+                        toolbarStyles: {
+                            display: 'none',
+                        },
+                    },
                     toolbar: [
                         [{
                             header: [1, false]
