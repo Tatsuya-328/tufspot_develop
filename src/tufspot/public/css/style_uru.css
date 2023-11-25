@@ -764,7 +764,14 @@ input[type="radio"] {
 .about-top-text {
   font-size: 17px;
   margin: unset;
-  letter-spacing: 2.5px
+  letter-spacing: 2.5px;
+  line-height: 1.75;
+}
+
+@media (max-width: 600px) {
+  .about-top-text {
+    line-height: 2;
+  }
 }
 
 .about-image {
@@ -831,33 +838,37 @@ input[type="radio"] {
 
 
 .about-concept {
-  margin: 230px 0 0 0;
+  margin: 200px 0 100px 0;
   width: 100%;
   position: relative;
 }
 
 .about-concept-title {
   position: absolute;
-  top: -60px;
-  font-size: 30px;
+  top: -42px;
+  font-size: 16px;
   letter-spacing: 6px;
   color: #ffffff;
-  max-width: 432px;
+  max-width: 260px;
   width: 100%;
-  height: 88px;
+  height: 70px;
   background-color: #505050;
+  border: 3px solid #505050;
 }
 
 .about-concept-text {
-  max-width: 1042px;
+  position: absolute;
+  max-width: 625px;
   width: 100%;
-  height: 238px;
+  height: 250px;
   background-color: #ffffff;
   border: 3px solid #505050;
-  font-size: 53px;
+  font-size: 32px;
   letter-spacing: 11px;
   color: #222222;
   font-weight: 600;
+  box-sizing: border-box;
+  padding-left: 24px;
 }
 
 .about-theme-title {
@@ -868,7 +879,7 @@ input[type="radio"] {
   margin: 0 0 30px 0;
   max-width: 250px;
   width: 100%;
-  white-wrap: nowrap;
+  word-wrap: normal;
 }
 
 .about-theme-title>span {
@@ -876,6 +887,7 @@ input[type="radio"] {
 }
 
 .about-theme-text {
+  word-break: auto-phrase;
   font-size: 14px;
   letter-spacing: 3px;
   color: #222222;
@@ -884,14 +896,17 @@ input[type="radio"] {
   margin: 50px 0 0 0;
 }
 
-.about-theme-wrapper {}
+.about-theme-wrapper {
+  margin-bottom: 50px;
+}
 
 .about-theme {
-  margin: 0 43px;
+  width: 240px;
+  margin: 0 36px;
 }
 
 .about-theme-top-text {
-  margin: 200px 0 60px 0;
+  margin: 120px 0 90px 0;
   font-size: 30px;
   letter-spacing: 6px;
   color: #222222;
@@ -905,7 +920,7 @@ input[type="radio"] {
 .about-concept-spot {
   margin: 0 auto 100px auto;
   width: 1000px;
-  width: 100%;
+  width: 90%;
 
 }
 
@@ -916,23 +931,41 @@ input[type="radio"] {
 .about-concept-spot-title {
   font-size: 18px;
   letter-spacing: 4px;
+  margin-left: -16px;
 }
 
 .about-concept-spot-title {
+  max-width: 770px;
   white-space: nowrap;
   font-size: 15px;
+  width: 100%;
 }
 
 .about-concept-spot-headline {
+  max-width: 770px;
   margin: 0 0 30px 0;
   letter-spacing: 10px;
   font-weight: 800;
   white-space: nowrap;
   font-size: 48px;
+  width: 100%;
 }
+
 
 .about-concept-spot-detail {
   padding: 0 10px;
+}
+
+@media (max-width:992px) {
+  .about-concept-spot-title {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-concept-spot-headline {
+    margin: 0 0 30px 0;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 425px) {
@@ -2192,9 +2225,9 @@ aside {
     margin-left: 3%;
   }
 
-  .wrapper {
+  /* .wrapper {
     margin-top: 7%;
-  }
+  } */
 
   .account_name {
     /* display: none; */

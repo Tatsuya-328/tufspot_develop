@@ -35,20 +35,20 @@
     </div>
     <x-main>
         <div class="about-wrapper d-flex flex-column align-items-center">
-            <div class="about-concept">
-                <div class="about-concept-title d-flex justify-content-center align-items-center">
-                    メディアコンセプト
-                </div>
-                <div class="about-concept-text hover d-flex justify-content-center align-items-center">
-                    Enjoy Diversity
-                </div>
-                <div class="hover-text-area">
-                    <p class="hover-text">バラバラであることを楽しみ、そこに新たな視点を見出す。<br>それが当たり前のようにできる外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、自分たちが見聞きし、考えたことをシェアしよう。</p>
+            <div class="about-concept" style="height: 300px">
+                <div class="w-100 m-auto position-relative position-absolute" style="max-width: 625px; left: 50%; transform: translate(-50%);">
+                    <div class="about-concept-title d-flex justify-content-center align-items-center">
+                        メディアコンセプト
+                    </div>
+                    <div class="about-concept-text hover d-flex justify-content-center align-items-center">
+                        Enjoy Diversity
+                    </div>
+                    <div class="hover-text-area hidden">
+                        <p class="hover-text">バラバラであることを楽しみ、そこに新たな視点を見出す。<br>それが当たり前のようにできる外大同窓生に向けたメディアだからこそ、<br>「違う」ことを恐れず、自分たちが見聞きし、考えたことをシェアしよう。</p>
+                    </div>
                 </div>
             </div>
-            <p class="about-theme-top-text">
-                ［　主に取り扱う3つのテーマ　］
-            </p>
+            <p class="about-theme-top-text"> ［　主に取り扱う3つのテーマ　］</p>
             <div class="about-theme-wrapper d-flex">
                 <div class="about-theme d-flex flex-column align-items-center">
                     <p class="about-theme-title text-center"><span>A</span>cademia</p>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="about-concept-spot-detail d-flex flex-column align-itemsn-center justify-content-center align-items-center">
                     <div class="about-concept-spot about-concept-spot-first d-flex flex-column justify-content-center align-items-center">
-                        <p class="about-concept-spot-title">［　世界中の外大知を集める　］</p>
+                        <p class="about-concept-spot-title">＃世界中の外大知を集める</p>
                         <p class="about-concept-spot-headline">TUFS-<span>POT</span></p>
                         <div class="about-concept-spot-text-wrapper d-flex align-items-end">
                             <p class="about-concept-spot-text">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="about-concept-spot d-flex flex-column justify-content-center align-items-center">
-                        <p class="about-concept-spot-title"><span class="about_br">［　</span>外大生の知見にスポットを当てる<span class="about_br">　］</span></p>
+                        <p class="about-concept-spot-title"><span class="about_br"></span>＃外大生の知見にスポットを当てる<span class="about_br"></span></p>
                         <p class="about-concept-spot-headline">TUF-<span>SPOT</span></p>
                         <div class="about-concept-spot-text-wrapper d-flex align-items-end">
                             <p class="about-concept-spot-text spot">
