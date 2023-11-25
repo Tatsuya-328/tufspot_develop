@@ -47,3 +47,7 @@
   /* margin: 0 auto; */
   /* margin: 50px auto; */
 }
+
+.ql-editor iframe {
+  pointer-events: none;
+}

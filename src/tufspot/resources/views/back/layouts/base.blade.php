@@ -211,6 +211,7 @@
     {{-- Quill editor --}}
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/johnny-quill-video-resize-module@0.0.1/video-resize.min.js"></script>
     {{-- Quill editor書き込み用 --}}
     <script>
         if (document.getElementById("quill_editor") != null) {
@@ -218,6 +219,7 @@
                 // var quill = new Quill('#editor-container', {
                 modules: {
                     imageResize: {},
+                    videoResize: {},
                     toolbar: [
                         [{
                             header: [1, false]
