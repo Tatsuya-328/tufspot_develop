@@ -1,3 +1,25 @@
+// ログイン・新規登録ページのボタン処理
+$(function () {
+    // デフォルトではsubmitボタンはdisabled
+    $("#submit_button").prop("disabled", true);
+
+    // 入力欄の操作時
+    $("form input:required").change(function () {
+        let isAllFormsFilled = false;
+
+        // すべての入力必須欄が埋まった場合に、isAllFormsFilledをTrueへ
+        $("form input:required").each(function (e) {
+            if ($("form input:required").eq(e).val() === "") {
+                isAllFormsFilled = true;
+            }
+        });
+
+        // isAllFormsFilledをそのままdisabledの付与判定に使用
+        // すべてのすべての入力必須欄が埋まった場合にdisabledが外れる
+        $("#submit_button").prop("disabled", isAllFormsFilled);
+    });
+});
+
 // vueは使わないから全選択コメントアウト
 
 // /**
