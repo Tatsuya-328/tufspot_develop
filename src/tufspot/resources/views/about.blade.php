@@ -78,7 +78,7 @@
                 </div>
                 <div class="about-concept-spot-detail d-flex flex-column align-itemsn-center justify-content-center align-items-center">
                     <div class="about-concept-spot about-concept-spot-first d-flex flex-column justify-content-center align-items-center">
-                        <p class="about-concept-spot-title">［ ＃世界中の外大知を集める ］</p>
+                        <p class="about-concept-spot-title">＃世界中の外大知を集める</p>
                         <p class="about-concept-spot-headline">TUFS-<span>POT</span></p>
                         <div class="about-concept-spot-text-wrapper d-flex align-items-end">
                             <p class="about-concept-spot-text">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="about-concept-spot d-flex flex-column justify-content-center align-items-center">
-                        <p class="about-concept-spot-title"><span class="about_br">［ </span>＃外大生の知見にスポットを当てる<span class="about_br"> ］</span></p>
+                        <p class="about-concept-spot-title"><span class="about_br"></span>＃外大生の知見にスポットを当てる<span class="about_br"></span></p>
                         <p class="about-concept-spot-headline">TUF-<span>SPOT</span></p>
                         <div class="about-concept-spot-text-wrapper d-flex align-items-end">
                             <p class="about-concept-spot-text spot">
