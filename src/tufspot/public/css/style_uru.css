@@ -433,15 +433,25 @@ input[type="radio"] {
   justify-content: center;
   line-height: 1;
   text-decoration: none;
-  color: #535353;
+  /* color: #f7f7f7; */
   font-size: 12px;
   border-radius: 18px;
   width: 125px;
   height: 36px;
   border: 1px solid #434343;
   transition: 0.3s;
-  background-color: #f7f7f7;
+  /* background-color: #535353; */
   filter: drop-shadow(0px 3px 4.5px #d3d3d3);
+}
+
+.follow-button {
+  color: #f7f7f7;
+  background-color: #535353;
+}
+
+.unfollow-button {
+  color: #535353;
+  background-color: #f7f7f7;
 }
 
 .writer-card-button:hover {
