@@ -70,11 +70,7 @@
     /* width: calc(720 / 850 * 100%); 記事が右よりになってしまってたため一旦外し*/
 }
 
-@media screen and (max-width: 768px) {
-    .post-detail-wrapper {
-        margin: 30px auto 0 auto;
-    }
-}
+
 
 .post-page .post-detail-writer-wrapper {
     width: 100%;
@@ -308,3 +304,16 @@
 }
 
 /* 記事詳細ここまで */
+
+@media screen and (max-width: 768px) {
+    .post-detail-wrapper {
+        margin: 30px auto 0 auto;
+    }
+
+    .ql-editor>p,
+    .post-detail-explain-text-wrapper,
+    .ql-editor>h1 {
+        padding-left: unset;
+        padding-right: unset;
+    }
+}
