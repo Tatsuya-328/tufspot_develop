@@ -11,7 +11,7 @@
                 {{-- <div class="feature_box" id="makeImg"></div> --}}
                 <div class="mt-5 post_list_explain d-flex flex-column justify-content-center">
                     <a class="text-decoration-none gray_color" href="{{ route('category_detail', ['category', $category->slug]) }}">
-                        <h2 class="text-center mb-4 gray_color">{{ $category->name }}</h2>
+                        <h3 class="mb-4 gray_color">{{ $category->name }}</h3>
                         <p class="post_list_explain_text m-0">
                             {!! nl2br($category->description) !!}
                             {{-- ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
@@ -28,7 +28,7 @@
             @if ($feature->is_public)
                 <div class="post_list_explain d-flex flex-column justify-content-center">
                     <a class="text-decoration-none gray_color" href="{{ route('category_detail', ['feature', $feature->slug]) }}">
-                        <h2 class="text-center mb-4 gray_color">{{ $feature->name }}</h2>
+                        <h3 class="mb-4 gray_color">{{ $feature->name }}</h3>
                         <p class="post_list_explain_text m-0">
                             {!! nl2br($feature->description) !!}
                             {{-- ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。ここに記事が書かれます。
