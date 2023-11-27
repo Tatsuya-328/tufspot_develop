@@ -804,8 +804,8 @@ input[type="radio"] {
   .about-top-title {
     font-size: 21px;
     line-height: 45px;
-    text-align: center;
-    margin: 0 0 40px 0;
+    text-align: left;
+    margin: 0 0 40px 20px;
   }
 
   .about-image {
@@ -830,7 +830,7 @@ input[type="radio"] {
   }
 
   .about-top-title-text {
-    justify-content: center;
+    justify-content: left;
     flex-wrap: wrap;
   }
 }
@@ -843,6 +843,17 @@ input[type="radio"] {
     position: absolute;
     left: 49%;
     top: -20px;
+  }
+}
+
+@media (max-width:425px) {
+  .about-image {
+    /* min-width: 440px; */
+    /* width: 70%; */
+    /* height: 620px; */
+    /* position: absolute; */
+    left: 23%;
+    /* top: -20px; */
   }
 }
 
