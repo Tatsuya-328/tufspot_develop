@@ -37,7 +37,7 @@
 .ql-editor>p>img {
   display: inline-block;
   object-fit: cover;
-  width: 300px;
+  /* width: 300px; */
   aspect-ratio: 4 / 3;
 
   /* display: block; */
@@ -46,4 +46,8 @@
   /* background: #434343; */
   /* margin: 0 auto; */
   /* margin: 50px auto; */
+}
+
+.ql-editor iframe {
+  pointer-events: none;
 }

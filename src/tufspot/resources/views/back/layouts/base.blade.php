@@ -210,12 +210,24 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     {{-- Quill editor --}}
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/johnny-quill-video-resize-module@0.0.1/video-resize.min.js"></script>
     {{-- Quill editor書き込み用 --}}
     <script>
         if (document.getElementById("quill_editor") != null) {
             var quill = new Quill('#quill_editor', {
                 // var quill = new Quill('#editor-container', {
                 modules: {
+                    imageResize: {
+                        toolbarStyles: {
+                            display: 'none',
+                        },
+                    },
+                    videoResize: {
+                        toolbarStyles: {
+                            display: 'none',
+                        },
+                    },
                     toolbar: [
                         [{
                             header: [1, false]
@@ -232,8 +244,8 @@
                         [{
                             'align': ['', 'center', 'right']
                         }],
-                        ['link', 'image']
-                    ]
+                        ['link', 'image', 'video'],
+                    ],
                 },
                 scrollingContainer: '#scrolling-container',
                 // placeholder: 'Compose an epic...',
