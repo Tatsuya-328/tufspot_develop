@@ -48,9 +48,17 @@ p {
   margin: unset;
 }
 
-.body {
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* height: 100%; */
+}
+
+body {
   background-color: #f7f7f7;
   overflow-x: hidden;
+  /* overflow: auto; */
+  height: 100%;
 }
 
 .wrapper {
