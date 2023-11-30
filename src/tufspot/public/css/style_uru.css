@@ -61,6 +61,11 @@ body {
   height: 100%;
 }
 
+.body_wrapper {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .wrapper {
   background-color: #f7f7f7;
 }
@@ -802,6 +807,7 @@ input[type="radio"] {
   position: absolute;
   left: -270px;
   top: 0px;
+  overflow: hidden;
 }
 
 .about_show {
