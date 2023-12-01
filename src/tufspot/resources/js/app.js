@@ -4,7 +4,7 @@ $(function () {
     $("#submit_button").prop("disabled", true);
 
     // 入力欄の操作時
-    $("form input:required").change(function () {
+    $("form input:required").keyup(function () {
         let isAllFormsFilled = false;
 
         // すべての入力必須欄が埋まった場合に、isAllFormsFilledをTrueへ
