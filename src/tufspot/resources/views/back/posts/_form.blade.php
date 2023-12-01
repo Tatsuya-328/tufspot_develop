@@ -174,7 +174,7 @@
 
 <div class="form-group row">
     {{ Form::label('is_public', '状態', ['class' => 'col-sm-1 control-label w-auto post-form']) }}
-    <div class="col post-form-col">
+    <div class="col post-form-col d-flex align-items-start">
         @foreach (config('common.public_status') as $key => $value)
             <div class="form-check form-check-inline">
                 {{ Form::radio('is_public', $key, null, [
@@ -184,43 +184,44 @@
                 {{ Form::label('is_public' . $key, $value, ['class' => 'form-check-label']) }}
                 @if ($key === 2)
                     @if (Request::is('admin/posts/create'))
-                        <input type="date" name="date" class="form-control" value="{{ old('date') }}">
-                        <div class="d-flex align-items-center">
-                            <select name="hour" id="hour" class="form-select me-2">
-                                @for ($i = 0; $i < 24; $i++)
-                                    <option value="{{ $i < 10 ? '0' . $i : $i }}">{{ $i < 10 ? '0' . $i : $i }}</option>
-                                @endfor
-                            </select>
-                            <span>時</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <select name="min" id="min" class="form-select me-2">
-                                <option value="00">00</option>
-                                <option value="15">15</option>
-                                <option value="30">30</option>
-                                <option value="45">45</option>
-                            </select>
-                            <span>分</span>
-                        </div>
-                    @else
-                        <input type="date" name="date" class="form-control" value="{{ old('date', $post['published_at']->format('Y-m-d')) }}">
-                        <div class="d-flex align-items-center">
-                            <select name="hour" id="hour" class="form-select me-2">
-                                @for ($i = 0; $i < 24; $i++)
-                                    <option value="{{ $i < 10 ? '0' . $i : $i }}" @if ($post['published_at']->format('H') == str($i)) selected @endif>{{ $i < 10 ? '0' . $i : $i }}</option>
-                                @endfor
-                            </select>
-                            <span>時</span>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <select name="min" id="min" class="form-select me-2">
-                                <option value="00" @if ($post['published_at']->format('i') === '00') selected @endif>00</option>
-                                <option value="15" @if ($post['published_at']->format('i') === '15') selected @endif>15</option>
-                                <option value="30" @if ($post['published_at']->format('i') === '30') selected @endif>30</option>
-                                <option value="45" @if ($post['published_at']->format('i') === '45') selected @endif>45</option>
-                            </select>
-                            <span>分</span>
-                        </div>
+                        <div class="d-flex gap-2 mt-1 flex-column flex-sm-row align-items-end" style="margin-left: -20px">
+                            <input type="date" name="date" class="form-control" value="{{ old('date') }}">
+                            <div class="d-flex align-items-center">
+                                <select name="hour" id="hour" class="form-select me-2" style="width: 70px">
+                                    @for ($i = 0; $i < 24; $i++)
+                                        <option value="{{ $i < 10 ? '0' . $i : $i }}">{{ $i < 10 ? '0' . $i : $i }}</option>
+                                    @endfor
+                                </select>
+                                <span>時</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <select name="min" id="min" class="form-select me-2" style="width: 70px">
+                                    <option value="00">00</option>
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="45">45</option>
+                                </select>
+                                <span>分</span>
+                            </div>
+                        @else
+                            <input type="date" name="date" class="form-control" value="{{ old('date', $post['published_at']->format('Y-m-d')) }}">
+                            <div class="d-flex align-items-center">
+                                <select name="hour" id="hour" class="form-select me-2">
+                                    @for ($i = 0; $i < 24; $i++)
+                                        <option value="{{ $i < 10 ? '0' . $i : $i }}" @if ($post['published_at']->format('H') == str($i)) selected @endif>{{ $i < 10 ? '0' . $i : $i }}</option>
+                                    @endfor
+                                </select>
+                                <span>時</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <select name="min" id="min" class="form-select me-2">
+                                    <option value="00" @if ($post['published_at']->format('i') === '00') selected @endif>00</option>
+                                    <option value="15" @if ($post['published_at']->format('i') === '15') selected @endif>15</option>
+                                    <option value="30" @if ($post['published_at']->format('i') === '30') selected @endif>30</option>
+                                    <option value="45" @if ($post['published_at']->format('i') === '45') selected @endif>45</option>
+                                </select>
+                                <span>分</span>
+                            </div>
                     @endif
                     @error('is_public')
                         <div class="text-danger form-check form-check-inline">
