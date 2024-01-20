@@ -17,7 +17,7 @@ return new class extends Migration
             // 外語会ID(id)は不変であるとし、CSVを再度読み込み等しても、中間テーブルや他への紐付きに影響ないとする。
             $table->string('id')->unique();
             // $table->foreignId('user_id')->constrained()->nullable();
-            $table->string('phone_number')->unique();
+            $table->string('phone_number')->nullable();
             $table->timestamps();
             // $table->foreign('user_id')->references('id')->on('users');
         });
@@ -25,8 +25,8 @@ return new class extends Migration
         Schema::create('gaigokai_member_user', function (Blueprint $table) {
             $table->increments('id');
             $table->string('gaigokai_member_id')->unique();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreign('gaigokai_member_id')->references('id')->on('gaigokai_members')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('gaigokai_member_id')->references('id')->on('gaigokai_members')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
