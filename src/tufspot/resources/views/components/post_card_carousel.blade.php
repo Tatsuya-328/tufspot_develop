@@ -29,7 +29,7 @@
             </a>
             <p class="top-carousel-hashtag">
                 @foreach ($post['tags'] as $tag)
-                    <a href="{{ route('hashtag_result', ['tagSlug' => $tag['slug']]) }}" class="text-decoration-none">#{{ $tag['name'] }}</a>
+                    <a href="{{ route('hashtag_result', ['tagSlug' => $tag['slug']]) }}" class="text-decoration-none"><span class="top-carousel-hashtag-icon">#</span>{{ $tag['name'] }}</a>
                 @endforeach
                 {{-- <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a> --}}
                 {{-- <a href="{{ route('hashtag_result', ['tagSlug' => 1]) }}" class="text-decoration-none">#ハッシュタグ</a> --}}

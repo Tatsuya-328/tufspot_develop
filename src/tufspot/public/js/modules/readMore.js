@@ -93,7 +93,7 @@ readMoreButtons.forEach(function (element, index) {
 function addHiddenClass(postCards) {
     if (window.innerWidth <= 425) {
         postCards.forEach((postCard, index) => {
-            if (index <= 1) {
+            if (index <= 3) {
                 postCard.classList.remove("hidden");
                 return;
             } else {
