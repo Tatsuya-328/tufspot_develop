@@ -5,7 +5,8 @@
             <a href="{{ route('index') }}" class="header-icon d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
                 {{-- TUF
                 <span>SPOT</span> --}}
-                <img loading="lazy" src="{{ asset('image/logo_side.png') }}" class="" alt="...">
+                <img loading="lazy" src="{{ asset('image/logo_icon-removebg.png') }}" class="header-icon-logo" alt="...">
+                <img loading="lazy" src="{{ asset('image/logo_side_text.png') }}" class="header-icon-text" alt="...">
             </a>
             <form action="{{ route('search_result') }}" method="GET" class="d-flex">
                 @csrf

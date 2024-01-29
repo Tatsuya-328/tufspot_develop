@@ -120,13 +120,14 @@
     letter-spacing: 5px;
     font-size: 25px;
     border: 2px solid;
-    border-radius: 10px;
+    border-radius: 50px;
 }
 
 @media screen and (max-width: 575px) {
     .read-more-button-sp {
-        width: 200px;
-        font-size: 20px;
+        width: 120px;
+        font-size: 14px;
+        letter-spacing: 1px;
     }
 }
 
@@ -177,3 +178,37 @@
 }
 
 @media screen and (max-width: 1200px) {}
+
+/* ios用 崩れ防止 */
+
+@media screen and (min-width: 320px) {
+
+    _::-webkit-full-page-media,
+    _:future,
+    :root .pickup_title_image {
+        transform: translateY(-25%) translateX(0px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (min-width: 425px) {
+
+    _::-webkit-full-page-media,
+    _:future,
+    :root .pickup_title_image {
+        transform: translateY(-25%) translateX(0px);
+        scale: 1.2;
+    }
+}
+
+@media screen and (min-width: 576px) {
+
+    _::-webkit-full-page-media,
+    _:future,
+    :root .pickup_title_image {
+        transform: translateY(-25%) translateX(0px);
+        scale: 1.2;
+    }
+}
+
+/* ios用 崩れ防止 ここまで*/
